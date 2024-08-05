@@ -1,9 +1,9 @@
-module goplus/gd4spx
+module goplus/gd4spx_test
 
 go 1.22.3
 
 require grow.graphics/gd v0.0.0-20240710064531-edc03e71dbe9
-
+require goplus/gd4spx v0.0.0-00010101000000-000000000000
 require (
 	golang.org/x/text v0.15.0 // indirect
 	grow.graphics/rd v0.0.0-20240706100320-00baa9f2a15d // indirect
@@ -11,3 +11,4 @@ require (
 	grow.graphics/xy v0.0.0-20240603021049-7427233fc3a9 // indirect
 	runtime.link v0.0.0-20240706100251-1b46cf7b6783 // indirect
 )
+replace goplus/gd4spx => ../..

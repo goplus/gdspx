@@ -1,9 +1,8 @@
 package main
 
 import (
-	"goplus/gd4spx/engine"
+	"goplus/gd4spx"
 
-	"grow.graphics/gd"
 	"grow.graphics/gd/gdextension"
 )
 
@@ -12,6 +11,5 @@ func main() {
 	if !ok {
 		panic("could not link to godot")
 	}
-	gd.Register[engine.EngineNode](godot)
-
+	gd4spx.RegisterEngineTypes(godot)
 }

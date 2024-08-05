@@ -5,23 +5,8 @@ import (
 	_ "grow.graphics/gd/gdextension"
 )
 
-var (
-	Root      gd.Node2D
-	KeepAlive gd.Lifetime
-	Temporary gd.Lifetime
-
-	AudioUtil     *AudioMgr
-	AnimationUtil *AnimationMgr
-	PhysicUtil    *PhysicMgr
-	RenderUtil    *RenderMgr
-	InputUtil     *InputMgr
-
-	rootSelf *EngineNode
-	managers []IManager
-)
-
 func GetTree() gd.SceneTree {
-	return rootSelf.Super().AsNode().GetTree(Temporary)
+	return Root.AsNode().GetTree(Temporary)
 }
 func ToString(s string) gd.String {
 	return Temporary.String(s)

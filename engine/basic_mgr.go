@@ -5,18 +5,18 @@ import (
 )
 
 type IManager interface {
-	Init(root gd.Node2D, keepAlive gd.Lifetime)
+	Init(root gd.Node, keepAlive gd.Lifetime)
 	Ready()
 	Process(delta gd.Float)
 }
 
 type BasicMgr struct {
-	Root      gd.Node2D
+	Root      gd.Node
 	KeepAlive gd.Lifetime
 	Temporary gd.Lifetime
 }
 
-func (pself *BasicMgr) Init(root gd.Node2D, keepAlive gd.Lifetime) {
+func (pself *BasicMgr) Init(root gd.Node, keepAlive gd.Lifetime) {
 	pself.Root = root
 	pself.KeepAlive = keepAlive
 }

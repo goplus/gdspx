@@ -1,4 +1,4 @@
-package engine
+package launcher
 
 import (
 	"grow.graphics/gd"
@@ -6,7 +6,7 @@ import (
 )
 
 type EngineNode struct {
-	gd.Class[EngineNode, gd.Node2D] `gd:"EngineNode"`
+	gd.Class[EngineNode, gd.Node] `gd:"EngineNode"`
 }
 
 func (pself *EngineNode) Ready() {
