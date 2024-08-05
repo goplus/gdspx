@@ -11,16 +11,26 @@ func initEngine(pself *EngineNode) {
 	node := pself.Super().AsNode2D()
 	Root = node
 	rootSelf = pself
-	AudioUtil = &AudioMgr{BasicMgr{Root: node, KeepAlive: pself.KeepAlive}}
-	AnimationUtil = &AnimationMgr{BasicMgr{Root: node, KeepAlive: pself.KeepAlive}}
-	PhysicUtil = &PhysicMgr{BasicMgr{Root: node, KeepAlive: pself.KeepAlive}}
-	InputUtil = &InputMgr{BasicMgr{Root: node, KeepAlive: pself.KeepAlive}}
-	RenderUtil = &RenderMgr{BasicMgr{Root: node, KeepAlive: pself.KeepAlive}}
-	println("initEngine")
-
+	managersList := []IManager{
+		&AudioMgr{},
+		&AnimationMgr{},
+		&PhysicMgr{},
+		&InputMgr{},
+		&RenderMgr{},
+	}
+	for _, mgr := range managersList {
+		mgr.Init(Root, KeepAlive)
+		managers = append(managers, mgr)
+	}
+	for _, mgr := range managers {
+		mgr.Ready()
+	}
 }
 
 func tickEngine(delta gd.Float) {
 	Temporary.End()
 	Temporary = gd.NewLifetime(rootSelf.KeepAlive)
+	for _, mgr := range managers {
+		mgr.Process(delta)
+	}
 }

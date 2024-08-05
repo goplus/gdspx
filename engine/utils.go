@@ -6,7 +6,6 @@ import (
 )
 
 var (
-	rootSelf  *EngineNode
 	Root      gd.Node2D
 	KeepAlive gd.Lifetime
 	Temporary gd.Lifetime
@@ -16,6 +15,9 @@ var (
 	PhysicUtil    *PhysicMgr
 	RenderUtil    *RenderMgr
 	InputUtil     *InputMgr
+
+	rootSelf *EngineNode
+	managers []IManager
 )
 
 func GetTree() gd.SceneTree {
