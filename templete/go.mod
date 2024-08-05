@@ -1,4 +1,4 @@
-module grow.graphics/eg
+module goplus/gd4spx
 
 go 1.22.3
 

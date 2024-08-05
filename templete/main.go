@@ -1,11 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"goplus/gd4spx/engine"
 
-	_ "grow.graphics/gd/gdextension"
+	"grow.graphics/gd"
+	"grow.graphics/gd/gdextension"
 )
 
 func main() {
-	fmt.Println("Hello, World!")
+	godot, ok := gdextension.Link()
+	if !ok {
+		panic("could not link to godot")
+	}
+	gd.Register[engine.EngineNode](godot)
+
 }
