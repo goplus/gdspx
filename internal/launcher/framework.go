@@ -1,8 +1,8 @@
 package launcher
 
 import (
-	. "godot-ext/gd4go/internal/engine"
-	"godot-ext/gd4go/internal/manager"
+	. "godot-ext/gdspx/internal/engine"
+	"godot-ext/gdspx/internal/manager"
 )
 
 var (

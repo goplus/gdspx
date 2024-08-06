@@ -3,7 +3,7 @@ package autogen
 
 import "C"
 import (
-	"gd4go-demo/pkg/demo"
+	"gdspx-demo/pkg/demo"
 
 	"github.com/godot-go/godot-go/pkg/core"
 )

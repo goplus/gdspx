@@ -1,7 +1,7 @@
-package gd4go
+package gdspx
 
 import (
-	"godot-ext/gd4go/internal/launcher"
+	"godot-ext/gdspx/internal/launcher"
 
 	"github.com/godot-go/godot-go/pkg/core"
 )

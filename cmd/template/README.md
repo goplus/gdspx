@@ -1,6 +1,6 @@
 # libgodot go-sample  
 
-Baisc demo from [gd4go-demo-projects](https://github.com/godotengine/godot-demo-projects/tree/master/2d/dodge_the_creeps
+Baisc demo from [gdspx-demo-projects](https://github.com/godotengine/godot-demo-projects/tree/master/2d/dodge_the_creeps
 )
 
 # How to run it

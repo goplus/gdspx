@@ -1,7 +1,7 @@
 package manager
 
 import (
-	. "godot-ext/gd4go/internal/engine"
+	. "godot-ext/gdspx/internal/engine"
 	"reflect"
 )
 

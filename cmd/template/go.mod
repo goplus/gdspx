@@ -1,4 +1,4 @@
-module gd4go-demo
+module gdspx-demo
 
 go 1.22.3
 
@@ -6,7 +6,7 @@ toolchain go1.22.5
 
 require github.com/godot-go/godot-go v0.0.0-00010101000000-000000000000
 
-require godot-ext/gd4go v0.0.0-00010101000000-000000000000
+require godot-ext/gdspx v0.0.0-00010101000000-000000000000
 
 require (
 	github.com/CannibalVox/cgoalloc v1.2.1 // indirect
@@ -18,6 +18,6 @@ require (
 	golang.org/x/text v0.15.0 // indirect
 )
 
-replace godot-ext/gd4go => ../../
+replace godot-ext/gdspx => ../../
 
 replace github.com/godot-go/godot-go => ../../../godot-go

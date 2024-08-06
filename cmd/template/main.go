@@ -2,10 +2,9 @@ package main
 
 import "C"
 import (
-	"godot-ext/gd4go/pkg/gd4go"
 	"unsafe"
 
-	"gd4go-demo/pkg/autogen"
+	"gdspx-demo/pkg/autogen"
 
 	. "github.com/godot-go/godot-go/pkg/core"
 	. "github.com/godot-go/godot-go/pkg/ffi"
@@ -26,7 +25,7 @@ func GdExtentionEnterPoint(p_get_proc_address unsafe.Pointer, p_library unsafe.P
 	)
 
 	initObj.RegisterSceneInitializer(func() {
-		gd4go.RegisterEngineTypes()
+		gd - spx.RegisterEngineTypes()
 		autogen.RegisterGameTypes()
 	})
 
