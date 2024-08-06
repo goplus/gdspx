@@ -1,11 +1,13 @@
 package manager
 
 import (
-	"grow.graphics/gd"
+	. "github.com/godot-go/godot-go/pkg/builtin"
 )
 
 type audioMgr struct {
 	baseMgr
+	Music AudioStreamPlayer
+	Audio AudioStreamPlayer
 }
 
 func (pself *audioMgr) PlayAudio(name string)         {}
@@ -20,4 +22,9 @@ func (pself *audioMgr) GetMusicVolume() float32       { return 0 }
 func (pself *audioMgr) SetMusicTime(time float32)     {}
 func (pself *audioMgr) GetMusicTime() float32         { return 0 }
 
-func (pself *audioMgr) Process(delta gd.Float) {}
+func (pself *audioMgr) Ready() {
+}
+
+func (pself *audioMgr) Process(delta float32) {
+
+}

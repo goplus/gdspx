@@ -3,9 +3,9 @@ package gd4go
 import (
 	"godot-ext/gd4go/internal/launcher"
 
-	"grow.graphics/gd"
+	"github.com/godot-go/godot-go/pkg/core"
 )
 
-func RegisterEngineTypes(godot gd.Lifetime) {
-	gd.Register[launcher.EngineNode](godot)
+func RegisterEngineTypes() {
+	core.AutoRegisterClassDB[*launcher.EngineNode]()
 }

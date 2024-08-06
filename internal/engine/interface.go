@@ -1,13 +1,13 @@
 package engine
 
 import (
-	"grow.graphics/gd"
+	. "github.com/godot-go/godot-go/pkg/builtin"
 )
 
 type IManager interface {
-	Init(root gd.Node, keepAlive gd.Lifetime)
+	Init(root Node)
 	Ready()
-	Process(delta gd.Float)
+	Process(delta float32)
 }
 
 type IAudioMgr interface {

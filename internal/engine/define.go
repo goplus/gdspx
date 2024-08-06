@@ -1,15 +1,11 @@
 package engine
 
 import (
-	"grow.graphics/gd"
-	_ "grow.graphics/gd/gdextension"
+	. "github.com/godot-go/godot-go/pkg/builtin"
 )
 
 var (
-	Root      gd.Node
-	KeepAlive gd.Lifetime
-	Temporary gd.Lifetime
-
+	Root Node
 	// managers
 	AudioMgr     IAudioMgr
 	AnimationMgr IAnimationMgr

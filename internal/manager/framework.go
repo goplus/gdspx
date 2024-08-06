@@ -2,8 +2,7 @@ package manager
 
 import (
 	. "godot-ext/gd4go/internal/engine"
-
-	"grow.graphics/gd"
+	"reflect"
 )
 
 var (
@@ -11,7 +10,9 @@ var (
 )
 
 func addManager[T IManager](mgr T) T {
-	mgr.Init(Root, KeepAlive)
+	typeName := reflect.TypeOf(mgr).Elem().Name()
+	println("add manager", typeName)
+	mgr.Init(nil)
 	managers = append(managers, mgr)
 	return mgr
 }
@@ -31,7 +32,7 @@ func InitMgrs() {
 	}
 }
 
-func TickMgrs(delta gd.Float) {
+func TickMgrs(delta float32) {
 	for _, mgr := range managers {
 		mgr.Process(delta)
 	}

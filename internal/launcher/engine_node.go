@@ -1,18 +1,17 @@
 package launcher
 
 import (
-	"grow.graphics/gd"
-	_ "grow.graphics/gd/gdextension"
+	. "github.com/godot-go/godot-go/pkg/gdclassimpl"
 )
 
 type EngineNode struct {
-	gd.Class[EngineNode, gd.Node] `gd:"EngineNode"`
+	NodeImpl
 }
 
 func (pself *EngineNode) Ready() {
 	initEngine(pself)
 }
 
-func (pself *EngineNode) Process(delta gd.Float) {
+func (pself *EngineNode) Process(delta float32) {
 	tickEngine(delta)
 }

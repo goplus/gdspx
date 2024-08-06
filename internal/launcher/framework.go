@@ -3,8 +3,6 @@ package launcher
 import (
 	. "godot-ext/gd4go/internal/engine"
 	"godot-ext/gd4go/internal/manager"
-
-	"grow.graphics/gd"
 )
 
 var (
@@ -12,15 +10,9 @@ var (
 )
 
 func initEngine(pself *EngineNode) {
-	KeepAlive = pself.KeepAlive
-	Temporary = gd.NewLifetime(KeepAlive)
-	Root = pself.Super().AsNode()
-
 	manager.InitMgrs()
 }
 
-func tickEngine(delta gd.Float) {
-	Temporary.End()
-	Temporary = gd.NewLifetime(KeepAlive)
+func tickEngine(delta float32) {
 	manager.TickMgrs(delta)
 }
