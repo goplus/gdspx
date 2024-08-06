@@ -15,9 +15,9 @@ require (
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/exp v0.0.0-20230725093048-515e97ebf090 // indirect
-	golang.org/x/text v0.15.0 // indirect
+	golang.org/x/text v0.16.0 // indirect
 )
 
 replace godot-ext/gdspx => ../../
 
-replace github.com/godot-go/godot-go => ../../../godot-go
+replace github.com/godot-go/godot-go => github.com/godot-ext/gd v0.0.1

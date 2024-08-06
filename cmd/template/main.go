@@ -5,6 +5,7 @@ import (
 	"unsafe"
 
 	"gdspx-demo/pkg/autogen"
+	"godot-ext/gdspx/pkg/gdspx"
 
 	. "github.com/godot-go/godot-go/pkg/core"
 	. "github.com/godot-go/godot-go/pkg/ffi"
@@ -25,7 +26,7 @@ func GdExtentionEnterPoint(p_get_proc_address unsafe.Pointer, p_library unsafe.P
 	)
 
 	initObj.RegisterSceneInitializer(func() {
-		gd - spx.RegisterEngineTypes()
+		gdspx.RegisterEngineTypes()
 		autogen.RegisterGameTypes()
 	})
 

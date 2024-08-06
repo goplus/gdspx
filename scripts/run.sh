@@ -1,7 +1,8 @@
 
 #!/bin/bash
-
+pwd 
 cd cmd/template
 
-gd run
+pwd 
+make && make run
 cd ../../
