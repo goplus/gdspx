@@ -11,17 +11,17 @@ type IManager interface {
 }
 
 type IAudioMgr interface {
-	/*
+	PlayAudio(name string)
+	SetAudioVolume(volume float32)
+	GetAudioVolume() float32
 
-		PlayAudio(name string)
-		SetAudioVolume(volume float32)
-
-		PlayMusic(name string)
-		PauseMusic()
-		StopMusic()
-		SetMusicVolume(volume float32)
-		SetMusicTime(time float32)
-	*/
+	PlayMusic(name string)
+	PauseMusic()
+	StopMusic()
+	SetMusicVolume(volume float32)
+	GetMusicVolume() float32
+	SetMusicTime(time float32)
+	GetMusicTime() float32
 }
 
 type IAnimationMgr interface {
