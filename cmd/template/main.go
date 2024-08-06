@@ -11,5 +11,5 @@ func main() {
 	if !ok {
 		panic("could not link to godot")
 	}
-	gd4go.RegisterEngineTypes(godot)
+	gd4go.InitEngine(godot)
 }

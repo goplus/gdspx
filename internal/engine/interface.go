@@ -1,5 +1,15 @@
 package engine
 
+import (
+	"grow.graphics/gd"
+)
+
+type IManager interface {
+	Init(root gd.Node, keepAlive gd.Lifetime)
+	Ready()
+	Process(delta gd.Float)
+}
+
 type IAudioMgr interface {
 	/*
 

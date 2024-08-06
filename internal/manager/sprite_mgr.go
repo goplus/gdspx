@@ -1,11 +1,7 @@
 package manager
 
-import (
-	"godot-ext/gd4go/internal/engine"
-)
-
 type spriteMgr struct {
-	engine.BasicMgr
+	baseMgr
 }
 
 func (pself *spriteMgr) CreateSprite() {

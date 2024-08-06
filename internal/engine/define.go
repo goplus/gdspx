@@ -10,6 +10,7 @@ var (
 	KeepAlive gd.Lifetime
 	Temporary gd.Lifetime
 
+	// managers
 	AudioMgr     IAudioMgr
 	AnimationMgr IAnimationMgr
 	PhysicMgr    IPhysicMgr
