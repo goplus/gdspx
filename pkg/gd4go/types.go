@@ -1,7 +1,7 @@
-package gd4spx
+package gd4go
 
 import (
-	"goplus/gd4spx/launcher"
+	"godot-ext/gd4go/internal/launcher"
 
 	"grow.graphics/gd"
 )

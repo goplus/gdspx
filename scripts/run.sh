@@ -1,7 +1,7 @@
 
 #!/bin/bash
 
-cd cmd/templete
+cd cmd/template
 
 gd run
 cd ../../

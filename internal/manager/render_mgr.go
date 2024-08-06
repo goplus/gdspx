@@ -1,7 +1,7 @@
 package manager
 
 import (
-	"goplus/gd4spx/engine"
+	"godot-ext/gd4go/internal/engine"
 )
 
 type RenderMgr struct {

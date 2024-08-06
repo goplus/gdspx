@@ -1,7 +1,7 @@
 package main
 
 import (
-	"goplus/gd4spx"
+	"godot-ext/gd4go/pkg/gd4go"
 
 	"grow.graphics/gd/gdextension"
 )
@@ -11,5 +11,5 @@ func main() {
 	if !ok {
 		panic("could not link to godot")
 	}
-	gd4spx.RegisterEngineTypes(godot)
+	gd4go.RegisterEngineTypes(godot)
 }

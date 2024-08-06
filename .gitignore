@@ -4,9 +4,4 @@ go.work
 *.dylib
 *library.gdextension
 go.work.sum
-/main.go
-/go.mod
-/go.sum
 /.vscode
-/graphics
-/templete/engine

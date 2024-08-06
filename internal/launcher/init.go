@@ -1,8 +1,8 @@
 package launcher
 
 import (
-	. "goplus/gd4spx/engine"
-	. "goplus/gd4spx/manager"
+	. "godot-ext/gd4go/internal/engine"
+	. "godot-ext/gd4go/internal/manager"
 
 	"grow.graphics/gd"
 	_ "grow.graphics/gd/gdextension"
