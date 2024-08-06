@@ -7,6 +7,7 @@ import (
 var (
 	Root Node
 	// managers
+	ResMgr       IResMgr
 	AudioMgr     IAudioMgr
 	AnimationMgr IAnimationMgr
 	PhysicMgr    IPhysicMgr

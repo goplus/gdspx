@@ -20,4 +20,4 @@ require (
 
 replace godot-ext/gdspx => ../../
 
-replace github.com/godot-go/godot-go => github.com/godot-ext/gd v0.0.1
+replace github.com/godot-go/godot-go => ../../../godot-go

@@ -8,14 +8,9 @@ type baseMgr struct {
 	Node Node
 }
 
-func (pself *baseMgr) AddChildNode(node Node, name string) Node {
-	node.SetName_StrExt(name)
-	//pself.Node.AddChild(node, true, NodeInternalMode(0))
-	return node
-}
-
 func (pself *baseMgr) Init(node Node) {
 	pself.Node = node
+	println("init manager", node.GetName().ToGoString())
 }
 
 func (pself *baseMgr) Ready() {

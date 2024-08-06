@@ -10,6 +10,7 @@ var (
 )
 
 func initEngine(pself *EngineNode) {
+	Root = pself
 	manager.InitMgrs()
 }
 

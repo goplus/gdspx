@@ -32,6 +32,9 @@ build: goenv
 	CGO_LDFLAGS='-Og -g3 -g' \
 	go build -gcflags=all="-N -l" -tags tools -buildmode=c-shared -x -trimpath -o "$(TEST_BINARY_PATH)" $(TEST_MAIN)
 
+buildfast: goenv
+	go build .
+
 clean:
 	rm -f project/lib/libgodotgo-*
 

@@ -16,7 +16,7 @@ type IAudioMgr interface {
 	GetAudioVolume() float32
 
 	PlayMusic(name string)
-	PauseMusic()
+	SetMusicStreamPause(isPause bool)
 	StopMusic()
 	SetMusicVolume(volume float32)
 	GetMusicVolume() float32
@@ -26,6 +26,9 @@ type IAudioMgr interface {
 
 type IAnimationMgr interface {
 }
+type IResMgr interface {
+}
+
 type IPhysicMgr interface{}
 type IInputMgr interface{}
 type IRenderMgr interface{}
