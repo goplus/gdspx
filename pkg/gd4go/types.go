@@ -6,6 +6,6 @@ import (
 	"grow.graphics/gd"
 )
 
-func InitEngine(godot gd.Lifetime) {
+func RegisterEngineTypes(godot gd.Lifetime) {
 	gd.Register[launcher.EngineNode](godot)
 }
