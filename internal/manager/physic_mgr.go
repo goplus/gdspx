@@ -4,6 +4,6 @@ import (
 	"godot-ext/gd4go/internal/engine"
 )
 
-type PhysicMgr struct {
+type physicMgr struct {
 	engine.BasicMgr
 }

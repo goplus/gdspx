@@ -4,6 +4,6 @@ import (
 	"godot-ext/gd4go/internal/engine"
 )
 
-type RenderMgr struct {
+type renderMgr struct {
 	engine.BasicMgr
 }

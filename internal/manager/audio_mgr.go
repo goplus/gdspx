@@ -4,6 +4,6 @@ import (
 	"godot-ext/gd4go/internal/engine"
 )
 
-type AudioMgr struct {
+type audioMgr struct {
 	engine.BasicMgr
 }

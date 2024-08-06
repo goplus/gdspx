@@ -4,6 +4,6 @@ import (
 	"godot-ext/gd4go/internal/engine"
 )
 
-type AnimationMgr struct {
+type animationMgr struct {
 	engine.BasicMgr
 }

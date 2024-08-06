@@ -4,6 +4,6 @@ import (
 	"godot-ext/gd4go/internal/engine"
 )
 
-type InputMgr struct {
+type inputMgr struct {
 	engine.BasicMgr
 }
