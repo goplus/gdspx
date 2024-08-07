@@ -10,7 +10,7 @@ var (
 )
 
 func initEngine(pself *EngineNode) {
-	Root = pself
+	Root = 0 // TODO(jiepengtan): get root node from godot
 	manager.InitMgrs()
 }
 

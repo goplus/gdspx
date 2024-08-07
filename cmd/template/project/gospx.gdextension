@@ -1,6 +1,6 @@
 [configuration]
 
-entry_symbol = "GdExtentionEnterPoint"
+entry_symbol = "loadExtension"
 compatibility_minimum = 4.1
 
 [libraries]

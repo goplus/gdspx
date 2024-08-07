@@ -1,8 +1,5 @@
 package engine
 
-import (
-	. "github.com/godot-go/godot-go/pkg/builtin"
-)
 
 var (
 	Root Node

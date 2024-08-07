@@ -1,7 +1,7 @@
 package manager
 
 import (
-	. "github.com/godot-go/godot-go/pkg/builtin"
+	. "godot-ext/gdspx/internal/engine"
 )
 
 type baseMgr struct {
@@ -10,7 +10,7 @@ type baseMgr struct {
 
 func (pself *baseMgr) Init(node Node) {
 	pself.Node = node
-	println("init manager", node.GetName().ToGoString())
+	//println("init manager", node.GetName())
 }
 
 func (pself *baseMgr) Ready() {

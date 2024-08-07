@@ -1,11 +1,11 @@
 package launcher
 
 import (
-	. "github.com/godot-go/godot-go/pkg/gdclassimpl"
+	. "godot-ext/gdspx/internal/engine"
 )
 
 type EngineNode struct {
-	NodeImpl
+	Node
 }
 
 func (pself *EngineNode) V_ready() {

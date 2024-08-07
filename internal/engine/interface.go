@@ -1,8 +1,8 @@
 package engine
 
 import (
-	. "github.com/godot-go/godot-go/pkg/builtin"
 )
+type Node int32
 
 type IManager interface {
 	Init(root Node)

@@ -3,9 +3,6 @@ package manager
 import (
 	. "godot-ext/gdspx/internal/engine"
 	"reflect"
-
-	. "github.com/godot-go/godot-go/pkg/builtin"
-	. "github.com/godot-go/godot-go/pkg/core"
 )
 
 var (
@@ -13,9 +10,7 @@ var (
 )
 
 func createNode(typeName string) Node {
-	node := CreateGDClassInstance(typeName).(Node)
-	node.SetName_StrExt(typeName)
-	return node
+	return 0 // TODO
 }
 
 func addManager[T IManager](mgr T) T {
