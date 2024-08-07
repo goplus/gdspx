@@ -9,5 +9,4 @@ func LinkEngine()  {
 	if(!ok){
 		panic("godot not found")
 	}
-	println("LinkEngine")
 }
