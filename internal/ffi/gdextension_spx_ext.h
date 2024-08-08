@@ -109,7 +109,7 @@ typedef gdbool (*GDExtensionSpxPhysicIsCollisionEnabled)(gdint id);
 
 
 // sprite
-typedef gdint (*GDExtensionSpxSpriteInstantiateSprite)(gdstring path);
+typedef gdint (*GDExtensionSpxSpriteCreateSprite)(gdstring path);
 typedef gdint (*GDExtensionSpxSpriteCloneSprite)(gdint id);
 typedef gdbool (*GDExtensionSpxSpriteDestroySprite)(gdint id);
 typedef gdbool (*GDExtensionSpxSpriteIsSpriteAlive)(gdint id);

@@ -81,7 +81,7 @@ type IInputMgr interface {
 }
 
 type ISpriteMgr interface {
-	InstantiateSprite(path string) int64
+	CreateSprite(path string) int64
 	CloneSprite(id int64) int64
 	DestroySprite(id int64) bool
 	IsSpriteAlive(id int64) bool

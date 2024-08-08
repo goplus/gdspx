@@ -84,7 +84,7 @@ func (pself *physicMgr) IsCollisionEnabled(id int64) bool {
 	return false
 }
 
-func (pself *spriteMgr) InstantiateSprite(path string) int64 {
+func (pself *spriteMgr) CreateSprite(path string) int64 {
 	return 0
 }
 
