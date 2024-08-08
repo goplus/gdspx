@@ -94,6 +94,7 @@ func func_on_engine_update(delta C.GDReal) {
 //export func_on_engine_destroy
 func func_on_engine_destroy() {
     // TODO: implement
+	fmt.Println("go ~~~ func_on_engine_destroy")
 }
 //export func_on_sprite_ready
 func func_on_sprite_ready(id C.GDExtensionInt) {

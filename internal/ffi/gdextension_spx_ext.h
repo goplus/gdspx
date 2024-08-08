@@ -47,7 +47,7 @@ typedef uint16_t char16_t;
 extern "C" {
 #endif
 
-typedef GDExtensionConstStringPtr gdstring;
+typedef GDExtensionStringPtr gdstring;
 typedef GDExtensionInt	gdint;
 typedef GDExtensionBool gdbool;
 typedef real_t	gdfloat;
