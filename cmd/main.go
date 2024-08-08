@@ -39,8 +39,8 @@ func init() {
 	} else {
 		defaultBuildConfig = "float_64"
 	}
-	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "Toggle extra debug output")
-	rootCmd.PersistentFlags().BoolVarP(&genClangAPI, "clang-api", "", false, "Generate GDExtension C wrapper")
+	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", true, "Toggle extra debug output")
+	rootCmd.PersistentFlags().BoolVarP(&genClangAPI, "clang-api", "", true, "Generate GDExtension C wrapper")
 	rootCmd.PersistentFlags().BoolVarP(&genExtensionAPI, "extension-api", "", false, "Generate Extension API")
 	rootCmd.PersistentFlags().StringVarP(&packagePath, "package-path", "p", absPath, "Specified package path")
 	rootCmd.PersistentFlags().StringVarP(&godotPath, "godot-path", "", "godot", "Specified path where the Godot executable is located")
@@ -79,8 +79,8 @@ var rootCmd = &cobra.Command{
 	},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var (
-			ast  clang.CHeaderFileAST
-			err  error
+			ast clang.CHeaderFileAST
+			err error
 		)
 		if verbose {
 			println(fmt.Sprintf(`build configuration "%s" selected`, buildConfig))

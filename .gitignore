@@ -4,3 +4,5 @@ go.work
 *library.gdextension
 go.work.sum
 /.vscode
+cmd/_debug_parsed_ast.json
+internal/ffi/_temp_output.txt
