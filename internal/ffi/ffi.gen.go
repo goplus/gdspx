@@ -16,13 +16,12 @@ import (
 
 
 type GDExtensionInterface struct {
-
 	// All of the GDExtension interface functions.
 	GDExtensionSpxGlobalRegisterCallbacks GDExtensionSpxGlobalRegisterCallbacks
 	GDExtensionSpxInputGetMousePos GDExtensionSpxInputGetMousePos
 	GDExtensionSpxInputGetMouseState GDExtensionSpxInputGetMouseState
 	GDExtensionSpxInputGetKeyState GDExtensionSpxInputGetKeyState
-	GDExtensionSpxInputGetAxis GDExtensionSpxInputGetAxis 
+	GDExtensionSpxInputGetAxis GDExtensionSpxInputGetAxis
 	GDExtensionSpxInputIsActionPressed GDExtensionSpxInputIsActionPressed
 	GDExtensionSpxInputIsActionJustPressed GDExtensionSpxInputIsActionJustPressed
 	GDExtensionSpxInputIsActionJustReleased GDExtensionSpxInputIsActionJustReleased
@@ -231,5 +230,6 @@ var (
 )
 
 func LoadProcAddress(funcName string) unsafe.Pointer {
+	// TODO(): Implement this function
 	return unsafe.Pointer(nil)
 }

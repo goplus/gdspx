@@ -18,23 +18,13 @@ import (
 
 
 type GDExtensionInterface struct {
-	Library        GDExtensionClassLibraryPtr
-	Token          unsafe.Pointer
-	GodotVersion GDExtensionGodotVersion
-
 	// All of the GDExtension interface functions.
 	{{ range $i, $f := $view.CollectGDExtensionInterfaceFunctions -}}
 	{{ trimPrefix $f.Name "GDExtensionInterface" }} {{ $f.Name }}
 	{{ end -}}
 }
 
-func (x *GDExtensionInterface) LoadProcAddresses(
-	pGetProcAddress GDExtensionInterfaceGetProcAddress,
-	pLibrary GDExtensionClassLibraryPtr,
-) {
-	x.GetProcAddress = pGetProcAddress
-	x.Library = pLibrary
-	x.Token = unsafe.Pointer(&pLibrary)
+func (x *GDExtensionInterface) LoadProcAddresses() {
 
 	{{ range $i, $f := $view.CollectGDExtensionInterfaceFunctions -}}
 	{{ if eq $f.Name "GDExtensionInterfaceGetProcAddress" -}}{{ continue }}{{ end -}}
@@ -47,9 +37,6 @@ var (
 )
 
 func LoadProcAddress(funcName string) unsafe.Pointer {
-	ret := CallFunc_GDExtensionInterfaceGetProcAddress(funcName)
-	if ret == nil {
-		println("GDExtensionInterfaceGetProcAddress Error ", funcName)
-	}
-	return unsafe.Pointer(ret)
+	// TODO(): Implement this function
+	return unsafe.Pointer(nil)
 }
