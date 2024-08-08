@@ -34,7 +34,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "gdextension_interface.h"
-#ifndef GODOT_SPX
+#ifndef NOT_GODOT_ENGINE
 #include "core/variant/variant.h"
 #endif
 

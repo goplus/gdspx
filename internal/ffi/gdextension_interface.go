@@ -1,15 +1,14 @@
 package ffi
 
 /*
-#include <stdlib.h>
-#include "gdextension_interface.h"
-#include "gdextension_spx_wrap.h"
+#include "gdextension_spx_interface.h"
 
 */
 import "C"
 
 import (
 	"unsafe"
+	"fmt"
 )
 
 func btoi(b bool) int {
@@ -59,7 +58,7 @@ func linkCGO(API *API) {
 		if notifyEditor {
 			p_editor_notify = 1
 		}
-		C.print_error(
+		C.print_error(  
 			C.uintptr_t(uintptr(print_error)),
 			p_description,
 			p_function,
@@ -125,19 +124,19 @@ func func_on_key_released(keyid C.GDExtensionInt) {
     // TODO: implement
 }
 //export func_on_action_pressed
-func func_on_action_pressed(actionName unsafe.Pointer) {
+func func_on_action_pressed(actionName C.gdstring) {
     // TODO: implement
 }
 //export func_on_action_just_pressed
-func func_on_action_just_pressed(actionName unsafe.Pointer) {
+func func_on_action_just_pressed(actionName C.gdstring) {
     // TODO: implement
 }
 //export func_on_action_just_released
-func func_on_action_just_released(actionName unsafe.Pointer) {
+func func_on_action_just_released(actionName C.gdstring) {
     // TODO: implement
 }
 //export func_on_axis_changed
-func func_on_axis_changed(actionName unsafe.Pointer, value C.GDReal) {
+func func_on_axis_changed(actionName C.gdstring, value C.GDReal) {
     // TODO: implement
 }
 //export func_on_collision_enter
@@ -185,6 +184,6 @@ func func_on_ui_toggle(id C.GDExtensionInt, isOn C.GDExtensionBool) {
     // TODO: implement
 }
 //export func_on_ui_text_changed
-func func_on_ui_text_changed(id C.GDExtensionInt, text unsafe.Pointer) {
+func func_on_ui_text_changed(id C.GDExtensionInt, text C.gdstring) {
     // TODO: implement
 }
