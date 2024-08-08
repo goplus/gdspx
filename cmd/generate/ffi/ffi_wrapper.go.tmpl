@@ -40,7 +40,7 @@ type {{ $f.Name }} C.{{ $f.Name }}
 // call gdextension interface functions
 {{- range $i, $f := $view.CollectGDExtensionInterfaceFunctions -}}
 {{ $rt := goReturnType .ReturnType }}
-func CallFunc_{{ $f.Name }}(
+func Call{{ trimPrefix $f.Name "GDExtension" }}(
 	{{ range $j, $arg := $f.Arguments -}}
 		{{ if $arg.Name -}}
 		{{ $arg.Name -}}
