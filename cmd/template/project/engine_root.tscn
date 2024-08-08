@@ -19,6 +19,6 @@ stream = ExtResource("2_t3570")
 
 [node name="RenderMgr" type="Node" parent="."]
 
-[node name="AnimationMgr" type="Node" parent="."]
+[node name="UIMgr" type="Node" parent="."]
 
 [node name="SpriteMgr" type="Node" parent="."]

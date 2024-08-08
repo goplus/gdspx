@@ -1,4 +1,4 @@
-package godot
+package ffi
 
 /*
 #include <stdlib.h>

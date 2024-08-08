@@ -1,14 +1,11 @@
 //go:build !generate
 
-package godot
-
-import (
-)
+package ffi
 
 // API specification for Godot's GDExtension.
 type API struct {
-	PrintError              func(code, function, file string, line int32, notifyEditor bool)
-	Object struct {
+	PrintError func(code, function, file string, line int32, notifyEditor bool)
+	Object     struct {
 	}
 }
 
@@ -29,6 +26,7 @@ type CallError struct {
 	Argument  int32
 	Expected  int32
 }
+
 func (err CallError) Error() string {
 	switch err.ErrorType {
 	case ErrInvalidMethod:

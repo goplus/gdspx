@@ -164,6 +164,10 @@ typedef gdbool (*GDExtensionSpxUIGetVisible)(gdint id);
 
 
 // callback
+typedef void (*GDExtensionSpxCallbackEngineReady) (gdint id);
+typedef void (*GDExtensionSpxCallbackEngineUpdated) (gdint id);
+typedef void (*GDExtensionSpxCallbackEngineDestroy) (gdint id);
+
 typedef void (*GDExtensionSpxCallbackOnSpriteReady) (gdint id);
 typedef void (*GDExtensionSpxCallbackOnSpriteUpdated) (gdint id);
 typedef void (*GDExtensionSpxCallbackOnSpriteDestroyed) (gdint id);

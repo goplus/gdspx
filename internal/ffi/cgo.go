@@ -1,4 +1,4 @@
-package godot
+package ffi
 
 import (
 	"unsafe"
@@ -11,7 +11,8 @@ var dlsymGD func(string) unsafe.Pointer
 var (
 	godot = API{}
 )
-func Link() (API, bool) {
+
+func BindAPI() (API, bool) {
 	if dlsymGD == nil {
 		return godot, false
 	}
