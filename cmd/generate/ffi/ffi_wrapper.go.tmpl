@@ -22,18 +22,6 @@ import (
 )
 
 // C type aliases
-type Uint64T C.uint64_t
-type Uint32T C.uint32_t
-type Uint16T C.uint16_t
-type Uint8T C.uint8_t
-type Int32T C.int32_t
-type Int16T C.int16_t
-type Int8T C.int8_t
-type Char C.char
-type WcharT C.wchar_t
-{{ range $i, $t := $view.CollectAliases -}}
-	type {{ camelCase $t.Name }} C.{{ $t.Name }}
-{{ end -}}
 // enums
 {{ range $i, $e := $view.CollectEnums -}}
 type {{ $e.Name }} C.{{ $e.Name }}
@@ -49,9 +37,8 @@ const (
 type {{ $f.Name }} C.{{ $f.Name }}
 {{ end }}
 
-
 // call gdextension interface functions
-{{ range $i, $f := $view.CollectGDExtensionInterfaceFunctions -}}
+{{- range $i, $f := $view.CollectGDExtensionInterfaceFunctions -}}
 {{ $rt := goReturnType .ReturnType }}
 func CallFunc_{{ $f.Name }}(
 	{{ range $j, $arg := $f.Arguments -}}
@@ -64,21 +51,10 @@ func CallFunc_{{ $f.Name }}(
 		{{ end }} {{ if $arg.Type.Primative }}{{ goArgumentType $arg.Type.Primative $arg.Name }}{{ else }} unsafe.Pointer{{ end }},
 	{{ end -}}
 ) {{ $rt }} {
-	arg0 := (C.{{ $f.Name }})(FFI.{{ gdiVariableName $f.Name }})
+	arg0 := (C.{{ $f.Name }})(FFI.{{ trimPrefix $f.Name "GDExtension" }})
 	{{ range $j, $arg := $f.Arguments -}}
 		arg{{ add $j 1 }} := {{ cgoCastArgument $arg (print "inArg" (add $j 1)) }}
-	{{ end }}
-
-	{{/* pinner := runtime.Pinner{}
-	defer pinner.Unpin()
-
-	{{ range $j, $arg := $f.Arguments -}}
-		{{ if $arg.IsPinnable -}}
-		pinner.Pin(arg{{ add $j 1 }})
-		{{ end -}}
-	{{ end }} */}}
-
-	println("called C.cgo_callfn_{{ $f.Name }}")
+	{{ end -}}
 
 	{{ if $rt }}ret := {{ end -}}
 	C.cgo_callfn_{{ $f.Name }}(arg0,
@@ -86,69 +62,12 @@ func CallFunc_{{ $f.Name }}(
 			arg{{ add $j 1 }},
 		{{- end -}}
 	)
-
-	{{ range $j, $arg := $f.Arguments -}}
+	{{- range $j, $arg := $f.Arguments -}}
 		{{ cgoCleanUpArgument $arg (add $j 1) }}
-	{{ end }}
+	{{ end -}}
 
 	{{- if $rt }}
-
-	// {{ $f.ReturnType.CStyleString }}
 	return {{ cgoCastReturnType $f.ReturnType "ret" }}
-	{{ end -}}
+	{{- end }}
 }
-{{ end }}
-
-// structs
-{{ range $i, $t := $view.CollectStructs -}}
-	type {{ $t.Name }} C.{{ $t.Name }}
-{{ end -}}
-
-// struct functions
-{{ range $i, $t := $view.CollectStructs -}}
-	{{ $fns := $t.CollectFunctions -}}
-	{{ if gt (len $fns) 0 -}}
-	/* struct ({{ $i }}) {{ $t.Name }} */
-	{{ range $j, $f := $fns -}}
-		{{ $rt := goReturnType .ReturnType }}
-		func {{ $t.Name }}_{{ $f.Name }}(p_struct *{{ $t.Name }}
-			{{- range $j, $arg := $f.Arguments -}}
-				, {{ $arg.Name }} {{ if $arg.Type.Primative }}{{ goArgumentType $arg.Type.Primative $arg.Name }}{{ else }}{{ $arg.Type.Function.Name }} unsafe.Pointer{{ end }}
-			{{- end -}}
-		) {{ $rt }} {
-			arg0 := (*C.{{ $t.Name }})(p_struct) // {{ $t.Name }}
-			{{ range $j, $arg := $f.Arguments -}}
-				arg{{ add $j 1 }} := {{ cgoCastArgument $arg "" }} // {{ $arg.Type.CStyleString }}
-			{{ end }}
-
-			{{/* pinner := runtime.Pinner{}
-			defer pinner.Unpin()
-
-			{{ range $j, $arg := $f.Arguments -}}
-				{{ if $arg.IsPinnable -}}
-				pinner.Pin(arg{{ add $j 1 }})
-				{{ end -}}
-			{{ end }} */}}
-
-			println("called C.cgo_callfn_{{ $t.Name }}_{{ $f.Name }}")
-
-			{{ if $rt }}ret := {{ end -}}
-			C.cgo_callfn_{{ $t.Name }}_{{ $f.Name }}(arg0
-				{{- range $j, $arg := $f.Arguments -}}
-					, arg{{ add $j 1 }}
-				{{- end -}}
-			)
-
-			{{ range $j, $arg := $f.Arguments -}}
-				{{ cgoCleanUpArgument $arg (add $j 1) }}
-			{{ end }}
-
-			{{- if $rt }}
-
-			// {{ $f.ReturnType.CStyleString }}
-			return {{ cgoCastReturnType $f.ReturnType "ret" }}
-			{{ end -}}
-		}
-	{{ end -}}
-	{{ end -}}
-{{ end -}}
+{{- end -}}

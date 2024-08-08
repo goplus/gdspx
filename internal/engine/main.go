@@ -12,7 +12,7 @@ var (
 )
 
 func Link(engineCallback EngineCallbackInfo) []IManager {
-	_, ok := ffi.BindAPI()
+	ok := ffi.BindAPI()
 	if !ok {
 		panic("godot not found")
 	}

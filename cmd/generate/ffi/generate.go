@@ -18,9 +18,6 @@ var (
 	//go:embed ffi_wrapper.h.tmpl
 	ffiWrapperHeaderFileText string
 
-	//go:embed ffi_wrapper.c.tmpl
-	ffiWrapperSrcFileText string
-
 	//go:embed ffi_wrapper.go.tmpl
 	ffiWrapperGoFileText string
 
@@ -30,10 +27,6 @@ var (
 var (relDir = "../internal/ffi")
 func Generate(projectPath string, ast clang.CHeaderFileAST) {
 	err := GenerateGDExtensionWrapperHeaderFile(projectPath, ast)
-	if err != nil {
-		panic(err)
-	}
-	err = GenerateGDExtensionWrapperSrcFile(projectPath, ast)
 	if err != nil {
 		panic(err)
 	}
@@ -77,28 +70,6 @@ func GenerateGDExtensionWrapperHeaderFile(projectPath string, ast clang.CHeaderF
 	return nil
 }
 
-func GenerateGDExtensionWrapperSrcFile(projectPath string, ast clang.CHeaderFileAST) error {
-	tmpl, err := template.New("ffi_wrapper.gen.c").
-		Funcs(template.FuncMap{
-			"snakeCase": strcase.ToSnake,
-		}).
-		Parse(ffiWrapperSrcFileText)
-	if err != nil {
-		return err
-	}
-
-	var b bytes.Buffer
-	err = tmpl.Execute(&b, ast)
-	if err != nil {
-		return err
-	}
-
-	headerFileName := filepath.Join(projectPath, relDir, "ffi_wrapper.gen.c")
-	f, err := os.Create(headerFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return nil
-}
 
 func GenerateGDExtensionWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) error {
 	funcs := template.FuncMap{
@@ -112,6 +83,7 @@ func GenerateGDExtensionWrapperGoFile(projectPath string, ast clang.CHeaderFileA
 		"cgoCastArgument":      cgoCastArgument,
 		"cgoCastReturnType":    cgoCastReturnType,
 		"cgoCleanUpArgument":   cgoCleanUpArgument,
+		"trimPrefix":          trimPrefix,
 	}
 
 	tmpl, err := template.New("ffi_wrapper.gen.go").

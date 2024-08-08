@@ -12,31 +12,21 @@ package ffi
 
 //revive:disable
 
-import (
-	"unsafe"
-)
-
-
-type GDExtensionInterface struct {
-	// All of the GDExtension interface functions.
-	{{ range $i, $f := $view.CollectGDExtensionInterfaceFunctions -}}
-	{{ trimPrefix $f.Name "GDExtensionInterface" }} {{ $f.Name }}
-	{{ end -}}
-}
-
-func (x *GDExtensionInterface) LoadProcAddresses() {
-
-	{{ range $i, $f := $view.CollectGDExtensionInterfaceFunctions -}}
-	{{ if eq $f.Name "GDExtensionInterfaceGetProcAddress" -}}{{ continue }}{{ end -}}
-	x.{{ trimPrefix $f.Name "GDExtensionInterface" }} = ({{ $f.Name }})(LoadProcAddress("{{ loadProcAddressName $f.Name }}"))
-	{{ end -}}
-}
-
 var (
 	FFI GDExtensionInterface
 )
 
-func LoadProcAddress(funcName string) unsafe.Pointer {
-	// TODO(): Implement this function
-	return unsafe.Pointer(nil)
+type GDExtensionInterface struct {
+	// All of the GDExtension interface functions.
+	{{ range $i, $f := $view.CollectGDExtensionInterfaceFunctions -}}
+	{{ trimPrefix $f.Name "GDExtension" }} {{ $f.Name }}
+	{{ end -}}
+}
+
+func (x *GDExtensionInterface) loadProcAddresses() {
+
+	{{ range $i, $f := $view.CollectGDExtensionInterfaceFunctions -}}
+	{{ if eq $f.Name "GDExtensionInterfaceGetProcAddress" -}}{{ continue }}{{ end -}}
+	x.{{ trimPrefix $f.Name "GDExtension" }} = ({{ $f.Name }})(dlsymGD("{{ loadProcAddressName $f.Name }}"))
+	{{ end -}}
 }

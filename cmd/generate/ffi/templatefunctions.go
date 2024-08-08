@@ -334,7 +334,7 @@ func gdiVariableName(typeName string) string {
 
 func loadProcAddressName(typeName string) string {
 	ret := strcase.ToSnake(typeName)
-	ret = strings.Replace(ret, "gd_extension_interface_", "", 1)
+	ret = strings.Replace(ret, "gd_extension_", "", 1)
 	ret = strings.Replace(ret, "_latin_1_", "_latin1_", 1)
 	ret = strings.Replace(ret, "_utf_8_", "_utf8_", 1)
 	ret = strings.Replace(ret, "_utf_16_", "_utf16_", 1)

@@ -11,18 +11,59 @@ import (
 	"fmt"
 )
 
-func btoi(b bool) int {
-	if b {
-		return 1
-	}
-	return 0
-}
+type Uint64T C.uint64_t
+type Uint32T C.uint32_t
+type Uint16T C.uint16_t
+type Uint8T C.uint8_t
+type Int32T C.int32_t
+type Int16T C.int16_t
+type Int8T C.int8_t
+type Char C.char
+type WcharT C.wchar_t
+type Char32T C.char32_t
+type Char16T C.char16_t
+
+type GdString C.GdString
+type GdInt C.GdInt
+type GdBool C.GdBool
+type GdFloat C.GdFloat
+type GdVec4 C.GdVec4
+type GdVec3 C.GdVec3
+type GdVec2 C.GdVec2
+type GdColor C.GdColor
+type GdRect C.GdRect
+
+type GDExtensionSpxCallbackInfoPtr C.GDExtensionSpxCallbackInfoPtr
+type SpxCallbackInfo C.SpxCallbackInfo
+
+type GDExtensionInitializationLevel int64
+
+const (
+	GDExtensionInitializationLevelCore    GDExtensionInitializationLevel = 0
+	GDExtensionInitializationLevelServers GDExtensionInitializationLevel = 1
+	GDExtensionInitializationLevelScene   GDExtensionInitializationLevel = 2
+	GDExtensionInitializationLevelEditor  GDExtensionInitializationLevel = 3
+)
+
 
 type initialization = C.GDExtensionInitialization
 type initializationLevel = C.GDExtensionInitializationLevel
 
 func doInitialization(init *initialization) {
 	C.initialization(init)
+}
+func getProcAddress(handle uintptr, name string) unsafe.Pointer {
+	name = name + "\000"
+	char := C.CString(name)
+	defer C.free(unsafe.Pointer(char))
+	return C.get_proc_address(C.pointer(handle), char)
+}
+
+func registerEngineCallback() {
+	spx_global_register_callbacks := dlsymGD("spx_global_register_callbacks")
+	C.spx_global_register_callbacks(
+		C.pointer(uintptr(spx_global_register_callbacks)),
+	)
 }
 
 //export initialize
@@ -38,49 +79,6 @@ func deinitialize(_ unsafe.Pointer, level initializationLevel) {
 	}
 }
 
-func get_proc_address(handle uintptr, name string) unsafe.Pointer {
-	name = name + "\000"
-	char := C.CString(name)
-	defer C.free(unsafe.Pointer(char))
-	return C.get_proc_address(C.pointer(handle), char)
-}
-
-
-// linkCGO implements the Godot GDExtension API via CGO.
-func linkCGO(API *API) {
-	register_engine_callback()
-	print_error := dlsymGD("print_error")
-	API.PrintError = func(code, function, file string, line int32, notifyEditor bool) {
-		p_description := C.CString(code)
-		p_function := C.CString(function)
-		p_file := C.CString(file)
-		p_editor_notify := C.GDExtensionBool(0)
-		if notifyEditor {
-			p_editor_notify = 1
-		}
-		C.print_error(  
-			C.uintptr_t(uintptr(print_error)),
-			p_description,
-			p_function,
-			p_file,
-			C.int32_t(line),
-			p_editor_notify,
-		)
-		C.free(unsafe.Pointer(p_description))
-		C.free(unsafe.Pointer(p_function))
-		C.free(unsafe.Pointer(p_file))
-	}
-}
-
-func register_engine_callback() {
-	spx_global_register_callbacks := dlsymGD("spx_global_register_callbacks")
-	engine_register_func := func() {
-		C.spx_global_register_callbacks(
-			C.uintptr_t(uintptr(spx_global_register_callbacks)),
-		)
-	}
-	engine_register_func()
-}
 
 //export func_on_engine_start
 func func_on_engine_start() {
@@ -125,19 +123,19 @@ func func_on_key_released(keyid C.GDExtensionInt) {
     // TODO: implement
 }
 //export func_on_action_pressed
-func func_on_action_pressed(actionName C.gdstring) {
+func func_on_action_pressed(actionName C.GdString) {
     // TODO: implement
 }
 //export func_on_action_just_pressed
-func func_on_action_just_pressed(actionName C.gdstring) {
+func func_on_action_just_pressed(actionName C.GdString) {
     // TODO: implement
 }
 //export func_on_action_just_released
-func func_on_action_just_released(actionName C.gdstring) {
+func func_on_action_just_released(actionName C.GdString) {
     // TODO: implement
 }
 //export func_on_axis_changed
-func func_on_axis_changed(actionName C.gdstring, value C.GDReal) {
+func func_on_axis_changed(actionName C.GdString, value C.GDReal) {
     // TODO: implement
 }
 //export func_on_collision_enter
@@ -185,6 +183,6 @@ func func_on_ui_toggle(id C.GDExtensionInt, isOn C.GDExtensionBool) {
     // TODO: implement
 }
 //export func_on_ui_text_changed
-func func_on_ui_text_changed(id C.GDExtensionInt, text C.gdstring) {
+func func_on_ui_text_changed(id C.GDExtensionInt, text C.GdString) {
     // TODO: implement
 }
