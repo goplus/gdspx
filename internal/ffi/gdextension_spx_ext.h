@@ -1,5 +1,5 @@
 ﻿/**************************************************************************/
-/*  gdextension_spx_ext.h                                             */
+/*  gdextension_spx_ext.h                                                 */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             GODOT ENGINE                               */
@@ -34,7 +34,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "gdextension_interface.h"
-
+#ifndef GODOT_SPX
+#include "core/variant/variant.h"
+#endif
 
 #ifndef __cplusplus
 typedef uint32_t char32_t;
@@ -45,7 +47,6 @@ typedef uint16_t char16_t;
 extern "C" {
 #endif
 
-
 typedef GDExtensionConstStringPtr gdstring;
 typedef GDExtensionInt	gdint;
 typedef GDExtensionBool gdbool;
@@ -55,6 +56,9 @@ typedef Vector3 gdvec3;
 typedef Vector2 gdvec2;
 typedef Color	gdcolor;
 typedef Rect2	gdrect;
+
+typedef void *GDExtensionSpxCallbackInfoPtr;
+typedef void (*GDExtensionSpxGlobalRegisterCallbacks)(GDExtensionSpxCallbackInfoPtr callback_ptr);
 
 typedef gdvec2 (*GDExtensionSpxInputGetMousePos)();
 typedef gdbool (*GDExtensionSpxInputGetMouseState)(gdint id);
@@ -164,9 +168,9 @@ typedef gdbool (*GDExtensionSpxUIGetVisible)(gdint id);
 
 
 // callback
-typedef void (*GDExtensionSpxCallbackEngineReady) (gdint id);
-typedef void (*GDExtensionSpxCallbackEngineUpdated) (gdint id);
-typedef void (*GDExtensionSpxCallbackEngineDestroy) (gdint id);
+typedef void (*GDExtensionSpxCallbackOnEngineStart) ();
+typedef void (*GDExtensionSpxCallbackOnEngineUpdate) (gdfloat delta);
+typedef void (*GDExtensionSpxCallbackOnEngineDestroy) ();
 
 typedef void (*GDExtensionSpxCallbackOnSpriteReady) (gdint id);
 typedef void (*GDExtensionSpxCallbackOnSpriteUpdated) (gdint id);
@@ -198,6 +202,11 @@ typedef void (*GDExtensionSpxCallbackOnUITextChanged) (gdint id, gdstring text);
 
 
 typedef struct {
+	// engine
+	GDExtensionSpxCallbackOnEngineStart func_on_engine_start;
+	GDExtensionSpxCallbackOnEngineUpdate func_on_engine_update;
+	GDExtensionSpxCallbackOnEngineDestroy func_on_engine_destroy;
+
 	// sprite
 	GDExtensionSpxCallbackOnSpriteReady func_on_sprite_ready;
 	GDExtensionSpxCallbackOnSpriteUpdated func_on_sprite_updated;
@@ -230,8 +239,6 @@ typedef struct {
 	GDExtensionSpxCallbackOnUITextChanged func_on_ui_text_changed;
 
 } SpxCallbackInfo;
-
-
 
 
 #ifdef __cplusplus

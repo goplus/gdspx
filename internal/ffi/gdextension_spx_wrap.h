@@ -5,7 +5,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "gdextension_interface.h"
-#include "gdextension_spx_interface.h"
 #ifndef __cplusplus
 typedef uint32_t char32_t;
 typedef uint16_t char16_t;
@@ -52,10 +51,12 @@ typedef struct {
 	Vector2 size;
 } Rect2;
 
+typedef real_t GDReal;
 #ifdef __cplusplus
 }
 #endif
-
+#define GODOT_SPX
 #include "gdextension_spx_ext.h"
+#include "gdextension_spx_interface.h"
 
 #endif // GDEXTENSION_SPX_WRAP_H
