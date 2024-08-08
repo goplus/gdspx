@@ -12,9 +12,9 @@ var (
 )
 
 func Link(engineCallback EngineCallbackInfo) []IManager {
-	ok := ffi.BindAPI()
+	ok := ffi.Link()
 	if !ok {
-		panic("godot not found")
+		panic("godot bind symbol failed!")
 	}
 	mgrs = CreateMgrs()
 	callback = engineCallback

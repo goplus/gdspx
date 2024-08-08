@@ -51,7 +51,7 @@ func CallFunc_{{ $f.Name }}(
 		{{ end }} {{ if $arg.Type.Primative }}{{ goArgumentType $arg.Type.Primative $arg.Name }}{{ else }} unsafe.Pointer{{ end }},
 	{{ end -}}
 ) {{ $rt }} {
-	arg0 := (C.{{ $f.Name }})(FFI.{{ trimPrefix $f.Name "GDExtension" }})
+	arg0 := (C.{{ $f.Name }})(api.{{ trimPrefix $f.Name "GDExtension" }})
 	{{ range $j, $arg := $f.Arguments -}}
 		arg{{ add $j 1 }} := {{ cgoCastArgument $arg (print "inArg" (add $j 1)) }}
 	{{ end -}}
