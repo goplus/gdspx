@@ -57,11 +57,3 @@ func LoadProcAddress(funcName string) unsafe.Pointer {
 	}
 	return unsafe.Pointer(ret)
 }
-
-func (gv GDExtensionGodotVersion) GetMajor() int32 {
-	return int32(gv.major)
-}
-
-func (gv GDExtensionGodotVersion) GetMinor() int32 {
-	return int32(gv.minor)
-}
