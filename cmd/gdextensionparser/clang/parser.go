@@ -50,7 +50,7 @@ func (a CHeaderFileAST) CollectGDExtensionInterfaceFunctions() []TypedefFunction
 	fns := make([]TypedefFunction, 0, len(allFns))
 
 	for _, fn := range allFns {
-		if strings.HasPrefix(fn.Name, "GDExtensionInterface") &&
+		if strings.HasPrefix(fn.Name, "GDExtensionSpx") &&
 			!slices.Contains(legacyGDExtentionInterfaceFunctionNames, fn.Name) {
 			fns = append(fns, fn)
 		}
@@ -65,7 +65,7 @@ func (a CHeaderFileAST) CollectNonGDExtensionInterfaceFunctions() []TypedefFunct
 	fns := make([]TypedefFunction, 0, len(allFns))
 
 	for _, fn := range allFns {
-		if !strings.HasPrefix(fn.Name, "GDExtensionInterface") {
+		if !strings.HasPrefix(fn.Name, "GDExtensionSpx") {
 			fns = append(fns, fn)
 		}
 	}

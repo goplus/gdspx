@@ -12,7 +12,7 @@ package ffi
 
 //revive:disable
 
-// #include "gdextension_interface.h"
+// #include "gdextension_spx_codegen_header.h"
 // #include "ffi_wrapper.gen.h"
 // #include <stdint.h>
 // #include <stdio.h>
@@ -20,8 +20,6 @@ package ffi
 import "C"
 import (
 	"unsafe"
-
-	"github.com/godot-go/godot-go/pkg/log"
 )
 
 // C type aliases
@@ -37,7 +35,6 @@ type WcharT C.wchar_t
 {{ range $i, $t := $view.CollectAliases -}}
 	type {{ camelCase $t.Name }} C.{{ $t.Name }}
 {{ end -}}
-
 // enums
 {{ range $i, $e := $view.CollectEnums -}}
 type {{ $e.Name }} C.{{ $e.Name }}
@@ -53,55 +50,6 @@ const (
 type {{ $f.Name }} C.{{ $f.Name }}
 {{ end }}
 
-// call non-gdextension interface functions
-{{ range $i, $f := $view.CollectNonGDExtensionInterfaceFunctions -}}
-{{ $rt := goReturnType .ReturnType }}
-func CallFunc_{{ $f.Name }}(
-	fn {{ $f.Name }},
-	{{ range $j, $arg := $f.Arguments -}}
-		{{ if $arg.Name -}}
-		{{ $arg.Name -}}
-		{{ else if and $arg.Type.Function $arg.Type.Function.Name -}}
-		{{ $arg.Type.Function.Name -}}
-		{{ else -}}
-		inArg{{ add $j 1 -}}
-		{{ end }} {{ if $arg.Type.Primative }}{{ goArgumentType $arg.Type.Primative $arg.Name }}{{ else }} unsafe.Pointer{{ end }},
-	{{ end -}}
-) {{ $rt }} {
-	arg0 := (C.{{ $f.Name }})(fn)
-	{{ range $j, $arg := $f.Arguments -}}
-		arg{{ add $j 1 }} := {{ cgoCastArgument $arg (print "inArg" (add $j 1)) }}
-	{{ end }}
-
-	{{/* pinner := runtime.Pinner{}
-	defer pinner.Unpin()
-
-	{{ range $j, $arg := $f.Arguments -}}
-		{{ if $arg.IsPinnable -}}
-		pinner.Pin(arg{{ add $j 1 }})
-		{{ end -}}
-	{{ end }} */}}
-
-	log.Debug("called C.cgo_callfn_{{ $f.Name }}")
-
-	{{ if $rt }}ret := {{ end -}}
-	C.cgo_callfn_{{ $f.Name }}(arg0,
-		{{- range $j, $arg := $f.Arguments -}}
-			arg{{ add $j 1 }},
-		{{- end -}}
-	)
-
-	{{ range $j, $arg := $f.Arguments -}}
-		{{ cgoCleanUpArgument $arg (add $j 1) }}
-	{{ end }}
-
-	{{- if $rt }}
-
-	// {{ $f.ReturnType.CStyleString }}
-	return {{ cgoCastReturnType $f.ReturnType "ret" }}
-	{{ end -}}
-}
-{{ end }}
 
 // call gdextension interface functions
 {{ range $i, $f := $view.CollectGDExtensionInterfaceFunctions -}}
@@ -131,7 +79,7 @@ func CallFunc_{{ $f.Name }}(
 		{{ end -}}
 	{{ end }} */}}
 
-	log.Debug("called C.cgo_callfn_{{ $f.Name }}")
+	println("called C.cgo_callfn_{{ $f.Name }}")
 
 	{{ if $rt }}ret := {{ end -}}
 	C.cgo_callfn_{{ $f.Name }}(arg0,
@@ -183,7 +131,7 @@ func CallFunc_{{ $f.Name }}(
 				{{ end -}}
 			{{ end }} */}}
 
-			log.Debug("called C.cgo_callfn_{{ $t.Name }}_{{ $f.Name }}")
+			println("called C.cgo_callfn_{{ $t.Name }}_{{ $f.Name }}")
 
 			{{ if $rt }}ret := {{ end -}}
 			C.cgo_callfn_{{ $t.Name }}_{{ $f.Name }}(arg0

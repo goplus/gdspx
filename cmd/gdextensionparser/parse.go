@@ -58,7 +58,7 @@ func readLines(path string) ([]string, error) {
 }
 func expandIncludeFiles(projectPath string) (string, error) {
 	dirPath := filepath.Join(projectPath, "/../internal/ffi/");
-	allStrs := ReadFiles(dirPath, "gdextension_spx_codegen_header.txt")
+	allStrs := ReadFiles(dirPath, "gdextension_spx_codegen_header.h")
 	tempPath :=filepath.Join(dirPath, "_temp_output.h")
 	ioutil.WriteFile(tempPath, []byte(allStrs), 0644)
 	return allStrs,nil

@@ -7,7 +7,7 @@
 //   "ffi_wrapper.h.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
-#include "gdextension_interface.h"
+#include "gdextension_spx_codegen_header.h"
 #include "ffi_wrapper.gen.h"
 
 /* Go cannot call C function pointers directly, so we must generate C wrapper code to call the functions. */
@@ -19,7 +19,7 @@
 			, {{ $arg.CStyleString $j }}
 		{{- end -}}
 	) {
-		printStacktrace();
+		//printStacktrace();
 		{{ if ne "void" $f.ReturnType.CStyleString -}} return {{- end }} fn(
 			{{- range $j, $arg := $f.Arguments }}
 				{{- if gt $j 0 }}, {{ end }}

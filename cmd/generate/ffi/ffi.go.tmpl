@@ -14,10 +14,8 @@ package ffi
 
 import (
 	"unsafe"
-
-	"github.com/godot-go/godot-go/pkg/log"
-	"go.uber.org/zap"
 )
+
 
 type GDExtensionInterface struct {
 	Library        GDExtensionClassLibraryPtr
@@ -51,9 +49,7 @@ var (
 func LoadProcAddress(funcName string) unsafe.Pointer {
 	ret := CallFunc_GDExtensionInterfaceGetProcAddress(funcName)
 	if ret == nil {
-		log.Warn("GDExtensionInterfaceGetProcAddress Error",
-			zap.String("name", funcName),
-		)
+		println("GDExtensionInterfaceGetProcAddress Error ", funcName)
 	}
 	return unsafe.Pointer(ret)
 }
