@@ -317,4 +317,28 @@ inline void cgo_callfn_GDExtensionSpxCallbackOnUIToggle(const GDExtensionSpxCall
 inline void cgo_callfn_GDExtensionSpxCallbackOnUITextChanged(const GDExtensionSpxCallbackOnUITextChanged fn, GdInt id, GdString text) {
 	 fn(id, text);
 }
+inline void cgo_callfn_GDExtensionSpxStringNewWithLatin1Chars(const GDExtensionSpxStringNewWithLatin1Chars fn, GDExtensionUninitializedStringPtr r_dest, const char *  p_contents) {
+	 fn(r_dest, p_contents);
+}
+inline void cgo_callfn_GDExtensionSpxStringNewWithUtf8Chars(const GDExtensionSpxStringNewWithUtf8Chars fn, GDExtensionUninitializedStringPtr r_dest, const char *  p_contents) {
+	 fn(r_dest, p_contents);
+}
+inline void cgo_callfn_GDExtensionSpxStringNewWithLatin1CharsAndLen(const GDExtensionSpxStringNewWithLatin1CharsAndLen fn, GDExtensionUninitializedStringPtr r_dest, const char *  p_contents, GdInt p_size) {
+	 fn(r_dest, p_contents, p_size);
+}
+inline void cgo_callfn_GDExtensionSpxStringNewWithUtf8CharsAndLen(const GDExtensionSpxStringNewWithUtf8CharsAndLen fn, GDExtensionUninitializedStringPtr r_dest, const char *  p_contents, GdInt p_size) {
+	 fn(r_dest, p_contents, p_size);
+}
+inline GdInt cgo_callfn_GDExtensionSpxStringToLatin1Chars(const GDExtensionSpxStringToLatin1Chars fn, GDExtensionConstStringPtr p_self, char *  r_text, GdInt p_max_write_length) {
+	return fn(p_self, r_text, p_max_write_length);
+}
+inline GdInt cgo_callfn_GDExtensionSpxStringToUtf8Chars(const GDExtensionSpxStringToUtf8Chars fn, GDExtensionConstStringPtr p_self, char *  r_text, GdInt p_max_write_length) {
+	return fn(p_self, r_text, p_max_write_length);
+}
+inline GDExtensionPtrConstructor cgo_callfn_GDExtensionSpxVariantGetPtrConstructor(const GDExtensionSpxVariantGetPtrConstructor fn, GDExtensionVariantType p_type, int32_t p_constructor) {
+	return fn(p_type, p_constructor);
+}
+inline GDExtensionPtrDestructor cgo_callfn_GDExtensionSpxVariantGetPtrDestructor(const GDExtensionSpxVariantGetPtrDestructor fn, GDExtensionVariantType p_type) {
+	return fn(p_type);
+}
 #endif

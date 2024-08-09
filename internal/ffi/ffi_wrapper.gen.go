@@ -17,6 +17,7 @@ package ffi
 // #include <stdlib.h>
 import "C"
 import (
+	"unsafe"
 )
 
 // C type aliases
@@ -125,6 +126,14 @@ type GDExtensionSpxCallbackOnUIHovered C.GDExtensionSpxCallbackOnUIHovered
 type GDExtensionSpxCallbackOnUIClicked C.GDExtensionSpxCallbackOnUIClicked
 type GDExtensionSpxCallbackOnUIToggle C.GDExtensionSpxCallbackOnUIToggle
 type GDExtensionSpxCallbackOnUITextChanged C.GDExtensionSpxCallbackOnUITextChanged
+type GDExtensionSpxStringNewWithLatin1Chars C.GDExtensionSpxStringNewWithLatin1Chars
+type GDExtensionSpxStringNewWithUtf8Chars C.GDExtensionSpxStringNewWithUtf8Chars
+type GDExtensionSpxStringNewWithLatin1CharsAndLen C.GDExtensionSpxStringNewWithLatin1CharsAndLen
+type GDExtensionSpxStringNewWithUtf8CharsAndLen C.GDExtensionSpxStringNewWithUtf8CharsAndLen
+type GDExtensionSpxStringToLatin1Chars C.GDExtensionSpxStringToLatin1Chars
+type GDExtensionSpxStringToUtf8Chars C.GDExtensionSpxStringToUtf8Chars
+type GDExtensionSpxVariantGetPtrConstructor C.GDExtensionSpxVariantGetPtrConstructor
+type GDExtensionSpxVariantGetPtrDestructor C.GDExtensionSpxVariantGetPtrDestructor
 
 
 // call gdextension interface functions
@@ -1091,4 +1100,105 @@ func CallSpxCallbackOnUITextChanged(
 	C.cgo_callfn_GDExtensionSpxCallbackOnUITextChanged(arg0,arg1,arg2,)
 	
 	
+}
+func CallSpxStringNewWithLatin1Chars(
+	r_dest GDExtensionUninitializedStringPtr,
+	p_contents string,
+	)  {
+	arg0 := (C.GDExtensionSpxStringNewWithLatin1Chars)(api.SpxStringNewWithLatin1Chars)
+	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
+	arg2 := C.CString(p_contents)
+	C.cgo_callfn_GDExtensionSpxStringNewWithLatin1Chars(arg0,arg1,arg2,)
+	C.free(unsafe.Pointer(arg2))
+	
+}
+func CallSpxStringNewWithUtf8Chars(
+	r_dest GDExtensionUninitializedStringPtr,
+	p_contents string,
+	)  {
+	arg0 := (C.GDExtensionSpxStringNewWithUtf8Chars)(api.SpxStringNewWithUtf8Chars)
+	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
+	arg2 := C.CString(p_contents)
+	C.cgo_callfn_GDExtensionSpxStringNewWithUtf8Chars(arg0,arg1,arg2,)
+	C.free(unsafe.Pointer(arg2))
+	
+}
+func CallSpxStringNewWithLatin1CharsAndLen(
+	r_dest GDExtensionUninitializedStringPtr,
+	p_contents string,
+	p_size GdInt,
+	)  {
+	arg0 := (C.GDExtensionSpxStringNewWithLatin1CharsAndLen)(api.SpxStringNewWithLatin1CharsAndLen)
+	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
+	arg2 := C.CString(p_contents)
+	arg3 := (C.GdInt)(p_size)
+	C.cgo_callfn_GDExtensionSpxStringNewWithLatin1CharsAndLen(arg0,arg1,arg2,arg3,)
+	C.free(unsafe.Pointer(arg2))
+	
+	
+}
+func CallSpxStringNewWithUtf8CharsAndLen(
+	r_dest GDExtensionUninitializedStringPtr,
+	p_contents string,
+	p_size GdInt,
+	)  {
+	arg0 := (C.GDExtensionSpxStringNewWithUtf8CharsAndLen)(api.SpxStringNewWithUtf8CharsAndLen)
+	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
+	arg2 := C.CString(p_contents)
+	arg3 := (C.GdInt)(p_size)
+	C.cgo_callfn_GDExtensionSpxStringNewWithUtf8CharsAndLen(arg0,arg1,arg2,arg3,)
+	C.free(unsafe.Pointer(arg2))
+	
+	
+}
+func CallSpxStringToLatin1Chars(
+	p_self GDExtensionConstStringPtr,
+	r_text *Char,
+	p_max_write_length GdInt,
+	) GdInt {
+	arg0 := (C.GDExtensionSpxStringToLatin1Chars)(api.SpxStringToLatin1Chars)
+	arg1 := (C.GDExtensionConstStringPtr)(p_self)
+	arg2 := (*C.char)(r_text)
+	arg3 := (C.GdInt)(p_max_write_length)
+	ret := C.cgo_callfn_GDExtensionSpxStringToLatin1Chars(arg0,arg1,arg2,arg3,)
+	
+	
+	
+	return (GdInt)(ret)
+}
+func CallSpxStringToUtf8Chars(
+	p_self GDExtensionConstStringPtr,
+	r_text *Char,
+	p_max_write_length GdInt,
+	) GdInt {
+	arg0 := (C.GDExtensionSpxStringToUtf8Chars)(api.SpxStringToUtf8Chars)
+	arg1 := (C.GDExtensionConstStringPtr)(p_self)
+	arg2 := (*C.char)(r_text)
+	arg3 := (C.GdInt)(p_max_write_length)
+	ret := C.cgo_callfn_GDExtensionSpxStringToUtf8Chars(arg0,arg1,arg2,arg3,)
+	
+	
+	
+	return (GdInt)(ret)
+}
+func CallSpxVariantGetPtrConstructor(
+	p_type GDExtensionVariantType,
+	p_constructor int32,
+	) GDExtensionPtrConstructor {
+	arg0 := (C.GDExtensionSpxVariantGetPtrConstructor)(api.SpxVariantGetPtrConstructor)
+	arg1 := (C.GDExtensionVariantType)(p_type)
+	arg2 := (C.int32_t)(p_constructor)
+	ret := C.cgo_callfn_GDExtensionSpxVariantGetPtrConstructor(arg0,arg1,arg2,)
+	
+	
+	return (GDExtensionPtrConstructor)(ret)
+}
+func CallSpxVariantGetPtrDestructor(
+	p_type GDExtensionVariantType,
+	) GDExtensionPtrDestructor {
+	arg0 := (C.GDExtensionSpxVariantGetPtrDestructor)(api.SpxVariantGetPtrDestructor)
+	arg1 := (C.GDExtensionVariantType)(p_type)
+	ret := C.cgo_callfn_GDExtensionSpxVariantGetPtrDestructor(arg0,arg1,)
+	
+	return (GDExtensionPtrDestructor)(ret)
 }
