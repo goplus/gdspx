@@ -2,14 +2,14 @@ package wrap
 
 import (
 	"fmt"
-	. "godot-ext/gdspx/internal/core"
+	. "godot-ext/gdspx/pkg/engine"
 )
 
 type baseMgr struct {
-	Node Node
+	Node GdNode
 }
 
-func (pself *baseMgr) Init(node Node) {
+func (pself *baseMgr) Init(node GdNode) {
 	pself.Node = node
 	//println("init manager", node.GetName())
 }

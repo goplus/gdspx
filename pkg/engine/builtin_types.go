@@ -2,7 +2,8 @@ package engine
 
 import "fmt"
 
-type Node int64
+type GdNode int64
+type GdObject int64
 
 type Vector2 struct {
 	X, Y float64

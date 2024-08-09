@@ -1,7 +1,7 @@
 package wrap
 
 import (
-	. "godot-ext/gdspx/internal/core"
+	. "godot-ext/gdspx/pkg/engine"
 	"reflect"
 )
 
@@ -14,7 +14,7 @@ var (
 	callbacks CallbackInfo
 )
 
-func createNode(typeName string) Node {
+func createNode(typeName string) GdNode {
 	return 0 // TODO
 }
 

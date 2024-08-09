@@ -1,8 +1,10 @@
 package engine
 
 import (
-	. "godot-ext/gdspx/internal/core"
+	"reflect"
+	"fmt"
 	"godot-ext/gdspx/internal/ffi"
+	. "godot-ext/gdspx/pkg/engine"
 	. "godot-ext/gdspx/internal/wrap"
 )
 
@@ -23,6 +25,23 @@ func Link(engineCallback EngineCallbackInfo) []IManager {
 		OnEngineUpdate:  onEngineUpdate,
 		OnEngineDestroy: onEngineDestroy,
 	})
+	
+	for _, mgr := range mgrs {
+		switch v := mgr.(type) {
+		case IAudioMgr:
+			AudioMgr = v
+		case IUIMgr:
+			UIMgr = v
+		case IPhysicMgr:
+			PhysicMgr = v
+		case IInputMgr:
+			InputMgr = v
+		case ISpriteMgr:
+			SpriteMgr = v
+		default:
+			panic(fmt.Sprintf("engine init error : unknown manager type %s", reflect.TypeOf(mgr).String()))
+		}
+	}
 	return mgrs
 }
 
