@@ -36,6 +36,7 @@
 #include "gdextension_interface.h"
 #ifndef NOT_GODOT_ENGINE
 #include "core/variant/variant.h"
+extern void gdextension_spx_setup_interface();
 #endif
 
 #ifndef __cplusplus
