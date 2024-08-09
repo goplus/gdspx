@@ -1,6 +1,7 @@
 package wrap
 
 import (
+	"godot-ext/gdspx/internal/ffi"
 	. "godot-ext/gdspx/pkg/engine"
 )
 
@@ -85,6 +86,10 @@ func (pself *physicMgr) IsCollisionEnabled(id GdObject) bool {
 }
 
 func (pself *spriteMgr) CreateSprite(path string) GdObject {
+	cpath := ffi.NewCString(path)
+	// TODO (jiepengtan): free cstring
+	//defer cpath.Destroy()
+	ffi.CallSpriteCreateSprite(cpath.ToGdString())
 	return 0
 }
 
@@ -161,7 +166,7 @@ func (pself *uiMgr) CreateInput(path string, rect Rect2, text string) GdObject  
 
 func (pself *uiMgr) GetType(id GdObject) GdObject                        { return 0 }
 func (pself *uiMgr) SetInteractable(id GdObject, GdObjecteractable bool) {}
-func (pself *uiMgr) GetInteractable(id GdObject) bool                 { return false }
+func (pself *uiMgr) GetInteractable(id GdObject) bool                    { return false }
 
 func (pself *uiMgr) SetText(id GdObject, text string)      {}
 func (pself *uiMgr) GetText(id GdObject) string            { return "" }

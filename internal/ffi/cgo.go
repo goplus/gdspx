@@ -1,18 +1,25 @@
 package ffi
 
 import (
+	"godot-ext/gdspx/pkg/engine"
 	"unsafe"
 )
 import "C"
 
-var dlsymGD func(string) unsafe.Pointer
+var (
+	dlsymGD   func(string) unsafe.Pointer
+	callbacks engine.CallbackInfo
+)
 
 //go:linkname main main.main
 func main()
 
+func Link() bool {
+	return dlsymGD != nil
+}
 
-func Link() (bool) {
-	return dlsymGD != nil 
+func BindCallback(info engine.CallbackInfo) {
+	callbacks = info
 }
 
 //export loadExtension

@@ -1,6 +1,7 @@
 package wrap
 
 import (
+	"godot-ext/gdspx/internal/ffi"
 	. "godot-ext/gdspx/pkg/engine"
 	"reflect"
 )
@@ -21,8 +22,7 @@ func createNode(typeName string) GdNode {
 func addManager[T IManager](mgr T) T {
 	typeName := reflect.TypeOf(mgr).Elem().Name()
 	println("add manager", typeName)
-	node := createNode("SpxNode")
-	mgr.Init(node)
+	mgr.Init(0)
 	mgrs = append(mgrs, mgr)
 	return mgr
 }
@@ -36,5 +36,5 @@ func RegisterCallbacks(callback EngineCallbackInfo) {
 	callbacks.OnEngineStart = callback.OnEngineStart
 	callbacks.OnEngineUpdate = callback.OnEngineUpdate
 	callbacks.OnEngineDestroy = callback.OnEngineDestroy
-	// TODO : register callbacks
+	ffi.BindCallback(callbacks)
 }

@@ -8,9 +8,7 @@ import "C"
 
 import (
 	"unsafe"
-	"fmt"
 )
-
 
 type Uint64T C.uint64_t
 type Uint32T C.uint32_t
@@ -37,7 +35,6 @@ type GdRect C.GdRect
 type GDExtensionSpxCallbackInfoPtr C.GDExtensionSpxCallbackInfoPtr
 type SpxCallbackInfo C.SpxCallbackInfo
 
-
 type GDExtensionVariantPtr C.GDExtensionVariantPtr
 type GDExtensionConstVariantPtr C.GDExtensionConstVariantPtr
 type GDExtensionUninitializedVariantPtr C.GDExtensionUninitializedVariantPtr
@@ -63,7 +60,6 @@ type GDExtensionConstRefPtr C.GDExtensionConstRefPtr
 type GDExtensionPtrConstructor C.GDExtensionPtrConstructor
 type GDExtensionPtrDestructor C.GDExtensionPtrDestructor
 type GDExtensionVariantType C.GDExtensionVariantType
-
 
 const (
 	GDEXTENSION_VARIANT_TYPE_NIL GDExtensionVariantType = iota
@@ -117,7 +113,6 @@ const (
 	GDExtensionInitializationLevelEditor  GDExtensionInitializationLevel = 3
 )
 
-
 type initialization = C.GDExtensionInitialization
 type initializationLevel = C.GDExtensionInitializationLevel
 
@@ -151,110 +146,138 @@ func deinitialize(_ unsafe.Pointer, level initializationLevel) {
 	}
 }
 
-
 //export func_on_engine_start
 func func_on_engine_start() {
-    // TODO: implement
-	fmt.Println("go ~~~ funcOnEngineStart")
+	if callbacks.OnEngineStart != nil {
+		callbacks.OnEngineStart()
+	}
 }
+
 //export func_on_engine_update
 func func_on_engine_update(delta C.GDReal) {
-    // TODO: implement
+	if callbacks.OnEngineUpdate != nil {
+		callbacks.OnEngineUpdate(float64(delta))
+	}
 }
+
 //export func_on_engine_destroy
 func func_on_engine_destroy() {
-    // TODO: implement
-	fmt.Println("go ~~~ func_on_engine_destroy")
+	if callbacks.OnEngineDestroy != nil {
+		callbacks.OnEngineDestroy()
+	}
 }
+
 //export func_on_sprite_ready
 func func_on_sprite_ready(id C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_sprite_updated
 func func_on_sprite_updated(id C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_sprite_destroyed
 func func_on_sprite_destroyed(id C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_mouse_pressed
 func func_on_mouse_pressed(keyid C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_mouse_released
 func func_on_mouse_released(keyid C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_key_pressed
 func func_on_key_pressed(keyid C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_key_released
 func func_on_key_released(keyid C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_action_pressed
 func func_on_action_pressed(actionName C.GdString) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_action_just_pressed
 func func_on_action_just_pressed(actionName C.GdString) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_action_just_released
 func func_on_action_just_released(actionName C.GdString) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_axis_changed
 func func_on_axis_changed(actionName C.GdString, value C.GDReal) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_collision_enter
 func func_on_collision_enter(selfId, otherId C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_collision_stay
 func func_on_collision_stay(selfId, otherId C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_collision_exit
 func func_on_collision_exit(selfId, otherId C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_trigger_enter
 func func_on_trigger_enter(selfId, otherId C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_trigger_stay
 func func_on_trigger_stay(selfId, otherId C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_trigger_exit
 func func_on_trigger_exit(selfId, otherId C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_ui_pressed
 func func_on_ui_pressed(id C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_ui_released
 func func_on_ui_released(id C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_ui_hovered
 func func_on_ui_hovered(id C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_ui_clicked
 func func_on_ui_clicked(id C.GDExtensionInt) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_ui_toggle
 func func_on_ui_toggle(id C.GDExtensionInt, isOn C.GDExtensionBool) {
-    // TODO: implement
+	// TODO: implement
 }
+
 //export func_on_ui_text_changed
 func func_on_ui_text_changed(id C.GDExtensionInt, text C.GdString) {
-    // TODO: implement
+	// TODO: implement
 }

@@ -7,11 +7,21 @@ import (
 
 func main() {
 	gdspx.LinkEngine(gdspx.EngineCallbacks{
-		OnEngineStart: onStart,
+		OnEngineStart:   onStart,
+		OnEngineUpdate:  onUpdate,
+		OnEngineDestroy: onDestory,
 	})
 }
 
 func onStart() {
 	println("onEngineStart")
-	SpriteMgr.CreateSprite("TestSprite")
+	SpriteMgr.CreateSprite("TestSprite中文")
+}
+
+func onUpdate(delta float64) {
+	//println("onEngineUpdate")
+}
+
+func onDestory() {
+	println("onEngineDestory")
 }
