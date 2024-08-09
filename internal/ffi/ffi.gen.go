@@ -91,32 +91,6 @@ type GDExtensionInterface struct {
 	SpxUIGetFontSize GDExtensionSpxUIGetFontSize
 	SpxUISetVisible GDExtensionSpxUISetVisible
 	SpxUIGetVisible GDExtensionSpxUIGetVisible
-	SpxCallbackOnEngineStart GDExtensionSpxCallbackOnEngineStart
-	SpxCallbackOnEngineUpdate GDExtensionSpxCallbackOnEngineUpdate
-	SpxCallbackOnEngineDestroy GDExtensionSpxCallbackOnEngineDestroy
-	SpxCallbackOnSpriteReady GDExtensionSpxCallbackOnSpriteReady
-	SpxCallbackOnSpriteUpdated GDExtensionSpxCallbackOnSpriteUpdated
-	SpxCallbackOnSpriteDestroyed GDExtensionSpxCallbackOnSpriteDestroyed
-	SpxCallbackOnMousePressed GDExtensionSpxCallbackOnMousePressed
-	SpxCallbackOnMouseReleased GDExtensionSpxCallbackOnMouseReleased
-	SpxCallbackOnKeyPressed GDExtensionSpxCallbackOnKeyPressed
-	SpxCallbackOnKeyReleased GDExtensionSpxCallbackOnKeyReleased
-	SpxCallbackOnActionPressed GDExtensionSpxCallbackOnActionPressed
-	SpxCallbackOnActionJustPressed GDExtensionSpxCallbackOnActionJustPressed
-	SpxCallbackOnActionJustReleased GDExtensionSpxCallbackOnActionJustReleased
-	SpxCallbackOnAxisChanged GDExtensionSpxCallbackOnAxisChanged
-	SpxCallbackOnCollisionEnter GDExtensionSpxCallbackOnCollisionEnter
-	SpxCallbackOnCollisionStay GDExtensionSpxCallbackOnCollisionStay
-	SpxCallbackOnCollisionExit GDExtensionSpxCallbackOnCollisionExit
-	SpxCallbackOnTriggerEnter GDExtensionSpxCallbackOnTriggerEnter
-	SpxCallbackOnTriggerStay GDExtensionSpxCallbackOnTriggerStay
-	SpxCallbackOnTriggerExit GDExtensionSpxCallbackOnTriggerExit
-	SpxCallbackOnUIPressed GDExtensionSpxCallbackOnUIPressed
-	SpxCallbackOnUIReleased GDExtensionSpxCallbackOnUIReleased
-	SpxCallbackOnUIHovered GDExtensionSpxCallbackOnUIHovered
-	SpxCallbackOnUIClicked GDExtensionSpxCallbackOnUIClicked
-	SpxCallbackOnUIToggle GDExtensionSpxCallbackOnUIToggle
-	SpxCallbackOnUITextChanged GDExtensionSpxCallbackOnUITextChanged
 	SpxStringNewWithLatin1Chars GDExtensionSpxStringNewWithLatin1Chars
 	SpxStringNewWithUtf8Chars GDExtensionSpxStringNewWithUtf8Chars
 	SpxStringNewWithLatin1CharsAndLen GDExtensionSpxStringNewWithLatin1CharsAndLen
@@ -204,32 +178,6 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxUIGetFontSize = (GDExtensionSpxUIGetFontSize)(dlsymGD("spx_ui_get_font_size"))
 	x.SpxUISetVisible = (GDExtensionSpxUISetVisible)(dlsymGD("spx_ui_set_visible"))
 	x.SpxUIGetVisible = (GDExtensionSpxUIGetVisible)(dlsymGD("spx_ui_get_visible"))
-	x.SpxCallbackOnEngineStart = (GDExtensionSpxCallbackOnEngineStart)(dlsymGD("spx_callback_on_engine_start"))
-	x.SpxCallbackOnEngineUpdate = (GDExtensionSpxCallbackOnEngineUpdate)(dlsymGD("spx_callback_on_engine_update"))
-	x.SpxCallbackOnEngineDestroy = (GDExtensionSpxCallbackOnEngineDestroy)(dlsymGD("spx_callback_on_engine_destroy"))
-	x.SpxCallbackOnSpriteReady = (GDExtensionSpxCallbackOnSpriteReady)(dlsymGD("spx_callback_on_sprite_ready"))
-	x.SpxCallbackOnSpriteUpdated = (GDExtensionSpxCallbackOnSpriteUpdated)(dlsymGD("spx_callback_on_sprite_updated"))
-	x.SpxCallbackOnSpriteDestroyed = (GDExtensionSpxCallbackOnSpriteDestroyed)(dlsymGD("spx_callback_on_sprite_destroyed"))
-	x.SpxCallbackOnMousePressed = (GDExtensionSpxCallbackOnMousePressed)(dlsymGD("spx_callback_on_mouse_pressed"))
-	x.SpxCallbackOnMouseReleased = (GDExtensionSpxCallbackOnMouseReleased)(dlsymGD("spx_callback_on_mouse_released"))
-	x.SpxCallbackOnKeyPressed = (GDExtensionSpxCallbackOnKeyPressed)(dlsymGD("spx_callback_on_key_pressed"))
-	x.SpxCallbackOnKeyReleased = (GDExtensionSpxCallbackOnKeyReleased)(dlsymGD("spx_callback_on_key_released"))
-	x.SpxCallbackOnActionPressed = (GDExtensionSpxCallbackOnActionPressed)(dlsymGD("spx_callback_on_action_pressed"))
-	x.SpxCallbackOnActionJustPressed = (GDExtensionSpxCallbackOnActionJustPressed)(dlsymGD("spx_callback_on_action_just_pressed"))
-	x.SpxCallbackOnActionJustReleased = (GDExtensionSpxCallbackOnActionJustReleased)(dlsymGD("spx_callback_on_action_just_released"))
-	x.SpxCallbackOnAxisChanged = (GDExtensionSpxCallbackOnAxisChanged)(dlsymGD("spx_callback_on_axis_changed"))
-	x.SpxCallbackOnCollisionEnter = (GDExtensionSpxCallbackOnCollisionEnter)(dlsymGD("spx_callback_on_collision_enter"))
-	x.SpxCallbackOnCollisionStay = (GDExtensionSpxCallbackOnCollisionStay)(dlsymGD("spx_callback_on_collision_stay"))
-	x.SpxCallbackOnCollisionExit = (GDExtensionSpxCallbackOnCollisionExit)(dlsymGD("spx_callback_on_collision_exit"))
-	x.SpxCallbackOnTriggerEnter = (GDExtensionSpxCallbackOnTriggerEnter)(dlsymGD("spx_callback_on_trigger_enter"))
-	x.SpxCallbackOnTriggerStay = (GDExtensionSpxCallbackOnTriggerStay)(dlsymGD("spx_callback_on_trigger_stay"))
-	x.SpxCallbackOnTriggerExit = (GDExtensionSpxCallbackOnTriggerExit)(dlsymGD("spx_callback_on_trigger_exit"))
-	x.SpxCallbackOnUIPressed = (GDExtensionSpxCallbackOnUIPressed)(dlsymGD("spx_callback_on_ui_pressed"))
-	x.SpxCallbackOnUIReleased = (GDExtensionSpxCallbackOnUIReleased)(dlsymGD("spx_callback_on_ui_released"))
-	x.SpxCallbackOnUIHovered = (GDExtensionSpxCallbackOnUIHovered)(dlsymGD("spx_callback_on_ui_hovered"))
-	x.SpxCallbackOnUIClicked = (GDExtensionSpxCallbackOnUIClicked)(dlsymGD("spx_callback_on_ui_clicked"))
-	x.SpxCallbackOnUIToggle = (GDExtensionSpxCallbackOnUIToggle)(dlsymGD("spx_callback_on_ui_toggle"))
-	x.SpxCallbackOnUITextChanged = (GDExtensionSpxCallbackOnUITextChanged)(dlsymGD("spx_callback_on_ui_text_changed"))
 	x.SpxStringNewWithLatin1Chars = (GDExtensionSpxStringNewWithLatin1Chars)(dlsymGD("spx_string_new_with_latin1_chars"))
 	x.SpxStringNewWithUtf8Chars = (GDExtensionSpxStringNewWithUtf8Chars)(dlsymGD("spx_string_new_with_utf8_chars"))
 	x.SpxStringNewWithLatin1CharsAndLen = (GDExtensionSpxStringNewWithLatin1CharsAndLen)(dlsymGD("spx_string_new_with_latin1_chars_and_len"))

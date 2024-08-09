@@ -51,6 +51,7 @@ func (a CHeaderFileAST) CollectGDExtensionInterfaceFunctions() []TypedefFunction
 
 	for _, fn := range allFns {
 		if strings.HasPrefix(fn.Name, "GDExtensionSpx") &&
+			!strings.HasPrefix(fn.Name, "GDExtensionSpxCallback") &&
 			!slices.Contains(legacyGDExtentionInterfaceFunctionNames, fn.Name) {
 			fns = append(fns, fn)
 		}
