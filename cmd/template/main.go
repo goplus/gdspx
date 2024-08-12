@@ -15,7 +15,10 @@ func main() {
 
 func onStart() {
 	println("onEngineStart")
-	SpriteMgr.CreateSprite("TestSprite中文")
+	obj := SpriteMgr.CreateSprite("TestSprite中文aaA")
+	SpriteMgr.CreateSprite("TestSprite中文aBBBBA")
+	SpriteMgr.UpdateZIndex(obj, 1)
+
 }
 
 func onUpdate(delta float64) {

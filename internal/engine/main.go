@@ -1,11 +1,11 @@
 package engine
 
 import (
-	"reflect"
 	"fmt"
 	"godot-ext/gdspx/internal/ffi"
-	. "godot-ext/gdspx/pkg/engine"
 	. "godot-ext/gdspx/internal/wrap"
+	. "godot-ext/gdspx/pkg/engine"
+	"reflect"
 )
 
 var (
@@ -25,7 +25,7 @@ func Link(engineCallback EngineCallbackInfo) []IManager {
 		OnEngineUpdate:  onEngineUpdate,
 		OnEngineDestroy: onEngineDestroy,
 	})
-	
+
 	for _, mgr := range mgrs {
 		switch v := mgr.(type) {
 		case IAudioMgr:

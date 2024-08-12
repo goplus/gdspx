@@ -15,7 +15,7 @@ var (
 	callbacks CallbackInfo
 )
 
-func createNode(typeName string) GdNode {
+func createNode(typeName string) Node {
 	return 0 // TODO
 }
 

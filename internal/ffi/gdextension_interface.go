@@ -7,6 +7,7 @@ package ffi
 import "C"
 
 import (
+	"godot-ext/gdspx/pkg/engine"
 	"unsafe"
 )
 
@@ -30,7 +31,78 @@ type GdVec4 C.GdVec4
 type GdVec3 C.GdVec3
 type GdVec2 C.GdVec2
 type GdColor C.GdColor
-type GdRect C.GdRect
+type GdRect2 C.GdRect2
+type GdObj C.GdObj
+
+func ToGdBool(val bool) GdBool {
+	if val {
+		return GdBool(1)
+	} else {
+		return GdBool(0)
+	}
+}
+func ToBool(val GdBool) bool {
+	return val != 0
+}
+func ToGdVec2(val engine.Vec2) GdVec2 {
+	return GdVec2{C.GdFloat(val.X), C.GdFloat(val.Y)}
+}
+func ToVec2(val GdVec2) engine.Vec2 {
+	return engine.Vec2{float64(val.X), float64(val.Y)}
+}
+func ToGdColor(val engine.Color) GdColor {
+	return GdColor{C.float(val.R), C.float(val.G), C.float(val.B), C.float(val.A)}
+}
+func ToColor(val GdColor) engine.Color {
+	return engine.Color{float32(val.R), float32(val.G), float32(val.B), float32(val.A)}
+}
+func ToGdRect2(val engine.Rect2) GdRect2 {
+	center := ToGdVec2(val.Center)
+	size := ToGdVec2(val.Size)
+	ret := GdRect2{}
+	ret.Center = C.GdVec2(center)
+	ret.Size = C.GdVec2(size)
+	return ret
+}
+func ToRect2(val GdRect2) engine.Rect2 {
+	ret := engine.Rect2{}
+	ret.Center = ToVec2(GdVec2(val.Center))
+	ret.Size = ToVec2(GdVec2(val.Size))
+	return ret
+}
+func ToGdObj(val engine.Object) GdObj {
+	return GdObj(val)
+}
+func ToObject(val GdObj) engine.Object {
+	return engine.Object(val)
+}
+func ToGdInt(val int64) GdInt {
+	return GdInt(val)
+}
+func ToInt(val GdInt) int64 {
+	return int64(val)
+}
+func ToInt64(val GdInt) int64 {
+	return int64(val)
+}
+func ToGdFloat(val float64) GdFloat {
+	return GdFloat(val)
+}
+func ToFloat64(val GdFloat) float64 {
+	return float64(val)
+}
+func ToFloat(val GdFloat) float64 {
+	return float64(val)
+}
+func ToString(val GdString) string {
+	cstrPtr := (*CString)(unsafe.Pointer(&val))
+	return cstrPtr.ToUtf8()
+}
+func ToGdString(val string) GdString {
+	cstr := NewCString(val)
+	// TODO (jiepengtan): free cstring
+	return cstr.ToGdString()
+}
 
 type GDExtensionSpxCallbackInfoPtr C.GDExtensionSpxCallbackInfoPtr
 type SpxCallbackInfo C.SpxCallbackInfo

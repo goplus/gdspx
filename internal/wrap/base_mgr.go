@@ -6,10 +6,10 @@ import (
 )
 
 type baseMgr struct {
-	Node GdNode
+	Node Node
 }
 
-func (pself *baseMgr) Init(node GdNode) {
+func (pself *baseMgr) Init(node Node) {
 	pself.Node = node
 	//println("init manager", node.GetName())
 }

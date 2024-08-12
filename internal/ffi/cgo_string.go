@@ -18,6 +18,9 @@ import "C"
 
 type CString [8]uint8
 
+func (c *CString) ToGdString() GdString {
+	return (GdString)(unsafe.Pointer(c))
+}
 func (c *CString) NativeConstPtr() GDExtensionConstTypePtr {
 	return (GDExtensionConstTypePtr)(unsafe.Pointer(c))
 }
@@ -26,8 +29,8 @@ func (c *CString) NativePtr() GDExtensionTypePtr {
 	return (GDExtensionTypePtr)(unsafe.Pointer(c))
 }
 
-func (c *CString) ToGdString() GdString {
-	return (GdString)(unsafe.Pointer(c))
+func FromGdString(gdstr GdString) *CString {
+	return (*CString)(unsafe.Pointer(&gdstr))
 }
 
 type stringMethodBindings struct {

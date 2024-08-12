@@ -2,23 +2,23 @@ package engine
 
 import "fmt"
 
-type GdNode int64
-type GdObject int64
+type Node int64
+type Object int64
 
-type Vector2 struct {
+type Vec2 struct {
 	X, Y float64
 }
 
-type Vector3 struct {
+type Vec3 struct {
 	X, Y, Z float64
 }
 
-type Vector4 struct {
+type Vec4 struct {
 	X, Y, Z, W float64
 }
 type Color struct {
 	// TODO(jiepengtan) support 32bit
-	R, G, B, A float64
+	R, G, B, A float32
 }
 
 func (color Color) ToString() string {
@@ -26,5 +26,5 @@ func (color Color) ToString() string {
 }
 
 type Rect2 struct {
-	Center, Size Vector2
+	Center, Size Vec2
 }

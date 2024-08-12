@@ -9,11 +9,12 @@ var (
 )
 
 type IManager interface {
-	Init(root GdNode)
+	Init(root Node)
 	OnStart()
 	OnUpdate(delta float64)
 	OnDestroy()
 }
+
 type EngineCallbackInfo struct {
 	OnEngineStart   func()
 	OnEngineUpdate  func(float64)
@@ -59,11 +60,11 @@ type CallbackInfo struct {
 type IAudioMgr interface {
 	PlayAudio(path string)
 	SetAudioVolume(volume float64)
-	GetAudioVolume()
+	GetAudioVolume() float64
 	IsMusicPlaying() bool
 	PlayMusic(path string)
 	SetMusicVolume(volume float64)
-	GetMusicVolume()
+	GetMusicVolume() float64
 	PauseMusic()
 	ResumeMusic()
 	GetMusicTimer() float64
@@ -71,51 +72,52 @@ type IAudioMgr interface {
 }
 
 type IUIMgr interface {
-	CreateButton(path string, rect Rect2, text string) GdObject
-	CreateLabel(path string, rect Rect2, text string) GdObject
-	CreateImage(path string, rect Rect2, color Rect2) GdObject
-	CreateSlider(path string, rect Rect2, value float64) GdObject
-	CreateToggle(path string, rect Rect2, value bool) GdObject
-	CreateInput(path string, rect Rect2, text string) GdObject
-	GetType(obj GdObject) GdObject
-	SetInteractable(obj GdObject, interactable bool)
-	GetInteractable(obj GdObject) bool
-	SetText(obj GdObject, text string)
-	GetText(obj GdObject) string
-	SetRect(obj GdObject, rect Rect2)
-	GetRect(obj GdObject) Rect2
-	SetColor(obj GdObject, color Rect2)
-	GetColor(obj GdObject) Rect2
-	SetFontSize(obj GdObject, size float64)
-	GetFontSize(obj GdObject) float64
-	SetVisible(obj GdObject, visible bool)
-	GetVisible(obj GdObject) bool
+	CreateButton(path string, rect Rect2, text string) Object
+	CreateLabel(path string, rect Rect2, text string) Object
+	CreateImage(path string, rect Rect2, color Color) Object
+	CreateSlider(path string, rect Rect2, value float64) Object
+	CreateToggle(path string, rect Rect2, value bool) Object
+	CreateInput(path string, rect Rect2, text string) Object
+	GetType(obj Object) int64
+	SetInteractable(obj Object, interactable bool)
+	GetInteractable(obj Object) bool
+	SetText(obj Object, text string)
+	GetText(obj Object) string
+	SetRect(obj Object, rect Rect2)
+	GetRect(obj Object) Rect2
+	SetColor(obj Object, color Color)
+	GetColor(obj Object) Color
+	SetFontSize(obj Object, size float64)
+	GetFontSize(obj Object) float64
+	SetVisible(obj Object, visible bool)
+	GetVisible(obj Object) bool
 }
+
 type IPhysicMgr interface {
 	SetGravity(gravity float64)
 	GetGravity() float64
-	SetVelocity(obj GdObject, velocity Vector2)
-	GetVelocity(obj GdObject) Vector2
-	SetMass(obj GdObject, mass float64)
-	GetMass(obj GdObject) float64
-	AddForce(obj GdObject, force Vector2)
-	AddImpulse(obj GdObject, impulse Vector2)
-	SetCollisionLayer(obj GdObject, layer GdObject)
-	GetCollisionLayer(obj GdObject) GdObject
-	SetCollisionMask(obj GdObject, mask GdObject)
-	GetCollisionMask(obj GdObject) GdObject
-	GetColliderType(obj GdObject) GdObject
-	AddColliderRect(obj GdObject, center Vector2, size Vector2)
-	AddColliderCircle(obj GdObject, center Vector2, radius float64)
-	AddColliderCapsule(obj GdObject, center Vector2, size Vector2)
-	SetTrigger(obj GdObject, trigger bool)
-	IsTrigger(obj GdObject) bool
-	SetCollisionEnabled(obj GdObject, enabled bool)
-	IsCollisionEnabled(obj GdObject) bool
+	SetVelocity(obj Object, velocity Vec2)
+	GetVelocity(obj Object) Vec2
+	SetMass(obj Object, mass float64)
+	GetMass(obj Object) float64
+	AddForce(obj Object, force Vec2)
+	AddImpulse(obj Object, impulse Vec2)
+	SetCollisionLayer(obj Object, layer int64)
+	GetCollisionLayer(obj Object) int64
+	SetCollisionMask(obj Object, mask int64)
+	GetCollisionMask(obj Object) int64
+	GetColliderType(obj Object) int64
+	AddColliderRect(obj Object, center Vec2, size Vec2)
+	AddColliderCircle(obj Object, center Vec2, radius float64)
+	AddColliderCapsule(obj Object, center Vec2, size Vec2)
+	SetTrigger(obj Object, trigger bool)
+	IsTrigger(obj Object) bool
+	SetCollisionEnabled(obj Object, enabled bool)
+	IsCollisionEnabled(obj Object) bool
 }
 
 type IInputMgr interface {
-	GetMousePos() Vector2
+	GetMousePos() Vec2
 	GetMouseState(obj int64) bool
 	GetKeyState(key int64) int64
 	GetAxis(axis string) float64
@@ -125,21 +127,23 @@ type IInputMgr interface {
 }
 
 type ISpriteMgr interface {
-	CreateSprite(path string) GdObject
-	CloneSprite(obj GdObject) GdObject
-	DestroySprite(obj GdObject) bool
-	IsSpriteAlive(obj GdObject) bool
-	SetPosition(obj GdObject, pos Vector2)
-	SetRotation(obj GdObject, rot Vector2)
-	SetScale(obj GdObject, scale Vector2)
-	GetPosition(obj GdObject) Vector2
-	GetRotation(obj GdObject) Vector2
-	GetScale(obj GdObject) Vector2
-	SetColor(obj GdObject, color Color)
-	GetColor(obj GdObject) Color
-	UpdateTexture(obj GdObject, path string)
-	GetTexture(obj GdObject) string
-	SetVisible(obj GdObject, visible bool)
-	GetVisible(obj GdObject) bool
-	UpdateZIndex(obj GdObject, z GdObject)
+	CreateSprite(path string) Object
+	CloneSprite(obj Object) Object
+	DestroySprite(obj Object) bool
+	IsSpriteAlive(obj Object) bool
+	SetPosition(obj Object, pos Vec2)
+	SetRotation(obj Object, rot Vec2)
+	SetScale(obj Object, scale Vec2)
+	GetPosition(obj Object) Vec2
+	GetRotation(obj Object) Vec2
+	GetScale(obj Object) Vec2
+	SetColor(obj Object, color Color)
+	GetColor(obj Object) Color
+	UpdateTexture(obj Object, path string)
+	GetTexture(obj Object) string
+	SetVisible(obj Object, visible bool)
+	GetVisible(obj Object) bool
+	UpdateZIndex(obj Object, z int64)
+
+	// TODO animation
 }

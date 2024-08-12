@@ -17,33 +17,33 @@ extern "C" {
 typedef double real_t;
 
 typedef struct {
-    real_t x;
-    real_t y;
-    real_t z;
-    real_t w;
+    real_t X;
+    real_t Y;
+    real_t Z;
+    real_t W;
 } Vector4;
 
 typedef struct {
-    real_t x;
-    real_t y;
-    real_t z;
+    real_t X;
+    real_t Y;
+    real_t Z;
 } Vector3;
 
 typedef struct {
-    real_t x;
-    real_t y;
+    real_t X;
+    real_t Y;
 } Vector2;
 
 typedef struct {
-    float x;
-    float y;
-    float z;
-    float w;
+    float R;
+    float G;
+    float B;
+    float A;
 } Color;
 
 typedef struct {
-	Vector2 position;
-	Vector2 size;
+	Vector2 Center;
+	Vector2 Size;
 } Rect2;
 
 typedef real_t GDReal;
