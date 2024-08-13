@@ -146,7 +146,7 @@ inline GdBool cgo_callfn_GDExtensionSpxSpriteIsSpriteAlive(const GDExtensionSpxS
 inline void cgo_callfn_GDExtensionSpxSpriteSetPosition(const GDExtensionSpxSpriteSetPosition fn, GdObj obj, GdVec2 pos) {
 	 fn(obj, pos);
 }
-inline void cgo_callfn_GDExtensionSpxSpriteSetRotation(const GDExtensionSpxSpriteSetRotation fn, GdObj obj, GdVec2 rot) {
+inline void cgo_callfn_GDExtensionSpxSpriteSetRotation(const GDExtensionSpxSpriteSetRotation fn, GdObj obj, GdFloat rot) {
 	 fn(obj, rot);
 }
 inline void cgo_callfn_GDExtensionSpxSpriteSetScale(const GDExtensionSpxSpriteSetScale fn, GdObj obj, GdVec2 scale) {
@@ -155,7 +155,7 @@ inline void cgo_callfn_GDExtensionSpxSpriteSetScale(const GDExtensionSpxSpriteSe
 inline GdVec2 cgo_callfn_GDExtensionSpxSpriteGetPosition(const GDExtensionSpxSpriteGetPosition fn, GdObj obj) {
 	return fn(obj);
 }
-inline GdVec2 cgo_callfn_GDExtensionSpxSpriteGetRotation(const GDExtensionSpxSpriteGetRotation fn, GdObj obj) {
+inline GdFloat cgo_callfn_GDExtensionSpxSpriteGetRotation(const GDExtensionSpxSpriteGetRotation fn, GdObj obj) {
 	return fn(obj);
 }
 inline GdVec2 cgo_callfn_GDExtensionSpxSpriteGetScale(const GDExtensionSpxSpriteGetScale fn, GdObj obj) {

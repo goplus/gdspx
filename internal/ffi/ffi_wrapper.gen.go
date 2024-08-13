@@ -535,11 +535,11 @@ func CallSpriteSetPosition(
 }
 func CallSpriteSetRotation(
 	obj GdObj,
-	rot GdVec2,
+	rot GdFloat,
 	)  {
 	arg0 := (C.GDExtensionSpxSpriteSetRotation)(api.SpxSpriteSetRotation)
 	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdVec2)(rot)
+	arg2 := (C.GdFloat)(rot)
 	C.cgo_callfn_GDExtensionSpxSpriteSetRotation(arg0,arg1,arg2,)
 	
 	
@@ -566,12 +566,12 @@ func CallSpriteGetPosition(
 }
 func CallSpriteGetRotation(
 	obj GdObj,
-	) GdVec2 {
+	) GdFloat {
 	arg0 := (C.GDExtensionSpxSpriteGetRotation)(api.SpxSpriteGetRotation)
 	arg1 := (C.GdObj)(obj)
 	ret := C.cgo_callfn_GDExtensionSpxSpriteGetRotation(arg0,arg1,)
 	
-	return (GdVec2)(ret)
+	return (GdFloat)(ret)
 }
 func CallSpriteGetScale(
 	obj GdObj,

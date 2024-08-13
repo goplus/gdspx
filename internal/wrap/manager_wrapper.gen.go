@@ -13,6 +13,12 @@ import (
 	. "godot-ext/gdspx/pkg/engine"
 )
 
+type audioMgr struct {
+	baseMgr
+}
+type inputMgr struct {
+	baseMgr
+}
 type physicMgr struct {
 	baseMgr
 }
@@ -22,20 +28,14 @@ type spriteMgr struct {
 type uiMgr struct {
 	baseMgr
 }
-type inputMgr struct {
-	baseMgr
-}
-type audioMgr struct {
-	baseMgr
-}
 
 
 func createMgrs() []IManager {
+	addManager(&audioMgr{})
+	addManager(&inputMgr{})
 	addManager(&physicMgr{})
 	addManager(&spriteMgr{})
 	addManager(&uiMgr{})
-	addManager(&inputMgr{})
-	addManager(&audioMgr{})
 	return mgrs
 }
 
@@ -250,9 +250,9 @@ func (pself *spriteMgr) SetPosition(obj Object, pos Vec2) {
 	arg1 := ToGdVec2(pos)
 	CallSpriteSetPosition(arg0, arg1)
 }
-func (pself *spriteMgr) SetRotation(obj Object, rot Vec2) {
+func (pself *spriteMgr) SetRotation(obj Object, rot float64) {
 	arg0 := ToGdObj(obj)
-	arg1 := ToGdVec2(rot)
+	arg1 := ToGdFloat(rot)
 	CallSpriteSetRotation(arg0, arg1)
 }
 func (pself *spriteMgr) SetScale(obj Object, scale Vec2) {
@@ -265,10 +265,10 @@ func (pself *spriteMgr) GetPosition(obj Object) Vec2  {
 	retValue := CallSpriteGetPosition(arg0)
 	return ToVec2(retValue)
 }
-func (pself *spriteMgr) GetRotation(obj Object) Vec2  {
+func (pself *spriteMgr) GetRotation(obj Object) float64  {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteGetRotation(arg0)
-	return ToVec2(retValue)
+	return ToFloat64(retValue)
 }
 func (pself *spriteMgr) GetScale(obj Object) Vec2  {
 	arg0 := ToGdObj(obj)

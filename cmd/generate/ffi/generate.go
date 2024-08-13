@@ -8,6 +8,7 @@ import (
 	_ "embed"
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 	"text/template"
@@ -198,7 +199,7 @@ func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) 
 	for item := range managerSet {
 		managers = append(managers, item)
 	}
-
+	sort.Strings(managers)
 	cppType2Go = map[string]string{
 		"GdInt":    "int64",
 		"GdFloat":  "float64",
