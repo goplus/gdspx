@@ -15,8 +15,10 @@ func main() {
 
 func onStart() {
 	println("onEngineStart")
-	obj := SpriteMgr.CreateSprite("TestSprite中文aaA")
-	SpriteMgr.CreateSprite("TestSprite中文aBBBBA")
+	obj := SpriteMgr.CreateSprite("")
+	obj2 := SpriteMgr.CreateSprite("")
+	SpriteMgr.SetPosition(obj,Vec2{100,100})
+	SpriteMgr.SetPosition(obj2,Vec2{100,200})
 	SpriteMgr.UpdateZIndex(obj, 1)
 
 }
