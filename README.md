@@ -1,24 +1,24 @@
 # godot for spx
 
 ## prepare env
+- install "make" in your system 
 - download and install godot 4.2.2.statble 
 - make cmd "godot" work
-    - windows add godot 4.2.2.stable to system path
-    - linux|mac copy to 
+    - windows
+        1. rename path/to/your/Godot_v4.2.2-stable_win64.exe to path/to/your/godot.exe  
+        2. add path/to/your/godot.exe to system path
+    - linux | macos
        ```
-        sudo mv path/to/your/Godot_v4.x-stable_linux.x86_64 /usr/local/bin/godot
+        sudo mv path/to/your/Godot_v4.2.2-stable_linux.x86_64 /usr/local/bin/godot
        ```
 
 ## run demo
 ### windows
 ```
-cd cmd/template
-make
-make run
+.\scripts\run.bat
 ```
 
 ### linux | macos
 ```
-cd cmd/template
-make && make run
+./scripts/run.sh
 ```
