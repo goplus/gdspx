@@ -1,4 +1,4 @@
-package ffi
+package common
 
 import (
 	"fmt"
@@ -9,11 +9,15 @@ import (
 	"github.com/iancoleman/strcase"
 )
 
-func add(a int, b int) int {
+var (
+	RelDir = "../internal/ffi"
+)
+
+func Add(a int, b int) int {
 	return a + b
 }
 
-func goArgumentType(t clang.PrimativeType, name string) string {
+func GoArgumentType(t clang.PrimativeType, name string) string {
 	n := strings.TrimSpace(t.Name)
 
 	hasReturnPrefix := strings.HasPrefix(name, "r_")
@@ -91,7 +95,7 @@ func goArgumentType(t clang.PrimativeType, name string) string {
 	}
 }
 
-func goReturnType(t clang.PrimativeType) string {
+func GoReturnType(t clang.PrimativeType) string {
 	n := strings.TrimSpace(t.Name)
 
 	switch n {
@@ -164,7 +168,7 @@ func goReturnType(t clang.PrimativeType) string {
 	}
 }
 
-func goEnumValue(v clang.EnumValue, index int) string {
+func GoEnumValue(v clang.EnumValue, index int) string {
 	if v.IntValue != nil {
 		return strconv.Itoa(*v.IntValue)
 	} else if v.ConstRefValue != nil {
@@ -176,7 +180,7 @@ func goEnumValue(v clang.EnumValue, index int) string {
 	}
 }
 
-func cgoCastArgument(a clang.Argument, defaultName string) string {
+func CgoCastArgument(a clang.Argument, defaultName string) string {
 	if a.Type.Primative != nil {
 		t := a.Type.Primative
 
@@ -223,7 +227,7 @@ func cgoCastArgument(a clang.Argument, defaultName string) string {
 	panic("unhandled type")
 }
 
-func cgoCleanUpArgument(a clang.Argument, index int) string {
+func CgoCleanUpArgument(a clang.Argument, index int) string {
 	if a.Type.Primative != nil {
 		t := a.Type.Primative
 		n := strings.TrimSpace(t.Name)
@@ -251,7 +255,7 @@ func cgoCleanUpArgument(a clang.Argument, index int) string {
 	panic("unhandled type")
 }
 
-func cgoCastReturnType(t clang.PrimativeType, argName string) string {
+func CgoCastReturnType(t clang.PrimativeType, argName string) string {
 	n := strings.TrimSpace(t.Name)
 
 	switch n {
@@ -324,15 +328,15 @@ func cgoCastReturnType(t clang.PrimativeType, argName string) string {
 	}
 }
 
-func gdiVariableName(typeName string) string {
-	ret := loadProcAddressName(typeName)
+func GdiVariableName(typeName string) string {
+	ret := LoadProcAddressName(typeName)
 	ret = strcase.ToCamel(ret)
 	ret = strings.Replace(ret, "C32Str", "C32str", 1)
 	ret = strings.Replace(ret, "Placeholder", "PlaceHolder", 1)
 	return ret
 }
 
-func loadProcAddressName(typeName string) string {
+func LoadProcAddressName(typeName string) string {
 	ret := strcase.ToSnake(typeName)
 	ret = strings.Replace(ret, "gd_extension_", "", 1)
 	ret = strings.Replace(ret, "_latin_1_", "_latin1_", 1)
@@ -354,7 +358,7 @@ func loadProcAddressName(typeName string) string {
 	return ret
 }
 
-func trimPrefix(typeName, prefix string) string {
+func TrimPrefix(typeName, prefix string) string {
 	prefixLen := len(prefix)
 	if strings.HasPrefix(typeName, prefix) {
 		return typeName[prefixLen:]

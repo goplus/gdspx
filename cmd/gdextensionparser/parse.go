@@ -56,26 +56,34 @@ func readLines(path string) ([]string, error) {
 	}
 	return lines, scanner.Err()
 }
-func expandIncludeFiles(projectPath string) (string, error) {
+func expandIncludeFiles(projectPath, header, outputName string) (string, error) {
 	dirPath := filepath.Join(projectPath, "/../internal/ffi/");
-	allStrs := ReadFiles(dirPath, "gdextension_spx_codegen_header.h")
-	tempPath :=filepath.Join(dirPath, "_temp_output.h")
+	allStrs := ReadFiles(dirPath, header)
+	tempPath :=filepath.Join(dirPath, outputName)
 	ioutil.WriteFile(tempPath, []byte(allStrs), 0644)
 	return allStrs,nil
 }
 
 func GenerateGDExtensionInterfaceAST(projectPath, astOutputFilename string) (clang.CHeaderFileAST, error) {
-	b ,err := expandIncludeFiles(projectPath)
-	n := projectPath
+	str ,_ := expandIncludeFiles(projectPath,"gdextension_spx_codegen_header.h","_temp_output.h")
+	return generateGDExtensionInterfaceAST( str, projectPath, astOutputFilename) 
+}
+
+func GenerateGdManagerAST(projectPath, astOutputFilename string) (clang.CHeaderFileAST, error) {
+	str ,_ := expandIncludeFiles(projectPath,"gdextension_spx_codegen_mgr_header.h","_temp_output_mgr.h")
+	return generateGDExtensionInterfaceAST( str, projectPath, astOutputFilename) 
+}
+
+func generateGDExtensionInterfaceAST(b,projectPath, astOutputFilename string) (clang.CHeaderFileAST, error) {
 	preprocFile, err := preprocessor.ParsePreprocessorString((string)(b))
 	if err != nil {
-		return clang.CHeaderFileAST{}, fmt.Errorf("error preprocessing %s: %w", n, err)
+		return clang.CHeaderFileAST{}, fmt.Errorf("error preprocessing %s: %w", projectPath, err)
 	}
 
 	preprocText := preprocFile.Eval(false)
 	ast, err := clang.ParseCString(preprocText)
 	if err != nil {
-		return clang.CHeaderFileAST{}, fmt.Errorf("error parsing %s: %w", n, err)
+		return clang.CHeaderFileAST{}, fmt.Errorf("error parsing %s: %w", projectPath, err)
 	}
 
 	// write the AST out to a file as JSON for debugging

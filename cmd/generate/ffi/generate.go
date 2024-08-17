@@ -1,6 +1,6 @@
 // Package gdextensionwrapper generates C code to wrap all of the gdextension
 // methods to call functions on the gdextension_api_structs to work
-// around the cgo C function pointer limitation.
+// around the Cgo C function pointer limitation.
 package ffi
 
 import (
@@ -15,6 +15,7 @@ import (
 	"unicode"
 
 	"godot-ext/gdspx/cmd/gdextensionparser/clang"
+	 . "godot-ext/gdspx/cmd/generate/common"
 
 	"github.com/iancoleman/strcase"
 )
@@ -31,9 +32,6 @@ var (
 
 	//go:embed manager_wrapper.go.tmpl
 	wrapManagerGoFileText string
-)
-var (
-	relDir = "../internal/ffi"
 )
 
 func Generate(projectPath string, ast clang.CHeaderFileAST) {
@@ -72,7 +70,7 @@ func GenerateGDExtensionWrapperHeaderFile(projectPath string, ast clang.CHeaderF
 		return err
 	}
 
-	filename := filepath.Join(projectPath, relDir, "ffi_wrapper.gen.h")
+	filename := filepath.Join(projectPath, RelDir, "ffi_wrapper.gen.h")
 	f, err := os.Create(filename)
 	if err != nil {
 		return err
@@ -88,17 +86,17 @@ func GenerateGDExtensionWrapperHeaderFile(projectPath string, ast clang.CHeaderF
 
 func GenerateGDExtensionWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) error {
 	funcs := template.FuncMap{
-		"gdiVariableName":    gdiVariableName,
+		"gdiVariableName":    GdiVariableName,
 		"snakeCase":          strcase.ToSnake,
 		"camelCase":          strcase.ToCamel,
-		"goReturnType":       goReturnType,
-		"goArgumentType":     goArgumentType,
-		"goEnumValue":        goEnumValue,
-		"add":                add,
-		"cgoCastArgument":    cgoCastArgument,
-		"cgoCastReturnType":  cgoCastReturnType,
-		"cgoCleanUpArgument": cgoCleanUpArgument,
-		"trimPrefix":         trimPrefix,
+		"goReturnType":       GoReturnType,
+		"goArgumentType":     GoArgumentType,
+		"goEnumValue":        GoEnumValue,
+		"add":                Add,
+		"cgoCastArgument":    CgoCastArgument,
+		"cgoCastReturnType":  CgoCastReturnType,
+		"cgoCleanUpArgument": CgoCleanUpArgument,
+		"trimPrefix":         TrimPrefix,
 	}
 
 	tmpl, err := template.New("ffi_wrapper.gen.go").
@@ -114,7 +112,7 @@ func GenerateGDExtensionWrapperGoFile(projectPath string, ast clang.CHeaderFileA
 		return err
 	}
 
-	headerFileName := filepath.Join(projectPath, relDir, "ffi_wrapper.gen.go")
+	headerFileName := filepath.Join(projectPath, RelDir, "ffi_wrapper.gen.go")
 	f, err := os.Create(headerFileName)
 	f.Write(b.Bytes())
 	f.Close()
@@ -123,18 +121,18 @@ func GenerateGDExtensionWrapperGoFile(projectPath string, ast clang.CHeaderFileA
 
 func GenerateGDExtensionInterfaceGoFile(projectPath string, ast clang.CHeaderFileAST) error {
 	funcs := template.FuncMap{
-		"gdiVariableName":     gdiVariableName,
+		"gdiVariableName":     GdiVariableName,
 		"snakeCase":           strcase.ToSnake,
 		"camelCase":           strcase.ToCamel,
-		"goReturnType":        goReturnType,
-		"goArgumentType":      goArgumentType,
-		"goEnumValue":         goEnumValue,
-		"add":                 add,
-		"cgoCastArgument":     cgoCastArgument,
-		"cgoCastReturnType":   cgoCastReturnType,
-		"cgoCleanUpArgument":  cgoCleanUpArgument,
-		"trimPrefix":          trimPrefix,
-		"loadProcAddressName": loadProcAddressName,
+		"goReturnType":        GoReturnType,
+		"goArgumentType":      GoArgumentType,
+		"goEnumValue":         GoEnumValue,
+		"add":                 Add,
+		"cgoCastArgument":     CgoCastArgument,
+		"cgoCastReturnType":   CgoCastReturnType,
+		"cgoCleanUpArgument":  CgoCleanUpArgument,
+		"trimPrefix":          TrimPrefix,
+		"loadProcAddressName": LoadProcAddressName,
 	}
 
 	tmpl, err := template.New("ffi.gen.go").
@@ -150,7 +148,7 @@ func GenerateGDExtensionInterfaceGoFile(projectPath string, ast clang.CHeaderFil
 		return err
 	}
 
-	headerFileName := filepath.Join(projectPath, relDir, "ffi.gen.go")
+	headerFileName := filepath.Join(projectPath, RelDir, "ffi.gen.go")
 	f, err := os.Create(headerFileName)
 	f.Write(b.Bytes())
 	f.Close()
@@ -159,17 +157,17 @@ func GenerateGDExtensionInterfaceGoFile(projectPath string, ast clang.CHeaderFil
 
 func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) error {
 	funcs := template.FuncMap{
-		"gdiVariableName":    gdiVariableName,
+		"gdiVariableName":    GdiVariableName,
 		"snakeCase":          strcase.ToSnake,
 		"camelCase":          strcase.ToCamel,
-		"goReturnType":       goReturnType,
-		"goArgumentType":     goArgumentType,
-		"goEnumValue":        goEnumValue,
-		"add":                add,
-		"cgoCastArgument":    cgoCastArgument,
-		"cgoCastReturnType":  cgoCastReturnType,
-		"cgoCleanUpArgument": cgoCleanUpArgument,
-		"trimPrefix":         trimPrefix,
+		"goReturnType":       GoReturnType,
+		"goArgumentType":     GoArgumentType,
+		"goEnumValue":        GoEnumValue,
+		"add":                Add,
+		"cgoCastArgument":    CgoCastArgument,
+		"cgoCastReturnType":  CgoCastReturnType,
+		"cgoCleanUpArgument": CgoCleanUpArgument,
+		"trimPrefix":         TrimPrefix,
 		"isManagerMethod":    isManagerMethod,
 		"getManagerFuncName": getManagerFuncName,
 		"getManagerFuncBody": getManagerFuncBody,
@@ -218,7 +216,7 @@ func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) 
 		return err
 	}
 
-	headerFileName := filepath.Join(projectPath, relDir, "../wrap/manager_wrapper.gen.go")
+	headerFileName := filepath.Join(projectPath, RelDir, "../wrap/manager_wrapper.gen.go")
 	f, err := os.Create(headerFileName)
 	f.Write(b.Bytes())
 	f.Close()
@@ -319,7 +317,7 @@ func getManagerFuncBody(function *clang.TypedefFunction) string {
 		sb.WriteString("retValue := ")
 	}
 
-	funcName := "Call" + trimPrefix(function.Name, "GDExtensionSpx")
+	funcName := "Call" + TrimPrefix(function.Name, "GDExtensionSpx")
 	sb.WriteString(funcName)
 	sb.WriteString("(")
 	for i, param := range params {

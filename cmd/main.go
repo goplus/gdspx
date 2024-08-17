@@ -11,6 +11,7 @@ import (
 	"godot-ext/gdspx/cmd/gdextensionparser"
 	"godot-ext/gdspx/cmd/gdextensionparser/clang"
 	"godot-ext/gdspx/cmd/generate/ffi"
+	"godot-ext/gdspx/cmd/generate/cpp"
 
 	"github.com/spf13/cobra"
 )
@@ -85,6 +86,20 @@ var rootCmd = &cobra.Command{
 		if verbose {
 			println(fmt.Sprintf(`build configuration "%s" selected`, buildConfig))
 		}
+		// generte c++ manager class
+		if genClangAPI {
+			ast, err = gdextensionparser.GenerateGdManagerAST(packagePath, parsedASTPath)
+			if err != nil {
+				panic(err)
+			}
+		}
+		if genClangAPI {
+			if verbose {
+				println("Generating gdextension C wrapper functions...")
+			}
+			cpp.Generate(packagePath, ast)
+		}
+		// generate go wrap code
 		if genClangAPI {
 			ast, err = gdextensionparser.GenerateGDExtensionInterfaceAST(packagePath, parsedASTPath)
 			if err != nil {
@@ -97,6 +112,7 @@ var rootCmd = &cobra.Command{
 			}
 			ffi.Generate(packagePath, ast)
 		}
+		
 		if verbose {
 			println("cli tool done")
 		}
