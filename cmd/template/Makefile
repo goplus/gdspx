@@ -6,6 +6,8 @@ CLANG_FORMAT?=$(shell which clang-format | which clang-format-10 | which clang-f
 GODOT?=$(shell which godot)
 CWD=$(shell pwd)
 
+CURRENT_DIR_NAME = $(notdir $(CURDIR))
+
 OUTPUT_PATH=project/lib
 TEST_MAIN=main.go
 
@@ -56,3 +58,12 @@ editor:
 	GOTRACEBACK=1 \
 	GODEBUG=sbrk=1,asyncpreemptoff=1,cgocheck=0,invalidptr=1,clobberfree=1,tracebackancestors=0 \
 	$(GODOT) --verbose --debug  --path project/ --editor
+
+
+gen:
+	cd .. && \
+	go run . && \
+	cd $(CURRENT_DIR_NAME) && \
+	pwd && \
+	$(MAKE) build
+	$(MAKE) run
