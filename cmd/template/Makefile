@@ -66,4 +66,3 @@ gen:
 	cd $(CURRENT_DIR_NAME) && \
 	pwd && \
 	$(MAKE) build
-	$(MAKE) run
