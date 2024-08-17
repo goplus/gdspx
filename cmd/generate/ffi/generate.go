@@ -8,11 +8,9 @@ import (
 	_ "embed"
 	"os"
 	"path/filepath"
-	"sort"
 	"strconv"
 	"strings"
 	"text/template"
-	"unicode"
 
 	"godot-ext/gdspx/cmd/gdextensionparser/clang"
 	 . "godot-ext/gdspx/cmd/generate/common"
@@ -168,7 +166,7 @@ func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) 
 		"cgoCastReturnType":  CgoCastReturnType,
 		"cgoCleanUpArgument": CgoCleanUpArgument,
 		"trimPrefix":         TrimPrefix,
-		"isManagerMethod":    isManagerMethod,
+		"isManagerMethod":    IsManagerMethod,
 		"getManagerFuncName": getManagerFuncName,
 		"getManagerFuncBody": getManagerFuncBody,
 	}
@@ -180,38 +178,10 @@ func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) 
 		return err
 	}
 
-	items := []string{}
-	for _, item := range ast.CollectGDExtensionInterfaceFunctions() {
-		items = append(items, item.Name)
-	}
 
-	managerSet = make(map[string]bool)
-	managers := []string{}
-	for _, str := range items {
-		managerSet[getManagerName(str)] = true
-	}
-	delete(managerSet, "")
-	delete(managerSet, "string")
-	delete(managerSet, "variant")
-	delete(managerSet, "global")
-	for item := range managerSet {
-		managers = append(managers, item)
-	}
-	sort.Strings(managers)
-	cppType2Go = map[string]string{
-		"GdInt":    "int64",
-		"GdFloat":  "float64",
-		"GdObj":    "Object",
-		"GdVec2":   "Vec2",
-		"GdVec3":   "Vec3",
-		"GdVec4":   "Vec4",
-		"GdRect2":  "Rect2",
-		"GdString": "string",
-		"GdBool":   "bool",
-		"GdColor":  "Color",
-	}
+
 	var b bytes.Buffer
-	err = tmpl.Execute(&b, ManagerData{Ast: ast, Mangers: managers})
+	err = tmpl.Execute(&b, ManagerData{Ast: ast, Mangers: GetManagers(ast)})
 	if err != nil {
 		return err
 	}
@@ -223,41 +193,11 @@ func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) 
 	return err
 }
 
-var (
-	managerSet = map[string]bool{}
-	cppType2Go = map[string]string{}
-)
 
-type ManagerData struct {
-	Ast     clang.CHeaderFileAST
-	Mangers []string
-}
-
-func getManagerName(str string) string {
-	prefix := "GDExtensionSpx"
-	str = str[len(prefix):]
-	chs := []rune{}
-	chs = append(chs, rune(str[0]), rune(str[1]))
-	for _, ch := range str[2:] {
-		if unicode.IsUpper(rune(ch)) {
-			break
-		}
-		chs = append(chs, rune(ch))
-	}
-	result := strings.ToLower(string(chs))
-	return result
-}
-
-func isManagerMethod(function *clang.TypedefFunction) bool {
-	return managerSet[getManagerName(function.Name)]
-}
-func getFuncParamTypeString(typeName string) string {
-	return cppType2Go[typeName]
-}
 func getManagerFuncName(function *clang.TypedefFunction) string {
 	prefix := "GDExtensionSpx"
 	sb := strings.Builder{}
-	mgrName := getManagerName(function.Name)
+	mgrName := GetManagerName(function.Name)
 	funcName := function.Name[len(prefix)+len(mgrName):]
 	sb.WriteString("(")
 	sb.WriteString("pself *" + mgrName)
@@ -268,7 +208,7 @@ func getManagerFuncName(function *clang.TypedefFunction) string {
 	for i, arg := range function.Arguments {
 		sb.WriteString(arg.Name)
 		sb.WriteString(" ")
-		typeName := getFuncParamTypeString(arg.Type.Primative.Name)
+		typeName := GetFuncParamTypeString(arg.Type.Primative.Name)
 		sb.WriteString(typeName)
 		if i != count-1 {
 			sb.WriteString(", ")
@@ -277,7 +217,7 @@ func getManagerFuncName(function *clang.TypedefFunction) string {
 	sb.WriteString(")")
 
 	if function.ReturnType.Name != "void" {
-		typeName := getFuncParamTypeString(function.ReturnType.Name)
+		typeName := GetFuncParamTypeString(function.ReturnType.Name)
 		sb.WriteString(" " + typeName + " ")
 	}
 	return sb.String()
@@ -330,7 +270,7 @@ func getManagerFuncBody(function *clang.TypedefFunction) string {
 	if function.ReturnType.Name != "void" {
 		sb.WriteString("\n" + prefixTab)
 		sb.WriteString("return ")
-		typeName := getFuncParamTypeString(function.ReturnType.Name)
+		typeName := GetFuncParamTypeString(function.ReturnType.Name)
 		sb.WriteString("To" + strcase.ToCamel(typeName) + "(retValue)")
 	}
 	return sb.String()

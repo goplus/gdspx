@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-
+	"sort"
+	"unicode"
 	"godot-ext/gdspx/cmd/gdextensionparser/clang"
 	"github.com/iancoleman/strcase"
 )
@@ -17,6 +18,9 @@ func Add(a int, b int) int {
 	return a + b
 }
 
+func Sub(a int, b int) int {
+	return a - b
+}
 func GoArgumentType(t clang.PrimativeType, name string) string {
 	n := strings.TrimSpace(t.Name)
 
@@ -336,6 +340,11 @@ func GdiVariableName(typeName string) string {
 	return ret
 }
 
+func GetManagerFuncName(typeName string) string {
+	typeName = strings.Replace(typeName, "GDExtensionSpx", "", 1)
+	return strings.Replace(LoadProcAddressName(typeName), "spx", "Call", 1)
+}
+
 func LoadProcAddressName(typeName string) string {
 	ret := strcase.ToSnake(typeName)
 	ret = strings.Replace(ret, "gd_extension_", "", 1)
@@ -364,4 +373,68 @@ func TrimPrefix(typeName, prefix string) string {
 		return typeName[prefixLen:]
 	}
 	return typeName
+}
+var (
+	managerSet = map[string]bool{}
+	cppType2Go = map[string]string{}
+)
+
+type ManagerData struct {
+	Ast     clang.CHeaderFileAST
+	Mangers []string
+}
+
+func GetManagerName(str string) string {
+	prefix := "GDExtensionSpx"
+	str = str[len(prefix):]
+	chs := []rune{}
+	chs = append(chs, rune(str[0]), rune(str[1]))
+	for _, ch := range str[2:] {
+		if unicode.IsUpper(rune(ch)) {
+			break
+		}
+		chs = append(chs, rune(ch))
+	}
+	result := strings.ToLower(string(chs))
+	return result
+}
+
+func IsManagerMethod(function *clang.TypedefFunction) bool {
+	return managerSet[GetManagerName(function.Name)]
+}
+func GetFuncParamTypeString(typeName string) string {
+	return cppType2Go[typeName]
+}
+
+func GetManagers(ast clang.CHeaderFileAST) []string {
+	items := []string{}
+	for _, item := range ast.CollectGDExtensionInterfaceFunctions() {
+		items = append(items, item.Name)
+	}
+	managerSet = make(map[string]bool)
+	managers := []string{}
+	for _, str := range items {
+		managerSet[GetManagerName(str)] = true
+	}
+	delete(managerSet, "")
+	delete(managerSet, "string")
+	delete(managerSet, "variant")
+	delete(managerSet, "global")
+	for item := range managerSet {
+		managers = append(managers, item)
+	}
+	sort.Strings(managers)
+	cppType2Go = map[string]string{
+		"GdInt":    "int64",
+		"GdFloat":  "float64",
+		"GdObj":    "Object",
+		"GdVec2":   "Vec2",
+		"GdVec3":   "Vec3",
+		"GdVec4":   "Vec4",
+		"GdRect2":  "Rect2",
+		"GdString": "string",
+		"GdBool":   "bool",
+		"GdColor":  "Color",
+	}
+	return managers
 }

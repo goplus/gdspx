@@ -41,44 +41,6 @@ func createMgrs() []IManager {
 
 // call gdextension interface functions
 
-func (pself *inputMgr) GetMousePos() Vec2  {
-	retValue := CallInputGetMousePos()
-	return ToVec2(retValue)
-}
-func (pself *inputMgr) GetMouseState(obj int64) bool  {
-	arg0 := ToGdInt(obj)
-	retValue := CallInputGetMouseState(arg0)
-	return ToBool(retValue)
-}
-func (pself *inputMgr) GetKeyState(key int64) int64  {
-	arg0 := ToGdInt(key)
-	retValue := CallInputGetKeyState(arg0)
-	return ToInt64(retValue)
-}
-func (pself *inputMgr) GetAxis(axis string) float64  {
-	arg0Str := NewCString(axis)
-	arg0 := arg0Str.ToGdString() 
-	retValue := CallInputGetAxis(arg0)
-	return ToFloat64(retValue)
-}
-func (pself *inputMgr) IsActionPressed(action string) bool  {
-	arg0Str := NewCString(action)
-	arg0 := arg0Str.ToGdString() 
-	retValue := CallInputIsActionPressed(arg0)
-	return ToBool(retValue)
-}
-func (pself *inputMgr) IsActionJustPressed(action string) bool  {
-	arg0Str := NewCString(action)
-	arg0 := arg0Str.ToGdString() 
-	retValue := CallInputIsActionJustPressed(arg0)
-	return ToBool(retValue)
-}
-func (pself *inputMgr) IsActionJustReleased(action string) bool  {
-	arg0Str := NewCString(action)
-	arg0 := arg0Str.ToGdString() 
-	retValue := CallInputIsActionJustReleased(arg0)
-	return ToBool(retValue)
-}
 func (pself *audioMgr) PlayAudio(path string) {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
@@ -122,6 +84,44 @@ func (pself *audioMgr) GetMusicTimer() float64  {
 func (pself *audioMgr) SetMusicTimer(time float64) {
 	arg0 := ToGdFloat(time)
 	CallAudioSetMusicTimer(arg0)
+}
+func (pself *inputMgr) GetMousePos() Vec2  {
+	retValue := CallInputGetMousePos()
+	return ToVec2(retValue)
+}
+func (pself *inputMgr) GetMouseState(mouse_id int64) bool  {
+	arg0 := ToGdInt(mouse_id)
+	retValue := CallInputGetMouseState(arg0)
+	return ToBool(retValue)
+}
+func (pself *inputMgr) GetKeyState(key int64) int64  {
+	arg0 := ToGdInt(key)
+	retValue := CallInputGetKeyState(arg0)
+	return ToInt64(retValue)
+}
+func (pself *inputMgr) GetAxis(axis string) float64  {
+	arg0Str := NewCString(axis)
+	arg0 := arg0Str.ToGdString() 
+	retValue := CallInputGetAxis(arg0)
+	return ToFloat64(retValue)
+}
+func (pself *inputMgr) IsActionPressed(action string) bool  {
+	arg0Str := NewCString(action)
+	arg0 := arg0Str.ToGdString() 
+	retValue := CallInputIsActionPressed(arg0)
+	return ToBool(retValue)
+}
+func (pself *inputMgr) IsActionJustPressed(action string) bool  {
+	arg0Str := NewCString(action)
+	arg0 := arg0Str.ToGdString() 
+	retValue := CallInputIsActionJustPressed(arg0)
+	return ToBool(retValue)
+}
+func (pself *inputMgr) IsActionJustReleased(action string) bool  {
+	arg0Str := NewCString(action)
+	arg0 := arg0Str.ToGdString() 
+	retValue := CallInputIsActionJustReleased(arg0)
+	return ToBool(retValue)
 }
 func (pself *physicMgr) SetGravity(gravity float64) {
 	arg0 := ToGdFloat(gravity)
@@ -224,16 +224,16 @@ func (pself *physicMgr) IsCollisionEnabled(obj Object) bool  {
 	retValue := CallPhysicIsCollisionEnabled(arg0)
 	return ToBool(retValue)
 }
-func (pself *spriteMgr) CreateSprite(path string) Object  {
+func (pself *spriteMgr) CreateSprite(path string) int64  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
 	retValue := CallSpriteCreateSprite(arg0)
-	return ToObject(retValue)
+	return ToInt64(retValue)
 }
-func (pself *spriteMgr) CloneSprite(obj Object) Object  {
+func (pself *spriteMgr) CloneSprite(obj Object) int64  {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteCloneSprite(arg0)
-	return ToObject(retValue)
+	return ToInt64(retValue)
 }
 func (pself *spriteMgr) DestroySprite(obj Object) bool  {
 	arg0 := ToGdObj(obj)
@@ -311,56 +311,56 @@ func (pself *spriteMgr) UpdateZIndex(obj Object, z int64) {
 	arg1 := ToGdInt(z)
 	CallSpriteUpdateZIndex(arg0, arg1)
 }
-func (pself *uiMgr) CreateButton(path string, rect Rect2, text string) Object  {
+func (pself *uiMgr) CreateButton(path string, rect Rect2, text string) int64  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
 	arg1 := ToGdRect2(rect)
 	arg2Str := NewCString(text)
 	arg2 := arg2Str.ToGdString() 
 	retValue := CallUICreateButton(arg0, arg1, arg2)
-	return ToObject(retValue)
+	return ToInt64(retValue)
 }
-func (pself *uiMgr) CreateLabel(path string, rect Rect2, text string) Object  {
+func (pself *uiMgr) CreateLabel(path string, rect Rect2, text string) int64  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
 	arg1 := ToGdRect2(rect)
 	arg2Str := NewCString(text)
 	arg2 := arg2Str.ToGdString() 
 	retValue := CallUICreateLabel(arg0, arg1, arg2)
-	return ToObject(retValue)
+	return ToInt64(retValue)
 }
-func (pself *uiMgr) CreateImage(path string, rect Rect2, color Color) Object  {
+func (pself *uiMgr) CreateImage(path string, rect Rect2, color Color) int64  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
 	arg1 := ToGdRect2(rect)
 	arg2 := ToGdColor(color)
 	retValue := CallUICreateImage(arg0, arg1, arg2)
-	return ToObject(retValue)
+	return ToInt64(retValue)
 }
-func (pself *uiMgr) CreateSlider(path string, rect Rect2, value float64) Object  {
+func (pself *uiMgr) CreateSlider(path string, rect Rect2, value float64) int64  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
 	arg1 := ToGdRect2(rect)
 	arg2 := ToGdFloat(value)
 	retValue := CallUICreateSlider(arg0, arg1, arg2)
-	return ToObject(retValue)
+	return ToInt64(retValue)
 }
-func (pself *uiMgr) CreateToggle(path string, rect Rect2, value bool) Object  {
+func (pself *uiMgr) CreateToggle(path string, rect Rect2, value bool) int64  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
 	arg1 := ToGdRect2(rect)
 	arg2 := ToGdBool(value)
 	retValue := CallUICreateToggle(arg0, arg1, arg2)
-	return ToObject(retValue)
+	return ToInt64(retValue)
 }
-func (pself *uiMgr) CreateInput(path string, rect Rect2, text string) Object  {
+func (pself *uiMgr) CreateInput(path string, rect Rect2, text string) int64  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
 	arg1 := ToGdRect2(rect)
 	arg2Str := NewCString(text)
 	arg2 := arg2Str.ToGdString() 
 	retValue := CallUICreateInput(arg0, arg1, arg2)
-	return ToObject(retValue)
+	return ToInt64(retValue)
 }
 func (pself *uiMgr) GetType(obj Object) int64  {
 	arg0 := ToGdObj(obj)

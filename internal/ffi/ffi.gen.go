@@ -17,13 +17,14 @@ var (
 type GDExtensionInterface struct {
 	// All of the GDExtension interface functions.
 	SpxGlobalRegisterCallbacks GDExtensionSpxGlobalRegisterCallbacks
-	SpxInputGetMousePos GDExtensionSpxInputGetMousePos
-	SpxInputGetMouseState GDExtensionSpxInputGetMouseState
-	SpxInputGetKeyState GDExtensionSpxInputGetKeyState
-	SpxInputGetAxis GDExtensionSpxInputGetAxis
-	SpxInputIsActionPressed GDExtensionSpxInputIsActionPressed
-	SpxInputIsActionJustPressed GDExtensionSpxInputIsActionJustPressed
-	SpxInputIsActionJustReleased GDExtensionSpxInputIsActionJustReleased
+	SpxStringNewWithLatin1Chars GDExtensionSpxStringNewWithLatin1Chars
+	SpxStringNewWithUtf8Chars GDExtensionSpxStringNewWithUtf8Chars
+	SpxStringNewWithLatin1CharsAndLen GDExtensionSpxStringNewWithLatin1CharsAndLen
+	SpxStringNewWithUtf8CharsAndLen GDExtensionSpxStringNewWithUtf8CharsAndLen
+	SpxStringToLatin1Chars GDExtensionSpxStringToLatin1Chars
+	SpxStringToUtf8Chars GDExtensionSpxStringToUtf8Chars
+	SpxVariantGetPtrConstructor GDExtensionSpxVariantGetPtrConstructor
+	SpxVariantGetPtrDestructor GDExtensionSpxVariantGetPtrDestructor
 	SpxAudioPlayAudio GDExtensionSpxAudioPlayAudio
 	SpxAudioSetAudioVolume GDExtensionSpxAudioSetAudioVolume
 	SpxAudioGetAudioVolume GDExtensionSpxAudioGetAudioVolume
@@ -35,6 +36,13 @@ type GDExtensionInterface struct {
 	SpxAudioResumeMusic GDExtensionSpxAudioResumeMusic
 	SpxAudioGetMusicTimer GDExtensionSpxAudioGetMusicTimer
 	SpxAudioSetMusicTimer GDExtensionSpxAudioSetMusicTimer
+	SpxInputGetMousePos GDExtensionSpxInputGetMousePos
+	SpxInputGetMouseState GDExtensionSpxInputGetMouseState
+	SpxInputGetKeyState GDExtensionSpxInputGetKeyState
+	SpxInputGetAxis GDExtensionSpxInputGetAxis
+	SpxInputIsActionPressed GDExtensionSpxInputIsActionPressed
+	SpxInputIsActionJustPressed GDExtensionSpxInputIsActionJustPressed
+	SpxInputIsActionJustReleased GDExtensionSpxInputIsActionJustReleased
 	SpxPhysicSetGravity GDExtensionSpxPhysicSetGravity
 	SpxPhysicGetGravity GDExtensionSpxPhysicGetGravity
 	SpxPhysicSetVelocity GDExtensionSpxPhysicSetVelocity
@@ -91,26 +99,19 @@ type GDExtensionInterface struct {
 	SpxUIGetFontSize GDExtensionSpxUIGetFontSize
 	SpxUISetVisible GDExtensionSpxUISetVisible
 	SpxUIGetVisible GDExtensionSpxUIGetVisible
-	SpxStringNewWithLatin1Chars GDExtensionSpxStringNewWithLatin1Chars
-	SpxStringNewWithUtf8Chars GDExtensionSpxStringNewWithUtf8Chars
-	SpxStringNewWithLatin1CharsAndLen GDExtensionSpxStringNewWithLatin1CharsAndLen
-	SpxStringNewWithUtf8CharsAndLen GDExtensionSpxStringNewWithUtf8CharsAndLen
-	SpxStringToLatin1Chars GDExtensionSpxStringToLatin1Chars
-	SpxStringToUtf8Chars GDExtensionSpxStringToUtf8Chars
-	SpxVariantGetPtrConstructor GDExtensionSpxVariantGetPtrConstructor
-	SpxVariantGetPtrDestructor GDExtensionSpxVariantGetPtrDestructor
 	}
 
 func (x *GDExtensionInterface) loadProcAddresses() {
 
 	x.SpxGlobalRegisterCallbacks = (GDExtensionSpxGlobalRegisterCallbacks)(dlsymGD("spx_global_register_callbacks"))
-	x.SpxInputGetMousePos = (GDExtensionSpxInputGetMousePos)(dlsymGD("spx_input_get_mouse_pos"))
-	x.SpxInputGetMouseState = (GDExtensionSpxInputGetMouseState)(dlsymGD("spx_input_get_mouse_state"))
-	x.SpxInputGetKeyState = (GDExtensionSpxInputGetKeyState)(dlsymGD("spx_input_get_key_state"))
-	x.SpxInputGetAxis = (GDExtensionSpxInputGetAxis)(dlsymGD("spx_input_get_axis"))
-	x.SpxInputIsActionPressed = (GDExtensionSpxInputIsActionPressed)(dlsymGD("spx_input_is_action_pressed"))
-	x.SpxInputIsActionJustPressed = (GDExtensionSpxInputIsActionJustPressed)(dlsymGD("spx_input_is_action_just_pressed"))
-	x.SpxInputIsActionJustReleased = (GDExtensionSpxInputIsActionJustReleased)(dlsymGD("spx_input_is_action_just_released"))
+	x.SpxStringNewWithLatin1Chars = (GDExtensionSpxStringNewWithLatin1Chars)(dlsymGD("spx_string_new_with_latin1_chars"))
+	x.SpxStringNewWithUtf8Chars = (GDExtensionSpxStringNewWithUtf8Chars)(dlsymGD("spx_string_new_with_utf8_chars"))
+	x.SpxStringNewWithLatin1CharsAndLen = (GDExtensionSpxStringNewWithLatin1CharsAndLen)(dlsymGD("spx_string_new_with_latin1_chars_and_len"))
+	x.SpxStringNewWithUtf8CharsAndLen = (GDExtensionSpxStringNewWithUtf8CharsAndLen)(dlsymGD("spx_string_new_with_utf8_chars_and_len"))
+	x.SpxStringToLatin1Chars = (GDExtensionSpxStringToLatin1Chars)(dlsymGD("spx_string_to_latin1_chars"))
+	x.SpxStringToUtf8Chars = (GDExtensionSpxStringToUtf8Chars)(dlsymGD("spx_string_to_utf8_chars"))
+	x.SpxVariantGetPtrConstructor = (GDExtensionSpxVariantGetPtrConstructor)(dlsymGD("spx_variant_get_ptr_constructor"))
+	x.SpxVariantGetPtrDestructor = (GDExtensionSpxVariantGetPtrDestructor)(dlsymGD("spx_variant_get_ptr_destructor"))
 	x.SpxAudioPlayAudio = (GDExtensionSpxAudioPlayAudio)(dlsymGD("spx_audio_play_audio"))
 	x.SpxAudioSetAudioVolume = (GDExtensionSpxAudioSetAudioVolume)(dlsymGD("spx_audio_set_audio_volume"))
 	x.SpxAudioGetAudioVolume = (GDExtensionSpxAudioGetAudioVolume)(dlsymGD("spx_audio_get_audio_volume"))
@@ -122,6 +123,13 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxAudioResumeMusic = (GDExtensionSpxAudioResumeMusic)(dlsymGD("spx_audio_resume_music"))
 	x.SpxAudioGetMusicTimer = (GDExtensionSpxAudioGetMusicTimer)(dlsymGD("spx_audio_get_music_timer"))
 	x.SpxAudioSetMusicTimer = (GDExtensionSpxAudioSetMusicTimer)(dlsymGD("spx_audio_set_music_timer"))
+	x.SpxInputGetMousePos = (GDExtensionSpxInputGetMousePos)(dlsymGD("spx_input_get_mouse_pos"))
+	x.SpxInputGetMouseState = (GDExtensionSpxInputGetMouseState)(dlsymGD("spx_input_get_mouse_state"))
+	x.SpxInputGetKeyState = (GDExtensionSpxInputGetKeyState)(dlsymGD("spx_input_get_key_state"))
+	x.SpxInputGetAxis = (GDExtensionSpxInputGetAxis)(dlsymGD("spx_input_get_axis"))
+	x.SpxInputIsActionPressed = (GDExtensionSpxInputIsActionPressed)(dlsymGD("spx_input_is_action_pressed"))
+	x.SpxInputIsActionJustPressed = (GDExtensionSpxInputIsActionJustPressed)(dlsymGD("spx_input_is_action_just_pressed"))
+	x.SpxInputIsActionJustReleased = (GDExtensionSpxInputIsActionJustReleased)(dlsymGD("spx_input_is_action_just_released"))
 	x.SpxPhysicSetGravity = (GDExtensionSpxPhysicSetGravity)(dlsymGD("spx_physic_set_gravity"))
 	x.SpxPhysicGetGravity = (GDExtensionSpxPhysicGetGravity)(dlsymGD("spx_physic_get_gravity"))
 	x.SpxPhysicSetVelocity = (GDExtensionSpxPhysicSetVelocity)(dlsymGD("spx_physic_set_velocity"))
@@ -178,12 +186,4 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxUIGetFontSize = (GDExtensionSpxUIGetFontSize)(dlsymGD("spx_ui_get_font_size"))
 	x.SpxUISetVisible = (GDExtensionSpxUISetVisible)(dlsymGD("spx_ui_set_visible"))
 	x.SpxUIGetVisible = (GDExtensionSpxUIGetVisible)(dlsymGD("spx_ui_get_visible"))
-	x.SpxStringNewWithLatin1Chars = (GDExtensionSpxStringNewWithLatin1Chars)(dlsymGD("spx_string_new_with_latin1_chars"))
-	x.SpxStringNewWithUtf8Chars = (GDExtensionSpxStringNewWithUtf8Chars)(dlsymGD("spx_string_new_with_utf8_chars"))
-	x.SpxStringNewWithLatin1CharsAndLen = (GDExtensionSpxStringNewWithLatin1CharsAndLen)(dlsymGD("spx_string_new_with_latin1_chars_and_len"))
-	x.SpxStringNewWithUtf8CharsAndLen = (GDExtensionSpxStringNewWithUtf8CharsAndLen)(dlsymGD("spx_string_new_with_utf8_chars_and_len"))
-	x.SpxStringToLatin1Chars = (GDExtensionSpxStringToLatin1Chars)(dlsymGD("spx_string_to_latin1_chars"))
-	x.SpxStringToUtf8Chars = (GDExtensionSpxStringToUtf8Chars)(dlsymGD("spx_string_to_utf8_chars"))
-	x.SpxVariantGetPtrConstructor = (GDExtensionSpxVariantGetPtrConstructor)(dlsymGD("spx_variant_get_ptr_constructor"))
-	x.SpxVariantGetPtrDestructor = (GDExtensionSpxVariantGetPtrDestructor)(dlsymGD("spx_variant_get_ptr_destructor"))
 	}

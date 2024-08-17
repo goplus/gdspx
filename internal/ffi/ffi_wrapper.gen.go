@@ -26,13 +26,40 @@ import (
 
 // C function aliases
 type GDExtensionSpxGlobalRegisterCallbacks C.GDExtensionSpxGlobalRegisterCallbacks
-type GDExtensionSpxInputGetMousePos C.GDExtensionSpxInputGetMousePos
-type GDExtensionSpxInputGetMouseState C.GDExtensionSpxInputGetMouseState
-type GDExtensionSpxInputGetKeyState C.GDExtensionSpxInputGetKeyState
-type GDExtensionSpxInputGetAxis C.GDExtensionSpxInputGetAxis
-type GDExtensionSpxInputIsActionPressed C.GDExtensionSpxInputIsActionPressed
-type GDExtensionSpxInputIsActionJustPressed C.GDExtensionSpxInputIsActionJustPressed
-type GDExtensionSpxInputIsActionJustReleased C.GDExtensionSpxInputIsActionJustReleased
+type GDExtensionSpxCallbackOnEngineStart C.GDExtensionSpxCallbackOnEngineStart
+type GDExtensionSpxCallbackOnEngineUpdate C.GDExtensionSpxCallbackOnEngineUpdate
+type GDExtensionSpxCallbackOnEngineDestroy C.GDExtensionSpxCallbackOnEngineDestroy
+type GDExtensionSpxCallbackOnSpriteReady C.GDExtensionSpxCallbackOnSpriteReady
+type GDExtensionSpxCallbackOnSpriteUpdated C.GDExtensionSpxCallbackOnSpriteUpdated
+type GDExtensionSpxCallbackOnSpriteDestroyed C.GDExtensionSpxCallbackOnSpriteDestroyed
+type GDExtensionSpxCallbackOnMousePressed C.GDExtensionSpxCallbackOnMousePressed
+type GDExtensionSpxCallbackOnMouseReleased C.GDExtensionSpxCallbackOnMouseReleased
+type GDExtensionSpxCallbackOnKeyPressed C.GDExtensionSpxCallbackOnKeyPressed
+type GDExtensionSpxCallbackOnKeyReleased C.GDExtensionSpxCallbackOnKeyReleased
+type GDExtensionSpxCallbackOnActionPressed C.GDExtensionSpxCallbackOnActionPressed
+type GDExtensionSpxCallbackOnActionJustPressed C.GDExtensionSpxCallbackOnActionJustPressed
+type GDExtensionSpxCallbackOnActionJustReleased C.GDExtensionSpxCallbackOnActionJustReleased
+type GDExtensionSpxCallbackOnAxisChanged C.GDExtensionSpxCallbackOnAxisChanged
+type GDExtensionSpxCallbackOnCollisionEnter C.GDExtensionSpxCallbackOnCollisionEnter
+type GDExtensionSpxCallbackOnCollisionStay C.GDExtensionSpxCallbackOnCollisionStay
+type GDExtensionSpxCallbackOnCollisionExit C.GDExtensionSpxCallbackOnCollisionExit
+type GDExtensionSpxCallbackOnTriggerEnter C.GDExtensionSpxCallbackOnTriggerEnter
+type GDExtensionSpxCallbackOnTriggerStay C.GDExtensionSpxCallbackOnTriggerStay
+type GDExtensionSpxCallbackOnTriggerExit C.GDExtensionSpxCallbackOnTriggerExit
+type GDExtensionSpxCallbackOnUIPressed C.GDExtensionSpxCallbackOnUIPressed
+type GDExtensionSpxCallbackOnUIReleased C.GDExtensionSpxCallbackOnUIReleased
+type GDExtensionSpxCallbackOnUIHovered C.GDExtensionSpxCallbackOnUIHovered
+type GDExtensionSpxCallbackOnUIClicked C.GDExtensionSpxCallbackOnUIClicked
+type GDExtensionSpxCallbackOnUIToggle C.GDExtensionSpxCallbackOnUIToggle
+type GDExtensionSpxCallbackOnUITextChanged C.GDExtensionSpxCallbackOnUITextChanged
+type GDExtensionSpxStringNewWithLatin1Chars C.GDExtensionSpxStringNewWithLatin1Chars
+type GDExtensionSpxStringNewWithUtf8Chars C.GDExtensionSpxStringNewWithUtf8Chars
+type GDExtensionSpxStringNewWithLatin1CharsAndLen C.GDExtensionSpxStringNewWithLatin1CharsAndLen
+type GDExtensionSpxStringNewWithUtf8CharsAndLen C.GDExtensionSpxStringNewWithUtf8CharsAndLen
+type GDExtensionSpxStringToLatin1Chars C.GDExtensionSpxStringToLatin1Chars
+type GDExtensionSpxStringToUtf8Chars C.GDExtensionSpxStringToUtf8Chars
+type GDExtensionSpxVariantGetPtrConstructor C.GDExtensionSpxVariantGetPtrConstructor
+type GDExtensionSpxVariantGetPtrDestructor C.GDExtensionSpxVariantGetPtrDestructor
 type GDExtensionSpxAudioPlayAudio C.GDExtensionSpxAudioPlayAudio
 type GDExtensionSpxAudioSetAudioVolume C.GDExtensionSpxAudioSetAudioVolume
 type GDExtensionSpxAudioGetAudioVolume C.GDExtensionSpxAudioGetAudioVolume
@@ -44,6 +71,13 @@ type GDExtensionSpxAudioPauseMusic C.GDExtensionSpxAudioPauseMusic
 type GDExtensionSpxAudioResumeMusic C.GDExtensionSpxAudioResumeMusic
 type GDExtensionSpxAudioGetMusicTimer C.GDExtensionSpxAudioGetMusicTimer
 type GDExtensionSpxAudioSetMusicTimer C.GDExtensionSpxAudioSetMusicTimer
+type GDExtensionSpxInputGetMousePos C.GDExtensionSpxInputGetMousePos
+type GDExtensionSpxInputGetMouseState C.GDExtensionSpxInputGetMouseState
+type GDExtensionSpxInputGetKeyState C.GDExtensionSpxInputGetKeyState
+type GDExtensionSpxInputGetAxis C.GDExtensionSpxInputGetAxis
+type GDExtensionSpxInputIsActionPressed C.GDExtensionSpxInputIsActionPressed
+type GDExtensionSpxInputIsActionJustPressed C.GDExtensionSpxInputIsActionJustPressed
+type GDExtensionSpxInputIsActionJustReleased C.GDExtensionSpxInputIsActionJustReleased
 type GDExtensionSpxPhysicSetGravity C.GDExtensionSpxPhysicSetGravity
 type GDExtensionSpxPhysicGetGravity C.GDExtensionSpxPhysicGetGravity
 type GDExtensionSpxPhysicSetVelocity C.GDExtensionSpxPhysicSetVelocity
@@ -100,40 +134,6 @@ type GDExtensionSpxUISetFontSize C.GDExtensionSpxUISetFontSize
 type GDExtensionSpxUIGetFontSize C.GDExtensionSpxUIGetFontSize
 type GDExtensionSpxUISetVisible C.GDExtensionSpxUISetVisible
 type GDExtensionSpxUIGetVisible C.GDExtensionSpxUIGetVisible
-type GDExtensionSpxCallbackOnEngineStart C.GDExtensionSpxCallbackOnEngineStart
-type GDExtensionSpxCallbackOnEngineUpdate C.GDExtensionSpxCallbackOnEngineUpdate
-type GDExtensionSpxCallbackOnEngineDestroy C.GDExtensionSpxCallbackOnEngineDestroy
-type GDExtensionSpxCallbackOnSpriteReady C.GDExtensionSpxCallbackOnSpriteReady
-type GDExtensionSpxCallbackOnSpriteUpdated C.GDExtensionSpxCallbackOnSpriteUpdated
-type GDExtensionSpxCallbackOnSpriteDestroyed C.GDExtensionSpxCallbackOnSpriteDestroyed
-type GDExtensionSpxCallbackOnMousePressed C.GDExtensionSpxCallbackOnMousePressed
-type GDExtensionSpxCallbackOnMouseReleased C.GDExtensionSpxCallbackOnMouseReleased
-type GDExtensionSpxCallbackOnKeyPressed C.GDExtensionSpxCallbackOnKeyPressed
-type GDExtensionSpxCallbackOnKeyReleased C.GDExtensionSpxCallbackOnKeyReleased
-type GDExtensionSpxCallbackOnActionPressed C.GDExtensionSpxCallbackOnActionPressed
-type GDExtensionSpxCallbackOnActionJustPressed C.GDExtensionSpxCallbackOnActionJustPressed
-type GDExtensionSpxCallbackOnActionJustReleased C.GDExtensionSpxCallbackOnActionJustReleased
-type GDExtensionSpxCallbackOnAxisChanged C.GDExtensionSpxCallbackOnAxisChanged
-type GDExtensionSpxCallbackOnCollisionEnter C.GDExtensionSpxCallbackOnCollisionEnter
-type GDExtensionSpxCallbackOnCollisionStay C.GDExtensionSpxCallbackOnCollisionStay
-type GDExtensionSpxCallbackOnCollisionExit C.GDExtensionSpxCallbackOnCollisionExit
-type GDExtensionSpxCallbackOnTriggerEnter C.GDExtensionSpxCallbackOnTriggerEnter
-type GDExtensionSpxCallbackOnTriggerStay C.GDExtensionSpxCallbackOnTriggerStay
-type GDExtensionSpxCallbackOnTriggerExit C.GDExtensionSpxCallbackOnTriggerExit
-type GDExtensionSpxCallbackOnUIPressed C.GDExtensionSpxCallbackOnUIPressed
-type GDExtensionSpxCallbackOnUIReleased C.GDExtensionSpxCallbackOnUIReleased
-type GDExtensionSpxCallbackOnUIHovered C.GDExtensionSpxCallbackOnUIHovered
-type GDExtensionSpxCallbackOnUIClicked C.GDExtensionSpxCallbackOnUIClicked
-type GDExtensionSpxCallbackOnUIToggle C.GDExtensionSpxCallbackOnUIToggle
-type GDExtensionSpxCallbackOnUITextChanged C.GDExtensionSpxCallbackOnUITextChanged
-type GDExtensionSpxStringNewWithLatin1Chars C.GDExtensionSpxStringNewWithLatin1Chars
-type GDExtensionSpxStringNewWithUtf8Chars C.GDExtensionSpxStringNewWithUtf8Chars
-type GDExtensionSpxStringNewWithLatin1CharsAndLen C.GDExtensionSpxStringNewWithLatin1CharsAndLen
-type GDExtensionSpxStringNewWithUtf8CharsAndLen C.GDExtensionSpxStringNewWithUtf8CharsAndLen
-type GDExtensionSpxStringToLatin1Chars C.GDExtensionSpxStringToLatin1Chars
-type GDExtensionSpxStringToUtf8Chars C.GDExtensionSpxStringToUtf8Chars
-type GDExtensionSpxVariantGetPtrConstructor C.GDExtensionSpxVariantGetPtrConstructor
-type GDExtensionSpxVariantGetPtrDestructor C.GDExtensionSpxVariantGetPtrDestructor
 
 
 // call gdextension interface functions
@@ -145,65 +145,106 @@ func CallGlobalRegisterCallbacks(
 	C.cgo_callfn_GDExtensionSpxGlobalRegisterCallbacks(arg0,arg1,)
 	
 }
-func CallInputGetMousePos(
-	) GdVec2 {
-	arg0 := (C.GDExtensionSpxInputGetMousePos)(api.SpxInputGetMousePos)
-	ret := C.cgo_callfn_GDExtensionSpxInputGetMousePos(arg0,)
-	return (GdVec2)(ret)
-}
-func CallInputGetMouseState(
-	obj GdInt,
-	) GdBool {
-	arg0 := (C.GDExtensionSpxInputGetMouseState)(api.SpxInputGetMouseState)
-	arg1 := (C.GdInt)(obj)
-	ret := C.cgo_callfn_GDExtensionSpxInputGetMouseState(arg0,arg1,)
+func CallStringNewWithLatin1Chars(
+	r_dest GDExtensionUninitializedStringPtr,
+	p_contents string,
+	)  {
+	arg0 := (C.GDExtensionSpxStringNewWithLatin1Chars)(api.SpxStringNewWithLatin1Chars)
+	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
+	arg2 := C.CString(p_contents)
+	C.cgo_callfn_GDExtensionSpxStringNewWithLatin1Chars(arg0,arg1,arg2,)
+	C.free(unsafe.Pointer(arg2))
 	
-	return (GdBool)(ret)
 }
-func CallInputGetKeyState(
-	key GdInt,
+func CallStringNewWithUtf8Chars(
+	r_dest GDExtensionUninitializedStringPtr,
+	p_contents string,
+	)  {
+	arg0 := (C.GDExtensionSpxStringNewWithUtf8Chars)(api.SpxStringNewWithUtf8Chars)
+	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
+	arg2 := C.CString(p_contents)
+	C.cgo_callfn_GDExtensionSpxStringNewWithUtf8Chars(arg0,arg1,arg2,)
+	C.free(unsafe.Pointer(arg2))
+	
+}
+func CallStringNewWithLatin1CharsAndLen(
+	r_dest GDExtensionUninitializedStringPtr,
+	p_contents string,
+	p_size GdInt,
+	)  {
+	arg0 := (C.GDExtensionSpxStringNewWithLatin1CharsAndLen)(api.SpxStringNewWithLatin1CharsAndLen)
+	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
+	arg2 := C.CString(p_contents)
+	arg3 := (C.GdInt)(p_size)
+	C.cgo_callfn_GDExtensionSpxStringNewWithLatin1CharsAndLen(arg0,arg1,arg2,arg3,)
+	C.free(unsafe.Pointer(arg2))
+	
+	
+}
+func CallStringNewWithUtf8CharsAndLen(
+	r_dest GDExtensionUninitializedStringPtr,
+	p_contents string,
+	p_size GdInt,
+	)  {
+	arg0 := (C.GDExtensionSpxStringNewWithUtf8CharsAndLen)(api.SpxStringNewWithUtf8CharsAndLen)
+	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
+	arg2 := C.CString(p_contents)
+	arg3 := (C.GdInt)(p_size)
+	C.cgo_callfn_GDExtensionSpxStringNewWithUtf8CharsAndLen(arg0,arg1,arg2,arg3,)
+	C.free(unsafe.Pointer(arg2))
+	
+	
+}
+func CallStringToLatin1Chars(
+	p_self GDExtensionConstStringPtr,
+	r_text *Char,
+	p_max_write_length GdInt,
 	) GdInt {
-	arg0 := (C.GDExtensionSpxInputGetKeyState)(api.SpxInputGetKeyState)
-	arg1 := (C.GdInt)(key)
-	ret := C.cgo_callfn_GDExtensionSpxInputGetKeyState(arg0,arg1,)
+	arg0 := (C.GDExtensionSpxStringToLatin1Chars)(api.SpxStringToLatin1Chars)
+	arg1 := (C.GDExtensionConstStringPtr)(p_self)
+	arg2 := (*C.char)(r_text)
+	arg3 := (C.GdInt)(p_max_write_length)
+	ret := C.cgo_callfn_GDExtensionSpxStringToLatin1Chars(arg0,arg1,arg2,arg3,)
+	
+	
 	
 	return (GdInt)(ret)
 }
-func CallInputGetAxis(
-	axis GdString,
-	) GdFloat {
-	arg0 := (C.GDExtensionSpxInputGetAxis)(api.SpxInputGetAxis)
-	arg1 := (C.GdString)(axis)
-	ret := C.cgo_callfn_GDExtensionSpxInputGetAxis(arg0,arg1,)
+func CallStringToUtf8Chars(
+	p_self GDExtensionConstStringPtr,
+	r_text *Char,
+	p_max_write_length GdInt,
+	) GdInt {
+	arg0 := (C.GDExtensionSpxStringToUtf8Chars)(api.SpxStringToUtf8Chars)
+	arg1 := (C.GDExtensionConstStringPtr)(p_self)
+	arg2 := (*C.char)(r_text)
+	arg3 := (C.GdInt)(p_max_write_length)
+	ret := C.cgo_callfn_GDExtensionSpxStringToUtf8Chars(arg0,arg1,arg2,arg3,)
 	
-	return (GdFloat)(ret)
+	
+	
+	return (GdInt)(ret)
 }
-func CallInputIsActionPressed(
-	action GdString,
-	) GdBool {
-	arg0 := (C.GDExtensionSpxInputIsActionPressed)(api.SpxInputIsActionPressed)
-	arg1 := (C.GdString)(action)
-	ret := C.cgo_callfn_GDExtensionSpxInputIsActionPressed(arg0,arg1,)
+func CallVariantGetPtrConstructor(
+	p_type GDExtensionVariantType,
+	p_constructor int32,
+	) GDExtensionPtrConstructor {
+	arg0 := (C.GDExtensionSpxVariantGetPtrConstructor)(api.SpxVariantGetPtrConstructor)
+	arg1 := (C.GDExtensionVariantType)(p_type)
+	arg2 := (C.int32_t)(p_constructor)
+	ret := C.cgo_callfn_GDExtensionSpxVariantGetPtrConstructor(arg0,arg1,arg2,)
 	
-	return (GdBool)(ret)
+	
+	return (GDExtensionPtrConstructor)(ret)
 }
-func CallInputIsActionJustPressed(
-	action GdString,
-	) GdBool {
-	arg0 := (C.GDExtensionSpxInputIsActionJustPressed)(api.SpxInputIsActionJustPressed)
-	arg1 := (C.GdString)(action)
-	ret := C.cgo_callfn_GDExtensionSpxInputIsActionJustPressed(arg0,arg1,)
+func CallVariantGetPtrDestructor(
+	p_type GDExtensionVariantType,
+	) GDExtensionPtrDestructor {
+	arg0 := (C.GDExtensionSpxVariantGetPtrDestructor)(api.SpxVariantGetPtrDestructor)
+	arg1 := (C.GDExtensionVariantType)(p_type)
+	ret := C.cgo_callfn_GDExtensionSpxVariantGetPtrDestructor(arg0,arg1,)
 	
-	return (GdBool)(ret)
-}
-func CallInputIsActionJustReleased(
-	action GdString,
-	) GdBool {
-	arg0 := (C.GDExtensionSpxInputIsActionJustReleased)(api.SpxInputIsActionJustReleased)
-	arg1 := (C.GdString)(action)
-	ret := C.cgo_callfn_GDExtensionSpxInputIsActionJustReleased(arg0,arg1,)
-	
-	return (GdBool)(ret)
+	return (GDExtensionPtrDestructor)(ret)
 }
 func CallAudioPlayAudio(
 	path GdString,
@@ -278,6 +319,66 @@ func CallAudioSetMusicTimer(
 	arg1 := (C.GdFloat)(time)
 	C.cgo_callfn_GDExtensionSpxAudioSetMusicTimer(arg0,arg1,)
 	
+}
+func CallInputGetMousePos(
+	) GdVec2 {
+	arg0 := (C.GDExtensionSpxInputGetMousePos)(api.SpxInputGetMousePos)
+	ret := C.cgo_callfn_GDExtensionSpxInputGetMousePos(arg0,)
+	return (GdVec2)(ret)
+}
+func CallInputGetMouseState(
+	mouse_id GdInt,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxInputGetMouseState)(api.SpxInputGetMouseState)
+	arg1 := (C.GdInt)(mouse_id)
+	ret := C.cgo_callfn_GDExtensionSpxInputGetMouseState(arg0,arg1,)
+	
+	return (GdBool)(ret)
+}
+func CallInputGetKeyState(
+	key GdInt,
+	) GdInt {
+	arg0 := (C.GDExtensionSpxInputGetKeyState)(api.SpxInputGetKeyState)
+	arg1 := (C.GdInt)(key)
+	ret := C.cgo_callfn_GDExtensionSpxInputGetKeyState(arg0,arg1,)
+	
+	return (GdInt)(ret)
+}
+func CallInputGetAxis(
+	axis GdString,
+	) GdFloat {
+	arg0 := (C.GDExtensionSpxInputGetAxis)(api.SpxInputGetAxis)
+	arg1 := (C.GdString)(axis)
+	ret := C.cgo_callfn_GDExtensionSpxInputGetAxis(arg0,arg1,)
+	
+	return (GdFloat)(ret)
+}
+func CallInputIsActionPressed(
+	action GdString,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxInputIsActionPressed)(api.SpxInputIsActionPressed)
+	arg1 := (C.GdString)(action)
+	ret := C.cgo_callfn_GDExtensionSpxInputIsActionPressed(arg0,arg1,)
+	
+	return (GdBool)(ret)
+}
+func CallInputIsActionJustPressed(
+	action GdString,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxInputIsActionJustPressed)(api.SpxInputIsActionJustPressed)
+	arg1 := (C.GdString)(action)
+	ret := C.cgo_callfn_GDExtensionSpxInputIsActionJustPressed(arg0,arg1,)
+	
+	return (GdBool)(ret)
+}
+func CallInputIsActionJustReleased(
+	action GdString,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxInputIsActionJustReleased)(api.SpxInputIsActionJustReleased)
+	arg1 := (C.GdString)(action)
+	ret := C.cgo_callfn_GDExtensionSpxInputIsActionJustReleased(arg0,arg1,)
+	
+	return (GdBool)(ret)
 }
 func CallPhysicSetGravity(
 	gravity GdFloat,
@@ -488,21 +589,21 @@ func CallPhysicIsCollisionEnabled(
 }
 func CallSpriteCreateSprite(
 	path GdString,
-	) GdObj {
+	) GdInt {
 	arg0 := (C.GDExtensionSpxSpriteCreateSprite)(api.SpxSpriteCreateSprite)
 	arg1 := (C.GdString)(path)
 	ret := C.cgo_callfn_GDExtensionSpxSpriteCreateSprite(arg0,arg1,)
 	
-	return (GdObj)(ret)
+	return (GdInt)(ret)
 }
 func CallSpriteCloneSprite(
 	obj GdObj,
-	) GdObj {
+	) GdInt {
 	arg0 := (C.GDExtensionSpxSpriteCloneSprite)(api.SpxSpriteCloneSprite)
 	arg1 := (C.GdObj)(obj)
 	ret := C.cgo_callfn_GDExtensionSpxSpriteCloneSprite(arg0,arg1,)
 	
-	return (GdObj)(ret)
+	return (GdInt)(ret)
 }
 func CallSpriteDestroySprite(
 	obj GdObj,
@@ -657,7 +758,7 @@ func CallUICreateButton(
 	path GdString,
 	rect GdRect2,
 	text GdString,
-	) GdObj {
+	) GdInt {
 	arg0 := (C.GDExtensionSpxUICreateButton)(api.SpxUICreateButton)
 	arg1 := (C.GdString)(path)
 	arg2 := (C.GdRect2)(rect)
@@ -666,13 +767,13 @@ func CallUICreateButton(
 	
 	
 	
-	return (GdObj)(ret)
+	return (GdInt)(ret)
 }
 func CallUICreateLabel(
 	path GdString,
 	rect GdRect2,
 	text GdString,
-	) GdObj {
+	) GdInt {
 	arg0 := (C.GDExtensionSpxUICreateLabel)(api.SpxUICreateLabel)
 	arg1 := (C.GdString)(path)
 	arg2 := (C.GdRect2)(rect)
@@ -681,13 +782,13 @@ func CallUICreateLabel(
 	
 	
 	
-	return (GdObj)(ret)
+	return (GdInt)(ret)
 }
 func CallUICreateImage(
 	path GdString,
 	rect GdRect2,
 	color GdColor,
-	) GdObj {
+	) GdInt {
 	arg0 := (C.GDExtensionSpxUICreateImage)(api.SpxUICreateImage)
 	arg1 := (C.GdString)(path)
 	arg2 := (C.GdRect2)(rect)
@@ -696,13 +797,13 @@ func CallUICreateImage(
 	
 	
 	
-	return (GdObj)(ret)
+	return (GdInt)(ret)
 }
 func CallUICreateSlider(
 	path GdString,
 	rect GdRect2,
 	value GdFloat,
-	) GdObj {
+	) GdInt {
 	arg0 := (C.GDExtensionSpxUICreateSlider)(api.SpxUICreateSlider)
 	arg1 := (C.GdString)(path)
 	arg2 := (C.GdRect2)(rect)
@@ -711,13 +812,13 @@ func CallUICreateSlider(
 	
 	
 	
-	return (GdObj)(ret)
+	return (GdInt)(ret)
 }
 func CallUICreateToggle(
 	path GdString,
 	rect GdRect2,
 	value GdBool,
-	) GdObj {
+	) GdInt {
 	arg0 := (C.GDExtensionSpxUICreateToggle)(api.SpxUICreateToggle)
 	arg1 := (C.GdString)(path)
 	arg2 := (C.GdRect2)(rect)
@@ -726,13 +827,13 @@ func CallUICreateToggle(
 	
 	
 	
-	return (GdObj)(ret)
+	return (GdInt)(ret)
 }
 func CallUICreateInput(
 	path GdString,
 	rect GdRect2,
 	text GdString,
-	) GdObj {
+	) GdInt {
 	arg0 := (C.GDExtensionSpxUICreateInput)(api.SpxUICreateInput)
 	arg1 := (C.GdString)(path)
 	arg2 := (C.GdRect2)(rect)
@@ -741,7 +842,7 @@ func CallUICreateInput(
 	
 	
 	
-	return (GdObj)(ret)
+	return (GdInt)(ret)
 }
 func CallUIGetType(
 	obj GdObj,
@@ -871,105 +972,4 @@ func CallUIGetVisible(
 	ret := C.cgo_callfn_GDExtensionSpxUIGetVisible(arg0,arg1,)
 	
 	return (GdBool)(ret)
-}
-func CallStringNewWithLatin1Chars(
-	r_dest GDExtensionUninitializedStringPtr,
-	p_contents string,
-	)  {
-	arg0 := (C.GDExtensionSpxStringNewWithLatin1Chars)(api.SpxStringNewWithLatin1Chars)
-	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
-	arg2 := C.CString(p_contents)
-	C.cgo_callfn_GDExtensionSpxStringNewWithLatin1Chars(arg0,arg1,arg2,)
-	C.free(unsafe.Pointer(arg2))
-	
-}
-func CallStringNewWithUtf8Chars(
-	r_dest GDExtensionUninitializedStringPtr,
-	p_contents string,
-	)  {
-	arg0 := (C.GDExtensionSpxStringNewWithUtf8Chars)(api.SpxStringNewWithUtf8Chars)
-	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
-	arg2 := C.CString(p_contents)
-	C.cgo_callfn_GDExtensionSpxStringNewWithUtf8Chars(arg0,arg1,arg2,)
-	C.free(unsafe.Pointer(arg2))
-	
-}
-func CallStringNewWithLatin1CharsAndLen(
-	r_dest GDExtensionUninitializedStringPtr,
-	p_contents string,
-	p_size GdInt,
-	)  {
-	arg0 := (C.GDExtensionSpxStringNewWithLatin1CharsAndLen)(api.SpxStringNewWithLatin1CharsAndLen)
-	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
-	arg2 := C.CString(p_contents)
-	arg3 := (C.GdInt)(p_size)
-	C.cgo_callfn_GDExtensionSpxStringNewWithLatin1CharsAndLen(arg0,arg1,arg2,arg3,)
-	C.free(unsafe.Pointer(arg2))
-	
-	
-}
-func CallStringNewWithUtf8CharsAndLen(
-	r_dest GDExtensionUninitializedStringPtr,
-	p_contents string,
-	p_size GdInt,
-	)  {
-	arg0 := (C.GDExtensionSpxStringNewWithUtf8CharsAndLen)(api.SpxStringNewWithUtf8CharsAndLen)
-	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
-	arg2 := C.CString(p_contents)
-	arg3 := (C.GdInt)(p_size)
-	C.cgo_callfn_GDExtensionSpxStringNewWithUtf8CharsAndLen(arg0,arg1,arg2,arg3,)
-	C.free(unsafe.Pointer(arg2))
-	
-	
-}
-func CallStringToLatin1Chars(
-	p_self GDExtensionConstStringPtr,
-	r_text *Char,
-	p_max_write_length GdInt,
-	) GdInt {
-	arg0 := (C.GDExtensionSpxStringToLatin1Chars)(api.SpxStringToLatin1Chars)
-	arg1 := (C.GDExtensionConstStringPtr)(p_self)
-	arg2 := (*C.char)(r_text)
-	arg3 := (C.GdInt)(p_max_write_length)
-	ret := C.cgo_callfn_GDExtensionSpxStringToLatin1Chars(arg0,arg1,arg2,arg3,)
-	
-	
-	
-	return (GdInt)(ret)
-}
-func CallStringToUtf8Chars(
-	p_self GDExtensionConstStringPtr,
-	r_text *Char,
-	p_max_write_length GdInt,
-	) GdInt {
-	arg0 := (C.GDExtensionSpxStringToUtf8Chars)(api.SpxStringToUtf8Chars)
-	arg1 := (C.GDExtensionConstStringPtr)(p_self)
-	arg2 := (*C.char)(r_text)
-	arg3 := (C.GdInt)(p_max_write_length)
-	ret := C.cgo_callfn_GDExtensionSpxStringToUtf8Chars(arg0,arg1,arg2,arg3,)
-	
-	
-	
-	return (GdInt)(ret)
-}
-func CallVariantGetPtrConstructor(
-	p_type GDExtensionVariantType,
-	p_constructor int32,
-	) GDExtensionPtrConstructor {
-	arg0 := (C.GDExtensionSpxVariantGetPtrConstructor)(api.SpxVariantGetPtrConstructor)
-	arg1 := (C.GDExtensionVariantType)(p_type)
-	arg2 := (C.int32_t)(p_constructor)
-	ret := C.cgo_callfn_GDExtensionSpxVariantGetPtrConstructor(arg0,arg1,arg2,)
-	
-	
-	return (GDExtensionPtrConstructor)(ret)
-}
-func CallVariantGetPtrDestructor(
-	p_type GDExtensionVariantType,
-	) GDExtensionPtrDestructor {
-	arg0 := (C.GDExtensionSpxVariantGetPtrDestructor)(api.SpxVariantGetPtrDestructor)
-	arg1 := (C.GDExtensionVariantType)(p_type)
-	ret := C.cgo_callfn_GDExtensionSpxVariantGetPtrDestructor(arg0,arg1,)
-	
-	return (GDExtensionPtrDestructor)(ret)
 }

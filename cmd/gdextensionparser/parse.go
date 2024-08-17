@@ -69,11 +69,6 @@ func GenerateGDExtensionInterfaceAST(projectPath, astOutputFilename string) (cla
 	return generateGDExtensionInterfaceAST( str, projectPath, astOutputFilename) 
 }
 
-func GenerateGdManagerAST(projectPath, astOutputFilename string) (clang.CHeaderFileAST, error) {
-	str ,_ := expandIncludeFiles(projectPath,"gdextension_spx_codegen_mgr_header.h","_temp_output_mgr.h")
-	return generateGDExtensionInterfaceAST( str, projectPath, astOutputFilename) 
-}
-
 func generateGDExtensionInterfaceAST(b,projectPath, astOutputFilename string) (clang.CHeaderFileAST, error) {
 	preprocFile, err := preprocessor.ParsePreprocessorString((string)(b))
 	if err != nil {
