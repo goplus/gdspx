@@ -30,7 +30,7 @@ func Link(engineCallback EngineCallbackInfo) []IManager {
 		switch v := mgr.(type) {
 		case IAudioMgr:
 			AudioMgr = v
-		case IUIMgr:
+		case IUiMgr:
 			UIMgr = v
 		case IPhysicMgr:
 			PhysicMgr = v

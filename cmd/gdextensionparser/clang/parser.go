@@ -43,6 +43,24 @@ func (a CHeaderFileAST) CollectFunctions() []TypedefFunction {
 	}
 	return fns
 }
+func (a CHeaderFileAST) CollectGDExtensionManagerFunctions(managerName string) []TypedefFunction {
+	allFns := a.CollectFunctions()
+
+	fns := make([]TypedefFunction, 0, len(allFns))
+
+	for _, fn := range allFns {
+		if strings.HasPrefix(fn.Name, "GDExtensionSpx") &&
+			!strings.HasPrefix(fn.Name, "GDExtensionSpxCallback") &&
+			!slices.Contains(legacyGDExtentionInterfaceFunctionNames, fn.Name) {
+			funcName := fn.Name[len("GDExtensionSpx"):]
+			if strings.HasPrefix(strings.ToLower(funcName), managerName) {
+				fns = append(fns, fn)
+			}
+		}
+	}
+
+	return fns
+}
 
 func (a CHeaderFileAST) CollectGDExtensionInterfaceFunctions() []TypedefFunction {
 	allFns := a.CollectFunctions()

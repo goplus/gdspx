@@ -224,16 +224,16 @@ func (pself *physicMgr) IsCollisionEnabled(obj Object) bool  {
 	retValue := CallPhysicIsCollisionEnabled(arg0)
 	return ToBool(retValue)
 }
-func (pself *spriteMgr) CreateSprite(path string) int64  {
+func (pself *spriteMgr) CreateSprite(path string) Object  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
 	retValue := CallSpriteCreateSprite(arg0)
-	return ToInt64(retValue)
+	return ToObject(retValue)
 }
-func (pself *spriteMgr) CloneSprite(obj Object) int64  {
+func (pself *spriteMgr) CloneSprite(obj Object) Object  {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteCloneSprite(arg0)
-	return ToInt64(retValue)
+	return ToObject(retValue)
 }
 func (pself *spriteMgr) DestroySprite(obj Object) bool  {
 	arg0 := ToGdObj(obj)

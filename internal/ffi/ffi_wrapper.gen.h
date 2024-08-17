@@ -233,10 +233,10 @@ inline void cgo_callfn_GDExtensionSpxPhysicSetCollisionEnabled(const GDExtension
 inline GdBool cgo_callfn_GDExtensionSpxPhysicIsCollisionEnabled(const GDExtensionSpxPhysicIsCollisionEnabled fn, GdObj obj) {
 	return fn(obj);
 }
-inline GdInt cgo_callfn_GDExtensionSpxSpriteCreateSprite(const GDExtensionSpxSpriteCreateSprite fn, GdString path) {
+inline GdObj cgo_callfn_GDExtensionSpxSpriteCreateSprite(const GDExtensionSpxSpriteCreateSprite fn, GdString path) {
 	return fn(path);
 }
-inline GdInt cgo_callfn_GDExtensionSpxSpriteCloneSprite(const GDExtensionSpxSpriteCloneSprite fn, GdObj obj) {
+inline GdObj cgo_callfn_GDExtensionSpxSpriteCloneSprite(const GDExtensionSpxSpriteCloneSprite fn, GdObj obj) {
 	return fn(obj);
 }
 inline GdBool cgo_callfn_GDExtensionSpxSpriteDestroySprite(const GDExtensionSpxSpriteDestroySprite fn, GdObj obj) {

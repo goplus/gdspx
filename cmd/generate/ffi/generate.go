@@ -30,6 +30,8 @@ var (
 
 	//go:embed manager_wrapper.go.tmpl
 	wrapManagerGoFileText string
+	//go:embed interface.go.tmpl
+	interfaceGoFileText string
 )
 
 func Generate(projectPath string, ast clang.CHeaderFileAST) {
@@ -46,6 +48,10 @@ func Generate(projectPath string, ast clang.CHeaderFileAST) {
 		panic(err)
 	}
 	err = GenerateManagerWrapperGoFile(projectPath, ast)
+	if err != nil {
+		panic(err)
+	}
+	err = GenerateManagerInterfaceGoFile(projectPath, ast)
 	if err != nil {
 		panic(err)
 	}
@@ -169,6 +175,7 @@ func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) 
 		"isManagerMethod":    IsManagerMethod,
 		"getManagerFuncName": getManagerFuncName,
 		"getManagerFuncBody": getManagerFuncBody,
+		"getManagerInterface": getManagerInterface,
 	}
 
 	tmpl, err := template.New("manager_wrapper.gen.go").
@@ -187,6 +194,44 @@ func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) 
 	}
 
 	headerFileName := filepath.Join(projectPath, RelDir, "../wrap/manager_wrapper.gen.go")
+	f, err := os.Create(headerFileName)
+	f.Write(b.Bytes())
+	f.Close()
+	return err
+}
+
+func GenerateManagerInterfaceGoFile(projectPath string, ast clang.CHeaderFileAST) error {
+	funcs := template.FuncMap{
+		"gdiVariableName":    GdiVariableName,
+		"snakeCase":          strcase.ToSnake,
+		"camelCase":          strcase.ToCamel,
+		"goReturnType":       GoReturnType,
+		"goArgumentType":     GoArgumentType,
+		"goEnumValue":        GoEnumValue,
+		"add":                Add,
+		"cgoCastArgument":    CgoCastArgument,
+		"cgoCastReturnType":  CgoCastReturnType,
+		"cgoCleanUpArgument": CgoCleanUpArgument,
+		"trimPrefix":         TrimPrefix,
+		"isManagerMethod":    IsManagerMethod,
+		"getManagerFuncName": getManagerFuncName,
+		"getManagerFuncBody": getManagerFuncBody,
+		"getManagerInterface": getManagerInterface,
+	}
+
+	tmpl, err := template.New("interface.gen.go").
+		Funcs(funcs).
+		Parse(interfaceGoFileText)
+	if err != nil {
+		return err
+	}
+	var b bytes.Buffer
+	err = tmpl.Execute(&b, ManagerData{Ast: ast, Mangers: GetManagers(ast)})
+	if err != nil {
+		return err
+	}
+
+	headerFileName := filepath.Join(projectPath, RelDir, "../../pkg/engine/interface.gen.go")
 	f, err := os.Create(headerFileName)
 	f.Write(b.Bytes())
 	f.Close()
@@ -222,6 +267,8 @@ func getManagerFuncName(function *clang.TypedefFunction) string {
 	}
 	return sb.String()
 }
+
+
 func getManagerFuncBody(function *clang.TypedefFunction) string {
 	sb := strings.Builder{}
 	prefixTab := "\t"
@@ -272,6 +319,31 @@ func getManagerFuncBody(function *clang.TypedefFunction) string {
 		sb.WriteString("return ")
 		typeName := GetFuncParamTypeString(function.ReturnType.Name)
 		sb.WriteString("To" + strcase.ToCamel(typeName) + "(retValue)")
+	}
+	return sb.String()
+}
+func getManagerInterface(function *clang.TypedefFunction) string {
+	prefix := "GDExtensionSpx"
+	sb := strings.Builder{}
+	mgrName := GetManagerName(function.Name)
+	funcName := function.Name[len(prefix)+len(mgrName):]
+	sb.WriteString(funcName)
+	sb.WriteString("(")
+	count := len(function.Arguments)
+	for i, arg := range function.Arguments {
+		sb.WriteString(arg.Name)
+		sb.WriteString(" ")
+		typeName := GetFuncParamTypeString(arg.Type.Primative.Name)
+		sb.WriteString(typeName)
+		if i != count-1 {
+			sb.WriteString(", ")
+		}
+	}
+	sb.WriteString(")")
+
+	if function.ReturnType.Name != "void" {
+		typeName := GetFuncParamTypeString(function.ReturnType.Name)
+		sb.WriteString(" " + typeName + " ")
 	}
 	return sb.String()
 }

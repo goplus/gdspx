@@ -589,21 +589,21 @@ func CallPhysicIsCollisionEnabled(
 }
 func CallSpriteCreateSprite(
 	path GdString,
-	) GdInt {
+	) GdObj {
 	arg0 := (C.GDExtensionSpxSpriteCreateSprite)(api.SpxSpriteCreateSprite)
 	arg1 := (C.GdString)(path)
 	ret := C.cgo_callfn_GDExtensionSpxSpriteCreateSprite(arg0,arg1,)
 	
-	return (GdInt)(ret)
+	return (GdObj)(ret)
 }
 func CallSpriteCloneSprite(
 	obj GdObj,
-	) GdInt {
+	) GdObj {
 	arg0 := (C.GDExtensionSpxSpriteCloneSprite)(api.SpxSpriteCloneSprite)
 	arg1 := (C.GdObj)(obj)
 	ret := C.cgo_callfn_GDExtensionSpxSpriteCloneSprite(arg0,arg1,)
 	
-	return (GdInt)(ret)
+	return (GdObj)(ret)
 }
 func CallSpriteDestroySprite(
 	obj GdObj,
