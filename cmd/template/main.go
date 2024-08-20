@@ -15,12 +15,12 @@ func main() {
 
 func onStart() {
 	println("onEngineStart")
-	obj := SpriteMgr.CreateSprite("")
-	obj2 := SpriteMgr.CreateSprite("")
-	SpriteMgr.SetPosition(obj, Vec2{100, 100})
-	SpriteMgr.SetPosition(obj2, Vec2{200, 200})
-	SpriteMgr.SetTexture(obj, "res://icon.png")
-	SpriteMgr.SetTexture(obj2, "res://icon.png")
+	obj := NewSprite("")
+	obj2 := NewSprite("")
+	obj.SetPosition(Vec2{100, 100})
+	obj2.SetPosition(Vec2{200, 200})
+	obj.SetTexture("res://icon.png")
+	obj2.SetTexture("res://icon.png")
 }
 
 func onUpdate(delta float32) {
