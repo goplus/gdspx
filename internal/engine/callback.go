@@ -33,19 +33,25 @@ func bindCallbacks() CallbackInfo {
 	infos.OnTriggerExit = onTriggerExit
 
 	// ui
-	infos.OnUIPressed = onUIPressed
-	infos.OnUIReleased = onUIReleased
-	infos.OnUIHovered = onUIHovered
-	infos.OnUIClicked = onUIClicked
-	infos.OnUIToggle = onUIToggle
-	infos.OnUITextChanged = onUITextChanged
+	infos.OnUiPressed = onUiPressed
+	infos.OnUiReleased = onUiReleased
+	infos.OnUiHovered = onUiHovered
+	infos.OnUiClicked = onUiClicked
+	infos.OnUiToggle = onUiToggle
+	infos.OnUiTextChanged = onUiTextChanged
 
 	return infos
 }
 
-func onSpriteReady(id int64)     {}
-func onSpriteUpdated(id int64)   {}
-func onSpriteDestroyed(id int64) {}
+func onSpriteReady(id int64) {
+	println("onSpriteReady ", id)
+}
+func onSpriteUpdated(id int64) {
+	println("onSpriteUpdated ", id)
+}
+func onSpriteDestroyed(id int64) {
+	println("onSpriteDestroyed ", id)
+}
 
 // input
 func onMousePressed(id int64)                  {}
@@ -62,14 +68,20 @@ func onCollisionEnter(id int64, oid int64) {}
 func onCollisionStay(id int64, oid int64)  {}
 func onCollisionExit(id int64, oid int64)  {}
 
-func onTriggerEnter(id int64, oid int64) {}
-func onTriggerStay(id int64, oid int64)  {}
-func onTriggerExit(id int64, oid int64)  {}
+func onTriggerEnter(id int64, oid int64) {
+	println("onTriggerEnter ", id, oid)
+}
+func onTriggerStay(id int64, oid int64) {}
+func onTriggerExit(id int64, oid int64) {
+	println("onTriggerExit ", id, oid)
+}
 
 // UI
-func onUIPressed(id int64)                  {}
-func onUIReleased(id int64)                 {}
-func onUIHovered(id int64)                  {}
-func onUIClicked(id int64)                  {}
-func onUIToggle(id int64, isOn bool)        {}
-func onUITextChanged(id int64, text string) {}
+func onUiPressed(id int64)           {}
+func onUiReleased(id int64)          {}
+func onUiHovered(id int64)           {}
+func onUiClicked(id int64)           {}
+func onUiToggle(id int64, isOn bool) {}
+func onUiTextChanged(id int64, text string) {
+
+}

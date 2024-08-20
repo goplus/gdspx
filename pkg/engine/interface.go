@@ -41,10 +41,10 @@ type CallbackInfo struct {
 	OnTriggerExit  func(int64, int64)
 
 	// UI
-	OnUIPressed     func(int64)
-	OnUIReleased    func(int64)
-	OnUIHovered     func(int64)
-	OnUIClicked     func(int64)
-	OnUIToggle      func(int64, bool)
-	OnUITextChanged func(int64, string)
+	OnUiPressed     func(int64)
+	OnUiReleased    func(int64)
+	OnUiHovered     func(int64)
+	OnUiClicked     func(int64)
+	OnUiToggle      func(int64, bool)
+	OnUiTextChanged func(int64, string)
 }

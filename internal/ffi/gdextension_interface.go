@@ -241,115 +241,166 @@ func func_on_engine_destroy() {
 
 //export func_on_sprite_ready
 func func_on_sprite_ready(id C.GDExtensionInt) {
-	// TODO: implement
-}
-
-//export func_on_sprite_updated
-func func_on_sprite_updated(id C.GDExtensionInt) {
-	// TODO: implement
-}
-
-//export func_on_sprite_destroyed
-func func_on_sprite_destroyed(id C.GDExtensionInt) {
-	// TODO: implement
-}
-
-//export func_on_mouse_pressed
-func func_on_mouse_pressed(keyid C.GDExtensionInt) {
-	// TODO: implement
-}
-
-//export func_on_mouse_released
-func func_on_mouse_released(keyid C.GDExtensionInt) {
-	// TODO: implement
-}
-
-//export func_on_key_pressed
-func func_on_key_pressed(keyid C.GDExtensionInt) {
-	// TODO: implement
-}
-
-//export func_on_key_released
-func func_on_key_released(keyid C.GDExtensionInt) {
-	// TODO: implement
+	if callbacks.OnSpriteReady != nil {
+		callbacks.OnSpriteReady(int64(id))
+	}
 }
 
 //export func_on_action_pressed
 func func_on_action_pressed(actionName C.GdString) {
-	// TODO: implement
+	name := ToString(GdString(actionName))
+	if callbacks.OnSpriteReady != nil {
+		callbacks.OnActionPressed(name)
+	}
+}
+
+//export func_on_sprite_updated
+func func_on_sprite_updated(id C.GDExtensionInt) {
+	if callbacks.OnSpriteUpdated != nil {
+		callbacks.OnSpriteUpdated(int64(id))
+	}
+}
+
+//export func_on_sprite_destroyed
+func func_on_sprite_destroyed(id C.GDExtensionInt) {
+	if callbacks.OnSpriteDestroyed != nil {
+		callbacks.OnSpriteDestroyed(int64(id))
+	}
+}
+
+//export func_on_mouse_pressed
+func func_on_mouse_pressed(keyid C.GDExtensionInt) {
+	if callbacks.OnMousePressed != nil {
+		callbacks.OnMousePressed(int64(keyid))
+	}
+}
+
+//export func_on_mouse_released
+func func_on_mouse_released(keyid C.GDExtensionInt) {
+	if callbacks.OnMouseReleased != nil {
+		callbacks.OnMouseReleased(int64(keyid))
+	}
+}
+
+//export func_on_key_pressed
+func func_on_key_pressed(keyid C.GDExtensionInt) {
+	if callbacks.OnKeyPressed != nil {
+		callbacks.OnKeyPressed(int64(keyid))
+	}
+}
+
+//export func_on_key_released
+func func_on_key_released(keyid C.GDExtensionInt) {
+	if callbacks.OnKeyReleased != nil {
+		callbacks.OnKeyReleased(int64(keyid))
+	}
 }
 
 //export func_on_action_just_pressed
 func func_on_action_just_pressed(actionName C.GdString) {
-	// TODO: implement
+	name := ToString(GdString(actionName))
+	if callbacks.OnActionJustPressed != nil {
+		callbacks.OnActionJustPressed(name)
+	}
 }
 
 //export func_on_action_just_released
 func func_on_action_just_released(actionName C.GdString) {
-	// TODO: implement
+	name := ToString(GdString(actionName))
+	if callbacks.OnActionJustReleased != nil {
+		callbacks.OnActionJustReleased(name)
+	}
 }
 
 //export func_on_axis_changed
 func func_on_axis_changed(actionName C.GdString, value C.GDReal) {
-	// TODO: implement
+	name := ToString(GdString(actionName))
+	if callbacks.OnAxisChanged != nil {
+		callbacks.OnAxisChanged(name, float32(value))
+	}
 }
 
 //export func_on_collision_enter
 func func_on_collision_enter(selfId, otherId C.GDExtensionInt) {
-	// TODO: implement
+	if callbacks.OnCollisionEnter != nil {
+		callbacks.OnCollisionEnter(int64(selfId), int64(otherId))
+	}
 }
 
 //export func_on_collision_stay
 func func_on_collision_stay(selfId, otherId C.GDExtensionInt) {
-	// TODO: implement
+	if callbacks.OnCollisionStay != nil {
+		callbacks.OnCollisionStay(int64(selfId), int64(otherId))
+	}
 }
 
 //export func_on_collision_exit
 func func_on_collision_exit(selfId, otherId C.GDExtensionInt) {
-	// TODO: implement
+	if callbacks.OnCollisionExit != nil {
+		callbacks.OnCollisionExit(int64(selfId), int64(otherId))
+	}
 }
 
 //export func_on_trigger_enter
 func func_on_trigger_enter(selfId, otherId C.GDExtensionInt) {
-	// TODO: implement
+	if callbacks.OnTriggerEnter != nil {
+		callbacks.OnTriggerEnter(int64(selfId), int64(otherId))
+	}
 }
 
 //export func_on_trigger_stay
 func func_on_trigger_stay(selfId, otherId C.GDExtensionInt) {
-	// TODO: implement
+	if callbacks.OnTriggerStay != nil {
+		callbacks.OnTriggerStay(int64(selfId), int64(otherId))
+	}
 }
 
 //export func_on_trigger_exit
 func func_on_trigger_exit(selfId, otherId C.GDExtensionInt) {
-	// TODO: implement
+	if callbacks.OnTriggerExit != nil {
+		callbacks.OnTriggerExit(int64(selfId), int64(otherId))
+	}
 }
 
 //export func_on_ui_pressed
 func func_on_ui_pressed(id C.GDExtensionInt) {
-	// TODO: implement
+	if callbacks.OnUiPressed != nil {
+		callbacks.OnUiPressed(int64(id))
+	}
 }
 
 //export func_on_ui_released
 func func_on_ui_released(id C.GDExtensionInt) {
-	// TODO: implement
+	if callbacks.OnUiReleased != nil {
+		callbacks.OnUiReleased(int64(id))
+	}
 }
 
 //export func_on_ui_hovered
 func func_on_ui_hovered(id C.GDExtensionInt) {
-	// TODO: implement
+	if callbacks.OnUiHovered != nil {
+		callbacks.OnUiHovered(int64(id))
+	}
 }
 
 //export func_on_ui_clicked
 func func_on_ui_clicked(id C.GDExtensionInt) {
-	// TODO: implement
+	if callbacks.OnUiClicked != nil {
+		callbacks.OnUiClicked(int64(id))
+	}
 }
 
 //export func_on_ui_toggle
 func func_on_ui_toggle(id C.GDExtensionInt, isOn C.GDExtensionBool) {
-	// TODO: implement
+	if callbacks.OnUiToggle != nil {
+		callbacks.OnUiToggle(int64(id), bool(isOn != 0))
+	}
 }
 
 //export func_on_ui_text_changed
 func func_on_ui_text_changed(id C.GDExtensionInt, text C.GdString) {
-	// TODO: implement
+	str := ToString(GdString(text))
+	if callbacks.OnUiTextChanged != nil {
+		callbacks.OnUiTextChanged(int64(id), str)
+	}
 }

@@ -18,7 +18,7 @@ func onStart() {
 	obj := NewSprite("")
 	obj2 := NewSprite("")
 	obj.SetPosition(Vec2{100, 100})
-	obj2.SetPosition(Vec2{200, 200})
+	obj2.SetPosition(Vec2{110, 110})
 	obj.SetTexture("res://icon.png")
 	obj2.SetTexture("res://icon.png")
 }
