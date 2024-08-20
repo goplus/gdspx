@@ -1,4 +1,4 @@
-module gdspx-demo
+module gdspx-demo01
 
 go 1.22.3
 

@@ -41,6 +41,7 @@ size = Vector2(90, 63)
 size = Vector2(89, 65)
 
 [node name="Enemy" type="SpxSprite"]
+up_direction = Vector2(0, 1)
 gid = 3252362789104
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
