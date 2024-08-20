@@ -6,18 +6,17 @@ type Node int64
 type Object int64
 
 type Vec2 struct {
-	X, Y float64
+	X, Y float32
 }
 
 type Vec3 struct {
-	X, Y, Z float64
+	X, Y, Z float32
 }
 
 type Vec4 struct {
-	X, Y, Z, W float64
+	X, Y, Z, W float32
 }
 type Color struct {
-	// TODO(jiepengtan) support 32bit
 	R, G, B, A float32
 }
 

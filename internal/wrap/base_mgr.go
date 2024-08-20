@@ -16,7 +16,7 @@ func (pself *baseMgr) Init(node Node) {
 
 func (pself *baseMgr) OnStart() {
 }
-func (pself *baseMgr) OnUpdate(delta float64) {
+func (pself *baseMgr) OnUpdate(delta float32) {
 }
 func (pself *baseMgr) OnDestroy() {
 }

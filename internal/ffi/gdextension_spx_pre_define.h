@@ -14,7 +14,7 @@ extern "C" {
 #endif
 
 
-typedef double real_t;
+typedef float real_t;
 
 typedef struct {
     real_t X;

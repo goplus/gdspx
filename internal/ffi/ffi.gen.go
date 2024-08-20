@@ -43,26 +43,7 @@ type GDExtensionInterface struct {
 	SpxInputIsActionPressed GDExtensionSpxInputIsActionPressed
 	SpxInputIsActionJustPressed GDExtensionSpxInputIsActionJustPressed
 	SpxInputIsActionJustReleased GDExtensionSpxInputIsActionJustReleased
-	SpxPhysicSetGravity GDExtensionSpxPhysicSetGravity
-	SpxPhysicGetGravity GDExtensionSpxPhysicGetGravity
-	SpxPhysicSetVelocity GDExtensionSpxPhysicSetVelocity
-	SpxPhysicGetVelocity GDExtensionSpxPhysicGetVelocity
-	SpxPhysicSetMass GDExtensionSpxPhysicSetMass
-	SpxPhysicGetMass GDExtensionSpxPhysicGetMass
-	SpxPhysicAddForce GDExtensionSpxPhysicAddForce
-	SpxPhysicAddImpulse GDExtensionSpxPhysicAddImpulse
-	SpxPhysicSetCollisionLayer GDExtensionSpxPhysicSetCollisionLayer
-	SpxPhysicGetCollisionLayer GDExtensionSpxPhysicGetCollisionLayer
-	SpxPhysicSetCollisionMask GDExtensionSpxPhysicSetCollisionMask
-	SpxPhysicGetCollisionMask GDExtensionSpxPhysicGetCollisionMask
-	SpxPhysicGetColliderType GDExtensionSpxPhysicGetColliderType
-	SpxPhysicAddColliderRect GDExtensionSpxPhysicAddColliderRect
-	SpxPhysicAddColliderCircle GDExtensionSpxPhysicAddColliderCircle
-	SpxPhysicAddColliderCapsule GDExtensionSpxPhysicAddColliderCapsule
-	SpxPhysicSetTrigger GDExtensionSpxPhysicSetTrigger
-	SpxPhysicIsTrigger GDExtensionSpxPhysicIsTrigger
-	SpxPhysicSetCollisionEnabled GDExtensionSpxPhysicSetCollisionEnabled
-	SpxPhysicIsCollisionEnabled GDExtensionSpxPhysicIsCollisionEnabled
+	SpxPhysicRaycast GDExtensionSpxPhysicRaycast
 	SpxSpriteCreateSprite GDExtensionSpxSpriteCreateSprite
 	SpxSpriteCloneSprite GDExtensionSpxSpriteCloneSprite
 	SpxSpriteDestroySprite GDExtensionSpxSpriteDestroySprite
@@ -75,11 +56,56 @@ type GDExtensionInterface struct {
 	SpxSpriteGetScale GDExtensionSpxSpriteGetScale
 	SpxSpriteSetColor GDExtensionSpxSpriteSetColor
 	SpxSpriteGetColor GDExtensionSpxSpriteGetColor
-	SpxSpriteUpdateTexture GDExtensionSpxSpriteUpdateTexture
+	SpxSpriteSetTexture GDExtensionSpxSpriteSetTexture
 	SpxSpriteGetTexture GDExtensionSpxSpriteGetTexture
 	SpxSpriteSetVisible GDExtensionSpxSpriteSetVisible
 	SpxSpriteGetVisible GDExtensionSpxSpriteGetVisible
-	SpxSpriteUpdateZIndex GDExtensionSpxSpriteUpdateZIndex
+	SpxSpriteGetZIndex GDExtensionSpxSpriteGetZIndex
+	SpxSpriteSetZIndex GDExtensionSpxSpriteSetZIndex
+	SpxSpritePlayAnim GDExtensionSpxSpritePlayAnim
+	SpxSpritePlayBackwardsAnim GDExtensionSpxSpritePlayBackwardsAnim
+	SpxSpritePauseAnim GDExtensionSpxSpritePauseAnim
+	SpxSpriteStopAnim GDExtensionSpxSpriteStopAnim
+	SpxSpriteIsPlayingAnim GDExtensionSpxSpriteIsPlayingAnim
+	SpxSpriteSetAnim GDExtensionSpxSpriteSetAnim
+	SpxSpriteGetAnim GDExtensionSpxSpriteGetAnim
+	SpxSpriteSetAnimFrame GDExtensionSpxSpriteSetAnimFrame
+	SpxSpriteGetAnimFrame GDExtensionSpxSpriteGetAnimFrame
+	SpxSpriteSetAnimSpeedScale GDExtensionSpxSpriteSetAnimSpeedScale
+	SpxSpriteGetAnimSpeedScale GDExtensionSpxSpriteGetAnimSpeedScale
+	SpxSpriteGetAnimPlayingSpeed GDExtensionSpxSpriteGetAnimPlayingSpeed
+	SpxSpriteSetAnimCentered GDExtensionSpxSpriteSetAnimCentered
+	SpxSpriteIsAnimCentered GDExtensionSpxSpriteIsAnimCentered
+	SpxSpriteSetAnimOffset GDExtensionSpxSpriteSetAnimOffset
+	SpxSpriteGetAnimOffset GDExtensionSpxSpriteGetAnimOffset
+	SpxSpriteSetAnimFlipH GDExtensionSpxSpriteSetAnimFlipH
+	SpxSpriteIsAnimFlippedH GDExtensionSpxSpriteIsAnimFlippedH
+	SpxSpriteSetAnimFlipV GDExtensionSpxSpriteSetAnimFlipV
+	SpxSpriteIsAnimFlippedV GDExtensionSpxSpriteIsAnimFlippedV
+	SpxSpriteSetGravity GDExtensionSpxSpriteSetGravity
+	SpxSpriteGetGravity GDExtensionSpxSpriteGetGravity
+	SpxSpriteSetMass GDExtensionSpxSpriteSetMass
+	SpxSpriteGetMass GDExtensionSpxSpriteGetMass
+	SpxSpriteAddForce GDExtensionSpxSpriteAddForce
+	SpxSpriteAddImpulse GDExtensionSpxSpriteAddImpulse
+	SpxSpriteSetCollisionLayer GDExtensionSpxSpriteSetCollisionLayer
+	SpxSpriteGetCollisionLayer GDExtensionSpxSpriteGetCollisionLayer
+	SpxSpriteSetCollisionMask GDExtensionSpxSpriteSetCollisionMask
+	SpxSpriteGetCollisionMask GDExtensionSpxSpriteGetCollisionMask
+	SpxSpriteSetTriggerLayer GDExtensionSpxSpriteSetTriggerLayer
+	SpxSpriteGetTriggerLayer GDExtensionSpxSpriteGetTriggerLayer
+	SpxSpriteSetTriggerMask GDExtensionSpxSpriteSetTriggerMask
+	SpxSpriteGetTriggerMask GDExtensionSpxSpriteGetTriggerMask
+	SpxSpriteSetColliderRect GDExtensionSpxSpriteSetColliderRect
+	SpxSpriteSetColliderCircle GDExtensionSpxSpriteSetColliderCircle
+	SpxSpriteSetColliderCapsule GDExtensionSpxSpriteSetColliderCapsule
+	SpxSpriteSetCollisionEnabled GDExtensionSpxSpriteSetCollisionEnabled
+	SpxSpriteIsCollisionEnabled GDExtensionSpxSpriteIsCollisionEnabled
+	SpxSpriteSetTriggerRect GDExtensionSpxSpriteSetTriggerRect
+	SpxSpriteSetTriggerCircle GDExtensionSpxSpriteSetTriggerCircle
+	SpxSpriteSetTriggerCapsule GDExtensionSpxSpriteSetTriggerCapsule
+	SpxSpriteSetTriggerEnabled GDExtensionSpxSpriteSetTriggerEnabled
+	SpxSpriteIsTriggerEnabled GDExtensionSpxSpriteIsTriggerEnabled
 	SpxUICreateButton GDExtensionSpxUICreateButton
 	SpxUICreateLabel GDExtensionSpxUICreateLabel
 	SpxUICreateImage GDExtensionSpxUICreateImage
@@ -130,26 +156,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxInputIsActionPressed = (GDExtensionSpxInputIsActionPressed)(dlsymGD("spx_input_is_action_pressed"))
 	x.SpxInputIsActionJustPressed = (GDExtensionSpxInputIsActionJustPressed)(dlsymGD("spx_input_is_action_just_pressed"))
 	x.SpxInputIsActionJustReleased = (GDExtensionSpxInputIsActionJustReleased)(dlsymGD("spx_input_is_action_just_released"))
-	x.SpxPhysicSetGravity = (GDExtensionSpxPhysicSetGravity)(dlsymGD("spx_physic_set_gravity"))
-	x.SpxPhysicGetGravity = (GDExtensionSpxPhysicGetGravity)(dlsymGD("spx_physic_get_gravity"))
-	x.SpxPhysicSetVelocity = (GDExtensionSpxPhysicSetVelocity)(dlsymGD("spx_physic_set_velocity"))
-	x.SpxPhysicGetVelocity = (GDExtensionSpxPhysicGetVelocity)(dlsymGD("spx_physic_get_velocity"))
-	x.SpxPhysicSetMass = (GDExtensionSpxPhysicSetMass)(dlsymGD("spx_physic_set_mass"))
-	x.SpxPhysicGetMass = (GDExtensionSpxPhysicGetMass)(dlsymGD("spx_physic_get_mass"))
-	x.SpxPhysicAddForce = (GDExtensionSpxPhysicAddForce)(dlsymGD("spx_physic_add_force"))
-	x.SpxPhysicAddImpulse = (GDExtensionSpxPhysicAddImpulse)(dlsymGD("spx_physic_add_impulse"))
-	x.SpxPhysicSetCollisionLayer = (GDExtensionSpxPhysicSetCollisionLayer)(dlsymGD("spx_physic_set_collision_layer"))
-	x.SpxPhysicGetCollisionLayer = (GDExtensionSpxPhysicGetCollisionLayer)(dlsymGD("spx_physic_get_collision_layer"))
-	x.SpxPhysicSetCollisionMask = (GDExtensionSpxPhysicSetCollisionMask)(dlsymGD("spx_physic_set_collision_mask"))
-	x.SpxPhysicGetCollisionMask = (GDExtensionSpxPhysicGetCollisionMask)(dlsymGD("spx_physic_get_collision_mask"))
-	x.SpxPhysicGetColliderType = (GDExtensionSpxPhysicGetColliderType)(dlsymGD("spx_physic_get_collider_type"))
-	x.SpxPhysicAddColliderRect = (GDExtensionSpxPhysicAddColliderRect)(dlsymGD("spx_physic_add_collider_rect"))
-	x.SpxPhysicAddColliderCircle = (GDExtensionSpxPhysicAddColliderCircle)(dlsymGD("spx_physic_add_collider_circle"))
-	x.SpxPhysicAddColliderCapsule = (GDExtensionSpxPhysicAddColliderCapsule)(dlsymGD("spx_physic_add_collider_capsule"))
-	x.SpxPhysicSetTrigger = (GDExtensionSpxPhysicSetTrigger)(dlsymGD("spx_physic_set_trigger"))
-	x.SpxPhysicIsTrigger = (GDExtensionSpxPhysicIsTrigger)(dlsymGD("spx_physic_is_trigger"))
-	x.SpxPhysicSetCollisionEnabled = (GDExtensionSpxPhysicSetCollisionEnabled)(dlsymGD("spx_physic_set_collision_enabled"))
-	x.SpxPhysicIsCollisionEnabled = (GDExtensionSpxPhysicIsCollisionEnabled)(dlsymGD("spx_physic_is_collision_enabled"))
+	x.SpxPhysicRaycast = (GDExtensionSpxPhysicRaycast)(dlsymGD("spx_physic_raycast"))
 	x.SpxSpriteCreateSprite = (GDExtensionSpxSpriteCreateSprite)(dlsymGD("spx_sprite_create_sprite"))
 	x.SpxSpriteCloneSprite = (GDExtensionSpxSpriteCloneSprite)(dlsymGD("spx_sprite_clone_sprite"))
 	x.SpxSpriteDestroySprite = (GDExtensionSpxSpriteDestroySprite)(dlsymGD("spx_sprite_destroy_sprite"))
@@ -162,11 +169,56 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteGetScale = (GDExtensionSpxSpriteGetScale)(dlsymGD("spx_sprite_get_scale"))
 	x.SpxSpriteSetColor = (GDExtensionSpxSpriteSetColor)(dlsymGD("spx_sprite_set_color"))
 	x.SpxSpriteGetColor = (GDExtensionSpxSpriteGetColor)(dlsymGD("spx_sprite_get_color"))
-	x.SpxSpriteUpdateTexture = (GDExtensionSpxSpriteUpdateTexture)(dlsymGD("spx_sprite_update_texture"))
+	x.SpxSpriteSetTexture = (GDExtensionSpxSpriteSetTexture)(dlsymGD("spx_sprite_set_texture"))
 	x.SpxSpriteGetTexture = (GDExtensionSpxSpriteGetTexture)(dlsymGD("spx_sprite_get_texture"))
 	x.SpxSpriteSetVisible = (GDExtensionSpxSpriteSetVisible)(dlsymGD("spx_sprite_set_visible"))
 	x.SpxSpriteGetVisible = (GDExtensionSpxSpriteGetVisible)(dlsymGD("spx_sprite_get_visible"))
-	x.SpxSpriteUpdateZIndex = (GDExtensionSpxSpriteUpdateZIndex)(dlsymGD("spx_sprite_update_z_index"))
+	x.SpxSpriteGetZIndex = (GDExtensionSpxSpriteGetZIndex)(dlsymGD("spx_sprite_get_z_index"))
+	x.SpxSpriteSetZIndex = (GDExtensionSpxSpriteSetZIndex)(dlsymGD("spx_sprite_set_z_index"))
+	x.SpxSpritePlayAnim = (GDExtensionSpxSpritePlayAnim)(dlsymGD("spx_sprite_play_anim"))
+	x.SpxSpritePlayBackwardsAnim = (GDExtensionSpxSpritePlayBackwardsAnim)(dlsymGD("spx_sprite_play_backwards_anim"))
+	x.SpxSpritePauseAnim = (GDExtensionSpxSpritePauseAnim)(dlsymGD("spx_sprite_pause_anim"))
+	x.SpxSpriteStopAnim = (GDExtensionSpxSpriteStopAnim)(dlsymGD("spx_sprite_stop_anim"))
+	x.SpxSpriteIsPlayingAnim = (GDExtensionSpxSpriteIsPlayingAnim)(dlsymGD("spx_sprite_is_playing_anim"))
+	x.SpxSpriteSetAnim = (GDExtensionSpxSpriteSetAnim)(dlsymGD("spx_sprite_set_anim"))
+	x.SpxSpriteGetAnim = (GDExtensionSpxSpriteGetAnim)(dlsymGD("spx_sprite_get_anim"))
+	x.SpxSpriteSetAnimFrame = (GDExtensionSpxSpriteSetAnimFrame)(dlsymGD("spx_sprite_set_anim_frame"))
+	x.SpxSpriteGetAnimFrame = (GDExtensionSpxSpriteGetAnimFrame)(dlsymGD("spx_sprite_get_anim_frame"))
+	x.SpxSpriteSetAnimSpeedScale = (GDExtensionSpxSpriteSetAnimSpeedScale)(dlsymGD("spx_sprite_set_anim_speed_scale"))
+	x.SpxSpriteGetAnimSpeedScale = (GDExtensionSpxSpriteGetAnimSpeedScale)(dlsymGD("spx_sprite_get_anim_speed_scale"))
+	x.SpxSpriteGetAnimPlayingSpeed = (GDExtensionSpxSpriteGetAnimPlayingSpeed)(dlsymGD("spx_sprite_get_anim_playing_speed"))
+	x.SpxSpriteSetAnimCentered = (GDExtensionSpxSpriteSetAnimCentered)(dlsymGD("spx_sprite_set_anim_centered"))
+	x.SpxSpriteIsAnimCentered = (GDExtensionSpxSpriteIsAnimCentered)(dlsymGD("spx_sprite_is_anim_centered"))
+	x.SpxSpriteSetAnimOffset = (GDExtensionSpxSpriteSetAnimOffset)(dlsymGD("spx_sprite_set_anim_offset"))
+	x.SpxSpriteGetAnimOffset = (GDExtensionSpxSpriteGetAnimOffset)(dlsymGD("spx_sprite_get_anim_offset"))
+	x.SpxSpriteSetAnimFlipH = (GDExtensionSpxSpriteSetAnimFlipH)(dlsymGD("spx_sprite_set_anim_flip_h"))
+	x.SpxSpriteIsAnimFlippedH = (GDExtensionSpxSpriteIsAnimFlippedH)(dlsymGD("spx_sprite_is_anim_flipped_h"))
+	x.SpxSpriteSetAnimFlipV = (GDExtensionSpxSpriteSetAnimFlipV)(dlsymGD("spx_sprite_set_anim_flip_v"))
+	x.SpxSpriteIsAnimFlippedV = (GDExtensionSpxSpriteIsAnimFlippedV)(dlsymGD("spx_sprite_is_anim_flipped_v"))
+	x.SpxSpriteSetGravity = (GDExtensionSpxSpriteSetGravity)(dlsymGD("spx_sprite_set_gravity"))
+	x.SpxSpriteGetGravity = (GDExtensionSpxSpriteGetGravity)(dlsymGD("spx_sprite_get_gravity"))
+	x.SpxSpriteSetMass = (GDExtensionSpxSpriteSetMass)(dlsymGD("spx_sprite_set_mass"))
+	x.SpxSpriteGetMass = (GDExtensionSpxSpriteGetMass)(dlsymGD("spx_sprite_get_mass"))
+	x.SpxSpriteAddForce = (GDExtensionSpxSpriteAddForce)(dlsymGD("spx_sprite_add_force"))
+	x.SpxSpriteAddImpulse = (GDExtensionSpxSpriteAddImpulse)(dlsymGD("spx_sprite_add_impulse"))
+	x.SpxSpriteSetCollisionLayer = (GDExtensionSpxSpriteSetCollisionLayer)(dlsymGD("spx_sprite_set_collision_layer"))
+	x.SpxSpriteGetCollisionLayer = (GDExtensionSpxSpriteGetCollisionLayer)(dlsymGD("spx_sprite_get_collision_layer"))
+	x.SpxSpriteSetCollisionMask = (GDExtensionSpxSpriteSetCollisionMask)(dlsymGD("spx_sprite_set_collision_mask"))
+	x.SpxSpriteGetCollisionMask = (GDExtensionSpxSpriteGetCollisionMask)(dlsymGD("spx_sprite_get_collision_mask"))
+	x.SpxSpriteSetTriggerLayer = (GDExtensionSpxSpriteSetTriggerLayer)(dlsymGD("spx_sprite_set_trigger_layer"))
+	x.SpxSpriteGetTriggerLayer = (GDExtensionSpxSpriteGetTriggerLayer)(dlsymGD("spx_sprite_get_trigger_layer"))
+	x.SpxSpriteSetTriggerMask = (GDExtensionSpxSpriteSetTriggerMask)(dlsymGD("spx_sprite_set_trigger_mask"))
+	x.SpxSpriteGetTriggerMask = (GDExtensionSpxSpriteGetTriggerMask)(dlsymGD("spx_sprite_get_trigger_mask"))
+	x.SpxSpriteSetColliderRect = (GDExtensionSpxSpriteSetColliderRect)(dlsymGD("spx_sprite_set_collider_rect"))
+	x.SpxSpriteSetColliderCircle = (GDExtensionSpxSpriteSetColliderCircle)(dlsymGD("spx_sprite_set_collider_circle"))
+	x.SpxSpriteSetColliderCapsule = (GDExtensionSpxSpriteSetColliderCapsule)(dlsymGD("spx_sprite_set_collider_capsule"))
+	x.SpxSpriteSetCollisionEnabled = (GDExtensionSpxSpriteSetCollisionEnabled)(dlsymGD("spx_sprite_set_collision_enabled"))
+	x.SpxSpriteIsCollisionEnabled = (GDExtensionSpxSpriteIsCollisionEnabled)(dlsymGD("spx_sprite_is_collision_enabled"))
+	x.SpxSpriteSetTriggerRect = (GDExtensionSpxSpriteSetTriggerRect)(dlsymGD("spx_sprite_set_trigger_rect"))
+	x.SpxSpriteSetTriggerCircle = (GDExtensionSpxSpriteSetTriggerCircle)(dlsymGD("spx_sprite_set_trigger_circle"))
+	x.SpxSpriteSetTriggerCapsule = (GDExtensionSpxSpriteSetTriggerCapsule)(dlsymGD("spx_sprite_set_trigger_capsule"))
+	x.SpxSpriteSetTriggerEnabled = (GDExtensionSpxSpriteSetTriggerEnabled)(dlsymGD("spx_sprite_set_trigger_enabled"))
+	x.SpxSpriteIsTriggerEnabled = (GDExtensionSpxSpriteIsTriggerEnabled)(dlsymGD("spx_sprite_is_trigger_enabled"))
 	x.SpxUICreateButton = (GDExtensionSpxUICreateButton)(dlsymGD("spx_ui_create_button"))
 	x.SpxUICreateLabel = (GDExtensionSpxUICreateLabel)(dlsymGD("spx_ui_create_label"))
 	x.SpxUICreateImage = (GDExtensionSpxUICreateImage)(dlsymGD("spx_ui_create_image"))

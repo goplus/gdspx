@@ -10,49 +10,30 @@ package engine
 
 type IAudioMgr interface {
 	PlayAudio(path string)
-	SetAudioVolume(volume float64)
-	GetAudioVolume() float64 
+	SetAudioVolume(volume float32)
+	GetAudioVolume() float32 
 	IsMusicPlaying() bool 
 	PlayMusic(path string)
-	SetMusicVolume(volume float64)
-	GetMusicVolume() float64 
+	SetMusicVolume(volume float32)
+	GetMusicVolume() float32 
 	PauseMusic()
 	ResumeMusic()
-	GetMusicTimer() float64 
-	SetMusicTimer(time float64) 
+	GetMusicTimer() float32 
+	SetMusicTimer(time float32) 
 }
 
 type IInputMgr interface {
 	GetMousePos() Vec2 
 	GetMouseState(mouse_id int64) bool 
 	GetKeyState(key int64) int64 
-	GetAxis(axis string) float64 
+	GetAxis(axis string) float32 
 	IsActionPressed(action string) bool 
 	IsActionJustPressed(action string) bool 
 	IsActionJustReleased(action string) bool  
 }
 
 type IPhysicMgr interface {
-	SetGravity(gravity float64)
-	GetGravity() float64 
-	SetVelocity(obj Object, velocity Vec2)
-	GetVelocity(obj Object) Vec2 
-	SetMass(obj Object, mass float64)
-	GetMass(obj Object) float64 
-	AddForce(obj Object, force Vec2)
-	AddImpulse(obj Object, impulse Vec2)
-	SetCollisionLayer(obj Object, layer int64)
-	GetCollisionLayer(obj Object) int64 
-	SetCollisionMask(obj Object, mask int64)
-	GetCollisionMask(obj Object) int64 
-	GetColliderType(obj Object) int64 
-	AddColliderRect(obj Object, center Vec2, size Vec2)
-	AddColliderCircle(obj Object, center Vec2, radius float64)
-	AddColliderCapsule(obj Object, center Vec2, size Vec2)
-	SetTrigger(obj Object, trigger bool)
-	IsTrigger(obj Object) bool 
-	SetCollisionEnabled(obj Object, enabled bool)
-	IsCollisionEnabled(obj Object) bool  
+	Raycast(from Vec2, to Vec2, collision_mask int64) Object  
 }
 
 type ISpriteMgr interface {
@@ -61,25 +42,70 @@ type ISpriteMgr interface {
 	DestroySprite(obj Object) bool 
 	IsSpriteAlive(obj Object) bool 
 	SetPosition(obj Object, pos Vec2)
-	SetRotation(obj Object, rot float64)
+	SetRotation(obj Object, rot float32)
 	SetScale(obj Object, scale Vec2)
 	GetPosition(obj Object) Vec2 
-	GetRotation(obj Object) float64 
+	GetRotation(obj Object) float32 
 	GetScale(obj Object) Vec2 
 	SetColor(obj Object, color Color)
 	GetColor(obj Object) Color 
-	UpdateTexture(obj Object, path string)
+	SetTexture(obj Object, path string)
 	GetTexture(obj Object) string 
 	SetVisible(obj Object, visible bool)
 	GetVisible(obj Object) bool 
-	UpdateZIndex(obj Object, z int64) 
+	GetZIndex(obj Object) int64 
+	SetZIndex(obj Object, z int64)
+	PlayAnim(obj Object, p_name string, p_custom_scale float32, p_from_end bool)
+	PlayBackwardsAnim(obj Object, p_name string)
+	PauseAnim(obj Object)
+	StopAnim(obj Object)
+	IsPlayingAnim(obj Object) bool 
+	SetAnim(obj Object, p_name string)
+	GetAnim(obj Object) string 
+	SetAnimFrame(obj Object, p_frame int64)
+	GetAnimFrame(obj Object) int64 
+	SetAnimSpeedScale(obj Object, p_speed_scale float32)
+	GetAnimSpeedScale(obj Object) float32 
+	GetAnimPlayingSpeed(obj Object) float32 
+	SetAnimCentered(obj Object, p_center bool)
+	IsAnimCentered(obj Object) bool 
+	SetAnimOffset(obj Object, p_offset Vec2)
+	GetAnimOffset(obj Object) Vec2 
+	SetAnimFlipH(obj Object, p_flip bool)
+	IsAnimFlippedH(obj Object) bool 
+	SetAnimFlipV(obj Object, p_flip bool)
+	IsAnimFlippedV(obj Object) bool 
+	SetGravity(obj Object, gravity float32)
+	GetGravity(obj Object) float32 
+	SetMass(obj Object, mass float32)
+	GetMass(obj Object) float32 
+	AddForce(obj Object, force Vec2)
+	AddImpulse(obj Object, impulse Vec2)
+	SetCollisionLayer(obj Object, layer int64)
+	GetCollisionLayer(obj Object) int64 
+	SetCollisionMask(obj Object, mask int64)
+	GetCollisionMask(obj Object) int64 
+	SetTriggerLayer(obj Object, layer int64)
+	GetTriggerLayer(obj Object) int64 
+	SetTriggerMask(obj Object, mask int64)
+	GetTriggerMask(obj Object) int64 
+	SetColliderRect(obj Object, center Vec2, size Vec2)
+	SetColliderCircle(obj Object, center Vec2, radius float32)
+	SetColliderCapsule(obj Object, center Vec2, size Vec2)
+	SetCollisionEnabled(obj Object, enabled bool)
+	IsCollisionEnabled(obj Object) bool 
+	SetTriggerRect(obj Object, center Vec2, size Vec2)
+	SetTriggerCircle(obj Object, center Vec2, radius float32)
+	SetTriggerCapsule(obj Object, center Vec2, size Vec2)
+	SetTriggerEnabled(obj Object, trigger bool)
+	IsTriggerEnabled(obj Object) bool  
 }
 
 type IUiMgr interface {
 	CreateButton(path string, rect Rect2, text string) int64 
 	CreateLabel(path string, rect Rect2, text string) int64 
 	CreateImage(path string, rect Rect2, color Color) int64 
-	CreateSlider(path string, rect Rect2, value float64) int64 
+	CreateSlider(path string, rect Rect2, value float32) int64 
 	CreateToggle(path string, rect Rect2, value bool) int64 
 	CreateInput(path string, rect Rect2, text string) int64 
 	GetType(obj Object) int64 
@@ -91,8 +117,8 @@ type IUiMgr interface {
 	GetRect(obj Object) Rect2 
 	SetColor(obj Object, color Color)
 	GetColor(obj Object) Color 
-	SetFontSize(obj Object, size float64)
-	GetFontSize(obj Object) float64 
+	SetFontSize(obj Object, size float32)
+	GetFontSize(obj Object) float32 
 	SetVisible(obj Object, visible bool)
 	GetVisible(obj Object) bool  
 }

@@ -48,7 +48,7 @@ func ToGdVec2(val engine.Vec2) GdVec2 {
 	return GdVec2{C.GdFloat(val.X), C.GdFloat(val.Y)}
 }
 func ToVec2(val GdVec2) engine.Vec2 {
-	return engine.Vec2{float64(val.X), float64(val.Y)}
+	return engine.Vec2{float32(val.X), float32(val.Y)}
 }
 func ToGdColor(val engine.Color) GdColor {
 	return GdColor{C.float(val.R), C.float(val.G), C.float(val.B), C.float(val.A)}
@@ -85,14 +85,14 @@ func ToInt(val GdInt) int64 {
 func ToInt64(val GdInt) int64 {
 	return int64(val)
 }
-func ToGdFloat(val float64) GdFloat {
+func ToGdFloat(val float32) GdFloat {
 	return GdFloat(val)
 }
-func ToFloat64(val GdFloat) float64 {
-	return float64(val)
+func ToFloat32(val GdFloat) float32 {
+	return float32(val)
 }
-func ToFloat(val GdFloat) float64 {
-	return float64(val)
+func ToFloat(val GdFloat) float32 {
+	return float32(val)
 }
 func ToString(val GdString) string {
 	cstrPtr := (*CString)(unsafe.Pointer(&val))
@@ -228,7 +228,7 @@ func func_on_engine_start() {
 //export func_on_engine_update
 func func_on_engine_update(delta C.GDReal) {
 	if callbacks.OnEngineUpdate != nil {
-		callbacks.OnEngineUpdate(float64(delta))
+		callbacks.OnEngineUpdate(float32(delta))
 	}
 }
 

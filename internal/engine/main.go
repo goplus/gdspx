@@ -54,7 +54,7 @@ func onEngineStart() {
 	}
 }
 
-func onEngineUpdate(delta float64) {
+func onEngineUpdate(delta float32) {
 	for _, mgr := range mgrs {
 		mgr.OnUpdate(delta)
 	}

@@ -11,13 +11,13 @@ var (
 type IManager interface {
 	Init(root Node)
 	OnStart()
-	OnUpdate(delta float64)
+	OnUpdate(delta float32)
 	OnDestroy()
 }
 
 type EngineCallbackInfo struct {
 	OnEngineStart   func()
-	OnEngineUpdate  func(float64)
+	OnEngineUpdate  func(float32)
 	OnEngineDestroy func()
 }
 
@@ -37,7 +37,7 @@ type CallbackInfo struct {
 	OnActionPressed      func(string)
 	OnActionJustPressed  func(string)
 	OnActionJustReleased func(string)
-	OnAxisChanged        func(string, float64)
+	OnAxisChanged        func(string, float32)
 
 	// physic
 	OnCollisionEnter func(int64, int64)

@@ -78,26 +78,7 @@ type GDExtensionSpxInputGetAxis C.GDExtensionSpxInputGetAxis
 type GDExtensionSpxInputIsActionPressed C.GDExtensionSpxInputIsActionPressed
 type GDExtensionSpxInputIsActionJustPressed C.GDExtensionSpxInputIsActionJustPressed
 type GDExtensionSpxInputIsActionJustReleased C.GDExtensionSpxInputIsActionJustReleased
-type GDExtensionSpxPhysicSetGravity C.GDExtensionSpxPhysicSetGravity
-type GDExtensionSpxPhysicGetGravity C.GDExtensionSpxPhysicGetGravity
-type GDExtensionSpxPhysicSetVelocity C.GDExtensionSpxPhysicSetVelocity
-type GDExtensionSpxPhysicGetVelocity C.GDExtensionSpxPhysicGetVelocity
-type GDExtensionSpxPhysicSetMass C.GDExtensionSpxPhysicSetMass
-type GDExtensionSpxPhysicGetMass C.GDExtensionSpxPhysicGetMass
-type GDExtensionSpxPhysicAddForce C.GDExtensionSpxPhysicAddForce
-type GDExtensionSpxPhysicAddImpulse C.GDExtensionSpxPhysicAddImpulse
-type GDExtensionSpxPhysicSetCollisionLayer C.GDExtensionSpxPhysicSetCollisionLayer
-type GDExtensionSpxPhysicGetCollisionLayer C.GDExtensionSpxPhysicGetCollisionLayer
-type GDExtensionSpxPhysicSetCollisionMask C.GDExtensionSpxPhysicSetCollisionMask
-type GDExtensionSpxPhysicGetCollisionMask C.GDExtensionSpxPhysicGetCollisionMask
-type GDExtensionSpxPhysicGetColliderType C.GDExtensionSpxPhysicGetColliderType
-type GDExtensionSpxPhysicAddColliderRect C.GDExtensionSpxPhysicAddColliderRect
-type GDExtensionSpxPhysicAddColliderCircle C.GDExtensionSpxPhysicAddColliderCircle
-type GDExtensionSpxPhysicAddColliderCapsule C.GDExtensionSpxPhysicAddColliderCapsule
-type GDExtensionSpxPhysicSetTrigger C.GDExtensionSpxPhysicSetTrigger
-type GDExtensionSpxPhysicIsTrigger C.GDExtensionSpxPhysicIsTrigger
-type GDExtensionSpxPhysicSetCollisionEnabled C.GDExtensionSpxPhysicSetCollisionEnabled
-type GDExtensionSpxPhysicIsCollisionEnabled C.GDExtensionSpxPhysicIsCollisionEnabled
+type GDExtensionSpxPhysicRaycast C.GDExtensionSpxPhysicRaycast
 type GDExtensionSpxSpriteCreateSprite C.GDExtensionSpxSpriteCreateSprite
 type GDExtensionSpxSpriteCloneSprite C.GDExtensionSpxSpriteCloneSprite
 type GDExtensionSpxSpriteDestroySprite C.GDExtensionSpxSpriteDestroySprite
@@ -110,11 +91,56 @@ type GDExtensionSpxSpriteGetRotation C.GDExtensionSpxSpriteGetRotation
 type GDExtensionSpxSpriteGetScale C.GDExtensionSpxSpriteGetScale
 type GDExtensionSpxSpriteSetColor C.GDExtensionSpxSpriteSetColor
 type GDExtensionSpxSpriteGetColor C.GDExtensionSpxSpriteGetColor
-type GDExtensionSpxSpriteUpdateTexture C.GDExtensionSpxSpriteUpdateTexture
+type GDExtensionSpxSpriteSetTexture C.GDExtensionSpxSpriteSetTexture
 type GDExtensionSpxSpriteGetTexture C.GDExtensionSpxSpriteGetTexture
 type GDExtensionSpxSpriteSetVisible C.GDExtensionSpxSpriteSetVisible
 type GDExtensionSpxSpriteGetVisible C.GDExtensionSpxSpriteGetVisible
-type GDExtensionSpxSpriteUpdateZIndex C.GDExtensionSpxSpriteUpdateZIndex
+type GDExtensionSpxSpriteGetZIndex C.GDExtensionSpxSpriteGetZIndex
+type GDExtensionSpxSpriteSetZIndex C.GDExtensionSpxSpriteSetZIndex
+type GDExtensionSpxSpritePlayAnim C.GDExtensionSpxSpritePlayAnim
+type GDExtensionSpxSpritePlayBackwardsAnim C.GDExtensionSpxSpritePlayBackwardsAnim
+type GDExtensionSpxSpritePauseAnim C.GDExtensionSpxSpritePauseAnim
+type GDExtensionSpxSpriteStopAnim C.GDExtensionSpxSpriteStopAnim
+type GDExtensionSpxSpriteIsPlayingAnim C.GDExtensionSpxSpriteIsPlayingAnim
+type GDExtensionSpxSpriteSetAnim C.GDExtensionSpxSpriteSetAnim
+type GDExtensionSpxSpriteGetAnim C.GDExtensionSpxSpriteGetAnim
+type GDExtensionSpxSpriteSetAnimFrame C.GDExtensionSpxSpriteSetAnimFrame
+type GDExtensionSpxSpriteGetAnimFrame C.GDExtensionSpxSpriteGetAnimFrame
+type GDExtensionSpxSpriteSetAnimSpeedScale C.GDExtensionSpxSpriteSetAnimSpeedScale
+type GDExtensionSpxSpriteGetAnimSpeedScale C.GDExtensionSpxSpriteGetAnimSpeedScale
+type GDExtensionSpxSpriteGetAnimPlayingSpeed C.GDExtensionSpxSpriteGetAnimPlayingSpeed
+type GDExtensionSpxSpriteSetAnimCentered C.GDExtensionSpxSpriteSetAnimCentered
+type GDExtensionSpxSpriteIsAnimCentered C.GDExtensionSpxSpriteIsAnimCentered
+type GDExtensionSpxSpriteSetAnimOffset C.GDExtensionSpxSpriteSetAnimOffset
+type GDExtensionSpxSpriteGetAnimOffset C.GDExtensionSpxSpriteGetAnimOffset
+type GDExtensionSpxSpriteSetAnimFlipH C.GDExtensionSpxSpriteSetAnimFlipH
+type GDExtensionSpxSpriteIsAnimFlippedH C.GDExtensionSpxSpriteIsAnimFlippedH
+type GDExtensionSpxSpriteSetAnimFlipV C.GDExtensionSpxSpriteSetAnimFlipV
+type GDExtensionSpxSpriteIsAnimFlippedV C.GDExtensionSpxSpriteIsAnimFlippedV
+type GDExtensionSpxSpriteSetGravity C.GDExtensionSpxSpriteSetGravity
+type GDExtensionSpxSpriteGetGravity C.GDExtensionSpxSpriteGetGravity
+type GDExtensionSpxSpriteSetMass C.GDExtensionSpxSpriteSetMass
+type GDExtensionSpxSpriteGetMass C.GDExtensionSpxSpriteGetMass
+type GDExtensionSpxSpriteAddForce C.GDExtensionSpxSpriteAddForce
+type GDExtensionSpxSpriteAddImpulse C.GDExtensionSpxSpriteAddImpulse
+type GDExtensionSpxSpriteSetCollisionLayer C.GDExtensionSpxSpriteSetCollisionLayer
+type GDExtensionSpxSpriteGetCollisionLayer C.GDExtensionSpxSpriteGetCollisionLayer
+type GDExtensionSpxSpriteSetCollisionMask C.GDExtensionSpxSpriteSetCollisionMask
+type GDExtensionSpxSpriteGetCollisionMask C.GDExtensionSpxSpriteGetCollisionMask
+type GDExtensionSpxSpriteSetTriggerLayer C.GDExtensionSpxSpriteSetTriggerLayer
+type GDExtensionSpxSpriteGetTriggerLayer C.GDExtensionSpxSpriteGetTriggerLayer
+type GDExtensionSpxSpriteSetTriggerMask C.GDExtensionSpxSpriteSetTriggerMask
+type GDExtensionSpxSpriteGetTriggerMask C.GDExtensionSpxSpriteGetTriggerMask
+type GDExtensionSpxSpriteSetColliderRect C.GDExtensionSpxSpriteSetColliderRect
+type GDExtensionSpxSpriteSetColliderCircle C.GDExtensionSpxSpriteSetColliderCircle
+type GDExtensionSpxSpriteSetColliderCapsule C.GDExtensionSpxSpriteSetColliderCapsule
+type GDExtensionSpxSpriteSetCollisionEnabled C.GDExtensionSpxSpriteSetCollisionEnabled
+type GDExtensionSpxSpriteIsCollisionEnabled C.GDExtensionSpxSpriteIsCollisionEnabled
+type GDExtensionSpxSpriteSetTriggerRect C.GDExtensionSpxSpriteSetTriggerRect
+type GDExtensionSpxSpriteSetTriggerCircle C.GDExtensionSpxSpriteSetTriggerCircle
+type GDExtensionSpxSpriteSetTriggerCapsule C.GDExtensionSpxSpriteSetTriggerCapsule
+type GDExtensionSpxSpriteSetTriggerEnabled C.GDExtensionSpxSpriteSetTriggerEnabled
+type GDExtensionSpxSpriteIsTriggerEnabled C.GDExtensionSpxSpriteIsTriggerEnabled
 type GDExtensionSpxUICreateButton C.GDExtensionSpxUICreateButton
 type GDExtensionSpxUICreateLabel C.GDExtensionSpxUICreateLabel
 type GDExtensionSpxUICreateImage C.GDExtensionSpxUICreateImage
@@ -380,212 +406,20 @@ func CallInputIsActionJustReleased(
 	
 	return (GdBool)(ret)
 }
-func CallPhysicSetGravity(
-	gravity GdFloat,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicSetGravity)(api.SpxPhysicSetGravity)
-	arg1 := (C.GdFloat)(gravity)
-	C.cgo_callfn_GDExtensionSpxPhysicSetGravity(arg0,arg1,)
-	
-}
-func CallPhysicGetGravity(
-	) GdFloat {
-	arg0 := (C.GDExtensionSpxPhysicGetGravity)(api.SpxPhysicGetGravity)
-	ret := C.cgo_callfn_GDExtensionSpxPhysicGetGravity(arg0,)
-	return (GdFloat)(ret)
-}
-func CallPhysicSetVelocity(
-	obj GdObj,
-	velocity GdVec2,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicSetVelocity)(api.SpxPhysicSetVelocity)
-	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdVec2)(velocity)
-	C.cgo_callfn_GDExtensionSpxPhysicSetVelocity(arg0,arg1,arg2,)
-	
-	
-}
-func CallPhysicGetVelocity(
-	obj GdObj,
-	) GdVec2 {
-	arg0 := (C.GDExtensionSpxPhysicGetVelocity)(api.SpxPhysicGetVelocity)
-	arg1 := (C.GdObj)(obj)
-	ret := C.cgo_callfn_GDExtensionSpxPhysicGetVelocity(arg0,arg1,)
-	
-	return (GdVec2)(ret)
-}
-func CallPhysicSetMass(
-	obj GdObj,
-	mass GdFloat,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicSetMass)(api.SpxPhysicSetMass)
-	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdFloat)(mass)
-	C.cgo_callfn_GDExtensionSpxPhysicSetMass(arg0,arg1,arg2,)
-	
-	
-}
-func CallPhysicGetMass(
-	obj GdObj,
-	) GdFloat {
-	arg0 := (C.GDExtensionSpxPhysicGetMass)(api.SpxPhysicGetMass)
-	arg1 := (C.GdObj)(obj)
-	ret := C.cgo_callfn_GDExtensionSpxPhysicGetMass(arg0,arg1,)
-	
-	return (GdFloat)(ret)
-}
-func CallPhysicAddForce(
-	obj GdObj,
-	force GdVec2,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicAddForce)(api.SpxPhysicAddForce)
-	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdVec2)(force)
-	C.cgo_callfn_GDExtensionSpxPhysicAddForce(arg0,arg1,arg2,)
-	
-	
-}
-func CallPhysicAddImpulse(
-	obj GdObj,
-	impulse GdVec2,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicAddImpulse)(api.SpxPhysicAddImpulse)
-	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdVec2)(impulse)
-	C.cgo_callfn_GDExtensionSpxPhysicAddImpulse(arg0,arg1,arg2,)
-	
-	
-}
-func CallPhysicSetCollisionLayer(
-	obj GdObj,
-	layer GdInt,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicSetCollisionLayer)(api.SpxPhysicSetCollisionLayer)
-	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdInt)(layer)
-	C.cgo_callfn_GDExtensionSpxPhysicSetCollisionLayer(arg0,arg1,arg2,)
-	
-	
-}
-func CallPhysicGetCollisionLayer(
-	obj GdObj,
-	) GdInt {
-	arg0 := (C.GDExtensionSpxPhysicGetCollisionLayer)(api.SpxPhysicGetCollisionLayer)
-	arg1 := (C.GdObj)(obj)
-	ret := C.cgo_callfn_GDExtensionSpxPhysicGetCollisionLayer(arg0,arg1,)
-	
-	return (GdInt)(ret)
-}
-func CallPhysicSetCollisionMask(
-	obj GdObj,
-	mask GdInt,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicSetCollisionMask)(api.SpxPhysicSetCollisionMask)
-	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdInt)(mask)
-	C.cgo_callfn_GDExtensionSpxPhysicSetCollisionMask(arg0,arg1,arg2,)
-	
-	
-}
-func CallPhysicGetCollisionMask(
-	obj GdObj,
-	) GdInt {
-	arg0 := (C.GDExtensionSpxPhysicGetCollisionMask)(api.SpxPhysicGetCollisionMask)
-	arg1 := (C.GdObj)(obj)
-	ret := C.cgo_callfn_GDExtensionSpxPhysicGetCollisionMask(arg0,arg1,)
-	
-	return (GdInt)(ret)
-}
-func CallPhysicGetColliderType(
-	obj GdObj,
-	) GdInt {
-	arg0 := (C.GDExtensionSpxPhysicGetColliderType)(api.SpxPhysicGetColliderType)
-	arg1 := (C.GdObj)(obj)
-	ret := C.cgo_callfn_GDExtensionSpxPhysicGetColliderType(arg0,arg1,)
-	
-	return (GdInt)(ret)
-}
-func CallPhysicAddColliderRect(
-	obj GdObj,
-	center GdVec2,
-	size GdVec2,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicAddColliderRect)(api.SpxPhysicAddColliderRect)
-	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdVec2)(center)
-	arg3 := (C.GdVec2)(size)
-	C.cgo_callfn_GDExtensionSpxPhysicAddColliderRect(arg0,arg1,arg2,arg3,)
+func CallPhysicRaycast(
+	from GdVec2,
+	to GdVec2,
+	collision_mask GdInt,
+	) GdObj {
+	arg0 := (C.GDExtensionSpxPhysicRaycast)(api.SpxPhysicRaycast)
+	arg1 := (C.GdVec2)(from)
+	arg2 := (C.GdVec2)(to)
+	arg3 := (C.GdInt)(collision_mask)
+	ret := C.cgo_callfn_GDExtensionSpxPhysicRaycast(arg0,arg1,arg2,arg3,)
 	
 	
 	
-}
-func CallPhysicAddColliderCircle(
-	obj GdObj,
-	center GdVec2,
-	radius GdFloat,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicAddColliderCircle)(api.SpxPhysicAddColliderCircle)
-	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdVec2)(center)
-	arg3 := (C.GdFloat)(radius)
-	C.cgo_callfn_GDExtensionSpxPhysicAddColliderCircle(arg0,arg1,arg2,arg3,)
-	
-	
-	
-}
-func CallPhysicAddColliderCapsule(
-	obj GdObj,
-	center GdVec2,
-	size GdVec2,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicAddColliderCapsule)(api.SpxPhysicAddColliderCapsule)
-	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdVec2)(center)
-	arg3 := (C.GdVec2)(size)
-	C.cgo_callfn_GDExtensionSpxPhysicAddColliderCapsule(arg0,arg1,arg2,arg3,)
-	
-	
-	
-}
-func CallPhysicSetTrigger(
-	obj GdObj,
-	trigger GdBool,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicSetTrigger)(api.SpxPhysicSetTrigger)
-	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdBool)(trigger)
-	C.cgo_callfn_GDExtensionSpxPhysicSetTrigger(arg0,arg1,arg2,)
-	
-	
-}
-func CallPhysicIsTrigger(
-	obj GdObj,
-	) GdBool {
-	arg0 := (C.GDExtensionSpxPhysicIsTrigger)(api.SpxPhysicIsTrigger)
-	arg1 := (C.GdObj)(obj)
-	ret := C.cgo_callfn_GDExtensionSpxPhysicIsTrigger(arg0,arg1,)
-	
-	return (GdBool)(ret)
-}
-func CallPhysicSetCollisionEnabled(
-	obj GdObj,
-	enabled GdBool,
-	)  {
-	arg0 := (C.GDExtensionSpxPhysicSetCollisionEnabled)(api.SpxPhysicSetCollisionEnabled)
-	arg1 := (C.GdObj)(obj)
-	arg2 := (C.GdBool)(enabled)
-	C.cgo_callfn_GDExtensionSpxPhysicSetCollisionEnabled(arg0,arg1,arg2,)
-	
-	
-}
-func CallPhysicIsCollisionEnabled(
-	obj GdObj,
-	) GdBool {
-	arg0 := (C.GDExtensionSpxPhysicIsCollisionEnabled)(api.SpxPhysicIsCollisionEnabled)
-	arg1 := (C.GdObj)(obj)
-	ret := C.cgo_callfn_GDExtensionSpxPhysicIsCollisionEnabled(arg0,arg1,)
-	
-	return (GdBool)(ret)
+	return (GdObj)(ret)
 }
 func CallSpriteCreateSprite(
 	path GdString,
@@ -703,14 +537,14 @@ func CallSpriteGetColor(
 	
 	return (GdColor)(ret)
 }
-func CallSpriteUpdateTexture(
+func CallSpriteSetTexture(
 	obj GdObj,
 	path GdString,
 	)  {
-	arg0 := (C.GDExtensionSpxSpriteUpdateTexture)(api.SpxSpriteUpdateTexture)
+	arg0 := (C.GDExtensionSpxSpriteSetTexture)(api.SpxSpriteSetTexture)
 	arg1 := (C.GdObj)(obj)
 	arg2 := (C.GdString)(path)
-	C.cgo_callfn_GDExtensionSpxSpriteUpdateTexture(arg0,arg1,arg2,)
+	C.cgo_callfn_GDExtensionSpxSpriteSetTexture(arg0,arg1,arg2,)
 	
 	
 }
@@ -743,16 +577,493 @@ func CallSpriteGetVisible(
 	
 	return (GdBool)(ret)
 }
-func CallSpriteUpdateZIndex(
+func CallSpriteGetZIndex(
+	obj GdObj,
+	) GdInt {
+	arg0 := (C.GDExtensionSpxSpriteGetZIndex)(api.SpxSpriteGetZIndex)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetZIndex(arg0,arg1,)
+	
+	return (GdInt)(ret)
+}
+func CallSpriteSetZIndex(
 	obj GdObj,
 	z GdInt,
 	)  {
-	arg0 := (C.GDExtensionSpxSpriteUpdateZIndex)(api.SpxSpriteUpdateZIndex)
+	arg0 := (C.GDExtensionSpxSpriteSetZIndex)(api.SpxSpriteSetZIndex)
 	arg1 := (C.GdObj)(obj)
 	arg2 := (C.GdInt)(z)
-	C.cgo_callfn_GDExtensionSpxSpriteUpdateZIndex(arg0,arg1,arg2,)
+	C.cgo_callfn_GDExtensionSpxSpriteSetZIndex(arg0,arg1,arg2,)
 	
 	
+}
+func CallSpritePlayAnim(
+	obj GdObj,
+	p_name GdString,
+	p_custom_scale GdFloat,
+	p_from_end GdBool,
+	)  {
+	arg0 := (C.GDExtensionSpxSpritePlayAnim)(api.SpxSpritePlayAnim)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdString)(p_name)
+	arg3 := (C.GdFloat)(p_custom_scale)
+	arg4 := (C.GdBool)(p_from_end)
+	C.cgo_callfn_GDExtensionSpxSpritePlayAnim(arg0,arg1,arg2,arg3,arg4,)
+	
+	
+	
+	
+}
+func CallSpritePlayBackwardsAnim(
+	obj GdObj,
+	p_name GdString,
+	)  {
+	arg0 := (C.GDExtensionSpxSpritePlayBackwardsAnim)(api.SpxSpritePlayBackwardsAnim)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdString)(p_name)
+	C.cgo_callfn_GDExtensionSpxSpritePlayBackwardsAnim(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpritePauseAnim(
+	obj GdObj,
+	)  {
+	arg0 := (C.GDExtensionSpxSpritePauseAnim)(api.SpxSpritePauseAnim)
+	arg1 := (C.GdObj)(obj)
+	C.cgo_callfn_GDExtensionSpxSpritePauseAnim(arg0,arg1,)
+	
+}
+func CallSpriteStopAnim(
+	obj GdObj,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteStopAnim)(api.SpxSpriteStopAnim)
+	arg1 := (C.GdObj)(obj)
+	C.cgo_callfn_GDExtensionSpxSpriteStopAnim(arg0,arg1,)
+	
+}
+func CallSpriteIsPlayingAnim(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsPlayingAnim)(api.SpxSpriteIsPlayingAnim)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteIsPlayingAnim(arg0,arg1,)
+	
+	return (GdBool)(ret)
+}
+func CallSpriteSetAnim(
+	obj GdObj,
+	p_name GdString,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetAnim)(api.SpxSpriteSetAnim)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdString)(p_name)
+	C.cgo_callfn_GDExtensionSpxSpriteSetAnim(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteGetAnim(
+	obj GdObj,
+	) GdString {
+	arg0 := (C.GDExtensionSpxSpriteGetAnim)(api.SpxSpriteGetAnim)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetAnim(arg0,arg1,)
+	
+	return (GdString)(ret)
+}
+func CallSpriteSetAnimFrame(
+	obj GdObj,
+	p_frame GdInt,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetAnimFrame)(api.SpxSpriteSetAnimFrame)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdInt)(p_frame)
+	C.cgo_callfn_GDExtensionSpxSpriteSetAnimFrame(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteGetAnimFrame(
+	obj GdObj,
+	) GdInt {
+	arg0 := (C.GDExtensionSpxSpriteGetAnimFrame)(api.SpxSpriteGetAnimFrame)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetAnimFrame(arg0,arg1,)
+	
+	return (GdInt)(ret)
+}
+func CallSpriteSetAnimSpeedScale(
+	obj GdObj,
+	p_speed_scale GdFloat,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetAnimSpeedScale)(api.SpxSpriteSetAnimSpeedScale)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdFloat)(p_speed_scale)
+	C.cgo_callfn_GDExtensionSpxSpriteSetAnimSpeedScale(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteGetAnimSpeedScale(
+	obj GdObj,
+	) GdFloat {
+	arg0 := (C.GDExtensionSpxSpriteGetAnimSpeedScale)(api.SpxSpriteGetAnimSpeedScale)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetAnimSpeedScale(arg0,arg1,)
+	
+	return (GdFloat)(ret)
+}
+func CallSpriteGetAnimPlayingSpeed(
+	obj GdObj,
+	) GdFloat {
+	arg0 := (C.GDExtensionSpxSpriteGetAnimPlayingSpeed)(api.SpxSpriteGetAnimPlayingSpeed)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetAnimPlayingSpeed(arg0,arg1,)
+	
+	return (GdFloat)(ret)
+}
+func CallSpriteSetAnimCentered(
+	obj GdObj,
+	p_center GdBool,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetAnimCentered)(api.SpxSpriteSetAnimCentered)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdBool)(p_center)
+	C.cgo_callfn_GDExtensionSpxSpriteSetAnimCentered(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteIsAnimCentered(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsAnimCentered)(api.SpxSpriteIsAnimCentered)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteIsAnimCentered(arg0,arg1,)
+	
+	return (GdBool)(ret)
+}
+func CallSpriteSetAnimOffset(
+	obj GdObj,
+	p_offset GdVec2,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetAnimOffset)(api.SpxSpriteSetAnimOffset)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdVec2)(p_offset)
+	C.cgo_callfn_GDExtensionSpxSpriteSetAnimOffset(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteGetAnimOffset(
+	obj GdObj,
+	) GdVec2 {
+	arg0 := (C.GDExtensionSpxSpriteGetAnimOffset)(api.SpxSpriteGetAnimOffset)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetAnimOffset(arg0,arg1,)
+	
+	return (GdVec2)(ret)
+}
+func CallSpriteSetAnimFlipH(
+	obj GdObj,
+	p_flip GdBool,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetAnimFlipH)(api.SpxSpriteSetAnimFlipH)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdBool)(p_flip)
+	C.cgo_callfn_GDExtensionSpxSpriteSetAnimFlipH(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteIsAnimFlippedH(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsAnimFlippedH)(api.SpxSpriteIsAnimFlippedH)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteIsAnimFlippedH(arg0,arg1,)
+	
+	return (GdBool)(ret)
+}
+func CallSpriteSetAnimFlipV(
+	obj GdObj,
+	p_flip GdBool,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetAnimFlipV)(api.SpxSpriteSetAnimFlipV)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdBool)(p_flip)
+	C.cgo_callfn_GDExtensionSpxSpriteSetAnimFlipV(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteIsAnimFlippedV(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsAnimFlippedV)(api.SpxSpriteIsAnimFlippedV)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteIsAnimFlippedV(arg0,arg1,)
+	
+	return (GdBool)(ret)
+}
+func CallSpriteSetGravity(
+	obj GdObj,
+	gravity GdFloat,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetGravity)(api.SpxSpriteSetGravity)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdFloat)(gravity)
+	C.cgo_callfn_GDExtensionSpxSpriteSetGravity(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteGetGravity(
+	obj GdObj,
+	) GdFloat {
+	arg0 := (C.GDExtensionSpxSpriteGetGravity)(api.SpxSpriteGetGravity)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetGravity(arg0,arg1,)
+	
+	return (GdFloat)(ret)
+}
+func CallSpriteSetMass(
+	obj GdObj,
+	mass GdFloat,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetMass)(api.SpxSpriteSetMass)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdFloat)(mass)
+	C.cgo_callfn_GDExtensionSpxSpriteSetMass(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteGetMass(
+	obj GdObj,
+	) GdFloat {
+	arg0 := (C.GDExtensionSpxSpriteGetMass)(api.SpxSpriteGetMass)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetMass(arg0,arg1,)
+	
+	return (GdFloat)(ret)
+}
+func CallSpriteAddForce(
+	obj GdObj,
+	force GdVec2,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteAddForce)(api.SpxSpriteAddForce)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdVec2)(force)
+	C.cgo_callfn_GDExtensionSpxSpriteAddForce(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteAddImpulse(
+	obj GdObj,
+	impulse GdVec2,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteAddImpulse)(api.SpxSpriteAddImpulse)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdVec2)(impulse)
+	C.cgo_callfn_GDExtensionSpxSpriteAddImpulse(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteSetCollisionLayer(
+	obj GdObj,
+	layer GdInt,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetCollisionLayer)(api.SpxSpriteSetCollisionLayer)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdInt)(layer)
+	C.cgo_callfn_GDExtensionSpxSpriteSetCollisionLayer(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteGetCollisionLayer(
+	obj GdObj,
+	) GdInt {
+	arg0 := (C.GDExtensionSpxSpriteGetCollisionLayer)(api.SpxSpriteGetCollisionLayer)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetCollisionLayer(arg0,arg1,)
+	
+	return (GdInt)(ret)
+}
+func CallSpriteSetCollisionMask(
+	obj GdObj,
+	mask GdInt,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetCollisionMask)(api.SpxSpriteSetCollisionMask)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdInt)(mask)
+	C.cgo_callfn_GDExtensionSpxSpriteSetCollisionMask(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteGetCollisionMask(
+	obj GdObj,
+	) GdInt {
+	arg0 := (C.GDExtensionSpxSpriteGetCollisionMask)(api.SpxSpriteGetCollisionMask)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetCollisionMask(arg0,arg1,)
+	
+	return (GdInt)(ret)
+}
+func CallSpriteSetTriggerLayer(
+	obj GdObj,
+	layer GdInt,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetTriggerLayer)(api.SpxSpriteSetTriggerLayer)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdInt)(layer)
+	C.cgo_callfn_GDExtensionSpxSpriteSetTriggerLayer(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteGetTriggerLayer(
+	obj GdObj,
+	) GdInt {
+	arg0 := (C.GDExtensionSpxSpriteGetTriggerLayer)(api.SpxSpriteGetTriggerLayer)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetTriggerLayer(arg0,arg1,)
+	
+	return (GdInt)(ret)
+}
+func CallSpriteSetTriggerMask(
+	obj GdObj,
+	mask GdInt,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetTriggerMask)(api.SpxSpriteSetTriggerMask)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdInt)(mask)
+	C.cgo_callfn_GDExtensionSpxSpriteSetTriggerMask(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteGetTriggerMask(
+	obj GdObj,
+	) GdInt {
+	arg0 := (C.GDExtensionSpxSpriteGetTriggerMask)(api.SpxSpriteGetTriggerMask)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteGetTriggerMask(arg0,arg1,)
+	
+	return (GdInt)(ret)
+}
+func CallSpriteSetColliderRect(
+	obj GdObj,
+	center GdVec2,
+	size GdVec2,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetColliderRect)(api.SpxSpriteSetColliderRect)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdVec2)(center)
+	arg3 := (C.GdVec2)(size)
+	C.cgo_callfn_GDExtensionSpxSpriteSetColliderRect(arg0,arg1,arg2,arg3,)
+	
+	
+	
+}
+func CallSpriteSetColliderCircle(
+	obj GdObj,
+	center GdVec2,
+	radius GdFloat,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetColliderCircle)(api.SpxSpriteSetColliderCircle)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdVec2)(center)
+	arg3 := (C.GdFloat)(radius)
+	C.cgo_callfn_GDExtensionSpxSpriteSetColliderCircle(arg0,arg1,arg2,arg3,)
+	
+	
+	
+}
+func CallSpriteSetColliderCapsule(
+	obj GdObj,
+	center GdVec2,
+	size GdVec2,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetColliderCapsule)(api.SpxSpriteSetColliderCapsule)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdVec2)(center)
+	arg3 := (C.GdVec2)(size)
+	C.cgo_callfn_GDExtensionSpxSpriteSetColliderCapsule(arg0,arg1,arg2,arg3,)
+	
+	
+	
+}
+func CallSpriteSetCollisionEnabled(
+	obj GdObj,
+	enabled GdBool,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetCollisionEnabled)(api.SpxSpriteSetCollisionEnabled)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdBool)(enabled)
+	C.cgo_callfn_GDExtensionSpxSpriteSetCollisionEnabled(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteIsCollisionEnabled(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsCollisionEnabled)(api.SpxSpriteIsCollisionEnabled)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteIsCollisionEnabled(arg0,arg1,)
+	
+	return (GdBool)(ret)
+}
+func CallSpriteSetTriggerRect(
+	obj GdObj,
+	center GdVec2,
+	size GdVec2,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetTriggerRect)(api.SpxSpriteSetTriggerRect)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdVec2)(center)
+	arg3 := (C.GdVec2)(size)
+	C.cgo_callfn_GDExtensionSpxSpriteSetTriggerRect(arg0,arg1,arg2,arg3,)
+	
+	
+	
+}
+func CallSpriteSetTriggerCircle(
+	obj GdObj,
+	center GdVec2,
+	radius GdFloat,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetTriggerCircle)(api.SpxSpriteSetTriggerCircle)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdVec2)(center)
+	arg3 := (C.GdFloat)(radius)
+	C.cgo_callfn_GDExtensionSpxSpriteSetTriggerCircle(arg0,arg1,arg2,arg3,)
+	
+	
+	
+}
+func CallSpriteSetTriggerCapsule(
+	obj GdObj,
+	center GdVec2,
+	size GdVec2,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetTriggerCapsule)(api.SpxSpriteSetTriggerCapsule)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdVec2)(center)
+	arg3 := (C.GdVec2)(size)
+	C.cgo_callfn_GDExtensionSpxSpriteSetTriggerCapsule(arg0,arg1,arg2,arg3,)
+	
+	
+	
+}
+func CallSpriteSetTriggerEnabled(
+	obj GdObj,
+	trigger GdBool,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetTriggerEnabled)(api.SpxSpriteSetTriggerEnabled)
+	arg1 := (C.GdObj)(obj)
+	arg2 := (C.GdBool)(trigger)
+	C.cgo_callfn_GDExtensionSpxSpriteSetTriggerEnabled(arg0,arg1,arg2,)
+	
+	
+}
+func CallSpriteIsTriggerEnabled(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsTriggerEnabled)(api.SpxSpriteIsTriggerEnabled)
+	arg1 := (C.GdObj)(obj)
+	ret := C.cgo_callfn_GDExtensionSpxSpriteIsTriggerEnabled(arg0,arg1,)
+	
+	return (GdBool)(ret)
 }
 func CallUICreateButton(
 	path GdString,

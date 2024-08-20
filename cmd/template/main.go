@@ -17,13 +17,13 @@ func onStart() {
 	println("onEngineStart")
 	obj := SpriteMgr.CreateSprite("")
 	obj2 := SpriteMgr.CreateSprite("")
-	SpriteMgr.SetPosition(obj,Vec2{100,100})
-	SpriteMgr.SetPosition(obj2,Vec2{100,200})
-	SpriteMgr.UpdateZIndex(obj, 1)
-
+	SpriteMgr.SetPosition(obj, Vec2{100, 100})
+	SpriteMgr.SetPosition(obj2, Vec2{200, 200})
+	SpriteMgr.SetTexture(obj, "res://icon.png")
+	SpriteMgr.SetTexture(obj2, "res://icon.png")
 }
 
-func onUpdate(delta float64) {
+func onUpdate(delta float32) {
 	//println("onEngineUpdate")
 }
 

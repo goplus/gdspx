@@ -2,11 +2,12 @@ package common
 
 import (
 	"fmt"
+	"godot-ext/gdspx/cmd/gdextensionparser/clang"
+	"sort"
 	"strconv"
 	"strings"
-	"sort"
 	"unicode"
-	"godot-ext/gdspx/cmd/gdextensionparser/clang"
+
 	"github.com/iancoleman/strcase"
 )
 
@@ -111,9 +112,9 @@ func GoReturnType(t clang.PrimativeType) string {
 		}
 	case "double":
 		if t.IsPointer {
-			return "*float64"
+			return "*float32"
 		} else {
-			return "float64"
+			return "float32"
 		}
 	case "int32_t":
 		if t.IsPointer {
@@ -319,9 +320,9 @@ func CgoCastReturnType(t clang.PrimativeType, argName string) string {
 		}
 	case "double":
 		if t.IsPointer {
-			return fmt.Sprintf("(*float64)(%s)", argName)
+			return fmt.Sprintf("(*float32)(%s)", argName)
 		} else {
-			return fmt.Sprintf("float64(%s)", argName)
+			return fmt.Sprintf("float32(%s)", argName)
 		}
 	default:
 		if t.IsPointer {
@@ -354,7 +355,7 @@ func LoadProcAddressName(typeName string) string {
 	ret = strings.Replace(ret, "_utf_32_", "_utf32_", 1)
 	ret = strings.Replace(ret, "_c_32_str", "_c32str", 1)
 	ret = strings.Replace(ret, "_float_32_", "_float32_", 1)
-	ret = strings.Replace(ret, "_float_64_", "_float64_", 1)
+	ret = strings.Replace(ret, "_float_64_", "_float32_", 1)
 	ret = strings.Replace(ret, "_int_16_", "_int16_", 1)
 	ret = strings.Replace(ret, "_int_32_", "_int32_", 1)
 	ret = strings.Replace(ret, "_int_64_", "_int64_", 1)
@@ -374,6 +375,7 @@ func TrimPrefix(typeName, prefix string) string {
 	}
 	return typeName
 }
+
 var (
 	managerSet = map[string]bool{}
 	cppType2Go = map[string]string{}
@@ -426,7 +428,7 @@ func GetManagers(ast clang.CHeaderFileAST) []string {
 	sort.Strings(managers)
 	cppType2Go = map[string]string{
 		"GdInt":    "int64",
-		"GdFloat":  "float64",
+		"GdFloat":  "float32",
 		"GdObj":    "Object",
 		"GdVec2":   "Vec2",
 		"GdVec3":   "Vec3",
