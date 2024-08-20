@@ -43,6 +43,7 @@ func bindCallbacks() CallbackInfo {
 	return infos
 }
 
+// sprite
 func onSpriteReady(id int64) {
 	println("onSpriteReady ", id)
 }
@@ -54,34 +55,69 @@ func onSpriteDestroyed(id int64) {
 }
 
 // input
-func onMousePressed(id int64)                  {}
-func onMouseReleased(id int64)                 {}
-func onKeyPressed(id int64)                    {}
-func onKeyReleased(id int64)                   {}
-func onActionPressed(name string)              {}
-func onActionJustPressed(name string)          {}
-func onActionJustReleased(name string)         {}
-func onAxisChanged(name string, value float32) {}
+func onMousePressed(id int64) {
+	println("onMousePressed ", id)
+}
+func onMouseReleased(id int64) {
+	println("onMouseReleased ", id)
+}
+func onKeyPressed(id int64) {
+	println("onKeyPressed ", id)
+}
+func onKeyReleased(id int64) {
+	println("onKeyReleased ", id)
+}
+func onActionPressed(name string) {
+	println("onActionPressed ", name)
+}
+func onActionJustPressed(name string) {
+	println("onActionJustPressed ", name)
+}
+func onActionJustReleased(name string) {
+	println("onActionJustReleased ", name)
+}
+func onAxisChanged(name string, value float32) {
+	println("onAxisChanged ", name, value)
+}
 
 // physic
-func onCollisionEnter(id int64, oid int64) {}
-func onCollisionStay(id int64, oid int64)  {}
-func onCollisionExit(id int64, oid int64)  {}
+func onCollisionEnter(id int64, oid int64) {
+	println("onTriggerExit ", id, oid)
+}
+func onCollisionStay(id int64, oid int64) {
+	println("onTriggerExit ", id, oid)
+}
+func onCollisionExit(id int64, oid int64) {
+	println("onTriggerExit ", id, oid)
+}
 
 func onTriggerEnter(id int64, oid int64) {
 	println("onTriggerEnter ", id, oid)
 }
-func onTriggerStay(id int64, oid int64) {}
+func onTriggerStay(id int64, oid int64) {
+	println("onTriggerExit ", id, oid)
+}
 func onTriggerExit(id int64, oid int64) {
 	println("onTriggerExit ", id, oid)
 }
 
-// UI
-func onUiPressed(id int64)           {}
-func onUiReleased(id int64)          {}
-func onUiHovered(id int64)           {}
-func onUiClicked(id int64)           {}
-func onUiToggle(id int64, isOn bool) {}
+// ui
+func onUiPressed(id int64) {
+	println("onUiPressed ", id)
+}
+func onUiReleased(id int64) {
+	println("onUiReleased ", id)
+}
+func onUiHovered(id int64) {
+	println("onUiHovered ", id)
+}
+func onUiClicked(id int64) {
+	println("onUiClicked ", id)
+}
+func onUiToggle(id int64, isOn bool) {
+	println("onUiToggle ", id)
+}
 func onUiTextChanged(id int64, text string) {
+	println("onUiTextChanged ", id, text)
 
 }
