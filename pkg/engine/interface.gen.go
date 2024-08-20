@@ -7,6 +7,13 @@
 //   code.
 //----------------------------------------------------------------------------*/
 package engine
+var (
+    AudioMgr IAudioMgr
+    InputMgr IInputMgr
+    PhysicMgr IPhysicMgr
+    SpriteMgr ISpriteMgr
+    UiMgr IUiMgr
+)
 
 type IAudioMgr interface {
 	PlayAudio(path string)

@@ -31,10 +31,6 @@ func CreateMgrs() []IManager {
 	return createMgrs()
 }
 
-func RegisterCallbacks(callback EngineCallbackInfo) {
-	callbacks = CallbackInfo{}
-	callbacks.OnEngineStart = callback.OnEngineStart
-	callbacks.OnEngineUpdate = callback.OnEngineUpdate
-	callbacks.OnEngineDestroy = callback.OnEngineDestroy
+func RegisterCallbacks(callbacks CallbackInfo) {
 	ffi.BindCallback(callbacks)
 }

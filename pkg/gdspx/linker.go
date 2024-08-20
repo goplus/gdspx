@@ -1,11 +1,10 @@
 package gdspx
 
 import (
+	inengine "godot-ext/gdspx/internal/engine"
 	. "godot-ext/gdspx/pkg/engine"
-	"godot-ext/gdspx/internal/engine"
 )
-type EngineCallbacks EngineCallbackInfo
 
-func LinkEngine(callback EngineCallbacks) {
-	engine.Link(EngineCallbackInfo(callback))
+func LinkEngine(callback EngineCallbackInfo) {
+	inengine.Link(EngineCallbackInfo(callback))
 }

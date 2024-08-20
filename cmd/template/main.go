@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	gdspx.LinkEngine(gdspx.EngineCallbacks{
+	gdspx.LinkEngine(EngineCallbackInfo{
 		OnEngineStart:   onStart,
 		OnEngineUpdate:  onUpdate,
 		OnEngineDestroy: onDestory,

@@ -9,6 +9,11 @@
 {{ $view := . -}}
 
 package engine
+var (
+{{- range $i, $name := $view.Mangers }}
+    {{camelCase $name}}Mgr I{{camelCase $name}}Mgr
+{{- end }}
+)
 
 {{ range $i, $name := $view.Mangers -}}
 type I{{camelCase $name}}Mgr interface {

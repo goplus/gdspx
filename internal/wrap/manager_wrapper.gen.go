@@ -9,9 +9,34 @@
 package wrap
 
 import (
+	"fmt"
+	"reflect"
 	. "godot-ext/gdspx/internal/ffi"
 	. "godot-ext/gdspx/pkg/engine"
 )
+func BindMgr(mgrs []IManager) {
+	for _, mgr := range mgrs {
+		switch v := mgr.(type) {
+		case IAudioMgr:
+			AudioMgr = v
+
+		case IInputMgr:
+			InputMgr = v
+
+		case IPhysicMgr:
+			PhysicMgr = v
+
+		case ISpriteMgr:
+			SpriteMgr = v
+
+		case IUiMgr:
+			UiMgr = v
+
+		default:
+			panic(fmt.Sprintf("engine init error : unknown manager type %s", reflect.TypeOf(mgr).String()))
+		}
+	}
+}
 
 type audioMgr struct {
 	baseMgr

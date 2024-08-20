@@ -11,9 +11,23 @@
 package wrap
 
 import (
+	"fmt"
+	"reflect"
 	. "godot-ext/gdspx/internal/ffi"
 	. "godot-ext/gdspx/pkg/engine"
 )
+func BindMgr(mgrs []IManager) {
+	for _, mgr := range mgrs {
+		switch v := mgr.(type) {
+{{- range $i, $name := $view.Mangers }}
+		case I{{camelCase $name}}Mgr:
+			{{camelCase $name}}Mgr = v
+{{ end }}
+		default:
+			panic(fmt.Sprintf("engine init error : unknown manager type %s", reflect.TypeOf(mgr).String()))
+		}
+	}
+}
 
 {{ range $i, $name := $view.Mangers -}}
 type {{$name}}Mgr struct {

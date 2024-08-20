@@ -9,6 +9,7 @@ func NewSprite(path string) *Sprite {
 	pself.Id = SpriteMgr.CreateSprite(path)
 	return pself
 }
+
 func (pself *Sprite) Destroy() bool {
 	return SpriteMgr.DestroySprite(pself.Id)
 }

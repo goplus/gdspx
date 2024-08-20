@@ -1,13 +1,5 @@
 package engine
 
-var (
-	AudioMgr  IAudioMgr
-	UIMgr     IUiMgr
-	PhysicMgr IPhysicMgr
-	InputMgr  IInputMgr
-	SpriteMgr ISpriteMgr
-)
-
 type IManager interface {
 	Init(root Node)
 	OnStart()
