@@ -24,3 +24,7 @@ func (pself *Sprite) OnUpdate(delta float32) {
 }
 func (pself *Sprite) OnDestroy() {
 }
+
+func (pself *Sprite) OnTriggerEnter(ISpriter) {}
+
+func (pself *Sprite) OnTriggerExit(ISpriter) {}

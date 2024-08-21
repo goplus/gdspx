@@ -12,7 +12,6 @@ type Aircraft struct {
 
 func (pself *Aircraft) OnStart() {
 	pself.moveSpeed = 300
-	println("Aircraft OnStart")
 }
 func (pself *Aircraft) OnUpdate(delta float32) {
 	pself.timer+= delta

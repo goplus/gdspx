@@ -94,13 +94,20 @@ func onCollisionExit(id int64, oid int64) {
 }
 
 func onTriggerEnter(id int64, oid int64) {
-	println("onTriggerEnter ", id, oid)
+	if sprite, ok := Id2Sprites[Object(id)]; ok {
+		if other, ok2 := Id2Sprites[Object(oid)]; ok2 {
+			sprite.OnTriggerEnter(other)
+		}
+	}
 }
 func onTriggerStay(id int64, oid int64) {
-	println("onTriggerExit ", id, oid)
 }
 func onTriggerExit(id int64, oid int64) {
-	println("onTriggerExit ", id, oid)
+	if sprite, ok := Id2Sprites[Object(id)]; ok {
+		if other, ok2 := Id2Sprites[Object(oid)]; ok2 {
+			sprite.OnTriggerExit(other)
+		}
+	}
 }
 
 // ui

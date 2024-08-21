@@ -13,6 +13,8 @@ type IManager interface {
 type ISpriter interface {
 	ILifeCycle
 	SetId(Object)
+	OnTriggerEnter(ISpriter) 
+	OnTriggerExit(ISpriter) 
 }
 
 type EngineCallbackInfo struct {

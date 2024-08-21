@@ -10,14 +10,20 @@ type Bullet struct {
 }
 
 func (pself *Bullet) OnStart() {
-	println("Bullet OnStart", pself.GetId())
 }
+
 func (pself *Bullet) OnUpdate(delta float32) {
 	pos := pself.GetPosition()
 	pos.Y += 2000 * delta
 	pself.SetPosition(pos)
 	if(pos.Y > WinHeight){
-		println("Bullet OnDestory " , pself.GetId())
+		pself.Destroy()
+	}
+}
+
+func (pself *Bullet) OnTriggerEnter(target ISpriter) {
+	if enemy, ok := target.(*Enemy); ok {
+		enemy.OnHit()
 		pself.Destroy()
 	}
 }
