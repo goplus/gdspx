@@ -16,7 +16,7 @@
 /* Go cannot call C function pointers directly, so we must generate C wrapper code to call the functions. */
 
 {{ range $i, $f := $view.CollectFunctions -}}
-inline {{$f.ReturnType.CStyleString }} cgo_callfn_{{ $f.Name }}(
+{{$f.ReturnType.CStyleString }} cgo_callfn_{{ $f.Name }}(
 	{{- "const" }} {{ $f.Name }} fn
 	{{- range $j, $arg := $f.Arguments -}}
 		, {{ $arg.CStyleString $j }}
