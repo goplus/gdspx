@@ -7,9 +7,11 @@ import (
 type Aircraft struct {
 	Sprite
 	timer float32
+	moveSpeed float32
 }
 
 func (pself *Aircraft) OnStart() {
+	pself.moveSpeed = 300
 	println("Aircraft OnStart")
 }
 func (pself *Aircraft) OnUpdate(delta float32) {
@@ -20,7 +22,28 @@ func (pself *Aircraft) OnUpdate(delta float32) {
 		pos := pself.GetPosition()
 		bullet.SetPosition(Vec2{pos.X , pos.Y + 150})
 	}
+	
+	if InputMgr.GetKeyState(KeyCode.W) == 1 {
+		pself.Move(0, pself.moveSpeed * delta)
+	}
+	if InputMgr.GetKeyState(KeyCode.S) == 1 {
+		pself.Move(0, -pself.moveSpeed * delta)
+	}
+	if InputMgr.GetKeyState(KeyCode.D) == 1 {
+		pself.Move( pself.moveSpeed * delta,0)
+	}
+	if InputMgr.GetKeyState(KeyCode.A) == 1 {
+		pself.Move(-pself.moveSpeed * delta,0)
+	}
 }
+
+func (pself *Aircraft) Move(deltaX, deltaY float32) {
+	pos := pself.GetPosition()
+	pos.X += deltaX
+	pos.Y += deltaY
+	pself.SetPosition(pos)
+}
+
 func (pself *Aircraft) OnDestory() {
 	println("Aircraft OnDestory")
 }
