@@ -1,10 +1,5 @@
 package engine
 
-type ILife interface {
-	OnStart()
-	OnUpdate(delta float32)
-	OnDestroy()
-}
 type Sprite struct {
 	Id Object
 }

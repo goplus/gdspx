@@ -1,10 +1,18 @@
 package engine
 
-type IManager interface {
-	Init(root Node)
+type ILifeCycle interface {
 	OnStart()
 	OnUpdate(delta float32)
 	OnDestroy()
+}
+type IManager interface {
+	ILifeCycle
+	Init(root Node)
+}
+
+type ISpriter interface {
+	ILifeCycle
+	SetId(Object)
 }
 
 type EngineCallbackInfo struct {

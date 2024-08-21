@@ -3,7 +3,6 @@ package wrap
 import (
 	"godot-ext/gdspx/internal/ffi"
 	. "godot-ext/gdspx/pkg/engine"
-	"reflect"
 )
 
 type EngineStartFunc func()
@@ -15,13 +14,9 @@ var (
 	callbacks CallbackInfo
 )
 
-func createNode(typeName string) Node {
-	return 0 // TODO
-}
 
 func addManager[T IManager](mgr T) T {
-	typeName := reflect.TypeOf(mgr).Elem().Name()
-	println("add manager", typeName)
+	//typeName := reflect.TypeOf(mgr).Elem().Name()
 	mgr.Init(0)
 	mgrs = append(mgrs, mgr)
 	return mgr

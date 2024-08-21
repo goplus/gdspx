@@ -45,13 +45,15 @@ func bindCallbacks() CallbackInfo {
 
 // sprite
 func onSpriteReady(id int64) {
-	println("onSpriteReady ", id)
+	if sprite, ok := Id2Sprites[Object(id)]; ok {
+		sprite.OnStart()
+	}
 }
 func onSpriteUpdated(id int64) {
 	println("onSpriteUpdated ", id)
 }
 func onSpriteDestroyed(id int64) {
-	println("onSpriteDestroyed ", id)
+	delete(Id2Sprites, Object(id))
 }
 
 // input

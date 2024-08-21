@@ -464,7 +464,6 @@ func CallSpriteSetPosition(
 	arg0 := (C.GDExtensionSpxSpriteSetPosition)(api.SpxSpriteSetPosition)
 	arg1GdObj = (C.GdObj)(obj)
 	arg2GdVec2 = (C.GdVec2)(pos)
-	println("arg2GdVec2 ",arg2GdVec2.X,arg2GdVec2.Y)
 	C.cgo_callfn_GDExtensionSpxSpriteSetPosition(arg0,arg1GdObj,arg2GdVec2,)
 	
 }
