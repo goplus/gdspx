@@ -13,10 +13,8 @@ func (pself *Bullet) OnStart() {
 }
 
 func (pself *Bullet) OnUpdate(delta float32) {
-	pos := pself.GetPosition()
-	pos.Y += 2000 * delta
-	pself.SetPosition(pos)
-	if(pos.Y > WinHeight){
+	pself.Move(0,2000 * delta)
+	if(pself.GetPosY() > WinHeight){
 		pself.Destroy()
 	}
 }

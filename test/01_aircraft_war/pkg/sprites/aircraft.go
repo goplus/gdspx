@@ -36,12 +36,6 @@ func (pself *Aircraft) OnUpdate(delta float32) {
 	}
 }
 
-func (pself *Aircraft) Move(deltaX, deltaY float32) {
-	pos := pself.GetPosition()
-	pos.X += deltaX
-	pos.Y += deltaY
-	pself.SetPosition(pos)
-}
 
 func (pself *Aircraft) OnDestory() {
 	println("Aircraft OnDestory")

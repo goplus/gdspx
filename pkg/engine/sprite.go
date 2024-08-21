@@ -28,3 +28,29 @@ func (pself *Sprite) OnDestroy() {
 func (pself *Sprite) OnTriggerEnter(ISpriter) {}
 
 func (pself *Sprite) OnTriggerExit(ISpriter) {}
+
+func (pself *Sprite) Move(deltaX, deltaY float32) {
+	pos := pself.GetPosition()
+	pos.X += deltaX
+	pos.Y += deltaY
+	pself.SetPosition(pos)
+}
+func (pself *Sprite) GetPosX() float32 {
+	return pself.GetPosition().X
+}
+
+func (pself *Sprite) GetPosY() float32 {
+	return pself.GetPosition().Y
+}
+
+func (pself *Sprite) SetPosX(value float32) { 
+	pos := pself.GetPosition()
+	pos.X = value
+	pself.SetPosition(pos)
+}
+
+func (pself *Sprite) SetPosY(value float32) { 
+	pos := pself.GetPosition()
+	pos.Y = value
+	pself.SetPosition(pos)
+}
