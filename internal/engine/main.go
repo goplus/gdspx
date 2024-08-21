@@ -23,6 +23,7 @@ func Link(engineCallback EngineCallbackInfo) []IManager {
 	infos := bindCallbacks()
 	RegisterCallbacks(infos)
 	BindMgr(mgrs)
+	InitEngine()
 	return mgrs
 }
 

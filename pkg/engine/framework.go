@@ -13,6 +13,9 @@ func getPrefabPath(name string) string {
 	return "res://assets/prefabs/" +assetName  + ".tscn"
 }
 
+func InitEngine(){
+	initKeyCode()
+}
 
 func CreateSprite[T any]() *T {
 	tType := reflect.TypeOf((*T)(nil)).Elem()
