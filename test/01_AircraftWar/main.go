@@ -7,6 +7,8 @@ import (
 )
 
 func main() {
+
+	
 	gdspx.LinkEngine(EngineCallbackInfo{
 		OnEngineStart:   game.OnStart,
 		OnEngineUpdate:  game.OnUpdate,

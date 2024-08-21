@@ -15,7 +15,7 @@ type ISpriter interface {
 }
 
 var (
-	Sprites = make(map[Object]ISpriter)
+	Id2Sprites = make(map[Object]ISpriter)
 )
 
 func CreateSprite[T any]() *T {
@@ -23,8 +23,10 @@ func CreateSprite[T any]() *T {
 	name := tType.Name()
 	spriteValue := reflect.New(tType).Elem()
 	id := SpriteMgr.CreateSprite(getPrefabPath(name))
+	println("create sprite ", name, id)
 	sprite := spriteValue.Addr().Interface().(ISpriter)
 	sprite.SetId(id)
-	Sprites[id] = sprite
+	Id2Sprites[id] = sprite
+	sprite.OnStart()
 	return spriteValue.Addr().Interface().(*T)
 }

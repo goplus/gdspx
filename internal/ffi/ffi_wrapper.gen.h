@@ -197,8 +197,8 @@ void cgo_callfn_GDExtensionSpxSpriteSetRotation(const GDExtensionSpxSpriteSetRot
 void cgo_callfn_GDExtensionSpxSpriteSetScale(const GDExtensionSpxSpriteSetScale fn, GdObj obj, GdVec2 scale) {
 	 fn(obj, scale);
 }
-GdVec2 cgo_callfn_GDExtensionSpxSpriteGetPosition(const GDExtensionSpxSpriteGetPosition fn, GdObj obj) {
-	return fn(obj);
+GdVec2 cgo_callfn_GDExtensionSpxSpriteGetPosition(const GDExtensionSpxSpriteGetPosition fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
 }
 GdFloat cgo_callfn_GDExtensionSpxSpriteGetRotation(const GDExtensionSpxSpriteGetRotation fn, GdObj obj) {
 	return fn(obj);

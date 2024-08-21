@@ -14,6 +14,9 @@ func NewSprite(path string) *Sprite {
 	pself.Id = SpriteMgr.CreateSprite(path)
 	return pself
 }
+func (pself *Sprite) GetId( ) Object{
+	return pself.Id
+}
 func (pself *Sprite) SetId(id Object) {
 	pself.Id = id
 }
