@@ -27,6 +27,8 @@ func loadExtension(lookupFunc uintptr, classes, configuration unsafe.Pointer) ui
 	dlsymGD = func(s string) unsafe.Pointer {
 		return getProcAddress(lookupFunc, s)
 	}
+	
+	builtinAPI.loadProcAddresses()
 	api.loadProcAddresses()
 	init := (*initialization)(configuration)
 	*init = initialization{}

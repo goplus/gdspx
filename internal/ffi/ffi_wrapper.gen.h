@@ -12,411 +12,304 @@
 //----------------------------------------------------------------------------*/
 #include "gdextension_spx_codegen_header.h"
 
-/* Go cannot call C function pointers directly, so we must generate C wrapper code to call the functions. */
-
-void cgo_callfn_GDExtensionSpxGlobalRegisterCallbacks(const GDExtensionSpxGlobalRegisterCallbacks fn, GDExtensionSpxCallbackInfoPtr callback_ptr) {
-	 fn(callback_ptr);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnEngineStart(const GDExtensionSpxCallbackOnEngineStart fn) {
-	 fn();
-}
-void cgo_callfn_GDExtensionSpxCallbackOnEngineUpdate(const GDExtensionSpxCallbackOnEngineUpdate fn, GdFloat delta) {
-	 fn(delta);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnEngineDestroy(const GDExtensionSpxCallbackOnEngineDestroy fn) {
-	 fn();
-}
-void cgo_callfn_GDExtensionSpxCallbackOnSpriteReady(const GDExtensionSpxCallbackOnSpriteReady fn, GdObj obj) {
-	 fn(obj);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnSpriteUpdated(const GDExtensionSpxCallbackOnSpriteUpdated fn, GdObj obj) {
-	 fn(obj);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnSpriteDestroyed(const GDExtensionSpxCallbackOnSpriteDestroyed fn, GdObj obj) {
-	 fn(obj);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnMousePressed(const GDExtensionSpxCallbackOnMousePressed fn, GdInt keyid) {
-	 fn(keyid);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnMouseReleased(const GDExtensionSpxCallbackOnMouseReleased fn, GdInt keyid) {
-	 fn(keyid);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnKeyPressed(const GDExtensionSpxCallbackOnKeyPressed fn, GdInt keyid) {
-	 fn(keyid);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnKeyReleased(const GDExtensionSpxCallbackOnKeyReleased fn, GdInt keyid) {
-	 fn(keyid);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnActionPressed(const GDExtensionSpxCallbackOnActionPressed fn, GdString action_name) {
-	 fn(action_name);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnActionJustPressed(const GDExtensionSpxCallbackOnActionJustPressed fn, GdString action_name) {
-	 fn(action_name);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnActionJustReleased(const GDExtensionSpxCallbackOnActionJustReleased fn, GdString action_name) {
-	 fn(action_name);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnAxisChanged(const GDExtensionSpxCallbackOnAxisChanged fn, GdString action_name, GdFloat value) {
-	 fn(action_name, value);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnCollisionEnter(const GDExtensionSpxCallbackOnCollisionEnter fn, GdInt self_id, GdInt other_id) {
-	 fn(self_id, other_id);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnCollisionStay(const GDExtensionSpxCallbackOnCollisionStay fn, GdInt self_id, GdInt other_id) {
-	 fn(self_id, other_id);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnCollisionExit(const GDExtensionSpxCallbackOnCollisionExit fn, GdInt self_id, GdInt other_id) {
-	 fn(self_id, other_id);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnTriggerEnter(const GDExtensionSpxCallbackOnTriggerEnter fn, GdInt self_id, GdInt other_id) {
-	 fn(self_id, other_id);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnTriggerStay(const GDExtensionSpxCallbackOnTriggerStay fn, GdInt self_id, GdInt other_id) {
-	 fn(self_id, other_id);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnTriggerExit(const GDExtensionSpxCallbackOnTriggerExit fn, GdInt self_id, GdInt other_id) {
-	 fn(self_id, other_id);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnUIPressed(const GDExtensionSpxCallbackOnUIPressed fn, GdObj obj) {
-	 fn(obj);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnUIReleased(const GDExtensionSpxCallbackOnUIReleased fn, GdObj obj) {
-	 fn(obj);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnUIHovered(const GDExtensionSpxCallbackOnUIHovered fn, GdObj obj) {
-	 fn(obj);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnUIClicked(const GDExtensionSpxCallbackOnUIClicked fn, GdObj obj) {
-	 fn(obj);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnUIToggle(const GDExtensionSpxCallbackOnUIToggle fn, GdObj obj, GdBool is_on) {
-	 fn(obj, is_on);
-}
-void cgo_callfn_GDExtensionSpxCallbackOnUITextChanged(const GDExtensionSpxCallbackOnUITextChanged fn, GdObj obj, GdString text) {
-	 fn(obj, text);
-}
-void cgo_callfn_GDExtensionSpxStringNewWithLatin1Chars(const GDExtensionSpxStringNewWithLatin1Chars fn, GDExtensionUninitializedStringPtr r_dest, const char *  p_contents) {
-	 fn(r_dest, p_contents);
-}
-void cgo_callfn_GDExtensionSpxStringNewWithUtf8Chars(const GDExtensionSpxStringNewWithUtf8Chars fn, GDExtensionUninitializedStringPtr r_dest, const char *  p_contents) {
-	 fn(r_dest, p_contents);
-}
-void cgo_callfn_GDExtensionSpxStringNewWithLatin1CharsAndLen(const GDExtensionSpxStringNewWithLatin1CharsAndLen fn, GDExtensionUninitializedStringPtr r_dest, const char *  p_contents, GdInt p_size) {
-	 fn(r_dest, p_contents, p_size);
-}
-void cgo_callfn_GDExtensionSpxStringNewWithUtf8CharsAndLen(const GDExtensionSpxStringNewWithUtf8CharsAndLen fn, GDExtensionUninitializedStringPtr r_dest, const char *  p_contents, GdInt p_size) {
-	 fn(r_dest, p_contents, p_size);
-}
-GdInt cgo_callfn_GDExtensionSpxStringToLatin1Chars(const GDExtensionSpxStringToLatin1Chars fn, GDExtensionConstStringPtr p_self, char *  r_text, GdInt p_max_write_length) {
-	return fn(p_self, r_text, p_max_write_length);
-}
-GdInt cgo_callfn_GDExtensionSpxStringToUtf8Chars(const GDExtensionSpxStringToUtf8Chars fn, GDExtensionConstStringPtr p_self, char *  r_text, GdInt p_max_write_length) {
-	return fn(p_self, r_text, p_max_write_length);
-}
-GDExtensionPtrConstructor cgo_callfn_GDExtensionSpxVariantGetPtrConstructor(const GDExtensionSpxVariantGetPtrConstructor fn, GDExtensionVariantType p_type, int32_t p_constructor) {
-	return fn(p_type, p_constructor);
-}
-GDExtensionPtrDestructor cgo_callfn_GDExtensionSpxVariantGetPtrDestructor(const GDExtensionSpxVariantGetPtrDestructor fn, GDExtensionVariantType p_type) {
-	return fn(p_type);
-}
-void cgo_callfn_GDExtensionSpxAudioPlayAudio(const GDExtensionSpxAudioPlayAudio fn, GdString path) {
-	 fn(path);
+/* Go cannot call C function pointers directly, so we must generate C wrapper code to call the functions. */void cgo_callfn_GDExtensionSpxAudioPlayAudio(const GDExtensionSpxAudioPlayAudio fn, GdString path) {
+	fn(path);
 }
 void cgo_callfn_GDExtensionSpxAudioSetAudioVolume(const GDExtensionSpxAudioSetAudioVolume fn, GdFloat volume) {
-	 fn(volume);
+	fn(volume);
 }
-GdFloat cgo_callfn_GDExtensionSpxAudioGetAudioVolume(const GDExtensionSpxAudioGetAudioVolume fn) {
-	return fn();
+void cgo_callfn_GDExtensionSpxAudioGetAudioVolume(const GDExtensionSpxAudioGetAudioVolume fn, GdFloat* ret_val) {
+	fn(ret_val);
 }
-GdBool cgo_callfn_GDExtensionSpxAudioIsMusicPlaying(const GDExtensionSpxAudioIsMusicPlaying fn) {
-	return fn();
+void cgo_callfn_GDExtensionSpxAudioIsMusicPlaying(const GDExtensionSpxAudioIsMusicPlaying fn, GdBool* ret_val) {
+	fn(ret_val);
 }
 void cgo_callfn_GDExtensionSpxAudioPlayMusic(const GDExtensionSpxAudioPlayMusic fn, GdString path) {
-	 fn(path);
+	fn(path);
 }
 void cgo_callfn_GDExtensionSpxAudioSetMusicVolume(const GDExtensionSpxAudioSetMusicVolume fn, GdFloat volume) {
-	 fn(volume);
+	fn(volume);
 }
-GdFloat cgo_callfn_GDExtensionSpxAudioGetMusicVolume(const GDExtensionSpxAudioGetMusicVolume fn) {
-	return fn();
+void cgo_callfn_GDExtensionSpxAudioGetMusicVolume(const GDExtensionSpxAudioGetMusicVolume fn, GdFloat* ret_val) {
+	fn(ret_val);
 }
 void cgo_callfn_GDExtensionSpxAudioPauseMusic(const GDExtensionSpxAudioPauseMusic fn) {
-	 fn();
+	fn();
 }
 void cgo_callfn_GDExtensionSpxAudioResumeMusic(const GDExtensionSpxAudioResumeMusic fn) {
-	 fn();
+	fn();
 }
-GdFloat cgo_callfn_GDExtensionSpxAudioGetMusicTimer(const GDExtensionSpxAudioGetMusicTimer fn) {
-	return fn();
+void cgo_callfn_GDExtensionSpxAudioGetMusicTimer(const GDExtensionSpxAudioGetMusicTimer fn, GdFloat* ret_val) {
+	fn(ret_val);
 }
 void cgo_callfn_GDExtensionSpxAudioSetMusicTimer(const GDExtensionSpxAudioSetMusicTimer fn, GdFloat time) {
-	 fn(time);
+	fn(time);
 }
-GdVec2 cgo_callfn_GDExtensionSpxInputGetMousePos(const GDExtensionSpxInputGetMousePos fn) {
-	return fn();
+void cgo_callfn_GDExtensionSpxInputGetMousePos(const GDExtensionSpxInputGetMousePos fn, GdVec2* ret_val) {
+	fn(ret_val);
 }
-GdBool cgo_callfn_GDExtensionSpxInputGetMouseState(const GDExtensionSpxInputGetMouseState fn, GdInt mouse_id) {
-	return fn(mouse_id);
+void cgo_callfn_GDExtensionSpxInputGetMouseState(const GDExtensionSpxInputGetMouseState fn, GdInt mouse_id, GdBool* ret_val) {
+	fn(mouse_id,ret_val);
 }
-GdInt cgo_callfn_GDExtensionSpxInputGetKeyState(const GDExtensionSpxInputGetKeyState fn, GdInt key) {
-	return fn(key);
+void cgo_callfn_GDExtensionSpxInputGetKeyState(const GDExtensionSpxInputGetKeyState fn, GdInt key, GdInt* ret_val) {
+	fn(key,ret_val);
 }
-GdFloat cgo_callfn_GDExtensionSpxInputGetAxis(const GDExtensionSpxInputGetAxis fn, GdString axis) {
-	return fn(axis);
+void cgo_callfn_GDExtensionSpxInputGetAxis(const GDExtensionSpxInputGetAxis fn, GdString axis, GdFloat* ret_val) {
+	fn(axis,ret_val);
 }
-GdBool cgo_callfn_GDExtensionSpxInputIsActionPressed(const GDExtensionSpxInputIsActionPressed fn, GdString action) {
-	return fn(action);
+void cgo_callfn_GDExtensionSpxInputIsActionPressed(const GDExtensionSpxInputIsActionPressed fn, GdString action, GdBool* ret_val) {
+	fn(action,ret_val);
 }
-GdBool cgo_callfn_GDExtensionSpxInputIsActionJustPressed(const GDExtensionSpxInputIsActionJustPressed fn, GdString action) {
-	return fn(action);
+void cgo_callfn_GDExtensionSpxInputIsActionJustPressed(const GDExtensionSpxInputIsActionJustPressed fn, GdString action, GdBool* ret_val) {
+	fn(action,ret_val);
 }
-GdBool cgo_callfn_GDExtensionSpxInputIsActionJustReleased(const GDExtensionSpxInputIsActionJustReleased fn, GdString action) {
-	return fn(action);
+void cgo_callfn_GDExtensionSpxInputIsActionJustReleased(const GDExtensionSpxInputIsActionJustReleased fn, GdString action, GdBool* ret_val) {
+	fn(action,ret_val);
 }
-GdObj cgo_callfn_GDExtensionSpxPhysicRaycast(const GDExtensionSpxPhysicRaycast fn, GdVec2 from, GdVec2 to, GdInt collision_mask) {
-	return fn(from, to, collision_mask);
+void cgo_callfn_GDExtensionSpxPhysicRaycast(const GDExtensionSpxPhysicRaycast fn, GdVec2 from, GdVec2 to, GdInt collision_mask, GdObj* ret_val) {
+	fn(from, to, collision_mask,ret_val);
 }
-GdObj cgo_callfn_GDExtensionSpxSpriteCreateSprite(const GDExtensionSpxSpriteCreateSprite fn, GdString path) {
-	return fn(path);
+void cgo_callfn_GDExtensionSpxSpriteCreateSprite(const GDExtensionSpxSpriteCreateSprite fn, GdString path, GdObj* ret_val) {
+	fn(path,ret_val);
 }
-GdObj cgo_callfn_GDExtensionSpxSpriteCloneSprite(const GDExtensionSpxSpriteCloneSprite fn, GdObj obj) {
-	return fn(obj);
-}
-GdBool cgo_callfn_GDExtensionSpxSpriteDestroySprite(const GDExtensionSpxSpriteDestroySprite fn, GdObj obj) {
-	return fn(obj);
-}
-GdBool cgo_callfn_GDExtensionSpxSpriteIsSpriteAlive(const GDExtensionSpxSpriteIsSpriteAlive fn, GdObj obj) {
-	return fn(obj);
-}
-void cgo_callfn_GDExtensionSpxSpriteSetPosition(const GDExtensionSpxSpriteSetPosition fn, GdObj obj, GdVec2 pos) {
-	 fn(obj, pos);
-}
-void cgo_callfn_GDExtensionSpxSpriteSetRotation(const GDExtensionSpxSpriteSetRotation fn, GdObj obj, GdFloat rot) {
-	 fn(obj, rot);
-}
-void cgo_callfn_GDExtensionSpxSpriteSetScale(const GDExtensionSpxSpriteSetScale fn, GdObj obj, GdVec2 scale) {
-	 fn(obj, scale);
-}
-GdVec2 cgo_callfn_GDExtensionSpxSpriteGetPosition(const GDExtensionSpxSpriteGetPosition fn, GdObj obj, GdVec2* ret_val) {
+void cgo_callfn_GDExtensionSpxSpriteCloneSprite(const GDExtensionSpxSpriteCloneSprite fn, GdObj obj, GdObj* ret_val) {
 	fn(obj,ret_val);
 }
-GdFloat cgo_callfn_GDExtensionSpxSpriteGetRotation(const GDExtensionSpxSpriteGetRotation fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteDestroySprite(const GDExtensionSpxSpriteDestroySprite fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
 }
-GdVec2 cgo_callfn_GDExtensionSpxSpriteGetScale(const GDExtensionSpxSpriteGetScale fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteIsSpriteAlive(const GDExtensionSpxSpriteIsSpriteAlive fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetPosition(const GDExtensionSpxSpriteSetPosition fn, GdObj obj, GdVec2 pos) {
+	fn(obj, pos);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetRotation(const GDExtensionSpxSpriteSetRotation fn, GdObj obj, GdFloat rot) {
+	fn(obj, rot);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetScale(const GDExtensionSpxSpriteSetScale fn, GdObj obj, GdVec2 scale) {
+	fn(obj, scale);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetPosition(const GDExtensionSpxSpriteGetPosition fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetRotation(const GDExtensionSpxSpriteGetRotation fn, GdObj obj, GdFloat* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetScale(const GDExtensionSpxSpriteGetScale fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetColor(const GDExtensionSpxSpriteSetColor fn, GdObj obj, GdColor color) {
-	 fn(obj, color);
+	fn(obj, color);
 }
-GdColor cgo_callfn_GDExtensionSpxSpriteGetColor(const GDExtensionSpxSpriteGetColor fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetColor(const GDExtensionSpxSpriteGetColor fn, GdObj obj, GdColor* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetTexture(const GDExtensionSpxSpriteSetTexture fn, GdObj obj, GdString path) {
-	 fn(obj, path);
+	fn(obj, path);
 }
-GdString cgo_callfn_GDExtensionSpxSpriteGetTexture(const GDExtensionSpxSpriteGetTexture fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetTexture(const GDExtensionSpxSpriteGetTexture fn, GdObj obj, GdString* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetVisible(const GDExtensionSpxSpriteSetVisible fn, GdObj obj, GdBool visible) {
-	 fn(obj, visible);
+	fn(obj, visible);
 }
-GdBool cgo_callfn_GDExtensionSpxSpriteGetVisible(const GDExtensionSpxSpriteGetVisible fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetVisible(const GDExtensionSpxSpriteGetVisible fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
 }
-GdInt cgo_callfn_GDExtensionSpxSpriteGetZIndex(const GDExtensionSpxSpriteGetZIndex fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetZIndex(const GDExtensionSpxSpriteGetZIndex fn, GdObj obj, GdInt* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetZIndex(const GDExtensionSpxSpriteSetZIndex fn, GdObj obj, GdInt z) {
-	 fn(obj, z);
+	fn(obj, z);
 }
 void cgo_callfn_GDExtensionSpxSpritePlayAnim(const GDExtensionSpxSpritePlayAnim fn, GdObj obj, GdString p_name, GdFloat p_custom_scale, GdBool p_from_end) {
-	 fn(obj, p_name, p_custom_scale, p_from_end);
+	fn(obj, p_name, p_custom_scale, p_from_end);
 }
 void cgo_callfn_GDExtensionSpxSpritePlayBackwardsAnim(const GDExtensionSpxSpritePlayBackwardsAnim fn, GdObj obj, GdString p_name) {
-	 fn(obj, p_name);
+	fn(obj, p_name);
 }
 void cgo_callfn_GDExtensionSpxSpritePauseAnim(const GDExtensionSpxSpritePauseAnim fn, GdObj obj) {
-	 fn(obj);
+	fn(obj);
 }
 void cgo_callfn_GDExtensionSpxSpriteStopAnim(const GDExtensionSpxSpriteStopAnim fn, GdObj obj) {
-	 fn(obj);
+	fn(obj);
 }
-GdBool cgo_callfn_GDExtensionSpxSpriteIsPlayingAnim(const GDExtensionSpxSpriteIsPlayingAnim fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteIsPlayingAnim(const GDExtensionSpxSpriteIsPlayingAnim fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetAnim(const GDExtensionSpxSpriteSetAnim fn, GdObj obj, GdString p_name) {
-	 fn(obj, p_name);
+	fn(obj, p_name);
 }
-GdString cgo_callfn_GDExtensionSpxSpriteGetAnim(const GDExtensionSpxSpriteGetAnim fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetAnim(const GDExtensionSpxSpriteGetAnim fn, GdObj obj, GdString* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetAnimFrame(const GDExtensionSpxSpriteSetAnimFrame fn, GdObj obj, GdInt p_frame) {
-	 fn(obj, p_frame);
+	fn(obj, p_frame);
 }
-GdInt cgo_callfn_GDExtensionSpxSpriteGetAnimFrame(const GDExtensionSpxSpriteGetAnimFrame fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetAnimFrame(const GDExtensionSpxSpriteGetAnimFrame fn, GdObj obj, GdInt* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetAnimSpeedScale(const GDExtensionSpxSpriteSetAnimSpeedScale fn, GdObj obj, GdFloat p_speed_scale) {
-	 fn(obj, p_speed_scale);
+	fn(obj, p_speed_scale);
 }
-GdFloat cgo_callfn_GDExtensionSpxSpriteGetAnimSpeedScale(const GDExtensionSpxSpriteGetAnimSpeedScale fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetAnimSpeedScale(const GDExtensionSpxSpriteGetAnimSpeedScale fn, GdObj obj, GdFloat* ret_val) {
+	fn(obj,ret_val);
 }
-GdFloat cgo_callfn_GDExtensionSpxSpriteGetAnimPlayingSpeed(const GDExtensionSpxSpriteGetAnimPlayingSpeed fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetAnimPlayingSpeed(const GDExtensionSpxSpriteGetAnimPlayingSpeed fn, GdObj obj, GdFloat* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetAnimCentered(const GDExtensionSpxSpriteSetAnimCentered fn, GdObj obj, GdBool p_center) {
-	 fn(obj, p_center);
+	fn(obj, p_center);
 }
-GdBool cgo_callfn_GDExtensionSpxSpriteIsAnimCentered(const GDExtensionSpxSpriteIsAnimCentered fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteIsAnimCentered(const GDExtensionSpxSpriteIsAnimCentered fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetAnimOffset(const GDExtensionSpxSpriteSetAnimOffset fn, GdObj obj, GdVec2 p_offset) {
-	 fn(obj, p_offset);
+	fn(obj, p_offset);
 }
-GdVec2 cgo_callfn_GDExtensionSpxSpriteGetAnimOffset(const GDExtensionSpxSpriteGetAnimOffset fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetAnimOffset(const GDExtensionSpxSpriteGetAnimOffset fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetAnimFlipH(const GDExtensionSpxSpriteSetAnimFlipH fn, GdObj obj, GdBool p_flip) {
-	 fn(obj, p_flip);
+	fn(obj, p_flip);
 }
-GdBool cgo_callfn_GDExtensionSpxSpriteIsAnimFlippedH(const GDExtensionSpxSpriteIsAnimFlippedH fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteIsAnimFlippedH(const GDExtensionSpxSpriteIsAnimFlippedH fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetAnimFlipV(const GDExtensionSpxSpriteSetAnimFlipV fn, GdObj obj, GdBool p_flip) {
-	 fn(obj, p_flip);
+	fn(obj, p_flip);
 }
-GdBool cgo_callfn_GDExtensionSpxSpriteIsAnimFlippedV(const GDExtensionSpxSpriteIsAnimFlippedV fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteIsAnimFlippedV(const GDExtensionSpxSpriteIsAnimFlippedV fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetGravity(const GDExtensionSpxSpriteSetGravity fn, GdObj obj, GdFloat gravity) {
-	 fn(obj, gravity);
+	fn(obj, gravity);
 }
-GdFloat cgo_callfn_GDExtensionSpxSpriteGetGravity(const GDExtensionSpxSpriteGetGravity fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetGravity(const GDExtensionSpxSpriteGetGravity fn, GdObj obj, GdFloat* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetMass(const GDExtensionSpxSpriteSetMass fn, GdObj obj, GdFloat mass) {
-	 fn(obj, mass);
+	fn(obj, mass);
 }
-GdFloat cgo_callfn_GDExtensionSpxSpriteGetMass(const GDExtensionSpxSpriteGetMass fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetMass(const GDExtensionSpxSpriteGetMass fn, GdObj obj, GdFloat* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteAddForce(const GDExtensionSpxSpriteAddForce fn, GdObj obj, GdVec2 force) {
-	 fn(obj, force);
+	fn(obj, force);
 }
 void cgo_callfn_GDExtensionSpxSpriteAddImpulse(const GDExtensionSpxSpriteAddImpulse fn, GdObj obj, GdVec2 impulse) {
-	 fn(obj, impulse);
+	fn(obj, impulse);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetCollisionLayer(const GDExtensionSpxSpriteSetCollisionLayer fn, GdObj obj, GdInt layer) {
-	 fn(obj, layer);
+	fn(obj, layer);
 }
-GdInt cgo_callfn_GDExtensionSpxSpriteGetCollisionLayer(const GDExtensionSpxSpriteGetCollisionLayer fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetCollisionLayer(const GDExtensionSpxSpriteGetCollisionLayer fn, GdObj obj, GdInt* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetCollisionMask(const GDExtensionSpxSpriteSetCollisionMask fn, GdObj obj, GdInt mask) {
-	 fn(obj, mask);
+	fn(obj, mask);
 }
-GdInt cgo_callfn_GDExtensionSpxSpriteGetCollisionMask(const GDExtensionSpxSpriteGetCollisionMask fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetCollisionMask(const GDExtensionSpxSpriteGetCollisionMask fn, GdObj obj, GdInt* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetTriggerLayer(const GDExtensionSpxSpriteSetTriggerLayer fn, GdObj obj, GdInt layer) {
-	 fn(obj, layer);
+	fn(obj, layer);
 }
-GdInt cgo_callfn_GDExtensionSpxSpriteGetTriggerLayer(const GDExtensionSpxSpriteGetTriggerLayer fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetTriggerLayer(const GDExtensionSpxSpriteGetTriggerLayer fn, GdObj obj, GdInt* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetTriggerMask(const GDExtensionSpxSpriteSetTriggerMask fn, GdObj obj, GdInt mask) {
-	 fn(obj, mask);
+	fn(obj, mask);
 }
-GdInt cgo_callfn_GDExtensionSpxSpriteGetTriggerMask(const GDExtensionSpxSpriteGetTriggerMask fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteGetTriggerMask(const GDExtensionSpxSpriteGetTriggerMask fn, GdObj obj, GdInt* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetColliderRect(const GDExtensionSpxSpriteSetColliderRect fn, GdObj obj, GdVec2 center, GdVec2 size) {
-	 fn(obj, center, size);
+	fn(obj, center, size);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetColliderCircle(const GDExtensionSpxSpriteSetColliderCircle fn, GdObj obj, GdVec2 center, GdFloat radius) {
-	 fn(obj, center, radius);
+	fn(obj, center, radius);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetColliderCapsule(const GDExtensionSpxSpriteSetColliderCapsule fn, GdObj obj, GdVec2 center, GdVec2 size) {
-	 fn(obj, center, size);
+	fn(obj, center, size);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetCollisionEnabled(const GDExtensionSpxSpriteSetCollisionEnabled fn, GdObj obj, GdBool enabled) {
-	 fn(obj, enabled);
+	fn(obj, enabled);
 }
-GdBool cgo_callfn_GDExtensionSpxSpriteIsCollisionEnabled(const GDExtensionSpxSpriteIsCollisionEnabled fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteIsCollisionEnabled(const GDExtensionSpxSpriteIsCollisionEnabled fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetTriggerRect(const GDExtensionSpxSpriteSetTriggerRect fn, GdObj obj, GdVec2 center, GdVec2 size) {
-	 fn(obj, center, size);
+	fn(obj, center, size);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetTriggerCircle(const GDExtensionSpxSpriteSetTriggerCircle fn, GdObj obj, GdVec2 center, GdFloat radius) {
-	 fn(obj, center, radius);
+	fn(obj, center, radius);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetTriggerCapsule(const GDExtensionSpxSpriteSetTriggerCapsule fn, GdObj obj, GdVec2 center, GdVec2 size) {
-	 fn(obj, center, size);
+	fn(obj, center, size);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetTriggerEnabled(const GDExtensionSpxSpriteSetTriggerEnabled fn, GdObj obj, GdBool trigger) {
-	 fn(obj, trigger);
+	fn(obj, trigger);
 }
-GdBool cgo_callfn_GDExtensionSpxSpriteIsTriggerEnabled(const GDExtensionSpxSpriteIsTriggerEnabled fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxSpriteIsTriggerEnabled(const GDExtensionSpxSpriteIsTriggerEnabled fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
 }
-GdInt cgo_callfn_GDExtensionSpxUICreateButton(const GDExtensionSpxUICreateButton fn, GdString path, GdRect2 rect, GdString text) {
-	return fn(path, rect, text);
+void cgo_callfn_GDExtensionSpxUICreateButton(const GDExtensionSpxUICreateButton fn, GdString path, GdRect2 rect, GdString text, GdInt* ret_val) {
+	fn(path, rect, text,ret_val);
 }
-GdInt cgo_callfn_GDExtensionSpxUICreateLabel(const GDExtensionSpxUICreateLabel fn, GdString path, GdRect2 rect, GdString text) {
-	return fn(path, rect, text);
+void cgo_callfn_GDExtensionSpxUICreateLabel(const GDExtensionSpxUICreateLabel fn, GdString path, GdRect2 rect, GdString text, GdInt* ret_val) {
+	fn(path, rect, text,ret_val);
 }
-GdInt cgo_callfn_GDExtensionSpxUICreateImage(const GDExtensionSpxUICreateImage fn, GdString path, GdRect2 rect, GdColor color) {
-	return fn(path, rect, color);
+void cgo_callfn_GDExtensionSpxUICreateImage(const GDExtensionSpxUICreateImage fn, GdString path, GdRect2 rect, GdColor color, GdInt* ret_val) {
+	fn(path, rect, color,ret_val);
 }
-GdInt cgo_callfn_GDExtensionSpxUICreateSlider(const GDExtensionSpxUICreateSlider fn, GdString path, GdRect2 rect, GdFloat value) {
-	return fn(path, rect, value);
+void cgo_callfn_GDExtensionSpxUICreateSlider(const GDExtensionSpxUICreateSlider fn, GdString path, GdRect2 rect, GdFloat value, GdInt* ret_val) {
+	fn(path, rect, value,ret_val);
 }
-GdInt cgo_callfn_GDExtensionSpxUICreateToggle(const GDExtensionSpxUICreateToggle fn, GdString path, GdRect2 rect, GdBool value) {
-	return fn(path, rect, value);
+void cgo_callfn_GDExtensionSpxUICreateToggle(const GDExtensionSpxUICreateToggle fn, GdString path, GdRect2 rect, GdBool value, GdInt* ret_val) {
+	fn(path, rect, value,ret_val);
 }
-GdInt cgo_callfn_GDExtensionSpxUICreateInput(const GDExtensionSpxUICreateInput fn, GdString path, GdRect2 rect, GdString text) {
-	return fn(path, rect, text);
+void cgo_callfn_GDExtensionSpxUICreateInput(const GDExtensionSpxUICreateInput fn, GdString path, GdRect2 rect, GdString text, GdInt* ret_val) {
+	fn(path, rect, text,ret_val);
 }
-GdInt cgo_callfn_GDExtensionSpxUIGetType(const GDExtensionSpxUIGetType fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxUIGetType(const GDExtensionSpxUIGetType fn, GdObj obj, GdInt* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxUISetInteractable(const GDExtensionSpxUISetInteractable fn, GdObj obj, GdBool interactable) {
-	 fn(obj, interactable);
+	fn(obj, interactable);
 }
-GdBool cgo_callfn_GDExtensionSpxUIGetInteractable(const GDExtensionSpxUIGetInteractable fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxUIGetInteractable(const GDExtensionSpxUIGetInteractable fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxUISetText(const GDExtensionSpxUISetText fn, GdObj obj, GdString text) {
-	 fn(obj, text);
+	fn(obj, text);
 }
-GdString cgo_callfn_GDExtensionSpxUIGetText(const GDExtensionSpxUIGetText fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxUIGetText(const GDExtensionSpxUIGetText fn, GdObj obj, GdString* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxUISetRect(const GDExtensionSpxUISetRect fn, GdObj obj, GdRect2 rect) {
-	 fn(obj, rect);
+	fn(obj, rect);
 }
-GdRect2 cgo_callfn_GDExtensionSpxUIGetRect(const GDExtensionSpxUIGetRect fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxUIGetRect(const GDExtensionSpxUIGetRect fn, GdObj obj, GdRect2* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxUISetColor(const GDExtensionSpxUISetColor fn, GdObj obj, GdColor color) {
-	 fn(obj, color);
+	fn(obj, color);
 }
-GdColor cgo_callfn_GDExtensionSpxUIGetColor(const GDExtensionSpxUIGetColor fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxUIGetColor(const GDExtensionSpxUIGetColor fn, GdObj obj, GdColor* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxUISetFontSize(const GDExtensionSpxUISetFontSize fn, GdObj obj, GdFloat size) {
-	 fn(obj, size);
+	fn(obj, size);
 }
-GdFloat cgo_callfn_GDExtensionSpxUIGetFontSize(const GDExtensionSpxUIGetFontSize fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxUIGetFontSize(const GDExtensionSpxUIGetFontSize fn, GdObj obj, GdFloat* ret_val) {
+	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxUISetVisible(const GDExtensionSpxUISetVisible fn, GdObj obj, GdBool visible) {
-	 fn(obj, visible);
+	fn(obj, visible);
 }
-GdBool cgo_callfn_GDExtensionSpxUIGetVisible(const GDExtensionSpxUIGetVisible fn, GdObj obj) {
-	return fn(obj);
+void cgo_callfn_GDExtensionSpxUIGetVisible(const GDExtensionSpxUIGetVisible fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
 }
 #endif

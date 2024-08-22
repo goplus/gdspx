@@ -62,5 +62,5 @@ editor:
 
 
 gen:
-	cd .. && go run . && cd $(CURRENT_DIR_NAME) && \
+	cd ../../cmd && go run . && cd ../test/$(CURRENT_DIR_NAME) && \
 	$(MAKE) build

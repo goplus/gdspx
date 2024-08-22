@@ -18,9 +18,6 @@ package ffi
 // #include <stdio.h>
 // #include <stdlib.h>
 import "C"
-import (
-	"unsafe"
-)
 
 // C type aliases
 // enums
@@ -54,21 +51,22 @@ func Call{{ trimPrefix $f.Name "GDExtensionSpx" }}(
 ) {{ $rt }} {
 	arg0 := (C.{{ $f.Name }})(api.{{ trimPrefix $f.Name "GDExtension" }})
 	{{ range $j, $arg := $f.Arguments -}}
-		arg{{ add $j 1 }} := {{ cgoCastArgument $arg (print "inArg" (add $j 1)) }}
+		arg{{ add $j 1 }}{{$arg.Type.Primative.Name}} = {{ cgoCastArgument $arg (print "inArg" (add $j 1)) }}
 	{{ end -}}
 
-	{{ if $rt }}ret := {{ end -}}
+	{{- if $rt -}} var ret_val C.{{ $f.ReturnType.CStyleString }} {{ end }}
 	C.cgo_callfn_{{ $f.Name }}(arg0,
 		{{- range $j, $arg := $f.Arguments -}}
-			arg{{ add $j 1 }},
+			arg{{ add $j 1 }}{{$arg.Type.Primative.Name}},
 		{{- end -}}
+		{{ if $rt }} &ret_val{{ end -}}
 	)
 	{{- range $j, $arg := $f.Arguments -}}
 		{{ cgoCleanUpArgument $arg (add $j 1) }}
 	{{ end -}}
 
 	{{- if $rt }}
-	return {{ cgoCastReturnType $f.ReturnType "ret" }}
+	return {{ cgoCastReturnType $f.ReturnType "ret_val" }}
 	{{- end }}
 }
 {{- end -}}

@@ -52,8 +52,7 @@ func GenerateHeader(projectPath string){
 		return 
 	}
 	outputFile := filepath.Join(projectPath, RelDir, "gdextension_spx_ext.h")
-	generateSpxExtHeader(dir,outputFile)
-	fileCopy(outputFile, filepath.Join(dir, "gdextension_spx_ext.h"))
+	generateSpxExtHeader(dir,outputFile,true)
 }
 func Generate(projectPath string, ast clang.CHeaderFileAST) {
 	dir := filepath.Join(projectPath, "../../godot/core/extension")
@@ -69,6 +68,11 @@ func Generate(projectPath string, ast clang.CHeaderFileAST) {
 	outputFile := filepath.Join(projectPath, RelDir, "gdextension_spx_ext.cpp")
 	fileCopy(outputFile, filepath.Join(dir, "gdextension_spx_ext.cpp"))
 	os.Remove(outputFile)
+	
+	// use the new format header
+	outputFile = filepath.Join(projectPath, RelDir, "gdextension_spx_ext.h")
+	generateSpxExtHeader(dir,outputFile,false)
+	fileCopy(outputFile, filepath.Join(dir, "gdextension_spx_ext.h"))
 }
 
 func generateGdCppFile(projectPath string, templateStr string, ast clang.CHeaderFileAST, outputFileName string) error {

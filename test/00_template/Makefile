@@ -60,7 +60,6 @@ editor:
 	GODEBUG=sbrk=1,asyncpreemptoff=1,cgocheck=0,invalidptr=1,clobberfree=1,tracebackancestors=0 \
 	$(GODOT) --verbose --debug  --path project/ --editor
 
-
 gen:
-	cd .. && go run . && cd $(CURRENT_DIR_NAME) && \
+	cd ../../cmd && go run . && cd ../test/$(CURRENT_DIR_NAME) && \
 	$(MAKE) build

@@ -16,15 +16,6 @@ var (
 
 type GDExtensionInterface struct {
 	// All of the GDExtension interface functions.
-	SpxGlobalRegisterCallbacks GDExtensionSpxGlobalRegisterCallbacks
-	SpxStringNewWithLatin1Chars GDExtensionSpxStringNewWithLatin1Chars
-	SpxStringNewWithUtf8Chars GDExtensionSpxStringNewWithUtf8Chars
-	SpxStringNewWithLatin1CharsAndLen GDExtensionSpxStringNewWithLatin1CharsAndLen
-	SpxStringNewWithUtf8CharsAndLen GDExtensionSpxStringNewWithUtf8CharsAndLen
-	SpxStringToLatin1Chars GDExtensionSpxStringToLatin1Chars
-	SpxStringToUtf8Chars GDExtensionSpxStringToUtf8Chars
-	SpxVariantGetPtrConstructor GDExtensionSpxVariantGetPtrConstructor
-	SpxVariantGetPtrDestructor GDExtensionSpxVariantGetPtrDestructor
 	SpxAudioPlayAudio GDExtensionSpxAudioPlayAudio
 	SpxAudioSetAudioVolume GDExtensionSpxAudioSetAudioVolume
 	SpxAudioGetAudioVolume GDExtensionSpxAudioGetAudioVolume
@@ -128,16 +119,6 @@ type GDExtensionInterface struct {
 	}
 
 func (x *GDExtensionInterface) loadProcAddresses() {
-
-	x.SpxGlobalRegisterCallbacks = (GDExtensionSpxGlobalRegisterCallbacks)(dlsymGD("spx_global_register_callbacks"))
-	x.SpxStringNewWithLatin1Chars = (GDExtensionSpxStringNewWithLatin1Chars)(dlsymGD("spx_string_new_with_latin1_chars"))
-	x.SpxStringNewWithUtf8Chars = (GDExtensionSpxStringNewWithUtf8Chars)(dlsymGD("spx_string_new_with_utf8_chars"))
-	x.SpxStringNewWithLatin1CharsAndLen = (GDExtensionSpxStringNewWithLatin1CharsAndLen)(dlsymGD("spx_string_new_with_latin1_chars_and_len"))
-	x.SpxStringNewWithUtf8CharsAndLen = (GDExtensionSpxStringNewWithUtf8CharsAndLen)(dlsymGD("spx_string_new_with_utf8_chars_and_len"))
-	x.SpxStringToLatin1Chars = (GDExtensionSpxStringToLatin1Chars)(dlsymGD("spx_string_to_latin1_chars"))
-	x.SpxStringToUtf8Chars = (GDExtensionSpxStringToUtf8Chars)(dlsymGD("spx_string_to_utf8_chars"))
-	x.SpxVariantGetPtrConstructor = (GDExtensionSpxVariantGetPtrConstructor)(dlsymGD("spx_variant_get_ptr_constructor"))
-	x.SpxVariantGetPtrDestructor = (GDExtensionSpxVariantGetPtrDestructor)(dlsymGD("spx_variant_get_ptr_destructor"))
 	x.SpxAudioPlayAudio = (GDExtensionSpxAudioPlayAudio)(dlsymGD("spx_audio_play_audio"))
 	x.SpxAudioSetAudioVolume = (GDExtensionSpxAudioSetAudioVolume)(dlsymGD("spx_audio_set_audio_volume"))
 	x.SpxAudioGetAudioVolume = (GDExtensionSpxAudioGetAudioVolume)(dlsymGD("spx_audio_get_audio_volume"))

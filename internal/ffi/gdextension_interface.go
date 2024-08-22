@@ -273,6 +273,7 @@ var (
 	arg7GdVec4 C.GdVec4
 	arg7GdRect2 C.GdRect2
 	arg7GdColor C.GdColor
+	
 )
 
 type initialization = C.GDExtensionInitialization

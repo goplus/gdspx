@@ -10,9 +10,9 @@ import (
 	"strings"
 	"github.com/iancoleman/strcase"
 )
-func generateSpxExtHeader(dir,outputFile string)  {
+func generateSpxExtHeader(dir,outputFile string, isRawFormat bool)  {
 	mergedStr:= mergeManagerHeader(dir)
-	mergedHeaderFuncStr := generateManagerHeader(mergedStr)
+	mergedHeaderFuncStr := generateManagerHeader(mergedStr,isRawFormat)
 	finalHeader := strings.Replace(gdSpxExtH, "###MANAGER_FUNC_DEFINE", mergedHeaderFuncStr, -1)
 	// Write the final header file
 	f, err := os.Create(outputFile)
@@ -22,6 +22,7 @@ func generateSpxExtHeader(dir,outputFile string)  {
 	f.Write([]byte(finalHeader))
 	f.Close()
 }
+
 
 func mergeManagerHeader(dir string) string {
 	files, err := filepath.Glob(filepath.Join(dir, "spx*mgr.h"))
@@ -95,7 +96,7 @@ func mergeManagerHeader(dir string) string {
 }
 
 
-func generateManagerHeader(input string) string {
+func generateManagerHeader(input string, rawFormat bool) string {
 	scanner := bufio.NewScanner(strings.NewReader(input))
 	var currentClassName string
 	methodRegex := regexp.MustCompile(`\s*void\s+(\w+)\((.*)\);`)
@@ -122,7 +123,14 @@ func generateManagerHeader(input string) string {
 			returnType := matches[1]
 			methodName := strcase.ToCamel(matches[2])
 			params := matches[3]
-			builder.WriteString(fmt.Sprintf("typedef %s (*GDExtension%s%s)(%s);\n", returnType, currentClassName, methodName, params))
+			if(rawFormat){
+				builder.WriteString(fmt.Sprintf("typedef %s (*GDExtension%s%s)(%s);\n", returnType, currentClassName, methodName, params))
+			}else{
+				if len(params) > 0 {
+					returnType = ", " + returnType
+				}
+				builder.WriteString(fmt.Sprintf("typedef void (*GDExtension%s%s)(%s%s* ret_value);\n", currentClassName, methodName, params,  returnType))
+			}
 		}
 	}
 
