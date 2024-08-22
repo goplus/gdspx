@@ -1,8 +1,5 @@
 
 #!/bin/bash
-pwd 
-cd cmd/template
-
-pwd 
-make && make run
+cd test/01_aircraft_war
+make run
 cd ../../

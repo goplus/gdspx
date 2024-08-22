@@ -1,5 +1,4 @@
 @echo off
-cd cmd/template
-call make 
+cd test/01_aircraft_war
 call make run
 cd ../../
