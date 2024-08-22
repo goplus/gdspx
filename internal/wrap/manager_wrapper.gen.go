@@ -114,6 +114,11 @@ func (pself *inputMgr) GetMousePos() Vec2  {
 	retValue := CallInputGetMousePos()
 	return ToVec2(retValue)
 }
+func (pself *inputMgr) GetKey(key int64) bool  {
+	arg0 := ToGdInt(key)
+	retValue := CallInputGetKey(arg0)
+	return ToBool(retValue)
+}
 func (pself *inputMgr) GetMouseState(mouse_id int64) bool  {
 	arg0 := ToGdInt(mouse_id)
 	retValue := CallInputGetMouseState(arg0)

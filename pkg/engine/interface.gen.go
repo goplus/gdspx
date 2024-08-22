@@ -31,6 +31,7 @@ type IAudioMgr interface {
 
 type IInputMgr interface {
 	GetMousePos() Vec2 
+	GetKey(key int64) bool 
 	GetMouseState(mouse_id int64) bool 
 	GetKeyState(key int64) int64 
 	GetAxis(axis string) float32 

@@ -69,6 +69,7 @@ type GDExtensionSpxAudioResumeMusic C.GDExtensionSpxAudioResumeMusic
 type GDExtensionSpxAudioGetMusicTimer C.GDExtensionSpxAudioGetMusicTimer
 type GDExtensionSpxAudioSetMusicTimer C.GDExtensionSpxAudioSetMusicTimer
 type GDExtensionSpxInputGetMousePos C.GDExtensionSpxInputGetMousePos
+type GDExtensionSpxInputGetKey C.GDExtensionSpxInputGetKey
 type GDExtensionSpxInputGetMouseState C.GDExtensionSpxInputGetMouseState
 type GDExtensionSpxInputGetKeyState C.GDExtensionSpxInputGetKeyState
 type GDExtensionSpxInputGetAxis C.GDExtensionSpxInputGetAxis
@@ -251,6 +252,16 @@ func CallInputGetMousePos(
 	var ret_val C.GdVec2 
 	C.cgo_callfn_GDExtensionSpxInputGetMousePos(arg0, &ret_val)
 	return (GdVec2)(ret_val)
+}
+func CallInputGetKey(
+	key GdInt,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxInputGetKey)(api.SpxInputGetKey)
+	arg1GdInt = (C.GdInt)(key)
+	var ret_val C.GdBool 
+	C.cgo_callfn_GDExtensionSpxInputGetKey(arg0,arg1GdInt, &ret_val)
+	
+	return (GdBool)(ret_val)
 }
 func CallInputGetMouseState(
 	mouse_id GdInt,

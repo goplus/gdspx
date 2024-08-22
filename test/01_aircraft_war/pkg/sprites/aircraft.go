@@ -22,16 +22,16 @@ func (pself *Aircraft) OnUpdate(delta float32) {
 		bullet.SetPosition(Vec2{pos.X , pos.Y + 150})
 	}
 	
-	if InputMgr.GetKeyState(KeyCode.W) == 1 {
+	if InputMgr.GetKey(KeyCode.W) {
 		pself.Move(0, pself.moveSpeed * delta)
 	}
-	if InputMgr.GetKeyState(KeyCode.S) == 1 {
+	if InputMgr.GetKey(KeyCode.S) {
 		pself.Move(0, -pself.moveSpeed * delta)
 	}
-	if InputMgr.GetKeyState(KeyCode.D) == 1 {
+	if InputMgr.GetKey(KeyCode.D) {
 		pself.Move( pself.moveSpeed * delta,0)
 	}
-	if InputMgr.GetKeyState(KeyCode.A) == 1 {
+	if InputMgr.GetKey(KeyCode.A) {
 		pself.Move(-pself.moveSpeed * delta,0)
 	}
 }

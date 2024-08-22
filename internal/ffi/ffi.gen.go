@@ -28,6 +28,7 @@ type GDExtensionInterface struct {
 	SpxAudioGetMusicTimer GDExtensionSpxAudioGetMusicTimer
 	SpxAudioSetMusicTimer GDExtensionSpxAudioSetMusicTimer
 	SpxInputGetMousePos GDExtensionSpxInputGetMousePos
+	SpxInputGetKey GDExtensionSpxInputGetKey
 	SpxInputGetMouseState GDExtensionSpxInputGetMouseState
 	SpxInputGetKeyState GDExtensionSpxInputGetKeyState
 	SpxInputGetAxis GDExtensionSpxInputGetAxis
@@ -131,6 +132,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxAudioGetMusicTimer = (GDExtensionSpxAudioGetMusicTimer)(dlsymGD("spx_audio_get_music_timer"))
 	x.SpxAudioSetMusicTimer = (GDExtensionSpxAudioSetMusicTimer)(dlsymGD("spx_audio_set_music_timer"))
 	x.SpxInputGetMousePos = (GDExtensionSpxInputGetMousePos)(dlsymGD("spx_input_get_mouse_pos"))
+	x.SpxInputGetKey = (GDExtensionSpxInputGetKey)(dlsymGD("spx_input_get_key"))
 	x.SpxInputGetMouseState = (GDExtensionSpxInputGetMouseState)(dlsymGD("spx_input_get_mouse_state"))
 	x.SpxInputGetKeyState = (GDExtensionSpxInputGetKeyState)(dlsymGD("spx_input_get_key_state"))
 	x.SpxInputGetAxis = (GDExtensionSpxInputGetAxis)(dlsymGD("spx_input_get_axis"))

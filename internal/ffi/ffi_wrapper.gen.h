@@ -48,6 +48,9 @@ void cgo_callfn_GDExtensionSpxAudioSetMusicTimer(const GDExtensionSpxAudioSetMus
 void cgo_callfn_GDExtensionSpxInputGetMousePos(const GDExtensionSpxInputGetMousePos fn, GdVec2* ret_val) {
 	fn(ret_val);
 }
+void cgo_callfn_GDExtensionSpxInputGetKey(const GDExtensionSpxInputGetKey fn, GdInt key, GdBool* ret_val) {
+	fn(key,ret_val);
+}
 void cgo_callfn_GDExtensionSpxInputGetMouseState(const GDExtensionSpxInputGetMouseState fn, GdInt mouse_id, GdBool* ret_val) {
 	fn(mouse_id,ret_val);
 }
