@@ -43,6 +43,9 @@ type GDExtensionSpxCallbackOnCollisionExit C.GDExtensionSpxCallbackOnCollisionEx
 type GDExtensionSpxCallbackOnTriggerEnter C.GDExtensionSpxCallbackOnTriggerEnter
 type GDExtensionSpxCallbackOnTriggerStay C.GDExtensionSpxCallbackOnTriggerStay
 type GDExtensionSpxCallbackOnTriggerExit C.GDExtensionSpxCallbackOnTriggerExit
+type GDExtensionSpxCallbackOnUIReady C.GDExtensionSpxCallbackOnUIReady
+type GDExtensionSpxCallbackOnUIUpdated C.GDExtensionSpxCallbackOnUIUpdated
+type GDExtensionSpxCallbackOnUIDestroyed C.GDExtensionSpxCallbackOnUIDestroyed
 type GDExtensionSpxCallbackOnUIPressed C.GDExtensionSpxCallbackOnUIPressed
 type GDExtensionSpxCallbackOnUIReleased C.GDExtensionSpxCallbackOnUIReleased
 type GDExtensionSpxCallbackOnUIHovered C.GDExtensionSpxCallbackOnUIHovered
@@ -139,25 +142,29 @@ type GDExtensionSpxSpriteSetTriggerCircle C.GDExtensionSpxSpriteSetTriggerCircle
 type GDExtensionSpxSpriteSetTriggerCapsule C.GDExtensionSpxSpriteSetTriggerCapsule
 type GDExtensionSpxSpriteSetTriggerEnabled C.GDExtensionSpxSpriteSetTriggerEnabled
 type GDExtensionSpxSpriteIsTriggerEnabled C.GDExtensionSpxSpriteIsTriggerEnabled
+type GDExtensionSpxUICreateNode C.GDExtensionSpxUICreateNode
 type GDExtensionSpxUICreateButton C.GDExtensionSpxUICreateButton
 type GDExtensionSpxUICreateLabel C.GDExtensionSpxUICreateLabel
 type GDExtensionSpxUICreateImage C.GDExtensionSpxUICreateImage
-type GDExtensionSpxUICreateSlider C.GDExtensionSpxUICreateSlider
 type GDExtensionSpxUICreateToggle C.GDExtensionSpxUICreateToggle
+type GDExtensionSpxUICreateSlider C.GDExtensionSpxUICreateSlider
 type GDExtensionSpxUICreateInput C.GDExtensionSpxUICreateInput
+type GDExtensionSpxUIDestroyNode C.GDExtensionSpxUIDestroyNode
 type GDExtensionSpxUIGetType C.GDExtensionSpxUIGetType
-type GDExtensionSpxUISetInteractable C.GDExtensionSpxUISetInteractable
-type GDExtensionSpxUIGetInteractable C.GDExtensionSpxUIGetInteractable
 type GDExtensionSpxUISetText C.GDExtensionSpxUISetText
 type GDExtensionSpxUIGetText C.GDExtensionSpxUIGetText
-type GDExtensionSpxUISetRect C.GDExtensionSpxUISetRect
-type GDExtensionSpxUIGetRect C.GDExtensionSpxUIGetRect
+type GDExtensionSpxUISetTexture C.GDExtensionSpxUISetTexture
+type GDExtensionSpxUIGetTexture C.GDExtensionSpxUIGetTexture
 type GDExtensionSpxUISetColor C.GDExtensionSpxUISetColor
 type GDExtensionSpxUIGetColor C.GDExtensionSpxUIGetColor
 type GDExtensionSpxUISetFontSize C.GDExtensionSpxUISetFontSize
 type GDExtensionSpxUIGetFontSize C.GDExtensionSpxUIGetFontSize
 type GDExtensionSpxUISetVisible C.GDExtensionSpxUISetVisible
 type GDExtensionSpxUIGetVisible C.GDExtensionSpxUIGetVisible
+type GDExtensionSpxUISetInteractable C.GDExtensionSpxUISetInteractable
+type GDExtensionSpxUIGetInteractable C.GDExtensionSpxUIGetInteractable
+type GDExtensionSpxUISetRect C.GDExtensionSpxUISetRect
+type GDExtensionSpxUIGetRect C.GDExtensionSpxUIGetRect
 
 
 // call gdextension interface functions
@@ -1045,101 +1052,100 @@ func CallSpriteIsTriggerEnabled(
 	
 	return (GdBool)(ret_val)
 }
+func CallUICreateNode(
+	path GdString,
+	) GdObj {
+	arg0 := (C.GDExtensionSpxUICreateNode)(api.SpxUICreateNode)
+	arg1GdString = (C.GdString)(path)
+	var ret_val C.GdObj 
+	C.cgo_callfn_GDExtensionSpxUICreateNode(arg0,arg1GdString, &ret_val)
+	
+	return (GdObj)(ret_val)
+}
 func CallUICreateButton(
 	path GdString,
-	rect GdRect2,
 	text GdString,
-	) GdInt {
+	) GdObj {
 	arg0 := (C.GDExtensionSpxUICreateButton)(api.SpxUICreateButton)
 	arg1GdString = (C.GdString)(path)
-	arg2GdRect2 = (C.GdRect2)(rect)
-	arg3GdString = (C.GdString)(text)
-	var ret_val C.GdInt 
-	C.cgo_callfn_GDExtensionSpxUICreateButton(arg0,arg1GdString,arg2GdRect2,arg3GdString, &ret_val)
+	arg2GdString = (C.GdString)(text)
+	var ret_val C.GdObj 
+	C.cgo_callfn_GDExtensionSpxUICreateButton(arg0,arg1GdString,arg2GdString, &ret_val)
 	
 	
-	
-	return (GdInt)(ret_val)
+	return (GdObj)(ret_val)
 }
 func CallUICreateLabel(
 	path GdString,
-	rect GdRect2,
 	text GdString,
-	) GdInt {
+	) GdObj {
 	arg0 := (C.GDExtensionSpxUICreateLabel)(api.SpxUICreateLabel)
 	arg1GdString = (C.GdString)(path)
-	arg2GdRect2 = (C.GdRect2)(rect)
-	arg3GdString = (C.GdString)(text)
-	var ret_val C.GdInt 
-	C.cgo_callfn_GDExtensionSpxUICreateLabel(arg0,arg1GdString,arg2GdRect2,arg3GdString, &ret_val)
+	arg2GdString = (C.GdString)(text)
+	var ret_val C.GdObj 
+	C.cgo_callfn_GDExtensionSpxUICreateLabel(arg0,arg1GdString,arg2GdString, &ret_val)
 	
 	
-	
-	return (GdInt)(ret_val)
+	return (GdObj)(ret_val)
 }
 func CallUICreateImage(
 	path GdString,
-	rect GdRect2,
-	color GdColor,
-	) GdInt {
+	) GdObj {
 	arg0 := (C.GDExtensionSpxUICreateImage)(api.SpxUICreateImage)
 	arg1GdString = (C.GdString)(path)
-	arg2GdRect2 = (C.GdRect2)(rect)
-	arg3GdColor = (C.GdColor)(color)
-	var ret_val C.GdInt 
-	C.cgo_callfn_GDExtensionSpxUICreateImage(arg0,arg1GdString,arg2GdRect2,arg3GdColor, &ret_val)
+	var ret_val C.GdObj 
+	C.cgo_callfn_GDExtensionSpxUICreateImage(arg0,arg1GdString, &ret_val)
 	
-	
-	
-	return (GdInt)(ret_val)
-}
-func CallUICreateSlider(
-	path GdString,
-	rect GdRect2,
-	value GdFloat,
-	) GdInt {
-	arg0 := (C.GDExtensionSpxUICreateSlider)(api.SpxUICreateSlider)
-	arg1GdString = (C.GdString)(path)
-	arg2GdRect2 = (C.GdRect2)(rect)
-	arg3GdFloat = (C.GdFloat)(value)
-	var ret_val C.GdInt 
-	C.cgo_callfn_GDExtensionSpxUICreateSlider(arg0,arg1GdString,arg2GdRect2,arg3GdFloat, &ret_val)
-	
-	
-	
-	return (GdInt)(ret_val)
+	return (GdObj)(ret_val)
 }
 func CallUICreateToggle(
 	path GdString,
-	rect GdRect2,
 	value GdBool,
-	) GdInt {
+	) GdObj {
 	arg0 := (C.GDExtensionSpxUICreateToggle)(api.SpxUICreateToggle)
 	arg1GdString = (C.GdString)(path)
-	arg2GdRect2 = (C.GdRect2)(rect)
-	arg3GdBool = (C.GdBool)(value)
-	var ret_val C.GdInt 
-	C.cgo_callfn_GDExtensionSpxUICreateToggle(arg0,arg1GdString,arg2GdRect2,arg3GdBool, &ret_val)
+	arg2GdBool = (C.GdBool)(value)
+	var ret_val C.GdObj 
+	C.cgo_callfn_GDExtensionSpxUICreateToggle(arg0,arg1GdString,arg2GdBool, &ret_val)
 	
 	
+	return (GdObj)(ret_val)
+}
+func CallUICreateSlider(
+	path GdString,
+	value GdFloat,
+	) GdObj {
+	arg0 := (C.GDExtensionSpxUICreateSlider)(api.SpxUICreateSlider)
+	arg1GdString = (C.GdString)(path)
+	arg2GdFloat = (C.GdFloat)(value)
+	var ret_val C.GdObj 
+	C.cgo_callfn_GDExtensionSpxUICreateSlider(arg0,arg1GdString,arg2GdFloat, &ret_val)
 	
-	return (GdInt)(ret_val)
+	
+	return (GdObj)(ret_val)
 }
 func CallUICreateInput(
 	path GdString,
-	rect GdRect2,
 	text GdString,
-	) GdInt {
+	) GdObj {
 	arg0 := (C.GDExtensionSpxUICreateInput)(api.SpxUICreateInput)
 	arg1GdString = (C.GdString)(path)
-	arg2GdRect2 = (C.GdRect2)(rect)
-	arg3GdString = (C.GdString)(text)
-	var ret_val C.GdInt 
-	C.cgo_callfn_GDExtensionSpxUICreateInput(arg0,arg1GdString,arg2GdRect2,arg3GdString, &ret_val)
+	arg2GdString = (C.GdString)(text)
+	var ret_val C.GdObj 
+	C.cgo_callfn_GDExtensionSpxUICreateInput(arg0,arg1GdString,arg2GdString, &ret_val)
 	
 	
+	return (GdObj)(ret_val)
+}
+func CallUIDestroyNode(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxUIDestroyNode)(api.SpxUIDestroyNode)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdBool 
+	C.cgo_callfn_GDExtensionSpxUIDestroyNode(arg0,arg1GdObj, &ret_val)
 	
-	return (GdInt)(ret_val)
+	return (GdBool)(ret_val)
 }
 func CallUIGetType(
 	obj GdObj,
@@ -1150,28 +1156,6 @@ func CallUIGetType(
 	C.cgo_callfn_GDExtensionSpxUIGetType(arg0,arg1GdObj, &ret_val)
 	
 	return (GdInt)(ret_val)
-}
-func CallUISetInteractable(
-	obj GdObj,
-	interactable GdBool,
-	)  {
-	arg0 := (C.GDExtensionSpxUISetInteractable)(api.SpxUISetInteractable)
-	arg1GdObj = (C.GdObj)(obj)
-	arg2GdBool = (C.GdBool)(interactable)
-	
-	C.cgo_callfn_GDExtensionSpxUISetInteractable(arg0,arg1GdObj,arg2GdBool,)
-	
-	
-}
-func CallUIGetInteractable(
-	obj GdObj,
-	) GdBool {
-	arg0 := (C.GDExtensionSpxUIGetInteractable)(api.SpxUIGetInteractable)
-	arg1GdObj = (C.GdObj)(obj)
-	var ret_val C.GdBool 
-	C.cgo_callfn_GDExtensionSpxUIGetInteractable(arg0,arg1GdObj, &ret_val)
-	
-	return (GdBool)(ret_val)
 }
 func CallUISetText(
 	obj GdObj,
@@ -1195,27 +1179,27 @@ func CallUIGetText(
 	
 	return (GdString)(ret_val)
 }
-func CallUISetRect(
+func CallUISetTexture(
 	obj GdObj,
-	rect GdRect2,
+	path GdString,
 	)  {
-	arg0 := (C.GDExtensionSpxUISetRect)(api.SpxUISetRect)
+	arg0 := (C.GDExtensionSpxUISetTexture)(api.SpxUISetTexture)
 	arg1GdObj = (C.GdObj)(obj)
-	arg2GdRect2 = (C.GdRect2)(rect)
+	arg2GdString = (C.GdString)(path)
 	
-	C.cgo_callfn_GDExtensionSpxUISetRect(arg0,arg1GdObj,arg2GdRect2,)
+	C.cgo_callfn_GDExtensionSpxUISetTexture(arg0,arg1GdObj,arg2GdString,)
 	
 	
 }
-func CallUIGetRect(
+func CallUIGetTexture(
 	obj GdObj,
-	) GdRect2 {
-	arg0 := (C.GDExtensionSpxUIGetRect)(api.SpxUIGetRect)
+	) GdString {
+	arg0 := (C.GDExtensionSpxUIGetTexture)(api.SpxUIGetTexture)
 	arg1GdObj = (C.GdObj)(obj)
-	var ret_val C.GdRect2 
-	C.cgo_callfn_GDExtensionSpxUIGetRect(arg0,arg1GdObj, &ret_val)
+	var ret_val C.GdString 
+	C.cgo_callfn_GDExtensionSpxUIGetTexture(arg0,arg1GdObj, &ret_val)
 	
-	return (GdRect2)(ret_val)
+	return (GdString)(ret_val)
 }
 func CallUISetColor(
 	obj GdObj,
@@ -1241,25 +1225,25 @@ func CallUIGetColor(
 }
 func CallUISetFontSize(
 	obj GdObj,
-	size GdFloat,
+	size GdInt,
 	)  {
 	arg0 := (C.GDExtensionSpxUISetFontSize)(api.SpxUISetFontSize)
 	arg1GdObj = (C.GdObj)(obj)
-	arg2GdFloat = (C.GdFloat)(size)
+	arg2GdInt = (C.GdInt)(size)
 	
-	C.cgo_callfn_GDExtensionSpxUISetFontSize(arg0,arg1GdObj,arg2GdFloat,)
+	C.cgo_callfn_GDExtensionSpxUISetFontSize(arg0,arg1GdObj,arg2GdInt,)
 	
 	
 }
 func CallUIGetFontSize(
 	obj GdObj,
-	) GdFloat {
+	) GdInt {
 	arg0 := (C.GDExtensionSpxUIGetFontSize)(api.SpxUIGetFontSize)
 	arg1GdObj = (C.GdObj)(obj)
-	var ret_val C.GdFloat 
+	var ret_val C.GdInt 
 	C.cgo_callfn_GDExtensionSpxUIGetFontSize(arg0,arg1GdObj, &ret_val)
 	
-	return (GdFloat)(ret_val)
+	return (GdInt)(ret_val)
 }
 func CallUISetVisible(
 	obj GdObj,
@@ -1282,4 +1266,48 @@ func CallUIGetVisible(
 	C.cgo_callfn_GDExtensionSpxUIGetVisible(arg0,arg1GdObj, &ret_val)
 	
 	return (GdBool)(ret_val)
+}
+func CallUISetInteractable(
+	obj GdObj,
+	interactable GdBool,
+	)  {
+	arg0 := (C.GDExtensionSpxUISetInteractable)(api.SpxUISetInteractable)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdBool = (C.GdBool)(interactable)
+	
+	C.cgo_callfn_GDExtensionSpxUISetInteractable(arg0,arg1GdObj,arg2GdBool,)
+	
+	
+}
+func CallUIGetInteractable(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxUIGetInteractable)(api.SpxUIGetInteractable)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdBool 
+	C.cgo_callfn_GDExtensionSpxUIGetInteractable(arg0,arg1GdObj, &ret_val)
+	
+	return (GdBool)(ret_val)
+}
+func CallUISetRect(
+	obj GdObj,
+	rect GdRect2,
+	)  {
+	arg0 := (C.GDExtensionSpxUISetRect)(api.SpxUISetRect)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdRect2 = (C.GdRect2)(rect)
+	
+	C.cgo_callfn_GDExtensionSpxUISetRect(arg0,arg1GdObj,arg2GdRect2,)
+	
+	
+}
+func CallUIGetRect(
+	obj GdObj,
+	) GdRect2 {
+	arg0 := (C.GDExtensionSpxUIGetRect)(api.SpxUIGetRect)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdRect2 
+	C.cgo_callfn_GDExtensionSpxUIGetRect(arg0,arg1GdObj, &ret_val)
+	
+	return (GdRect2)(ret_val)
 }

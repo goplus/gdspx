@@ -5,12 +5,18 @@ import (
 
 var (
 	Id2Sprites = make(map[Object]ISpriter)
+	Id2UiNodes = make(map[Object]IUiNode)
 	TimeSinceGameStart	 = float32(0)
 )
 
 func getPrefabPath(name string) string {
 	assetName := name
 	return "res://assets/prefabs/" +assetName  + ".tscn"
+}
+
+func getUiPath(name string) string {
+	assetName := name
+	return "res://assets/ui/" +assetName  + ".tscn"
 }
 
 func InitEngine(){
@@ -27,4 +33,18 @@ func CreateSprite[T any]() *T {
 	Id2Sprites[id] = sprite
 	sprite.OnStart()
 	return spriteValue.Addr().Interface().(*T)
+}
+func CreateUI[T any](prefabName string) *T {
+	tType := reflect.TypeOf((*T)(nil)).Elem()
+	name := tType.Name()
+	if prefabName != "" {
+		name = prefabName
+	}
+	nodeValue := reflect.New(tType).Elem()
+	id := UiMgr.CreateNode(getUiPath(name))
+	node := nodeValue.Addr().Interface().(IUiNode)
+	node.SetId(id)
+	Id2UiNodes[id] = node
+	node.OnStart()
+	return nodeValue.Addr().Interface().(*T)
 }

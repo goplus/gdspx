@@ -110,25 +110,29 @@ type ISpriteMgr interface {
 }
 
 type IUiMgr interface {
-	CreateButton(path string, rect Rect2, text string) int64 
-	CreateLabel(path string, rect Rect2, text string) int64 
-	CreateImage(path string, rect Rect2, color Color) int64 
-	CreateSlider(path string, rect Rect2, value float32) int64 
-	CreateToggle(path string, rect Rect2, value bool) int64 
-	CreateInput(path string, rect Rect2, text string) int64 
+	CreateNode(path string) Object 
+	CreateButton(path string, text string) Object 
+	CreateLabel(path string, text string) Object 
+	CreateImage(path string) Object 
+	CreateToggle(path string, value bool) Object 
+	CreateSlider(path string, value float32) Object 
+	CreateInput(path string, text string) Object 
+	DestroyNode(obj Object) bool 
 	GetType(obj Object) int64 
-	SetInteractable(obj Object, interactable bool)
-	GetInteractable(obj Object) bool 
 	SetText(obj Object, text string)
 	GetText(obj Object) string 
-	SetRect(obj Object, rect Rect2)
-	GetRect(obj Object) Rect2 
+	SetTexture(obj Object, path string)
+	GetTexture(obj Object) string 
 	SetColor(obj Object, color Color)
 	GetColor(obj Object) Color 
-	SetFontSize(obj Object, size float32)
-	GetFontSize(obj Object) float32 
+	SetFontSize(obj Object, size int64)
+	GetFontSize(obj Object) int64 
 	SetVisible(obj Object, visible bool)
-	GetVisible(obj Object) bool  
+	GetVisible(obj Object) bool 
+	SetInteractable(obj Object, interactable bool)
+	GetInteractable(obj Object) bool 
+	SetRect(obj Object, rect Rect2)
+	GetRect(obj Object) Rect2  
 }
 
 

@@ -481,92 +481,91 @@ func (pself *spriteMgr) IsTriggerEnabled(obj Object) bool  {
 	retValue := CallSpriteIsTriggerEnabled(arg0)
 	return ToBool(retValue)
 }
-func (pself *uiMgr) CreateButton(path string, rect Rect2, text string) int64  {
+func (pself *uiMgr) CreateNode(path string) Object  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
-	arg1 := ToGdRect2(rect)
-	arg2Str := NewCString(text)
-	arg2 := arg2Str.ToGdString() 
-	retValue := CallUICreateButton(arg0, arg1, arg2)
-	return ToInt64(retValue)
+	retValue := CallUICreateNode(arg0)
+	return ToObject(retValue)
 }
-func (pself *uiMgr) CreateLabel(path string, rect Rect2, text string) int64  {
+func (pself *uiMgr) CreateButton(path string, text string) Object  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
-	arg1 := ToGdRect2(rect)
-	arg2Str := NewCString(text)
-	arg2 := arg2Str.ToGdString() 
-	retValue := CallUICreateLabel(arg0, arg1, arg2)
-	return ToInt64(retValue)
+	arg1Str := NewCString(text)
+	arg1 := arg1Str.ToGdString() 
+	retValue := CallUICreateButton(arg0, arg1)
+	return ToObject(retValue)
 }
-func (pself *uiMgr) CreateImage(path string, rect Rect2, color Color) int64  {
+func (pself *uiMgr) CreateLabel(path string, text string) Object  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
-	arg1 := ToGdRect2(rect)
-	arg2 := ToGdColor(color)
-	retValue := CallUICreateImage(arg0, arg1, arg2)
-	return ToInt64(retValue)
+	arg1Str := NewCString(text)
+	arg1 := arg1Str.ToGdString() 
+	retValue := CallUICreateLabel(arg0, arg1)
+	return ToObject(retValue)
 }
-func (pself *uiMgr) CreateSlider(path string, rect Rect2, value float32) int64  {
+func (pself *uiMgr) CreateImage(path string) Object  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
-	arg1 := ToGdRect2(rect)
-	arg2 := ToGdFloat(value)
-	retValue := CallUICreateSlider(arg0, arg1, arg2)
-	return ToInt64(retValue)
+	retValue := CallUICreateImage(arg0)
+	return ToObject(retValue)
 }
-func (pself *uiMgr) CreateToggle(path string, rect Rect2, value bool) int64  {
+func (pself *uiMgr) CreateToggle(path string, value bool) Object  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
-	arg1 := ToGdRect2(rect)
-	arg2 := ToGdBool(value)
-	retValue := CallUICreateToggle(arg0, arg1, arg2)
-	return ToInt64(retValue)
+	arg1 := ToGdBool(value)
+	retValue := CallUICreateToggle(arg0, arg1)
+	return ToObject(retValue)
 }
-func (pself *uiMgr) CreateInput(path string, rect Rect2, text string) int64  {
+func (pself *uiMgr) CreateSlider(path string, value float32) Object  {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
-	arg1 := ToGdRect2(rect)
-	arg2Str := NewCString(text)
-	arg2 := arg2Str.ToGdString() 
-	retValue := CallUICreateInput(arg0, arg1, arg2)
-	return ToInt64(retValue)
+	arg1 := ToGdFloat(value)
+	retValue := CallUICreateSlider(arg0, arg1)
+	return ToObject(retValue)
+}
+func (pself *uiMgr) CreateInput(path string, text string) Object  {
+	arg0Str := NewCString(path)
+	arg0 := arg0Str.ToGdString() 
+	arg1Str := NewCString(text)
+	arg1 := arg1Str.ToGdString() 
+	retValue := CallUICreateInput(arg0, arg1)
+	return ToObject(retValue)
+}
+func (pself *uiMgr) DestroyNode(obj Object) bool  {
+	arg0 := ToGdObj(obj)
+	retValue := CallUIDestroyNode(arg0)
+	return ToBool(retValue)
 }
 func (pself *uiMgr) GetType(obj Object) int64  {
 	arg0 := ToGdObj(obj)
 	retValue := CallUIGetType(arg0)
 	return ToInt64(retValue)
 }
-func (pself *uiMgr) SetInteractable(obj Object, interactable bool) {
-	arg0 := ToGdObj(obj)
-	arg1 := ToGdBool(interactable)
-	CallUISetInteractable(arg0, arg1)
-}
-func (pself *uiMgr) GetInteractable(obj Object) bool  {
-	arg0 := ToGdObj(obj)
-	retValue := CallUIGetInteractable(arg0)
-	return ToBool(retValue)
-}
+var (
+	arg1StrGlobal CString
+)
 func (pself *uiMgr) SetText(obj Object, text string) {
 	arg0 := ToGdObj(obj)
-	arg1Str := NewCString(text)
-	arg1 := arg1Str.ToGdString() 
+	arg1StrGlobal = NewCString(text)
+	arg1 := arg1StrGlobal.ToGdString() 
 	CallUISetText(arg0, arg1)
+
 }
 func (pself *uiMgr) GetText(obj Object) string  {
 	arg0 := ToGdObj(obj)
 	retValue := CallUIGetText(arg0)
 	return ToString(retValue)
 }
-func (pself *uiMgr) SetRect(obj Object, rect Rect2) {
+func (pself *uiMgr) SetTexture(obj Object, path string) {
 	arg0 := ToGdObj(obj)
-	arg1 := ToGdRect2(rect)
-	CallUISetRect(arg0, arg1)
+	arg1Str := NewCString(path)
+	arg1 := arg1Str.ToGdString() 
+	CallUISetTexture(arg0, arg1)
 }
-func (pself *uiMgr) GetRect(obj Object) Rect2  {
+func (pself *uiMgr) GetTexture(obj Object) string  {
 	arg0 := ToGdObj(obj)
-	retValue := CallUIGetRect(arg0)
-	return ToRect2(retValue)
+	retValue := CallUIGetTexture(arg0)
+	return ToString(retValue)
 }
 func (pself *uiMgr) SetColor(obj Object, color Color) {
 	arg0 := ToGdObj(obj)
@@ -578,15 +577,15 @@ func (pself *uiMgr) GetColor(obj Object) Color  {
 	retValue := CallUIGetColor(arg0)
 	return ToColor(retValue)
 }
-func (pself *uiMgr) SetFontSize(obj Object, size float32) {
+func (pself *uiMgr) SetFontSize(obj Object, size int64) {
 	arg0 := ToGdObj(obj)
-	arg1 := ToGdFloat(size)
+	arg1 := ToGdInt(size)
 	CallUISetFontSize(arg0, arg1)
 }
-func (pself *uiMgr) GetFontSize(obj Object) float32  {
+func (pself *uiMgr) GetFontSize(obj Object) int64  {
 	arg0 := ToGdObj(obj)
 	retValue := CallUIGetFontSize(arg0)
-	return ToFloat32(retValue)
+	return ToInt64(retValue)
 }
 func (pself *uiMgr) SetVisible(obj Object, visible bool) {
 	arg0 := ToGdObj(obj)
@@ -597,4 +596,24 @@ func (pself *uiMgr) GetVisible(obj Object) bool  {
 	arg0 := ToGdObj(obj)
 	retValue := CallUIGetVisible(arg0)
 	return ToBool(retValue)
+}
+func (pself *uiMgr) SetInteractable(obj Object, interactable bool) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdBool(interactable)
+	CallUISetInteractable(arg0, arg1)
+}
+func (pself *uiMgr) GetInteractable(obj Object) bool  {
+	arg0 := ToGdObj(obj)
+	retValue := CallUIGetInteractable(arg0)
+	return ToBool(retValue)
+}
+func (pself *uiMgr) SetRect(obj Object, rect Rect2) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdRect2(rect)
+	CallUISetRect(arg0, arg1)
+}
+func (pself *uiMgr) GetRect(obj Object) Rect2  {
+	arg0 := ToGdObj(obj)
+	retValue := CallUIGetRect(arg0)
+	return ToRect2(retValue)
 }

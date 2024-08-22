@@ -258,31 +258,31 @@ void cgo_callfn_GDExtensionSpxSpriteSetTriggerEnabled(const GDExtensionSpxSprite
 void cgo_callfn_GDExtensionSpxSpriteIsTriggerEnabled(const GDExtensionSpxSpriteIsTriggerEnabled fn, GdObj obj, GdBool* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateButton(const GDExtensionSpxUICreateButton fn, GdString path, GdRect2 rect, GdString text, GdInt* ret_val) {
-	fn(path, rect, text,ret_val);
+void cgo_callfn_GDExtensionSpxUICreateNode(const GDExtensionSpxUICreateNode fn, GdString path, GdObj* ret_val) {
+	fn(path,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateLabel(const GDExtensionSpxUICreateLabel fn, GdString path, GdRect2 rect, GdString text, GdInt* ret_val) {
-	fn(path, rect, text,ret_val);
+void cgo_callfn_GDExtensionSpxUICreateButton(const GDExtensionSpxUICreateButton fn, GdString path, GdString text, GdObj* ret_val) {
+	fn(path, text,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateImage(const GDExtensionSpxUICreateImage fn, GdString path, GdRect2 rect, GdColor color, GdInt* ret_val) {
-	fn(path, rect, color,ret_val);
+void cgo_callfn_GDExtensionSpxUICreateLabel(const GDExtensionSpxUICreateLabel fn, GdString path, GdString text, GdObj* ret_val) {
+	fn(path, text,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateSlider(const GDExtensionSpxUICreateSlider fn, GdString path, GdRect2 rect, GdFloat value, GdInt* ret_val) {
-	fn(path, rect, value,ret_val);
+void cgo_callfn_GDExtensionSpxUICreateImage(const GDExtensionSpxUICreateImage fn, GdString path, GdObj* ret_val) {
+	fn(path,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateToggle(const GDExtensionSpxUICreateToggle fn, GdString path, GdRect2 rect, GdBool value, GdInt* ret_val) {
-	fn(path, rect, value,ret_val);
+void cgo_callfn_GDExtensionSpxUICreateToggle(const GDExtensionSpxUICreateToggle fn, GdString path, GdBool value, GdObj* ret_val) {
+	fn(path, value,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateInput(const GDExtensionSpxUICreateInput fn, GdString path, GdRect2 rect, GdString text, GdInt* ret_val) {
-	fn(path, rect, text,ret_val);
+void cgo_callfn_GDExtensionSpxUICreateSlider(const GDExtensionSpxUICreateSlider fn, GdString path, GdFloat value, GdObj* ret_val) {
+	fn(path, value,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUIGetType(const GDExtensionSpxUIGetType fn, GdObj obj, GdInt* ret_val) {
+void cgo_callfn_GDExtensionSpxUICreateInput(const GDExtensionSpxUICreateInput fn, GdString path, GdString text, GdObj* ret_val) {
+	fn(path, text,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUIDestroyNode(const GDExtensionSpxUIDestroyNode fn, GdObj obj, GdBool* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUISetInteractable(const GDExtensionSpxUISetInteractable fn, GdObj obj, GdBool interactable) {
-	fn(obj, interactable);
-}
-void cgo_callfn_GDExtensionSpxUIGetInteractable(const GDExtensionSpxUIGetInteractable fn, GdObj obj, GdBool* ret_val) {
+void cgo_callfn_GDExtensionSpxUIGetType(const GDExtensionSpxUIGetType fn, GdObj obj, GdInt* ret_val) {
 	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxUISetText(const GDExtensionSpxUISetText fn, GdObj obj, GdString text) {
@@ -291,10 +291,10 @@ void cgo_callfn_GDExtensionSpxUISetText(const GDExtensionSpxUISetText fn, GdObj 
 void cgo_callfn_GDExtensionSpxUIGetText(const GDExtensionSpxUIGetText fn, GdObj obj, GdString* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUISetRect(const GDExtensionSpxUISetRect fn, GdObj obj, GdRect2 rect) {
-	fn(obj, rect);
+void cgo_callfn_GDExtensionSpxUISetTexture(const GDExtensionSpxUISetTexture fn, GdObj obj, GdString path) {
+	fn(obj, path);
 }
-void cgo_callfn_GDExtensionSpxUIGetRect(const GDExtensionSpxUIGetRect fn, GdObj obj, GdRect2* ret_val) {
+void cgo_callfn_GDExtensionSpxUIGetTexture(const GDExtensionSpxUIGetTexture fn, GdObj obj, GdString* ret_val) {
 	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxUISetColor(const GDExtensionSpxUISetColor fn, GdObj obj, GdColor color) {
@@ -303,16 +303,28 @@ void cgo_callfn_GDExtensionSpxUISetColor(const GDExtensionSpxUISetColor fn, GdOb
 void cgo_callfn_GDExtensionSpxUIGetColor(const GDExtensionSpxUIGetColor fn, GdObj obj, GdColor* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUISetFontSize(const GDExtensionSpxUISetFontSize fn, GdObj obj, GdFloat size) {
+void cgo_callfn_GDExtensionSpxUISetFontSize(const GDExtensionSpxUISetFontSize fn, GdObj obj, GdInt size) {
 	fn(obj, size);
 }
-void cgo_callfn_GDExtensionSpxUIGetFontSize(const GDExtensionSpxUIGetFontSize fn, GdObj obj, GdFloat* ret_val) {
+void cgo_callfn_GDExtensionSpxUIGetFontSize(const GDExtensionSpxUIGetFontSize fn, GdObj obj, GdInt* ret_val) {
 	fn(obj,ret_val);
 }
 void cgo_callfn_GDExtensionSpxUISetVisible(const GDExtensionSpxUISetVisible fn, GdObj obj, GdBool visible) {
 	fn(obj, visible);
 }
 void cgo_callfn_GDExtensionSpxUIGetVisible(const GDExtensionSpxUIGetVisible fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUISetInteractable(const GDExtensionSpxUISetInteractable fn, GdObj obj, GdBool interactable) {
+	fn(obj, interactable);
+}
+void cgo_callfn_GDExtensionSpxUIGetInteractable(const GDExtensionSpxUIGetInteractable fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUISetRect(const GDExtensionSpxUISetRect fn, GdObj obj, GdRect2 rect) {
+	fn(obj, rect);
+}
+void cgo_callfn_GDExtensionSpxUIGetRect(const GDExtensionSpxUIGetRect fn, GdObj obj, GdRect2* ret_val) {
 	fn(obj,ret_val);
 }
 #endif

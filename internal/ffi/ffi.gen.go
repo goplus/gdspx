@@ -98,25 +98,29 @@ type GDExtensionInterface struct {
 	SpxSpriteSetTriggerCapsule GDExtensionSpxSpriteSetTriggerCapsule
 	SpxSpriteSetTriggerEnabled GDExtensionSpxSpriteSetTriggerEnabled
 	SpxSpriteIsTriggerEnabled GDExtensionSpxSpriteIsTriggerEnabled
+	SpxUICreateNode GDExtensionSpxUICreateNode
 	SpxUICreateButton GDExtensionSpxUICreateButton
 	SpxUICreateLabel GDExtensionSpxUICreateLabel
 	SpxUICreateImage GDExtensionSpxUICreateImage
-	SpxUICreateSlider GDExtensionSpxUICreateSlider
 	SpxUICreateToggle GDExtensionSpxUICreateToggle
+	SpxUICreateSlider GDExtensionSpxUICreateSlider
 	SpxUICreateInput GDExtensionSpxUICreateInput
+	SpxUIDestroyNode GDExtensionSpxUIDestroyNode
 	SpxUIGetType GDExtensionSpxUIGetType
-	SpxUISetInteractable GDExtensionSpxUISetInteractable
-	SpxUIGetInteractable GDExtensionSpxUIGetInteractable
 	SpxUISetText GDExtensionSpxUISetText
 	SpxUIGetText GDExtensionSpxUIGetText
-	SpxUISetRect GDExtensionSpxUISetRect
-	SpxUIGetRect GDExtensionSpxUIGetRect
+	SpxUISetTexture GDExtensionSpxUISetTexture
+	SpxUIGetTexture GDExtensionSpxUIGetTexture
 	SpxUISetColor GDExtensionSpxUISetColor
 	SpxUIGetColor GDExtensionSpxUIGetColor
 	SpxUISetFontSize GDExtensionSpxUISetFontSize
 	SpxUIGetFontSize GDExtensionSpxUIGetFontSize
 	SpxUISetVisible GDExtensionSpxUISetVisible
 	SpxUIGetVisible GDExtensionSpxUIGetVisible
+	SpxUISetInteractable GDExtensionSpxUISetInteractable
+	SpxUIGetInteractable GDExtensionSpxUIGetInteractable
+	SpxUISetRect GDExtensionSpxUISetRect
+	SpxUIGetRect GDExtensionSpxUIGetRect
 	}
 
 func (x *GDExtensionInterface) loadProcAddresses() {
@@ -202,23 +206,27 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteSetTriggerCapsule = (GDExtensionSpxSpriteSetTriggerCapsule)(dlsymGD("spx_sprite_set_trigger_capsule"))
 	x.SpxSpriteSetTriggerEnabled = (GDExtensionSpxSpriteSetTriggerEnabled)(dlsymGD("spx_sprite_set_trigger_enabled"))
 	x.SpxSpriteIsTriggerEnabled = (GDExtensionSpxSpriteIsTriggerEnabled)(dlsymGD("spx_sprite_is_trigger_enabled"))
+	x.SpxUICreateNode = (GDExtensionSpxUICreateNode)(dlsymGD("spx_ui_create_node"))
 	x.SpxUICreateButton = (GDExtensionSpxUICreateButton)(dlsymGD("spx_ui_create_button"))
 	x.SpxUICreateLabel = (GDExtensionSpxUICreateLabel)(dlsymGD("spx_ui_create_label"))
 	x.SpxUICreateImage = (GDExtensionSpxUICreateImage)(dlsymGD("spx_ui_create_image"))
-	x.SpxUICreateSlider = (GDExtensionSpxUICreateSlider)(dlsymGD("spx_ui_create_slider"))
 	x.SpxUICreateToggle = (GDExtensionSpxUICreateToggle)(dlsymGD("spx_ui_create_toggle"))
+	x.SpxUICreateSlider = (GDExtensionSpxUICreateSlider)(dlsymGD("spx_ui_create_slider"))
 	x.SpxUICreateInput = (GDExtensionSpxUICreateInput)(dlsymGD("spx_ui_create_input"))
+	x.SpxUIDestroyNode = (GDExtensionSpxUIDestroyNode)(dlsymGD("spx_ui_destroy_node"))
 	x.SpxUIGetType = (GDExtensionSpxUIGetType)(dlsymGD("spx_ui_get_type"))
-	x.SpxUISetInteractable = (GDExtensionSpxUISetInteractable)(dlsymGD("spx_ui_set_interactable"))
-	x.SpxUIGetInteractable = (GDExtensionSpxUIGetInteractable)(dlsymGD("spx_ui_get_interactable"))
 	x.SpxUISetText = (GDExtensionSpxUISetText)(dlsymGD("spx_ui_set_text"))
 	x.SpxUIGetText = (GDExtensionSpxUIGetText)(dlsymGD("spx_ui_get_text"))
-	x.SpxUISetRect = (GDExtensionSpxUISetRect)(dlsymGD("spx_ui_set_rect"))
-	x.SpxUIGetRect = (GDExtensionSpxUIGetRect)(dlsymGD("spx_ui_get_rect"))
+	x.SpxUISetTexture = (GDExtensionSpxUISetTexture)(dlsymGD("spx_ui_set_texture"))
+	x.SpxUIGetTexture = (GDExtensionSpxUIGetTexture)(dlsymGD("spx_ui_get_texture"))
 	x.SpxUISetColor = (GDExtensionSpxUISetColor)(dlsymGD("spx_ui_set_color"))
 	x.SpxUIGetColor = (GDExtensionSpxUIGetColor)(dlsymGD("spx_ui_get_color"))
 	x.SpxUISetFontSize = (GDExtensionSpxUISetFontSize)(dlsymGD("spx_ui_set_font_size"))
 	x.SpxUIGetFontSize = (GDExtensionSpxUIGetFontSize)(dlsymGD("spx_ui_get_font_size"))
 	x.SpxUISetVisible = (GDExtensionSpxUISetVisible)(dlsymGD("spx_ui_set_visible"))
 	x.SpxUIGetVisible = (GDExtensionSpxUIGetVisible)(dlsymGD("spx_ui_get_visible"))
+	x.SpxUISetInteractable = (GDExtensionSpxUISetInteractable)(dlsymGD("spx_ui_set_interactable"))
+	x.SpxUIGetInteractable = (GDExtensionSpxUIGetInteractable)(dlsymGD("spx_ui_get_interactable"))
+	x.SpxUISetRect = (GDExtensionSpxUISetRect)(dlsymGD("spx_ui_set_rect"))
+	x.SpxUIGetRect = (GDExtensionSpxUIGetRect)(dlsymGD("spx_ui_get_rect"))
 	}

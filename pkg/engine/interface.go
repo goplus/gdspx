@@ -16,7 +16,10 @@ type ISpriter interface {
 	OnTriggerEnter(ISpriter) 
 	OnTriggerExit(ISpriter) 
 }
-
+type IUiNode interface {
+	ILifeCycle
+	SetId(Object)
+}
 type EngineCallbackInfo struct {
 	OnEngineStart   func()
 	OnEngineUpdate  func(float32)
@@ -51,6 +54,9 @@ type CallbackInfo struct {
 	OnTriggerExit  func(int64, int64)
 
 	// UI
+	OnUiReady     func(int64)
+	OnUiUpdated   func(int64)
+	OnUiDestroyed func(int64)
 	OnUiPressed     func(int64)
 	OnUiReleased    func(int64)
 	OnUiHovered     func(int64)

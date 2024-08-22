@@ -70,8 +70,8 @@ func (x *GDExtensionBuiltinInterface) loadProcAddresses() {
 	x.SpxVariantGetPtrDestructor = (GDExtensionSpxVariantGetPtrDestructor)(dlsymGD("spx_variant_get_ptr_destructor"))
 }
 
-
-type CString [8]uint8
+// TODO(tanjiepeng) support infinite string length
+type CString [128]uint8
 
 func (c *CString) ToGdString() GdString {
 	return (GdString)(unsafe.Pointer(c))

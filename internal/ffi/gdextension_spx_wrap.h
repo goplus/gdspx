@@ -54,6 +54,10 @@ extern void func_on_trigger_enter(GdInt self_id, GdInt other_id);
 extern void func_on_trigger_stay(GdInt self_id, GdInt other_id);  
 extern void func_on_trigger_exit(GdInt self_id, GdInt other_id); 
 // ui 
+extern void func_on_ui_ready(GdInt id);  
+extern void func_on_ui_updated(GdInt id);  
+extern void func_on_ui_destroyed(GdInt id); 
+
 extern void func_on_ui_pressed(GdInt id);  
 extern void func_on_ui_released(GdInt id);  
 extern void func_on_ui_hovered(GdInt id);  
@@ -89,6 +93,10 @@ static inline void spx_global_register_callbacks(pointer fn) {
 	p_extension_funcs->func_on_trigger_stay = func_on_trigger_stay;
 	p_extension_funcs->func_on_trigger_exit = func_on_trigger_exit;
     // ui
+	p_extension_funcs->func_on_ui_ready = func_on_ui_ready;
+	p_extension_funcs->func_on_ui_updated = func_on_ui_updated;
+	p_extension_funcs->func_on_ui_destroyed = func_on_ui_destroyed;
+
 	p_extension_funcs->func_on_ui_pressed = func_on_ui_pressed;
 	p_extension_funcs->func_on_ui_released = func_on_ui_released;
 	p_extension_funcs->func_on_ui_hovered = func_on_ui_hovered;

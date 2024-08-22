@@ -337,6 +337,7 @@ func func_on_engine_destroy() {
 	}
 }
 
+
 //export func_on_sprite_ready
 func func_on_sprite_ready(id C.GDExtensionInt) {
 	if callbacks.OnSpriteReady != nil {
@@ -344,13 +345,6 @@ func func_on_sprite_ready(id C.GDExtensionInt) {
 	}
 }
 
-//export func_on_action_pressed
-func func_on_action_pressed(actionName C.GdString) {
-	name := ToString(GdString(actionName))
-	if callbacks.OnSpriteReady != nil {
-		callbacks.OnActionPressed(name)
-	}
-}
 
 //export func_on_sprite_updated
 func func_on_sprite_updated(id C.GDExtensionInt) {
@@ -363,6 +357,14 @@ func func_on_sprite_updated(id C.GDExtensionInt) {
 func func_on_sprite_destroyed(id C.GDExtensionInt) {
 	if callbacks.OnSpriteDestroyed != nil {
 		callbacks.OnSpriteDestroyed(int64(id))
+	}
+}
+
+//export func_on_action_pressed
+func func_on_action_pressed(actionName C.GdString) {
+	name := ToString(GdString(actionName))
+	if callbacks.OnSpriteReady != nil {
+		callbacks.OnActionPressed(name)
 	}
 }
 
@@ -457,6 +459,27 @@ func func_on_trigger_stay(selfId, otherId C.GDExtensionInt) {
 func func_on_trigger_exit(selfId, otherId C.GDExtensionInt) {
 	if callbacks.OnTriggerExit != nil {
 		callbacks.OnTriggerExit(int64(selfId), int64(otherId))
+	}
+}
+
+//export func_on_ui_ready
+func func_on_ui_ready(id C.GDExtensionInt) {
+	if callbacks.OnUiReady != nil {
+		callbacks.OnUiReady(int64(id))
+	}
+}
+
+//export func_on_ui_updated
+func func_on_ui_updated(id C.GDExtensionInt) {
+	if callbacks.OnUiUpdated != nil {
+		callbacks.OnUiUpdated(int64(id))
+	}
+}
+
+//export func_on_ui_destroyed
+func func_on_ui_destroyed(id C.GDExtensionInt) {
+	if callbacks.OnUiDestroyed != nil {
+		callbacks.OnUiDestroyed(int64(id))
 	}
 }
 

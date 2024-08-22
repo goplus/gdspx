@@ -96,6 +96,10 @@ typedef void (*GDExtensionSpxCallbackOnTriggerEnter)(GdInt self_id, GdInt other_
 typedef void (*GDExtensionSpxCallbackOnTriggerStay)(GdInt self_id, GdInt other_id);
 typedef void (*GDExtensionSpxCallbackOnTriggerExit)(GdInt self_id, GdInt other_id);
 
+typedef void (*GDExtensionSpxCallbackOnUIReady)(GdObj obj);
+typedef void (*GDExtensionSpxCallbackOnUIUpdated)(GdObj obj);
+typedef void (*GDExtensionSpxCallbackOnUIDestroyed)(GdObj obj);
+
 typedef void (*GDExtensionSpxCallbackOnUIPressed)(GdObj obj);
 typedef void (*GDExtensionSpxCallbackOnUIReleased)(GdObj obj);
 typedef void (*GDExtensionSpxCallbackOnUIHovered)(GdObj obj);
@@ -144,6 +148,10 @@ typedef struct {
 	GDExtensionSpxCallbackOnTriggerExit func_on_trigger_exit;
 
 	// ui
+	GDExtensionSpxCallbackOnUIReady func_on_ui_ready;
+	GDExtensionSpxCallbackOnUIUpdated func_on_ui_updated;
+	GDExtensionSpxCallbackOnUIDestroyed func_on_ui_destroyed;
+
 	GDExtensionSpxCallbackOnUIPressed func_on_ui_pressed;
 	GDExtensionSpxCallbackOnUIReleased func_on_ui_released;
 	GDExtensionSpxCallbackOnUIHovered func_on_ui_hovered;
