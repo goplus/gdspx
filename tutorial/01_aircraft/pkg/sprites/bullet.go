@@ -1,8 +1,8 @@
 package sprites
 
 import (
-	. "godot-ext/gdspx/pkg/engine"
 	. "gdspx-demo01/pkg/define"
+	. "godot-ext/gdspx/pkg/engine"
 )
 
 type Bullet struct {
@@ -13,8 +13,8 @@ func (pself *Bullet) OnStart() {
 }
 
 func (pself *Bullet) OnUpdate(delta float32) {
-	pself.Move(0,2000 * delta)
-	if(pself.GetPosY() > WinHeight){
+	pself.Move(0, 2000*delta)
+	if pself.GetPosY() > WinHeight {
 		pself.Destroy()
 	}
 }

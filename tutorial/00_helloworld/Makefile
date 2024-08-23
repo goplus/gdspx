@@ -12,13 +12,13 @@ OUTPUT_PATH=project/lib
 TEST_MAIN=main.go
 
 ifeq ($(GOOS),windows)
-	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-demo-windows-$(GOARCH).dll
+	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-windows-$(GOARCH).dll
 else ifeq ($(GOOS),darwin)
-	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-demo-macos-$(GOARCH).framework
+	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-macos-$(GOARCH).framework
 else ifeq ($(GOOS),linux)
-	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-demo-linux-$(GOARCH).so
+	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-linux-$(GOARCH).so
 else
-	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-demo-$(GOOS)-$(GOARCH).so
+	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-$(GOOS)-$(GOARCH).so
 endif
 
 .PHONY: goenv build clean run
@@ -63,3 +63,6 @@ editor:
 gen:
 	cd ../../cmd && go run . && cd ../test/$(CURRENT_DIR_NAME) && \
 	$(MAKE) build
+	
+fmt:
+	cd ../.. && go fmt ./... && cd test/$(CURRENT_DIR_NAME) 

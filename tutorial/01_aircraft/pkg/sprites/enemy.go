@@ -1,25 +1,25 @@
 package sprites
 
 import (
-	. "godot-ext/gdspx/pkg/engine"
 	. "gdspx-demo01/pkg/define"
+	. "godot-ext/gdspx/pkg/engine"
 )
 
 type Enemy struct {
 	Sprite
-	IsDied bool
+	IsDied     bool
 	dyingTimer float32
 }
 
 func (pself *Enemy) OnUpdate(delta float32) {
 	if pself.IsDied {
 		pself.dyingTimer -= delta
-		if(pself.dyingTimer < 0){
+		if pself.dyingTimer < 0 {
 			pself.Destroy()
 		}
 		return
 	}
-	pself.Move(0, -100 * delta)
+	pself.Move(0, -100*delta)
 	if pself.GetPosY() < -WinHeight {
 		pself.Destroy()
 	}
@@ -33,5 +33,10 @@ func (pself *Enemy) OnHit() {
 }
 
 func (pself *Enemy) OnDestory() {
-	
+
+}
+func (pself *Enemy) OnTriggerEnter(target ISpriter) {
+	if item, ok := target.(*Aircraft); ok {
+		item.OnHit()
+	}
 }
