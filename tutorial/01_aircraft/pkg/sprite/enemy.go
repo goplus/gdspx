@@ -1,4 +1,4 @@
-package sprites
+package sprite
 
 import (
 	. "gdspx-demo01/pkg/define"
@@ -25,18 +25,15 @@ func (pself *Enemy) OnUpdate(delta float32) {
 	}
 }
 
+func (pself *Enemy) OnTriggerEnter(target ISpriter) {
+	if item, ok := target.(*Aircraft); ok {
+		item.OnHit()
+	}
+}
+
 func (pself *Enemy) OnHit() {
 	pself.dyingTimer = 0.2
 	pself.IsDied = true
 	Score += 100
 	pself.PlayAnim("die", 3, false)
-}
-
-func (pself *Enemy) OnDestory() {
-
-}
-func (pself *Enemy) OnTriggerEnter(target ISpriter) {
-	if item, ok := target.(*Aircraft); ok {
-		item.OnHit()
-	}
 }

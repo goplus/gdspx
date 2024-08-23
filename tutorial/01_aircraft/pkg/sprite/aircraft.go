@@ -1,4 +1,4 @@
-package sprites
+package sprite
 
 import (
 	. "godot-ext/gdspx/pkg/engine"
@@ -38,9 +38,6 @@ func (pself *Aircraft) OnUpdate(delta float32) {
 	}
 }
 
-func (pself *Aircraft) OnDestory() {
-	println("Aircraft OnDestory")
-}
 
 func (pself *Aircraft) OnHit() {
 	pself.OnDieEvent.Trigger()

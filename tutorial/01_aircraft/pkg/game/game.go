@@ -2,7 +2,7 @@ package game
 
 import (
 	. "gdspx-demo01/pkg/define"
-	. "gdspx-demo01/pkg/sprites"
+	. "gdspx-demo01/pkg/sprite"
 	. "gdspx-demo01/pkg/ui"
 	. "godot-ext/gdspx/pkg/engine"
 	"math/rand"

@@ -1,4 +1,4 @@
-package sprites
+package sprite
 
 import (
 	. "gdspx-demo01/pkg/define"
