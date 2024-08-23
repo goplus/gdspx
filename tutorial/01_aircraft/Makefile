@@ -26,13 +26,9 @@ endif
 goenv:
 	go env
 
-build: goenv
+build: 
 	CGO_ENABLED=1 \
-	GOOS=$(GOOS) \
-	GOARCH=$(GOARCH) \
-	CGO_CFLAGS='-Og -g3 -g -DX86=1 -fPIC' \
-	CGO_LDFLAGS='-Og -g3 -g' \
-	go build -gcflags=all="-N -l" -tags tools -buildmode=c-shared -x -trimpath -o "$(TEST_BINARY_PATH)" $(TEST_MAIN)
+	go build -buildmode=c-shared -o "$(TEST_BINARY_PATH)" $(TEST_MAIN)
 
 buildfast: goenv
 	go build .

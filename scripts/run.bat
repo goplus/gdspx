@@ -1,4 +1,4 @@
 @echo off
-cd test/01_aircraft_war
+cd tutorial/01_aircraft
 call make run
 cd ../../

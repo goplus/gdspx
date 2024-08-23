@@ -1,5 +1,5 @@
 
 #!/bin/bash
-cd test/01_aircraft_war
+cd tutorial/01_aircraft
 make run
 cd ../../
