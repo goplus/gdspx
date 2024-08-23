@@ -58,7 +58,7 @@ func (e *Event0) Trigger() {
 	count := len(e.tempIds)
 	curCount := len(e.tempActions)
 	for i := curCount; i < count; i++ {
-		e.tempActions = append(e.tempActions, nil) // 添加nil元素
+		e.tempActions = append(e.tempActions, nil)
 	}
 	for i, id := range e.tempIds {
 		e.tempActions[i] = e.actions[id]
@@ -73,6 +73,7 @@ func (e *Event0) Trigger() {
 type Action1[T any] func(data T)
 
 type Event1[T any] struct {
+	name        string
 	actions     map[int]Action1[T]
 	nextID      int
 	mutex       sync.Mutex
@@ -82,6 +83,7 @@ type Event1[T any] struct {
 
 func NewEvent1[T any]() *Event1[T] {
 	return &Event1[T]{
+		name:        "aaa",
 		actions:     make(map[int]Action1[T]),
 		nextID:      0,
 		mutex:       sync.Mutex{},
@@ -122,7 +124,7 @@ func (e *Event1[T]) Trigger(data T) {
 	count := len(e.tempIds)
 	curCount := len(e.tempActions)
 	for i := curCount; i < count; i++ {
-		e.tempActions = append(e.tempActions, nil) // 添加nil元素
+		e.tempActions = append(e.tempActions, nil)
 	}
 	for i, id := range e.tempIds {
 		e.tempActions[i] = e.actions[id]
@@ -187,7 +189,7 @@ func (e *Event2[T1, T2]) Trigger(data1 T1, data2 T2) {
 	count := len(e.tempIds)
 	curCount := len(e.tempActions)
 	for i := curCount; i < count; i++ {
-		e.tempActions = append(e.tempActions, nil) // 添加nil元素
+		e.tempActions = append(e.tempActions, nil)
 	}
 	for i, id := range e.tempIds {
 		e.tempActions[i] = e.actions[id]

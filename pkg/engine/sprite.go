@@ -1,14 +1,30 @@
 package engine
 
 type Sprite struct {
-	Id Object
+	Id                  Object
+	OnTriggerEnterEvent *Event1[ISpriter]
+	OnTriggerExitEvent  *Event1[ISpriter]
 }
 
-func NewSprite(path string) *Sprite {
-	pself := &Sprite{}
-	pself.Id = SpriteMgr.CreateSprite(path)
-	return pself
+func (pself *Sprite) onCreate() {
+	pself.OnTriggerEnterEvent = NewEvent1[ISpriter]()
+	pself.OnTriggerExitEvent = NewEvent1[ISpriter]()
 }
+
+func (pself *Sprite) V_OnTriggerEnter(other ISpriter) {
+	pself.OnTriggerEnterEvent.Trigger(other)
+	pself.OnTriggerEnter(other)
+}
+
+func (pself *Sprite) V_OnTriggerExit(other ISpriter) {
+	pself.OnTriggerExitEvent.Trigger(other)
+	pself.OnTriggerExit(other)
+}
+
+func (pself *Sprite) OnTriggerEnter(ISpriter) {}
+
+func (pself *Sprite) OnTriggerExit(ISpriter) {}
+
 func (pself *Sprite) GetId() Object {
 	return pself.Id
 }
@@ -24,10 +40,6 @@ func (pself *Sprite) OnUpdate(delta float32) {
 }
 func (pself *Sprite) OnDestroy() {
 }
-
-func (pself *Sprite) OnTriggerEnter(ISpriter) {}
-
-func (pself *Sprite) OnTriggerExit(ISpriter) {}
 
 func (pself *Sprite) Move(deltaX, deltaY float32) {
 	pos := pself.GetPosition()

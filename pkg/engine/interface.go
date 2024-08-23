@@ -12,13 +12,40 @@ type IManager interface {
 
 type ISpriter interface {
 	ILifeCycle
+	onCreate()
+	GetId() Object
 	SetId(Object)
+	Destroy() bool
+
 	OnTriggerEnter(ISpriter)
+	V_OnTriggerEnter(ISpriter)
+
 	OnTriggerExit(ISpriter)
+	V_OnTriggerExit(ISpriter)
 }
 type IUiNode interface {
 	ILifeCycle
+	onCreate()
+	GetId() Object
 	SetId(Object)
+	Destroy() bool
+	OnUiClick()
+	V_OnUiClick()
+
+	OnUiPressed()
+	V_OnUiPressed()
+
+	OnUiReleased()
+	V_OnUiReleased()
+
+	OnUiHovered()
+	V_OnUiHovered()
+
+	OnUiToggle(isOn bool)
+	V_OnUiToggle(isOn bool)
+
+	OnUiTextChanged(txt string)
+	V_OnUiTextChanged(txt string)
 }
 type EngineCallbackInfo struct {
 	OnEngineStart   func()

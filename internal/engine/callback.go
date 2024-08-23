@@ -96,6 +96,7 @@ func onCollisionExit(id int64, oid int64) {
 func onTriggerEnter(id int64, oid int64) {
 	if sprite, ok := Id2Sprites[Object(id)]; ok {
 		if other, ok2 := Id2Sprites[Object(oid)]; ok2 {
+			sprite.V_OnTriggerEnter(other)
 			sprite.OnTriggerEnter(other)
 		}
 	}
@@ -105,6 +106,7 @@ func onTriggerStay(id int64, oid int64) {
 func onTriggerExit(id int64, oid int64) {
 	if sprite, ok := Id2Sprites[Object(id)]; ok {
 		if other, ok2 := Id2Sprites[Object(oid)]; ok2 {
+			sprite.V_OnTriggerExit(other)
 			sprite.OnTriggerExit(other)
 		}
 	}
@@ -112,21 +114,38 @@ func onTriggerExit(id int64, oid int64) {
 
 // ui
 func onUiPressed(id int64) {
-	println("onUiPressed ", id)
+	if node, ok := Id2UiNodes[Object(id)]; ok {
+		node.V_OnUiPressed()
+		node.OnUiPressed()
+	}
 }
 func onUiReleased(id int64) {
-	println("onUiReleased ", id)
+	if node, ok := Id2UiNodes[Object(id)]; ok {
+		node.V_OnUiReleased()
+		node.OnUiReleased()
+	}
 }
 func onUiHovered(id int64) {
-	println("onUiHovered ", id)
+	if node, ok := Id2UiNodes[Object(id)]; ok {
+		node.V_OnUiHovered()
+		node.OnUiHovered()
+	}
 }
 func onUiClicked(id int64) {
-	println("onUiClicked ", id)
+	if node, ok := Id2UiNodes[Object(id)]; ok {
+		node.V_OnUiClick()
+		node.OnUiClick()
+	}
 }
 func onUiToggle(id int64, isOn bool) {
-	println("onUiToggle ", id)
+	if node, ok := Id2UiNodes[Object(id)]; ok {
+		node.V_OnUiToggle(isOn)
+		node.OnUiToggle(isOn)
+	}
 }
 func onUiTextChanged(id int64, text string) {
-	println("onUiTextChanged ", id, text)
-
+	if node, ok := Id2UiNodes[Object(id)]; ok {
+		node.V_OnUiTextChanged(text)
+		node.OnUiTextChanged(text)
+	}
 }

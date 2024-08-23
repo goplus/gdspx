@@ -23,7 +23,12 @@ func getUiPath(name string) string {
 func InitEngine() {
 	initKeyCode()
 }
-
+func ClearAllSprites() {
+	for _, sprite := range Id2Sprites {
+		sprite.Destroy()
+	}
+	Id2Sprites = make(map[Object]ISpriter)
+}
 func CreateSprite[T any]() *T {
 	tType := reflect.TypeOf((*T)(nil)).Elem()
 	name := tType.Name()
@@ -31,6 +36,7 @@ func CreateSprite[T any]() *T {
 	id := SpriteMgr.CreateSprite(getPrefabPath(name))
 	sprite := spriteValue.Addr().Interface().(ISpriter)
 	sprite.SetId(id)
+	sprite.onCreate()
 	Id2Sprites[id] = sprite
 	sprite.OnStart()
 	return spriteValue.Addr().Interface().(*T)
@@ -45,6 +51,7 @@ func CreateUI[T any](prefabName string) *T {
 	id := UiMgr.CreateNode(getUiPath(name))
 	node := nodeValue.Addr().Interface().(IUiNode)
 	node.SetId(id)
+	node.onCreate()
 	Id2UiNodes[id] = node
 	node.OnStart()
 	return nodeValue.Addr().Interface().(*T)
