@@ -1,25 +1,26 @@
 package engine
+
 import (
 	"reflect"
 )
 
 var (
-	Id2Sprites = make(map[Object]ISpriter)
-	Id2UiNodes = make(map[Object]IUiNode)
-	TimeSinceGameStart	 = float32(0)
+	Id2Sprites         = make(map[Object]ISpriter)
+	Id2UiNodes         = make(map[Object]IUiNode)
+	TimeSinceGameStart = float32(0)
 )
 
 func getPrefabPath(name string) string {
 	assetName := name
-	return "res://assets/prefabs/" +assetName  + ".tscn"
+	return "res://assets/prefabs/" + assetName + ".tscn"
 }
 
 func getUiPath(name string) string {
 	assetName := name
-	return "res://assets/ui/" +assetName  + ".tscn"
+	return "res://assets/ui/" + assetName + ".tscn"
 }
 
-func InitEngine(){
+func InitEngine() {
 	initKeyCode()
 }
 

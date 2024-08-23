@@ -9,7 +9,7 @@ func NewSprite(path string) *Sprite {
 	pself.Id = SpriteMgr.CreateSprite(path)
 	return pself
 }
-func (pself *Sprite) GetId( ) Object{
+func (pself *Sprite) GetId() Object {
 	return pself.Id
 }
 func (pself *Sprite) SetId(id Object) {
@@ -43,13 +43,13 @@ func (pself *Sprite) GetPosY() float32 {
 	return pself.GetPosition().Y
 }
 
-func (pself *Sprite) SetPosX(value float32) { 
+func (pself *Sprite) SetPosX(value float32) {
 	pos := pself.GetPosition()
 	pos.X = value
 	pself.SetPosition(pos)
 }
 
-func (pself *Sprite) SetPosY(value float32) { 
+func (pself *Sprite) SetPosY(value float32) {
 	pos := pself.GetPosition()
 	pos.Y = value
 	pself.SetPosition(pos)

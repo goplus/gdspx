@@ -13,7 +13,7 @@ import (
 	"text/template"
 
 	"godot-ext/gdspx/cmd/gdextensionparser/clang"
-	 . "godot-ext/gdspx/cmd/generate/common"
+	. "godot-ext/gdspx/cmd/generate/common"
 
 	"github.com/iancoleman/strcase"
 )
@@ -161,20 +161,20 @@ func GenerateGDExtensionInterfaceGoFile(projectPath string, ast clang.CHeaderFil
 
 func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) error {
 	funcs := template.FuncMap{
-		"gdiVariableName":    GdiVariableName,
-		"snakeCase":          strcase.ToSnake,
-		"camelCase":          strcase.ToCamel,
-		"goReturnType":       GoReturnType,
-		"goArgumentType":     GoArgumentType,
-		"goEnumValue":        GoEnumValue,
-		"add":                Add,
-		"cgoCastArgument":    CgoCastArgument,
-		"cgoCastReturnType":  CgoCastReturnType,
-		"cgoCleanUpArgument": CgoCleanUpArgument,
-		"trimPrefix":         TrimPrefix,
-		"isManagerMethod":    IsManagerMethod,
-		"getManagerFuncName": getManagerFuncName,
-		"getManagerFuncBody": getManagerFuncBody,
+		"gdiVariableName":     GdiVariableName,
+		"snakeCase":           strcase.ToSnake,
+		"camelCase":           strcase.ToCamel,
+		"goReturnType":        GoReturnType,
+		"goArgumentType":      GoArgumentType,
+		"goEnumValue":         GoEnumValue,
+		"add":                 Add,
+		"cgoCastArgument":     CgoCastArgument,
+		"cgoCastReturnType":   CgoCastReturnType,
+		"cgoCleanUpArgument":  CgoCleanUpArgument,
+		"trimPrefix":          TrimPrefix,
+		"isManagerMethod":     IsManagerMethod,
+		"getManagerFuncName":  getManagerFuncName,
+		"getManagerFuncBody":  getManagerFuncBody,
 		"getManagerInterface": getManagerInterface,
 	}
 
@@ -184,8 +184,6 @@ func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) 
 	if err != nil {
 		return err
 	}
-
-
 
 	var b bytes.Buffer
 	err = tmpl.Execute(&b, ManagerData{Ast: ast, Mangers: GetManagers(ast)})
@@ -202,20 +200,20 @@ func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) 
 
 func GenerateManagerInterfaceGoFile(projectPath string, ast clang.CHeaderFileAST) error {
 	funcs := template.FuncMap{
-		"gdiVariableName":    GdiVariableName,
-		"snakeCase":          strcase.ToSnake,
-		"camelCase":          strcase.ToCamel,
-		"goReturnType":       GoReturnType,
-		"goArgumentType":     GoArgumentType,
-		"goEnumValue":        GoEnumValue,
-		"add":                Add,
-		"cgoCastArgument":    CgoCastArgument,
-		"cgoCastReturnType":  CgoCastReturnType,
-		"cgoCleanUpArgument": CgoCleanUpArgument,
-		"trimPrefix":         TrimPrefix,
-		"isManagerMethod":    IsManagerMethod,
-		"getManagerFuncName": getManagerFuncName,
-		"getManagerFuncBody": getManagerFuncBody,
+		"gdiVariableName":     GdiVariableName,
+		"snakeCase":           strcase.ToSnake,
+		"camelCase":           strcase.ToCamel,
+		"goReturnType":        GoReturnType,
+		"goArgumentType":      GoArgumentType,
+		"goEnumValue":         GoEnumValue,
+		"add":                 Add,
+		"cgoCastArgument":     CgoCastArgument,
+		"cgoCastReturnType":   CgoCastReturnType,
+		"cgoCleanUpArgument":  CgoCleanUpArgument,
+		"trimPrefix":          TrimPrefix,
+		"isManagerMethod":     IsManagerMethod,
+		"getManagerFuncName":  getManagerFuncName,
+		"getManagerFuncBody":  getManagerFuncBody,
 		"getManagerInterface": getManagerInterface,
 	}
 
@@ -237,7 +235,6 @@ func GenerateManagerInterfaceGoFile(projectPath string, ast clang.CHeaderFileAST
 	f.Close()
 	return err
 }
-
 
 func getManagerFuncName(function *clang.TypedefFunction) string {
 	prefix := "GDExtensionSpx"
@@ -267,7 +264,6 @@ func getManagerFuncName(function *clang.TypedefFunction) string {
 	}
 	return sb.String()
 }
-
 
 func getManagerFuncBody(function *clang.TypedefFunction) string {
 	sb := strings.Builder{}

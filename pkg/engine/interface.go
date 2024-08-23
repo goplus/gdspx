@@ -13,8 +13,8 @@ type IManager interface {
 type ISpriter interface {
 	ILifeCycle
 	SetId(Object)
-	OnTriggerEnter(ISpriter) 
-	OnTriggerExit(ISpriter) 
+	OnTriggerEnter(ISpriter)
+	OnTriggerExit(ISpriter)
 }
 type IUiNode interface {
 	ILifeCycle
@@ -54,9 +54,9 @@ type CallbackInfo struct {
 	OnTriggerExit  func(int64, int64)
 
 	// UI
-	OnUiReady     func(int64)
-	OnUiUpdated   func(int64)
-	OnUiDestroyed func(int64)
+	OnUiReady       func(int64)
+	OnUiUpdated     func(int64)
+	OnUiDestroyed   func(int64)
 	OnUiPressed     func(int64)
 	OnUiReleased    func(int64)
 	OnUiHovered     func(int64)

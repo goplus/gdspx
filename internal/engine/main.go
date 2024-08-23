@@ -9,8 +9,8 @@ import (
 var (
 	mgrs     []IManager
 	callback EngineCallbackInfo
-	sprites   = make([]ISpriter, 0)
-	timer	 = float32(0)
+	sprites  = make([]ISpriter, 0)
+	timer    = float32(0)
 )
 
 func Link(engineCallback EngineCallbackInfo) []IManager {

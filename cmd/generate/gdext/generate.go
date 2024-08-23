@@ -6,13 +6,13 @@ package gdext
 import (
 	"bytes"
 	_ "embed"
-	"os"
 	"io"
+	"os"
 	"path/filepath"
 	"text/template"
 
 	"godot-ext/gdspx/cmd/gdextensionparser/clang"
-	 . "godot-ext/gdspx/cmd/generate/common"
+	. "godot-ext/gdspx/cmd/generate/common"
 
 	"github.com/iancoleman/strcase"
 )
@@ -24,6 +24,7 @@ var (
 	//go:embed gdextension_spx_ext.h.tmpl
 	gdSpxExtH string
 )
+
 func fileCopy(src, dst string) error {
 	srcFile, err := os.Open(src)
 	if err != nil {
@@ -44,53 +45,53 @@ func fileCopy(src, dst string) error {
 
 	return dstFile.Sync()
 }
-func GenerateHeader(projectPath string){
+func GenerateHeader(projectPath string) {
 	dir := filepath.Join(projectPath, "../../godot/core/extension")
 	_, err := os.Stat(dir)
 	if os.IsNotExist(err) {
-		println("dir not exist",dir)
-		return 
+		println("dir not exist", dir)
+		return
 	}
 	outputFile := filepath.Join(projectPath, RelDir, "gdextension_spx_ext.h")
-	generateSpxExtHeader(dir,outputFile,true)
+	generateSpxExtHeader(dir, outputFile, true)
 }
 func Generate(projectPath string, ast clang.CHeaderFileAST) {
 	dir := filepath.Join(projectPath, "../../godot/core/extension")
 	_, err := os.Stat(dir)
 	if os.IsNotExist(err) {
-		println("dir not exist",dir)
-		return 
+		println("dir not exist", dir)
+		return
 	}
-	err = generateGdCppFile(projectPath, gdSpxExtCpp,  ast, "gdextension_spx_ext.cpp")
+	err = generateGdCppFile(projectPath, gdSpxExtCpp, ast, "gdextension_spx_ext.cpp")
 	if err != nil {
 		panic(err)
 	}
 	outputFile := filepath.Join(projectPath, RelDir, "gdextension_spx_ext.cpp")
 	fileCopy(outputFile, filepath.Join(dir, "gdextension_spx_ext.cpp"))
 	os.Remove(outputFile)
-	
+
 	// use the new format header
 	outputFile = filepath.Join(projectPath, RelDir, "gdextension_spx_ext.h")
-	generateSpxExtHeader(dir,outputFile,false)
+	generateSpxExtHeader(dir, outputFile, false)
 	fileCopy(outputFile, filepath.Join(dir, "gdextension_spx_ext.h"))
 }
 
 func generateGdCppFile(projectPath string, templateStr string, ast clang.CHeaderFileAST, outputFileName string) error {
 	funcs := template.FuncMap{
-		"gdiVariableName":    GdiVariableName,
-		"snakeCase":          strcase.ToSnake,
-		"camelCase":          strcase.ToCamel,
-		"goReturnType":       GoReturnType,
-		"goArgumentType":     GoArgumentType,
-		"goEnumValue":        GoEnumValue,
-		"add":                Add,
-		"sub":                Sub,
-		"cgoCastArgument":    CgoCastArgument,
-		"cgoCastReturnType":  CgoCastReturnType,
-		"cgoCleanUpArgument": CgoCleanUpArgument,
-		"trimPrefix":         TrimPrefix,
+		"gdiVariableName":     GdiVariableName,
+		"snakeCase":           strcase.ToSnake,
+		"camelCase":           strcase.ToCamel,
+		"goReturnType":        GoReturnType,
+		"goArgumentType":      GoArgumentType,
+		"goEnumValue":         GoEnumValue,
+		"add":                 Add,
+		"sub":                 Sub,
+		"cgoCastArgument":     CgoCastArgument,
+		"cgoCastReturnType":   CgoCastReturnType,
+		"cgoCleanUpArgument":  CgoCleanUpArgument,
+		"trimPrefix":          TrimPrefix,
 		"loadProcAddressName": LoadProcAddressName,
-		"isManagerMethod":    IsManagerMethod,
+		"isManagerMethod":     IsManagerMethod,
 		"getManagerName":      GetManagerName,
 	}
 

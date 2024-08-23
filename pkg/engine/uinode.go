@@ -6,13 +6,13 @@ type UiNode struct {
 
 func NewUiNode(path string) *UiNode {
 	pself := &UiNode{}
-	pself.Id = Object(UiMgr.CreateNode(path)) 
+	pself.Id = Object(UiMgr.CreateNode(path))
 	return pself
 }
 func (pself *UiNode) Destroy() bool {
 	return UiMgr.DestroyNode(pself.Id)
 }
-func (pself *UiNode) GetId() Object{
+func (pself *UiNode) GetId() Object {
 	return pself.Id
 }
 func (pself *UiNode) SetId(id Object) {
@@ -24,4 +24,3 @@ func (pself *UiNode) OnUpdate(delta float32) {
 }
 func (pself *UiNode) OnDestroy() {
 }
-

@@ -4,15 +4,16 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"github.com/iancoleman/strcase"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
-	"github.com/iancoleman/strcase"
 )
-func generateSpxExtHeader(dir,outputFile string, isRawFormat bool)  {
-	mergedStr:= mergeManagerHeader(dir)
-	mergedHeaderFuncStr := generateManagerHeader(mergedStr,isRawFormat)
+
+func generateSpxExtHeader(dir, outputFile string, isRawFormat bool) {
+	mergedStr := mergeManagerHeader(dir)
+	mergedHeaderFuncStr := generateManagerHeader(mergedStr, isRawFormat)
 	finalHeader := strings.Replace(gdSpxExtH, "###MANAGER_FUNC_DEFINE", mergedHeaderFuncStr, -1)
 	// Write the final header file
 	f, err := os.Create(outputFile)
@@ -23,18 +24,17 @@ func generateSpxExtHeader(dir,outputFile string, isRawFormat bool)  {
 	f.Close()
 }
 
-
 func mergeManagerHeader(dir string) string {
 	files, err := filepath.Glob(filepath.Join(dir, "spx*mgr.h"))
 	if err != nil {
 		fmt.Println("Error finding files:", err)
 		return ""
 	}
-	
+
 	var builder strings.Builder
 	builder.WriteString("#include \"gdextension_interface.h\"\n")
 	builder.WriteString("#include \"gdextension_spx_mgr_pre_define.h\"\n")
-	
+
 	for _, file := range files {
 		if strings.Contains(file, "spx_base_mgr.h") {
 			continue
@@ -91,10 +91,9 @@ func mergeManagerHeader(dir string) string {
 			fmt.Println("Error reading file:", err)
 		}
 	}
-	
+
 	return builder.String()
 }
-
 
 func generateManagerHeader(input string, rawFormat bool) string {
 	scanner := bufio.NewScanner(strings.NewReader(input))
@@ -123,13 +122,13 @@ func generateManagerHeader(input string, rawFormat bool) string {
 			returnType := matches[1]
 			methodName := strcase.ToCamel(matches[2])
 			params := matches[3]
-			if(rawFormat){
+			if rawFormat {
 				builder.WriteString(fmt.Sprintf("typedef %s (*GDExtension%s%s)(%s);\n", returnType, currentClassName, methodName, params))
-			}else{
+			} else {
 				if len(params) > 0 {
 					returnType = ", " + returnType
 				}
-				builder.WriteString(fmt.Sprintf("typedef void (*GDExtension%s%s)(%s%s* ret_value);\n", currentClassName, methodName, params,  returnType))
+				builder.WriteString(fmt.Sprintf("typedef void (*GDExtension%s%s)(%s%s* ret_value);\n", currentClassName, methodName, params, returnType))
 			}
 		}
 	}
@@ -140,4 +139,3 @@ func generateManagerHeader(input string, rawFormat bool) string {
 
 	return builder.String()
 }
-

@@ -108,7 +108,7 @@ var rootCmd = &cobra.Command{
 			ffi.Generate(packagePath, ast)
 			gdext.Generate(packagePath, ast)
 		}
-		
+
 		if verbose {
 			println("cli tool done")
 		}

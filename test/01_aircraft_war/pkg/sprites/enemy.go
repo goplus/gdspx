@@ -28,7 +28,7 @@ func (pself *Enemy) OnUpdate(delta float32) {
 func (pself *Enemy) OnHit() {
 	pself.dyingTimer = 0.2
 	pself.IsDied = true
-	Score += 10
+	Score += 100
 	pself.PlayAnim("die", 3, false)
 }
 

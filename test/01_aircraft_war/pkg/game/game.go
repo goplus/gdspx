@@ -14,7 +14,7 @@ var (
 
 func OnStart() {
 	obj := CreateSprite[Aircraft]()
-	obj.SetPosition(Vec2{0, -WinHeight / 2.0})
+	obj.SetPosition(Vec2{0, -WinHeight / 2.0 + 200})
 	scoreText = CreateUI[UiScore]("Score")
 }
 

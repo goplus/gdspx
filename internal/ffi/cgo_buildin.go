@@ -42,20 +42,21 @@ GDExtensionPtrDestructor cgo_callfn_GDExtensionSpxVariantGetPtrDestructor(const 
 }
 */
 import "C"
+
 var (
 	builtinAPI GDExtensionBuiltinInterface
 )
 
 type GDExtensionBuiltinInterface struct {
-	SpxGlobalRegisterCallbacks GDExtensionSpxGlobalRegisterCallbacks
-	SpxStringNewWithLatin1Chars GDExtensionSpxStringNewWithLatin1Chars
-	SpxStringNewWithUtf8Chars GDExtensionSpxStringNewWithUtf8Chars
+	SpxGlobalRegisterCallbacks        GDExtensionSpxGlobalRegisterCallbacks
+	SpxStringNewWithLatin1Chars       GDExtensionSpxStringNewWithLatin1Chars
+	SpxStringNewWithUtf8Chars         GDExtensionSpxStringNewWithUtf8Chars
 	SpxStringNewWithLatin1CharsAndLen GDExtensionSpxStringNewWithLatin1CharsAndLen
-	SpxStringNewWithUtf8CharsAndLen GDExtensionSpxStringNewWithUtf8CharsAndLen
-	SpxStringToLatin1Chars GDExtensionSpxStringToLatin1Chars
-	SpxStringToUtf8Chars GDExtensionSpxStringToUtf8Chars
-	SpxVariantGetPtrConstructor GDExtensionSpxVariantGetPtrConstructor
-	SpxVariantGetPtrDestructor GDExtensionSpxVariantGetPtrDestructor
+	SpxStringNewWithUtf8CharsAndLen   GDExtensionSpxStringNewWithUtf8CharsAndLen
+	SpxStringToLatin1Chars            GDExtensionSpxStringToLatin1Chars
+	SpxStringToUtf8Chars              GDExtensionSpxStringToUtf8Chars
+	SpxVariantGetPtrConstructor       GDExtensionSpxVariantGetPtrConstructor
+	SpxVariantGetPtrDestructor        GDExtensionSpxVariantGetPtrDestructor
 }
 
 func (x *GDExtensionBuiltinInterface) loadProcAddresses() {
@@ -190,73 +191,72 @@ func CallPtrDestructor(
 func CallStringNewWithLatin1Chars(
 	r_dest GDExtensionUninitializedStringPtr,
 	p_contents string,
-	)  {
+) {
 	arg0 := (C.GDExtensionSpxStringNewWithLatin1Chars)(builtinAPI.SpxStringNewWithLatin1Chars)
 	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
 	arg2 := C.CString(p_contents)
-	C.cgo_callfn_GDExtensionSpxStringNewWithLatin1Chars(arg0,arg1,arg2,)
+	C.cgo_callfn_GDExtensionSpxStringNewWithLatin1Chars(arg0, arg1, arg2)
 	C.free(unsafe.Pointer(arg2))
-	
+
 }
 func CallStringNewWithUtf8Chars(
 	r_dest GDExtensionUninitializedStringPtr,
 	p_contents string,
-	)  {
+) {
 	arg0 := (C.GDExtensionSpxStringNewWithUtf8Chars)(builtinAPI.SpxStringNewWithUtf8Chars)
 	arg1 := (C.GDExtensionUninitializedStringPtr)(r_dest)
 	arg2 := C.CString(p_contents)
-	C.cgo_callfn_GDExtensionSpxStringNewWithUtf8Chars(arg0,arg1,arg2,)
+	C.cgo_callfn_GDExtensionSpxStringNewWithUtf8Chars(arg0, arg1, arg2)
 	C.free(unsafe.Pointer(arg2))
 }
 func CallStringToLatin1Chars(
 	p_self GDExtensionConstStringPtr,
 	r_text *Char,
 	p_max_write_length GdInt,
-	) GdInt {
+) GdInt {
 	arg0 := (C.GDExtensionSpxStringToLatin1Chars)(builtinAPI.SpxStringToLatin1Chars)
 	arg1 := (C.GDExtensionConstStringPtr)(p_self)
 	arg2 := (*C.char)(r_text)
 	arg3 := (C.GdInt)(p_max_write_length)
-	ret := C.cgo_callfn_GDExtensionSpxStringToLatin1Chars(arg0,arg1,arg2,arg3,)
+	ret := C.cgo_callfn_GDExtensionSpxStringToLatin1Chars(arg0, arg1, arg2, arg3)
 	return (GdInt)(ret)
 }
 func CallStringToUtf8Chars(
 	p_self GDExtensionConstStringPtr,
 	r_text *Char,
 	p_max_write_length GdInt,
-	) GdInt {
+) GdInt {
 	arg0 := (C.GDExtensionSpxStringToUtf8Chars)(builtinAPI.SpxStringToUtf8Chars)
 	arg1 := (C.GDExtensionConstStringPtr)(p_self)
 	arg2 := (*C.char)(r_text)
 	arg3 := (C.GdInt)(p_max_write_length)
-	ret := C.cgo_callfn_GDExtensionSpxStringToUtf8Chars(arg0,arg1,arg2,arg3,)
+	ret := C.cgo_callfn_GDExtensionSpxStringToUtf8Chars(arg0, arg1, arg2, arg3)
 	return (GdInt)(ret)
 }
 func CallVariantGetPtrConstructor(
 	p_type GDExtensionVariantType,
 	p_constructor int32,
-	) GDExtensionPtrConstructor {
+) GDExtensionPtrConstructor {
 	arg0 := (C.GDExtensionSpxVariantGetPtrConstructor)(builtinAPI.SpxVariantGetPtrConstructor)
 	arg1 := (C.GDExtensionVariantType)(p_type)
 	arg2 := (C.int32_t)(p_constructor)
-	ret := C.cgo_callfn_GDExtensionSpxVariantGetPtrConstructor(arg0,arg1,arg2,)
+	ret := C.cgo_callfn_GDExtensionSpxVariantGetPtrConstructor(arg0, arg1, arg2)
 	return (GDExtensionPtrConstructor)(ret)
 }
 func CallVariantGetPtrDestructor(
 	p_type GDExtensionVariantType,
-	) GDExtensionPtrDestructor {
+) GDExtensionPtrDestructor {
 	arg0 := (C.GDExtensionSpxVariantGetPtrDestructor)(builtinAPI.SpxVariantGetPtrDestructor)
 	arg1 := (C.GDExtensionVariantType)(p_type)
-	ret := C.cgo_callfn_GDExtensionSpxVariantGetPtrDestructor(arg0,arg1,)
+	ret := C.cgo_callfn_GDExtensionSpxVariantGetPtrDestructor(arg0, arg1)
 	return (GDExtensionPtrDestructor)(ret)
 }
 
-
 func CallGlobalRegisterCallbacks(
 	callback_ptr GDExtensionSpxCallbackInfoPtr,
-	)  {
+) {
 	arg0 := (C.GDExtensionSpxGlobalRegisterCallbacks)(builtinAPI.SpxGlobalRegisterCallbacks)
 	arg1 := (C.GDExtensionSpxCallbackInfoPtr)(callback_ptr)
-	
-	C.cgo_callfn_GDExtensionSpxGlobalRegisterCallbacks(arg0,arg1,)
+
+	C.cgo_callfn_GDExtensionSpxGlobalRegisterCallbacks(arg0, arg1)
 }

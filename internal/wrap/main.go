@@ -14,7 +14,6 @@ var (
 	callbacks CallbackInfo
 )
 
-
 func addManager[T IManager](mgr T) T {
 	//typeName := reflect.TypeOf(mgr).Elem().Name()
 	mgr.Init(0)

@@ -4,21 +4,22 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
-	"io/ioutil"
 
 	"godot-ext/gdspx/cmd/gdextensionparser/clang"
 	"godot-ext/gdspx/cmd/gdextensionparser/preprocessor"
 )
+
 func ReadFiles(dir, fileName string) string {
 	var allLines []string
 	lines, _ := readLines(filepath.Join(dir, fileName))
 	for _, line := range lines {
 		if strings.HasPrefix(line, "#include \"") {
 			includePath := strings.ReplaceAll(strings.ReplaceAll(line, "#include \"", ""), "\"", "")
-			includeLines, _ := readLines(filepath.Join(dir, includePath)) 
+			includeLines, _ := readLines(filepath.Join(dir, includePath))
 			for _, inLine := range includeLines {
 				if !strings.HasPrefix(inLine, "#include \"") {
 					allLines = append(allLines, inLine)
@@ -31,8 +32,8 @@ func ReadFiles(dir, fileName string) string {
 
 	var sb strings.Builder
 	for _, line := range allLines {
-		// hack to remove a specific char 
-		if(strings.Contains(line,"/*******")){
+		// hack to remove a specific char
+		if strings.Contains(line, "/*******") {
 			continue
 		}
 		sb.WriteString(line + "\n")
@@ -57,19 +58,19 @@ func readLines(path string) ([]string, error) {
 	return lines, scanner.Err()
 }
 func expandIncludeFiles(projectPath, header, outputName string) (string, error) {
-	dirPath := filepath.Join(projectPath, "/../internal/ffi/");
+	dirPath := filepath.Join(projectPath, "/../internal/ffi/")
 	allStrs := ReadFiles(dirPath, header)
-	tempPath :=filepath.Join(dirPath, outputName)
+	tempPath := filepath.Join(dirPath, outputName)
 	ioutil.WriteFile(tempPath, []byte(allStrs), 0644)
-	return allStrs,nil
+	return allStrs, nil
 }
 
 func GenerateGDExtensionInterfaceAST(projectPath, astOutputFilename string) (clang.CHeaderFileAST, error) {
-	str ,_ := expandIncludeFiles(projectPath,"gdextension_spx_codegen_header.h","_temp_output.h")
-	return generateGDExtensionInterfaceAST( str, projectPath, astOutputFilename) 
+	str, _ := expandIncludeFiles(projectPath, "gdextension_spx_codegen_header.h", "_temp_output.h")
+	return generateGDExtensionInterfaceAST(str, projectPath, astOutputFilename)
 }
 
-func generateGDExtensionInterfaceAST(b,projectPath, astOutputFilename string) (clang.CHeaderFileAST, error) {
+func generateGDExtensionInterfaceAST(b, projectPath, astOutputFilename string) (clang.CHeaderFileAST, error) {
 	preprocFile, err := preprocessor.ParsePreprocessorString((string)(b))
 	if err != nil {
 		return clang.CHeaderFileAST{}, fmt.Errorf("error preprocessing %s: %w", projectPath, err)
