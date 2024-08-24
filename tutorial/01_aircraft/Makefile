@@ -58,8 +58,8 @@ editor:
 
 
 gen:
-	cd ../../cmd && go run . && cd ../test/$(CURRENT_DIR_NAME) && \
+	cd ../../cmd && go run . && cd ../tutorial/$(CURRENT_DIR_NAME) && \
 	$(MAKE) build
 	
 fmt:
-	cd ../.. && go fmt ./... && cd test/$(CURRENT_DIR_NAME) 
+	cd ../.. && go fmt ./... && cd tutorial/$(CURRENT_DIR_NAME) 

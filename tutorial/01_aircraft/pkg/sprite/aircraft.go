@@ -25,19 +25,18 @@ func (pself *Aircraft) OnUpdate(delta float32) {
 	}
 
 	if InputMgr.GetKey(KeyCode.W) {
-		pself.Move(0, pself.moveSpeed*delta)
+		pself.AddPos(0, pself.moveSpeed*delta)
 	}
 	if InputMgr.GetKey(KeyCode.S) {
-		pself.Move(0, -pself.moveSpeed*delta)
+		pself.AddPos(0, -pself.moveSpeed*delta)
 	}
 	if InputMgr.GetKey(KeyCode.D) {
-		pself.Move(pself.moveSpeed*delta, 0)
+		pself.AddPos(pself.moveSpeed*delta, 0)
 	}
 	if InputMgr.GetKey(KeyCode.A) {
-		pself.Move(-pself.moveSpeed*delta, 0)
+		pself.AddPos(-pself.moveSpeed*delta, 0)
 	}
 }
-
 
 func (pself *Aircraft) OnHit() {
 	pself.OnDieEvent.Trigger()

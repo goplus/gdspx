@@ -19,7 +19,7 @@ func (pself *Enemy) OnUpdate(delta float32) {
 		}
 		return
 	}
-	pself.Move(0, -100*delta)
+	pself.AddPos(0, -100*delta)
 	if pself.GetPosY() < -WinHeight {
 		pself.Destroy()
 	}
