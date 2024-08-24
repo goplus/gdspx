@@ -208,6 +208,58 @@ func (pself *spriteMgr) SetDontDestroyOnLoad(obj Object) {
 	arg0 := ToGdObj(obj)
 	CallSpriteSetDontDestroyOnLoad(arg0)
 }
+func (pself *spriteMgr) SetProcess(obj Object, is_on bool) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdBool(is_on)
+	CallSpriteSetProcess(arg0, arg1)
+}
+func (pself *spriteMgr) SetPhysicProcess(obj Object, is_on bool) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdBool(is_on)
+	CallSpriteSetPhysicProcess(arg0, arg1)
+}
+func (pself *spriteMgr) SetChildPosition(obj Object, path string, pos Vec2) {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(path)
+	arg1 := arg1Str.ToGdString()
+	arg2 := ToGdVec2(pos)
+	CallSpriteSetChildPosition(arg0, arg1, arg2)
+}
+func (pself *spriteMgr) GetChildPosition(obj Object, path string) Vec2 {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(path)
+	arg1 := arg1Str.ToGdString()
+	retValue := CallSpriteGetChildPosition(arg0, arg1)
+	return ToVec2(retValue)
+}
+func (pself *spriteMgr) SetChildRotation(obj Object, path string, rot float32) {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(path)
+	arg1 := arg1Str.ToGdString()
+	arg2 := ToGdFloat(rot)
+	CallSpriteSetChildRotation(arg0, arg1, arg2)
+}
+func (pself *spriteMgr) GetChildRotation(obj Object, path string) float32 {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(path)
+	arg1 := arg1Str.ToGdString()
+	retValue := CallSpriteGetChildRotation(arg0, arg1)
+	return ToFloat32(retValue)
+}
+func (pself *spriteMgr) SetChildScale(obj Object, path string, scale Vec2) {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(path)
+	arg1 := arg1Str.ToGdString()
+	arg2 := ToGdVec2(scale)
+	CallSpriteSetChildScale(arg0, arg1, arg2)
+}
+func (pself *spriteMgr) GetChildScale(obj Object, path string) Vec2 {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(path)
+	arg1 := arg1Str.ToGdString()
+	retValue := CallSpriteGetChildScale(arg0, arg1)
+	return ToVec2(retValue)
+}
 func (pself *spriteMgr) CreateSprite(path string) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
@@ -234,25 +286,25 @@ func (pself *spriteMgr) SetPosition(obj Object, pos Vec2) {
 	arg1 := ToGdVec2(pos)
 	CallSpriteSetPosition(arg0, arg1)
 }
-func (pself *spriteMgr) SetRotation(obj Object, rot float32) {
-	arg0 := ToGdObj(obj)
-	arg1 := ToGdFloat(rot)
-	CallSpriteSetRotation(arg0, arg1)
-}
-func (pself *spriteMgr) SetScale(obj Object, scale Vec2) {
-	arg0 := ToGdObj(obj)
-	arg1 := ToGdVec2(scale)
-	CallSpriteSetScale(arg0, arg1)
-}
 func (pself *spriteMgr) GetPosition(obj Object) Vec2 {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteGetPosition(arg0)
 	return ToVec2(retValue)
 }
+func (pself *spriteMgr) SetRotation(obj Object, rot float32) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdFloat(rot)
+	CallSpriteSetRotation(arg0, arg1)
+}
 func (pself *spriteMgr) GetRotation(obj Object) float32 {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteGetRotation(arg0)
 	return ToFloat32(retValue)
+}
+func (pself *spriteMgr) SetScale(obj Object, scale Vec2) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdVec2(scale)
+	CallSpriteSetScale(arg0, arg1)
 }
 func (pself *spriteMgr) GetScale(obj Object) Vec2 {
 	arg0 := ToGdObj(obj)

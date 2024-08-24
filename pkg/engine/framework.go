@@ -10,6 +10,16 @@ var (
 	TimeSinceGameStart = float32(0)
 )
 
+func isNodeExist(id Object) bool {
+	if _, ok := Id2UiNodes[id]; ok {
+		return true
+	}
+	if _, ok := Id2Sprites[id]; ok {
+		return true
+	}
+	return false
+}
+
 func getPrefabPath(name string) string {
 	assetName := name
 	return "res://assets/prefabs/" + assetName + ".tscn"

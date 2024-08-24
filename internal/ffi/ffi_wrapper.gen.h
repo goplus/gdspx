@@ -96,6 +96,30 @@ void cgo_callfn_GDExtensionSpxSceneUnloadCurrentScene(const GDExtensionSpxSceneU
 void cgo_callfn_GDExtensionSpxSpriteSetDontDestroyOnLoad(const GDExtensionSpxSpriteSetDontDestroyOnLoad fn, GdObj obj) {
 	fn(obj);
 }
+void cgo_callfn_GDExtensionSpxSpriteSetProcess(const GDExtensionSpxSpriteSetProcess fn, GdObj obj, GdBool is_on) {
+	fn(obj, is_on);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetPhysicProcess(const GDExtensionSpxSpriteSetPhysicProcess fn, GdObj obj, GdBool is_on) {
+	fn(obj, is_on);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetChildPosition(const GDExtensionSpxSpriteSetChildPosition fn, GdObj obj, GdString path, GdVec2 pos) {
+	fn(obj, path, pos);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetChildPosition(const GDExtensionSpxSpriteGetChildPosition fn, GdObj obj, GdString path, GdVec2* ret_val) {
+	fn(obj, path,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetChildRotation(const GDExtensionSpxSpriteSetChildRotation fn, GdObj obj, GdString path, GdFloat rot) {
+	fn(obj, path, rot);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetChildRotation(const GDExtensionSpxSpriteGetChildRotation fn, GdObj obj, GdString path, GdFloat* ret_val) {
+	fn(obj, path,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetChildScale(const GDExtensionSpxSpriteSetChildScale fn, GdObj obj, GdString path, GdVec2 scale) {
+	fn(obj, path, scale);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetChildScale(const GDExtensionSpxSpriteGetChildScale fn, GdObj obj, GdString path, GdVec2* ret_val) {
+	fn(obj, path,ret_val);
+}
 void cgo_callfn_GDExtensionSpxSpriteCreateSprite(const GDExtensionSpxSpriteCreateSprite fn, GdString path, GdObj* ret_val) {
 	fn(path,ret_val);
 }
@@ -111,17 +135,17 @@ void cgo_callfn_GDExtensionSpxSpriteIsSpriteAlive(const GDExtensionSpxSpriteIsSp
 void cgo_callfn_GDExtensionSpxSpriteSetPosition(const GDExtensionSpxSpriteSetPosition fn, GdObj obj, GdVec2 pos) {
 	fn(obj, pos);
 }
-void cgo_callfn_GDExtensionSpxSpriteSetRotation(const GDExtensionSpxSpriteSetRotation fn, GdObj obj, GdFloat rot) {
-	fn(obj, rot);
-}
-void cgo_callfn_GDExtensionSpxSpriteSetScale(const GDExtensionSpxSpriteSetScale fn, GdObj obj, GdVec2 scale) {
-	fn(obj, scale);
-}
 void cgo_callfn_GDExtensionSpxSpriteGetPosition(const GDExtensionSpxSpriteGetPosition fn, GdObj obj, GdVec2* ret_val) {
 	fn(obj,ret_val);
 }
+void cgo_callfn_GDExtensionSpxSpriteSetRotation(const GDExtensionSpxSpriteSetRotation fn, GdObj obj, GdFloat rot) {
+	fn(obj, rot);
+}
 void cgo_callfn_GDExtensionSpxSpriteGetRotation(const GDExtensionSpxSpriteGetRotation fn, GdObj obj, GdFloat* ret_val) {
 	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetScale(const GDExtensionSpxSpriteSetScale fn, GdObj obj, GdVec2 scale) {
+	fn(obj, scale);
 }
 void cgo_callfn_GDExtensionSpxSpriteGetScale(const GDExtensionSpxSpriteGetScale fn, GdObj obj, GdVec2* ret_val) {
 	fn(obj,ret_val);

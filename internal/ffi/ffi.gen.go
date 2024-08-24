@@ -44,15 +44,23 @@ type GDExtensionInterface struct {
 	SpxSceneReloadCurrentScene    GDExtensionSpxSceneReloadCurrentScene
 	SpxSceneUnloadCurrentScene    GDExtensionSpxSceneUnloadCurrentScene
 	SpxSpriteSetDontDestroyOnLoad GDExtensionSpxSpriteSetDontDestroyOnLoad
+	SpxSpriteSetProcess           GDExtensionSpxSpriteSetProcess
+	SpxSpriteSetPhysicProcess     GDExtensionSpxSpriteSetPhysicProcess
+	SpxSpriteSetChildPosition     GDExtensionSpxSpriteSetChildPosition
+	SpxSpriteGetChildPosition     GDExtensionSpxSpriteGetChildPosition
+	SpxSpriteSetChildRotation     GDExtensionSpxSpriteSetChildRotation
+	SpxSpriteGetChildRotation     GDExtensionSpxSpriteGetChildRotation
+	SpxSpriteSetChildScale        GDExtensionSpxSpriteSetChildScale
+	SpxSpriteGetChildScale        GDExtensionSpxSpriteGetChildScale
 	SpxSpriteCreateSprite         GDExtensionSpxSpriteCreateSprite
 	SpxSpriteCloneSprite          GDExtensionSpxSpriteCloneSprite
 	SpxSpriteDestroySprite        GDExtensionSpxSpriteDestroySprite
 	SpxSpriteIsSpriteAlive        GDExtensionSpxSpriteIsSpriteAlive
 	SpxSpriteSetPosition          GDExtensionSpxSpriteSetPosition
-	SpxSpriteSetRotation          GDExtensionSpxSpriteSetRotation
-	SpxSpriteSetScale             GDExtensionSpxSpriteSetScale
 	SpxSpriteGetPosition          GDExtensionSpxSpriteGetPosition
+	SpxSpriteSetRotation          GDExtensionSpxSpriteSetRotation
 	SpxSpriteGetRotation          GDExtensionSpxSpriteGetRotation
+	SpxSpriteSetScale             GDExtensionSpxSpriteSetScale
 	SpxSpriteGetScale             GDExtensionSpxSpriteGetScale
 	SpxSpriteSetColor             GDExtensionSpxSpriteSetColor
 	SpxSpriteGetColor             GDExtensionSpxSpriteGetColor
@@ -174,15 +182,23 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSceneReloadCurrentScene = (GDExtensionSpxSceneReloadCurrentScene)(dlsymGD("spx_scene_reload_current_scene"))
 	x.SpxSceneUnloadCurrentScene = (GDExtensionSpxSceneUnloadCurrentScene)(dlsymGD("spx_scene_unload_current_scene"))
 	x.SpxSpriteSetDontDestroyOnLoad = (GDExtensionSpxSpriteSetDontDestroyOnLoad)(dlsymGD("spx_sprite_set_dont_destroy_on_load"))
+	x.SpxSpriteSetProcess = (GDExtensionSpxSpriteSetProcess)(dlsymGD("spx_sprite_set_process"))
+	x.SpxSpriteSetPhysicProcess = (GDExtensionSpxSpriteSetPhysicProcess)(dlsymGD("spx_sprite_set_physic_process"))
+	x.SpxSpriteSetChildPosition = (GDExtensionSpxSpriteSetChildPosition)(dlsymGD("spx_sprite_set_child_position"))
+	x.SpxSpriteGetChildPosition = (GDExtensionSpxSpriteGetChildPosition)(dlsymGD("spx_sprite_get_child_position"))
+	x.SpxSpriteSetChildRotation = (GDExtensionSpxSpriteSetChildRotation)(dlsymGD("spx_sprite_set_child_rotation"))
+	x.SpxSpriteGetChildRotation = (GDExtensionSpxSpriteGetChildRotation)(dlsymGD("spx_sprite_get_child_rotation"))
+	x.SpxSpriteSetChildScale = (GDExtensionSpxSpriteSetChildScale)(dlsymGD("spx_sprite_set_child_scale"))
+	x.SpxSpriteGetChildScale = (GDExtensionSpxSpriteGetChildScale)(dlsymGD("spx_sprite_get_child_scale"))
 	x.SpxSpriteCreateSprite = (GDExtensionSpxSpriteCreateSprite)(dlsymGD("spx_sprite_create_sprite"))
 	x.SpxSpriteCloneSprite = (GDExtensionSpxSpriteCloneSprite)(dlsymGD("spx_sprite_clone_sprite"))
 	x.SpxSpriteDestroySprite = (GDExtensionSpxSpriteDestroySprite)(dlsymGD("spx_sprite_destroy_sprite"))
 	x.SpxSpriteIsSpriteAlive = (GDExtensionSpxSpriteIsSpriteAlive)(dlsymGD("spx_sprite_is_sprite_alive"))
 	x.SpxSpriteSetPosition = (GDExtensionSpxSpriteSetPosition)(dlsymGD("spx_sprite_set_position"))
-	x.SpxSpriteSetRotation = (GDExtensionSpxSpriteSetRotation)(dlsymGD("spx_sprite_set_rotation"))
-	x.SpxSpriteSetScale = (GDExtensionSpxSpriteSetScale)(dlsymGD("spx_sprite_set_scale"))
 	x.SpxSpriteGetPosition = (GDExtensionSpxSpriteGetPosition)(dlsymGD("spx_sprite_get_position"))
+	x.SpxSpriteSetRotation = (GDExtensionSpxSpriteSetRotation)(dlsymGD("spx_sprite_set_rotation"))
 	x.SpxSpriteGetRotation = (GDExtensionSpxSpriteGetRotation)(dlsymGD("spx_sprite_get_rotation"))
+	x.SpxSpriteSetScale = (GDExtensionSpxSpriteSetScale)(dlsymGD("spx_sprite_set_scale"))
 	x.SpxSpriteGetScale = (GDExtensionSpxSpriteGetScale)(dlsymGD("spx_sprite_get_scale"))
 	x.SpxSpriteSetColor = (GDExtensionSpxSpriteSetColor)(dlsymGD("spx_sprite_set_color"))
 	x.SpxSpriteGetColor = (GDExtensionSpxSpriteGetColor)(dlsymGD("spx_sprite_get_color"))

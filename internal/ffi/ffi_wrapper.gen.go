@@ -97,15 +97,23 @@ type GDExtensionSpxSceneChangeSceneToFile C.GDExtensionSpxSceneChangeSceneToFile
 type GDExtensionSpxSceneReloadCurrentScene C.GDExtensionSpxSceneReloadCurrentScene
 type GDExtensionSpxSceneUnloadCurrentScene C.GDExtensionSpxSceneUnloadCurrentScene
 type GDExtensionSpxSpriteSetDontDestroyOnLoad C.GDExtensionSpxSpriteSetDontDestroyOnLoad
+type GDExtensionSpxSpriteSetProcess C.GDExtensionSpxSpriteSetProcess
+type GDExtensionSpxSpriteSetPhysicProcess C.GDExtensionSpxSpriteSetPhysicProcess
+type GDExtensionSpxSpriteSetChildPosition C.GDExtensionSpxSpriteSetChildPosition
+type GDExtensionSpxSpriteGetChildPosition C.GDExtensionSpxSpriteGetChildPosition
+type GDExtensionSpxSpriteSetChildRotation C.GDExtensionSpxSpriteSetChildRotation
+type GDExtensionSpxSpriteGetChildRotation C.GDExtensionSpxSpriteGetChildRotation
+type GDExtensionSpxSpriteSetChildScale C.GDExtensionSpxSpriteSetChildScale
+type GDExtensionSpxSpriteGetChildScale C.GDExtensionSpxSpriteGetChildScale
 type GDExtensionSpxSpriteCreateSprite C.GDExtensionSpxSpriteCreateSprite
 type GDExtensionSpxSpriteCloneSprite C.GDExtensionSpxSpriteCloneSprite
 type GDExtensionSpxSpriteDestroySprite C.GDExtensionSpxSpriteDestroySprite
 type GDExtensionSpxSpriteIsSpriteAlive C.GDExtensionSpxSpriteIsSpriteAlive
 type GDExtensionSpxSpriteSetPosition C.GDExtensionSpxSpriteSetPosition
-type GDExtensionSpxSpriteSetRotation C.GDExtensionSpxSpriteSetRotation
-type GDExtensionSpxSpriteSetScale C.GDExtensionSpxSpriteSetScale
 type GDExtensionSpxSpriteGetPosition C.GDExtensionSpxSpriteGetPosition
+type GDExtensionSpxSpriteSetRotation C.GDExtensionSpxSpriteSetRotation
 type GDExtensionSpxSpriteGetRotation C.GDExtensionSpxSpriteGetRotation
+type GDExtensionSpxSpriteSetScale C.GDExtensionSpxSpriteSetScale
 type GDExtensionSpxSpriteGetScale C.GDExtensionSpxSpriteGetScale
 type GDExtensionSpxSpriteSetColor C.GDExtensionSpxSpriteSetColor
 type GDExtensionSpxSpriteGetColor C.GDExtensionSpxSpriteGetColor
@@ -428,6 +436,103 @@ func CallSpriteSetDontDestroyOnLoad(
 	C.cgo_callfn_GDExtensionSpxSpriteSetDontDestroyOnLoad(arg0, arg1GdObj)
 
 }
+func CallSpriteSetProcess(
+	obj GdObj,
+	is_on GdBool,
+) {
+	arg0 := (C.GDExtensionSpxSpriteSetProcess)(api.SpxSpriteSetProcess)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdBool = (C.GdBool)(is_on)
+
+	C.cgo_callfn_GDExtensionSpxSpriteSetProcess(arg0, arg1GdObj, arg2GdBool)
+
+}
+func CallSpriteSetPhysicProcess(
+	obj GdObj,
+	is_on GdBool,
+) {
+	arg0 := (C.GDExtensionSpxSpriteSetPhysicProcess)(api.SpxSpriteSetPhysicProcess)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdBool = (C.GdBool)(is_on)
+
+	C.cgo_callfn_GDExtensionSpxSpriteSetPhysicProcess(arg0, arg1GdObj, arg2GdBool)
+
+}
+func CallSpriteSetChildPosition(
+	obj GdObj,
+	path GdString,
+	pos GdVec2,
+) {
+	arg0 := (C.GDExtensionSpxSpriteSetChildPosition)(api.SpxSpriteSetChildPosition)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(path)
+	arg3GdVec2 = (C.GdVec2)(pos)
+
+	C.cgo_callfn_GDExtensionSpxSpriteSetChildPosition(arg0, arg1GdObj, arg2GdString, arg3GdVec2)
+
+}
+func CallSpriteGetChildPosition(
+	obj GdObj,
+	path GdString,
+) GdVec2 {
+	arg0 := (C.GDExtensionSpxSpriteGetChildPosition)(api.SpxSpriteGetChildPosition)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(path)
+	var ret_val C.GdVec2
+	C.cgo_callfn_GDExtensionSpxSpriteGetChildPosition(arg0, arg1GdObj, arg2GdString, &ret_val)
+
+	return (GdVec2)(ret_val)
+}
+func CallSpriteSetChildRotation(
+	obj GdObj,
+	path GdString,
+	rot GdFloat,
+) {
+	arg0 := (C.GDExtensionSpxSpriteSetChildRotation)(api.SpxSpriteSetChildRotation)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(path)
+	arg3GdFloat = (C.GdFloat)(rot)
+
+	C.cgo_callfn_GDExtensionSpxSpriteSetChildRotation(arg0, arg1GdObj, arg2GdString, arg3GdFloat)
+
+}
+func CallSpriteGetChildRotation(
+	obj GdObj,
+	path GdString,
+) GdFloat {
+	arg0 := (C.GDExtensionSpxSpriteGetChildRotation)(api.SpxSpriteGetChildRotation)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(path)
+	var ret_val C.GdFloat
+	C.cgo_callfn_GDExtensionSpxSpriteGetChildRotation(arg0, arg1GdObj, arg2GdString, &ret_val)
+
+	return (GdFloat)(ret_val)
+}
+func CallSpriteSetChildScale(
+	obj GdObj,
+	path GdString,
+	scale GdVec2,
+) {
+	arg0 := (C.GDExtensionSpxSpriteSetChildScale)(api.SpxSpriteSetChildScale)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(path)
+	arg3GdVec2 = (C.GdVec2)(scale)
+
+	C.cgo_callfn_GDExtensionSpxSpriteSetChildScale(arg0, arg1GdObj, arg2GdString, arg3GdVec2)
+
+}
+func CallSpriteGetChildScale(
+	obj GdObj,
+	path GdString,
+) GdVec2 {
+	arg0 := (C.GDExtensionSpxSpriteGetChildScale)(api.SpxSpriteGetChildScale)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(path)
+	var ret_val C.GdVec2
+	C.cgo_callfn_GDExtensionSpxSpriteGetChildScale(arg0, arg1GdObj, arg2GdString, &ret_val)
+
+	return (GdVec2)(ret_val)
+}
 func CallSpriteCreateSprite(
 	path GdString,
 ) GdObj {
@@ -479,6 +584,16 @@ func CallSpriteSetPosition(
 	C.cgo_callfn_GDExtensionSpxSpriteSetPosition(arg0, arg1GdObj, arg2GdVec2)
 
 }
+func CallSpriteGetPosition(
+	obj GdObj,
+) GdVec2 {
+	arg0 := (C.GDExtensionSpxSpriteGetPosition)(api.SpxSpriteGetPosition)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2
+	C.cgo_callfn_GDExtensionSpxSpriteGetPosition(arg0, arg1GdObj, &ret_val)
+
+	return (GdVec2)(ret_val)
+}
 func CallSpriteSetRotation(
 	obj GdObj,
 	rot GdFloat,
@@ -490,6 +605,16 @@ func CallSpriteSetRotation(
 	C.cgo_callfn_GDExtensionSpxSpriteSetRotation(arg0, arg1GdObj, arg2GdFloat)
 
 }
+func CallSpriteGetRotation(
+	obj GdObj,
+) GdFloat {
+	arg0 := (C.GDExtensionSpxSpriteGetRotation)(api.SpxSpriteGetRotation)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdFloat
+	C.cgo_callfn_GDExtensionSpxSpriteGetRotation(arg0, arg1GdObj, &ret_val)
+
+	return (GdFloat)(ret_val)
+}
 func CallSpriteSetScale(
 	obj GdObj,
 	scale GdVec2,
@@ -500,26 +625,6 @@ func CallSpriteSetScale(
 
 	C.cgo_callfn_GDExtensionSpxSpriteSetScale(arg0, arg1GdObj, arg2GdVec2)
 
-}
-func CallSpriteGetPosition(
-	obj GdObj,
-) GdVec2 {
-	arg0 := (C.GDExtensionSpxSpriteGetPosition)(api.SpxSpriteGetPosition)
-	arg1GdObj = (C.GdObj)(obj)
-	var ret_val C.GdVec2
-	C.cgo_callfn_GDExtensionSpxSpriteGetPosition(arg0, arg1GdObj, &ret_val)
-
-	return (GdVec2)(ret_val)
-}
-func CallSpriteGetRotation(
-	obj GdObj,
-) GdFloat {
-	arg0 := (C.GDExtensionSpxSpriteGetRotation)(api.SpxSpriteGetRotation)
-	arg1GdObj = (C.GdObj)(obj)
-	var ret_val C.GdFloat
-	C.cgo_callfn_GDExtensionSpxSpriteGetRotation(arg0, arg1GdObj, &ret_val)
-
-	return (GdFloat)(ret_val)
 }
 func CallSpriteGetScale(
 	obj GdObj,

@@ -62,15 +62,23 @@ type ISceneMgr interface {
 
 type ISpriteMgr interface {
 	SetDontDestroyOnLoad(obj Object)
+	SetProcess(obj Object, is_on bool)
+	SetPhysicProcess(obj Object, is_on bool)
+	SetChildPosition(obj Object, path string, pos Vec2)
+	GetChildPosition(obj Object, path string) Vec2
+	SetChildRotation(obj Object, path string, rot float32)
+	GetChildRotation(obj Object, path string) float32
+	SetChildScale(obj Object, path string, scale Vec2)
+	GetChildScale(obj Object, path string) Vec2
 	CreateSprite(path string) Object
 	CloneSprite(obj Object) Object
 	DestroySprite(obj Object) bool
 	IsSpriteAlive(obj Object) bool
 	SetPosition(obj Object, pos Vec2)
-	SetRotation(obj Object, rot float32)
-	SetScale(obj Object, scale Vec2)
 	GetPosition(obj Object) Vec2
+	SetRotation(obj Object, rot float32)
 	GetRotation(obj Object) float32
+	SetScale(obj Object, scale Vec2)
 	GetScale(obj Object) Vec2
 	SetColor(obj Object, color Color)
 	GetColor(obj Object) Color
