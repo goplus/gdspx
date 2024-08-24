@@ -108,3 +108,37 @@ func (pself *Sprite) SetVelY(value float32) {
 	pos.Y = value
 	pself.SetVelocity(pos)
 }
+
+func (pself *Sprite) AddScale(deltaX, deltaY float32) {
+	pos := pself.GetScale()
+	pos.X += deltaX
+	pos.Y += deltaY
+	pself.SetScale(pos)
+}
+func (pself *Sprite) AddScaleX(delta float32)  {
+	pself.AddScale(delta,0)
+}
+
+func (pself *Sprite) AddScaleY(delta float32)  {
+	pself.AddScale(0,delta)
+}
+
+func (pself *Sprite) GetScaleX() float32 {
+	return pself.GetScale().X
+}
+
+func (pself *Sprite) GetScaleY() float32 {
+	return pself.GetScale().Y
+}
+
+func (pself *Sprite) SetScaleX(value float32) {
+	pos := pself.GetScale()
+	pos.X = value
+	pself.SetScale(pos)
+}
+
+func (pself *Sprite) SetScaleY(value float32) {
+	pos := pself.GetScale()
+	pos.Y = value
+	pself.SetScale(pos)
+}
