@@ -34,7 +34,7 @@ type IInputMgr interface {
 	GetKey(key int64) bool 
 	GetMouseState(mouse_id int64) bool 
 	GetKeyState(key int64) int64 
-	GetAxis(axis string) float32 
+	GetAxis(neg_action string, pos_action string) float32 
 	IsActionPressed(action string) bool 
 	IsActionJustPressed(action string) bool 
 	IsActionJustReleased(action string) bool  
@@ -83,6 +83,20 @@ type ISpriteMgr interface {
 	IsAnimFlippedH(obj Object) bool 
 	SetAnimFlipV(obj Object, p_flip bool)
 	IsAnimFlippedV(obj Object) bool 
+	SetVelocity(obj Object, velocity Vec2)
+	GetVelocity(obj Object) Vec2 
+	IsOnFloor(obj Object) bool 
+	IsOnFloorOnly(obj Object) bool 
+	IsOnWall(obj Object) bool 
+	IsOnWallOnly(obj Object) bool 
+	IsOnCeiling(obj Object) bool 
+	IsOnCeilingOnly(obj Object) bool 
+	GetLastMotion(obj Object) Vec2 
+	GetPositionDelta(obj Object) Vec2 
+	GetFloorNormal(obj Object) Vec2 
+	GetWallNormal(obj Object) Vec2 
+	GetRealVelocity(obj Object) Vec2 
+	MoveAndSlide(obj Object)
 	SetGravity(obj Object, gravity float32)
 	GetGravity(obj Object) float32 
 	SetMass(obj Object, mass float32)

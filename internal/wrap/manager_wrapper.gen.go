@@ -129,10 +129,12 @@ func (pself *inputMgr) GetKeyState(key int64) int64  {
 	retValue := CallInputGetKeyState(arg0)
 	return ToInt64(retValue)
 }
-func (pself *inputMgr) GetAxis(axis string) float32  {
-	arg0Str := NewCString(axis)
+func (pself *inputMgr) GetAxis(neg_action string, pos_action string) float32  {
+	arg0Str := NewCString(neg_action)
 	arg0 := arg0Str.ToGdString() 
-	retValue := CallInputGetAxis(arg0)
+	arg1Str := NewCString(pos_action)
+	arg1 := arg1Str.ToGdString() 
+	retValue := CallInputGetAxis(arg0, arg1)
 	return ToFloat32(retValue)
 }
 func (pself *inputMgr) IsActionPressed(action string) bool  {
@@ -354,6 +356,75 @@ func (pself *spriteMgr) IsAnimFlippedV(obj Object) bool  {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteIsAnimFlippedV(arg0)
 	return ToBool(retValue)
+}
+func (pself *spriteMgr) SetVelocity(obj Object, velocity Vec2) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdVec2(velocity)
+	CallSpriteSetVelocity(arg0, arg1)
+}
+func (pself *spriteMgr) GetVelocity(obj Object) Vec2  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteGetVelocity(arg0)
+	return ToVec2(retValue)
+}
+func (pself *spriteMgr) IsOnFloor(obj Object) bool  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteIsOnFloor(arg0)
+	return ToBool(retValue)
+}
+func (pself *spriteMgr) IsOnFloorOnly(obj Object) bool  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteIsOnFloorOnly(arg0)
+	return ToBool(retValue)
+}
+func (pself *spriteMgr) IsOnWall(obj Object) bool  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteIsOnWall(arg0)
+	return ToBool(retValue)
+}
+func (pself *spriteMgr) IsOnWallOnly(obj Object) bool  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteIsOnWallOnly(arg0)
+	return ToBool(retValue)
+}
+func (pself *spriteMgr) IsOnCeiling(obj Object) bool  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteIsOnCeiling(arg0)
+	return ToBool(retValue)
+}
+func (pself *spriteMgr) IsOnCeilingOnly(obj Object) bool  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteIsOnCeilingOnly(arg0)
+	return ToBool(retValue)
+}
+func (pself *spriteMgr) GetLastMotion(obj Object) Vec2  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteGetLastMotion(arg0)
+	return ToVec2(retValue)
+}
+func (pself *spriteMgr) GetPositionDelta(obj Object) Vec2  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteGetPositionDelta(arg0)
+	return ToVec2(retValue)
+}
+func (pself *spriteMgr) GetFloorNormal(obj Object) Vec2  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteGetFloorNormal(arg0)
+	return ToVec2(retValue)
+}
+func (pself *spriteMgr) GetWallNormal(obj Object) Vec2  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteGetWallNormal(arg0)
+	return ToVec2(retValue)
+}
+func (pself *spriteMgr) GetRealVelocity(obj Object) Vec2  {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteGetRealVelocity(arg0)
+	return ToVec2(retValue)
+}
+func (pself *spriteMgr) MoveAndSlide(obj Object) {
+	arg0 := ToGdObj(obj)
+	CallSpriteMoveAndSlide(arg0)
 }
 func (pself *spriteMgr) SetGravity(obj Object, gravity float32) {
 	arg0 := ToGdObj(obj)

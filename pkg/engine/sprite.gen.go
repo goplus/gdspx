@@ -177,3 +177,45 @@ func (pself *Sprite) SetTriggerEnabled(trigger bool) {
 func (pself *Sprite) IsTriggerEnabled() bool {
 	return SpriteMgr.IsTriggerEnabled(pself.Id)
 }
+func (pself *Sprite) SetVelocity(velocity Vec2){
+	SpriteMgr.SetVelocity(pself.Id, velocity)
+}
+func (pself *Sprite) GetVelocity() Vec2 {
+	return SpriteMgr.GetVelocity(pself.Id)
+}
+func (pself *Sprite) IsOnFloor() bool {
+	return SpriteMgr.IsOnFloor(pself.Id)
+}
+func (pself *Sprite) IsOnFloorOnly() bool {
+	return SpriteMgr.IsOnFloorOnly(pself.Id)
+}
+func (pself *Sprite) IsOnWall() bool {
+	return SpriteMgr.IsOnWall(pself.Id)
+}
+func (pself *Sprite) IsOnWallOnly() bool {
+	return SpriteMgr.IsOnWallOnly(pself.Id)
+}
+func (pself *Sprite) IsOnCeiling() bool {
+	return SpriteMgr.IsOnCeiling(pself.Id)
+}
+func (pself *Sprite) IsOnCeilingOnly() bool {
+	return SpriteMgr.IsOnCeilingOnly(pself.Id)
+}
+func (pself *Sprite) GetLastMotion() Vec2 {
+	return SpriteMgr.GetLastMotion(pself.Id)
+}
+func (pself *Sprite) GetPositionDelta() Vec2 {
+	return SpriteMgr.GetPositionDelta(pself.Id)
+}
+func (pself *Sprite) GetFloorNormal() Vec2 {
+	return SpriteMgr.GetFloorNormal(pself.Id)
+}
+func (pself *Sprite) GetWallNormal() Vec2 {
+	return SpriteMgr.GetWallNormal(pself.Id)
+}
+func (pself *Sprite) GetRealVelocity() Vec2 {
+	return SpriteMgr.GetRealVelocity(pself.Id)
+}
+func (pself *Sprite) MoveAndSlide() {
+	SpriteMgr.MoveAndSlide(pself.Id)
+}

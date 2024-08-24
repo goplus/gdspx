@@ -74,6 +74,20 @@ type GDExtensionInterface struct {
 	SpxSpriteIsAnimFlippedH GDExtensionSpxSpriteIsAnimFlippedH
 	SpxSpriteSetAnimFlipV GDExtensionSpxSpriteSetAnimFlipV
 	SpxSpriteIsAnimFlippedV GDExtensionSpxSpriteIsAnimFlippedV
+	SpxSpriteSetVelocity GDExtensionSpxSpriteSetVelocity
+	SpxSpriteGetVelocity GDExtensionSpxSpriteGetVelocity
+	SpxSpriteIsOnFloor GDExtensionSpxSpriteIsOnFloor
+	SpxSpriteIsOnFloorOnly GDExtensionSpxSpriteIsOnFloorOnly
+	SpxSpriteIsOnWall GDExtensionSpxSpriteIsOnWall
+	SpxSpriteIsOnWallOnly GDExtensionSpxSpriteIsOnWallOnly
+	SpxSpriteIsOnCeiling GDExtensionSpxSpriteIsOnCeiling
+	SpxSpriteIsOnCeilingOnly GDExtensionSpxSpriteIsOnCeilingOnly
+	SpxSpriteGetLastMotion GDExtensionSpxSpriteGetLastMotion
+	SpxSpriteGetPositionDelta GDExtensionSpxSpriteGetPositionDelta
+	SpxSpriteGetFloorNormal GDExtensionSpxSpriteGetFloorNormal
+	SpxSpriteGetWallNormal GDExtensionSpxSpriteGetWallNormal
+	SpxSpriteGetRealVelocity GDExtensionSpxSpriteGetRealVelocity
+	SpxSpriteMoveAndSlide GDExtensionSpxSpriteMoveAndSlide
 	SpxSpriteSetGravity GDExtensionSpxSpriteSetGravity
 	SpxSpriteGetGravity GDExtensionSpxSpriteGetGravity
 	SpxSpriteSetMass GDExtensionSpxSpriteSetMass
@@ -182,6 +196,20 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteIsAnimFlippedH = (GDExtensionSpxSpriteIsAnimFlippedH)(dlsymGD("spx_sprite_is_anim_flipped_h"))
 	x.SpxSpriteSetAnimFlipV = (GDExtensionSpxSpriteSetAnimFlipV)(dlsymGD("spx_sprite_set_anim_flip_v"))
 	x.SpxSpriteIsAnimFlippedV = (GDExtensionSpxSpriteIsAnimFlippedV)(dlsymGD("spx_sprite_is_anim_flipped_v"))
+	x.SpxSpriteSetVelocity = (GDExtensionSpxSpriteSetVelocity)(dlsymGD("spx_sprite_set_velocity"))
+	x.SpxSpriteGetVelocity = (GDExtensionSpxSpriteGetVelocity)(dlsymGD("spx_sprite_get_velocity"))
+	x.SpxSpriteIsOnFloor = (GDExtensionSpxSpriteIsOnFloor)(dlsymGD("spx_sprite_is_on_floor"))
+	x.SpxSpriteIsOnFloorOnly = (GDExtensionSpxSpriteIsOnFloorOnly)(dlsymGD("spx_sprite_is_on_floor_only"))
+	x.SpxSpriteIsOnWall = (GDExtensionSpxSpriteIsOnWall)(dlsymGD("spx_sprite_is_on_wall"))
+	x.SpxSpriteIsOnWallOnly = (GDExtensionSpxSpriteIsOnWallOnly)(dlsymGD("spx_sprite_is_on_wall_only"))
+	x.SpxSpriteIsOnCeiling = (GDExtensionSpxSpriteIsOnCeiling)(dlsymGD("spx_sprite_is_on_ceiling"))
+	x.SpxSpriteIsOnCeilingOnly = (GDExtensionSpxSpriteIsOnCeilingOnly)(dlsymGD("spx_sprite_is_on_ceiling_only"))
+	x.SpxSpriteGetLastMotion = (GDExtensionSpxSpriteGetLastMotion)(dlsymGD("spx_sprite_get_last_motion"))
+	x.SpxSpriteGetPositionDelta = (GDExtensionSpxSpriteGetPositionDelta)(dlsymGD("spx_sprite_get_position_delta"))
+	x.SpxSpriteGetFloorNormal = (GDExtensionSpxSpriteGetFloorNormal)(dlsymGD("spx_sprite_get_floor_normal"))
+	x.SpxSpriteGetWallNormal = (GDExtensionSpxSpriteGetWallNormal)(dlsymGD("spx_sprite_get_wall_normal"))
+	x.SpxSpriteGetRealVelocity = (GDExtensionSpxSpriteGetRealVelocity)(dlsymGD("spx_sprite_get_real_velocity"))
+	x.SpxSpriteMoveAndSlide = (GDExtensionSpxSpriteMoveAndSlide)(dlsymGD("spx_sprite_move_and_slide"))
 	x.SpxSpriteSetGravity = (GDExtensionSpxSpriteSetGravity)(dlsymGD("spx_sprite_set_gravity"))
 	x.SpxSpriteGetGravity = (GDExtensionSpxSpriteGetGravity)(dlsymGD("spx_sprite_get_gravity"))
 	x.SpxSpriteSetMass = (GDExtensionSpxSpriteSetMass)(dlsymGD("spx_sprite_set_mass"))

@@ -118,6 +118,20 @@ type GDExtensionSpxSpriteSetAnimFlipH C.GDExtensionSpxSpriteSetAnimFlipH
 type GDExtensionSpxSpriteIsAnimFlippedH C.GDExtensionSpxSpriteIsAnimFlippedH
 type GDExtensionSpxSpriteSetAnimFlipV C.GDExtensionSpxSpriteSetAnimFlipV
 type GDExtensionSpxSpriteIsAnimFlippedV C.GDExtensionSpxSpriteIsAnimFlippedV
+type GDExtensionSpxSpriteSetVelocity C.GDExtensionSpxSpriteSetVelocity
+type GDExtensionSpxSpriteGetVelocity C.GDExtensionSpxSpriteGetVelocity
+type GDExtensionSpxSpriteIsOnFloor C.GDExtensionSpxSpriteIsOnFloor
+type GDExtensionSpxSpriteIsOnFloorOnly C.GDExtensionSpxSpriteIsOnFloorOnly
+type GDExtensionSpxSpriteIsOnWall C.GDExtensionSpxSpriteIsOnWall
+type GDExtensionSpxSpriteIsOnWallOnly C.GDExtensionSpxSpriteIsOnWallOnly
+type GDExtensionSpxSpriteIsOnCeiling C.GDExtensionSpxSpriteIsOnCeiling
+type GDExtensionSpxSpriteIsOnCeilingOnly C.GDExtensionSpxSpriteIsOnCeilingOnly
+type GDExtensionSpxSpriteGetLastMotion C.GDExtensionSpxSpriteGetLastMotion
+type GDExtensionSpxSpriteGetPositionDelta C.GDExtensionSpxSpriteGetPositionDelta
+type GDExtensionSpxSpriteGetFloorNormal C.GDExtensionSpxSpriteGetFloorNormal
+type GDExtensionSpxSpriteGetWallNormal C.GDExtensionSpxSpriteGetWallNormal
+type GDExtensionSpxSpriteGetRealVelocity C.GDExtensionSpxSpriteGetRealVelocity
+type GDExtensionSpxSpriteMoveAndSlide C.GDExtensionSpxSpriteMoveAndSlide
 type GDExtensionSpxSpriteSetGravity C.GDExtensionSpxSpriteSetGravity
 type GDExtensionSpxSpriteGetGravity C.GDExtensionSpxSpriteGetGravity
 type GDExtensionSpxSpriteSetMass C.GDExtensionSpxSpriteSetMass
@@ -291,12 +305,15 @@ func CallInputGetKeyState(
 	return (GdInt)(ret_val)
 }
 func CallInputGetAxis(
-	axis GdString,
+	neg_action GdString,
+	pos_action GdString,
 	) GdFloat {
 	arg0 := (C.GDExtensionSpxInputGetAxis)(api.SpxInputGetAxis)
-	arg1GdString = (C.GdString)(axis)
+	arg1GdString = (C.GdString)(neg_action)
+	arg2GdString = (C.GdString)(pos_action)
 	var ret_val C.GdFloat 
-	C.cgo_callfn_GDExtensionSpxInputGetAxis(arg0,arg1GdString, &ret_val)
+	C.cgo_callfn_GDExtensionSpxInputGetAxis(arg0,arg1GdString,arg2GdString, &ret_val)
+	
 	
 	return (GdFloat)(ret_val)
 }
@@ -761,6 +778,147 @@ func CallSpriteIsAnimFlippedV(
 	C.cgo_callfn_GDExtensionSpxSpriteIsAnimFlippedV(arg0,arg1GdObj, &ret_val)
 	
 	return (GdBool)(ret_val)
+}
+func CallSpriteSetVelocity(
+	obj GdObj,
+	velocity GdVec2,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteSetVelocity)(api.SpxSpriteSetVelocity)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdVec2 = (C.GdVec2)(velocity)
+	
+	C.cgo_callfn_GDExtensionSpxSpriteSetVelocity(arg0,arg1GdObj,arg2GdVec2,)
+	
+	
+}
+func CallSpriteGetVelocity(
+	obj GdObj,
+	) GdVec2 {
+	arg0 := (C.GDExtensionSpxSpriteGetVelocity)(api.SpxSpriteGetVelocity)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2 
+	C.cgo_callfn_GDExtensionSpxSpriteGetVelocity(arg0,arg1GdObj, &ret_val)
+	
+	return (GdVec2)(ret_val)
+}
+func CallSpriteIsOnFloor(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsOnFloor)(api.SpxSpriteIsOnFloor)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdBool 
+	C.cgo_callfn_GDExtensionSpxSpriteIsOnFloor(arg0,arg1GdObj, &ret_val)
+	
+	return (GdBool)(ret_val)
+}
+func CallSpriteIsOnFloorOnly(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsOnFloorOnly)(api.SpxSpriteIsOnFloorOnly)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdBool 
+	C.cgo_callfn_GDExtensionSpxSpriteIsOnFloorOnly(arg0,arg1GdObj, &ret_val)
+	
+	return (GdBool)(ret_val)
+}
+func CallSpriteIsOnWall(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsOnWall)(api.SpxSpriteIsOnWall)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdBool 
+	C.cgo_callfn_GDExtensionSpxSpriteIsOnWall(arg0,arg1GdObj, &ret_val)
+	
+	return (GdBool)(ret_val)
+}
+func CallSpriteIsOnWallOnly(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsOnWallOnly)(api.SpxSpriteIsOnWallOnly)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdBool 
+	C.cgo_callfn_GDExtensionSpxSpriteIsOnWallOnly(arg0,arg1GdObj, &ret_val)
+	
+	return (GdBool)(ret_val)
+}
+func CallSpriteIsOnCeiling(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsOnCeiling)(api.SpxSpriteIsOnCeiling)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdBool 
+	C.cgo_callfn_GDExtensionSpxSpriteIsOnCeiling(arg0,arg1GdObj, &ret_val)
+	
+	return (GdBool)(ret_val)
+}
+func CallSpriteIsOnCeilingOnly(
+	obj GdObj,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteIsOnCeilingOnly)(api.SpxSpriteIsOnCeilingOnly)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdBool 
+	C.cgo_callfn_GDExtensionSpxSpriteIsOnCeilingOnly(arg0,arg1GdObj, &ret_val)
+	
+	return (GdBool)(ret_val)
+}
+func CallSpriteGetLastMotion(
+	obj GdObj,
+	) GdVec2 {
+	arg0 := (C.GDExtensionSpxSpriteGetLastMotion)(api.SpxSpriteGetLastMotion)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2 
+	C.cgo_callfn_GDExtensionSpxSpriteGetLastMotion(arg0,arg1GdObj, &ret_val)
+	
+	return (GdVec2)(ret_val)
+}
+func CallSpriteGetPositionDelta(
+	obj GdObj,
+	) GdVec2 {
+	arg0 := (C.GDExtensionSpxSpriteGetPositionDelta)(api.SpxSpriteGetPositionDelta)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2 
+	C.cgo_callfn_GDExtensionSpxSpriteGetPositionDelta(arg0,arg1GdObj, &ret_val)
+	
+	return (GdVec2)(ret_val)
+}
+func CallSpriteGetFloorNormal(
+	obj GdObj,
+	) GdVec2 {
+	arg0 := (C.GDExtensionSpxSpriteGetFloorNormal)(api.SpxSpriteGetFloorNormal)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2 
+	C.cgo_callfn_GDExtensionSpxSpriteGetFloorNormal(arg0,arg1GdObj, &ret_val)
+	
+	return (GdVec2)(ret_val)
+}
+func CallSpriteGetWallNormal(
+	obj GdObj,
+	) GdVec2 {
+	arg0 := (C.GDExtensionSpxSpriteGetWallNormal)(api.SpxSpriteGetWallNormal)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2 
+	C.cgo_callfn_GDExtensionSpxSpriteGetWallNormal(arg0,arg1GdObj, &ret_val)
+	
+	return (GdVec2)(ret_val)
+}
+func CallSpriteGetRealVelocity(
+	obj GdObj,
+	) GdVec2 {
+	arg0 := (C.GDExtensionSpxSpriteGetRealVelocity)(api.SpxSpriteGetRealVelocity)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2 
+	C.cgo_callfn_GDExtensionSpxSpriteGetRealVelocity(arg0,arg1GdObj, &ret_val)
+	
+	return (GdVec2)(ret_val)
+}
+func CallSpriteMoveAndSlide(
+	obj GdObj,
+	)  {
+	arg0 := (C.GDExtensionSpxSpriteMoveAndSlide)(api.SpxSpriteMoveAndSlide)
+	arg1GdObj = (C.GdObj)(obj)
+	
+	C.cgo_callfn_GDExtensionSpxSpriteMoveAndSlide(arg0,arg1GdObj,)
+	
 }
 func CallSpriteSetGravity(
 	obj GdObj,

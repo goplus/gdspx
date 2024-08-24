@@ -41,12 +41,20 @@ func (pself *Sprite) OnUpdate(delta float32) {
 func (pself *Sprite) OnDestroy() {
 }
 
-func (pself *Sprite) Move(deltaX, deltaY float32) {
+func (pself *Sprite) AddPos(deltaX, deltaY float32) {
 	pos := pself.GetPosition()
 	pos.X += deltaX
 	pos.Y += deltaY
 	pself.SetPosition(pos)
 }
+func (pself *Sprite) AddPosX(delta float32)  {
+	pself.AddPos(delta,0)
+}
+
+func (pself *Sprite) AddPosY(delta float32)  {
+	pself.AddPos(0,delta)
+}
+
 func (pself *Sprite) GetPosX() float32 {
 	return pself.GetPosition().X
 }
@@ -65,4 +73,38 @@ func (pself *Sprite) SetPosY(value float32) {
 	pos := pself.GetPosition()
 	pos.Y = value
 	pself.SetPosition(pos)
+}
+
+func (pself *Sprite) AddVel(deltaX, deltaY float32) {
+	pos := pself.GetVelocity()
+	pos.X += deltaX
+	pos.Y += deltaY
+	pself.SetVelocity(pos)
+}
+func (pself *Sprite) AddVelX(delta float32)  {
+	pself.AddVel(delta,0)
+}
+
+func (pself *Sprite) AddVelY(delta float32)  {
+	pself.AddVel(0,delta)
+}
+
+func (pself *Sprite) GetVelX() float32 {
+	return pself.GetVelocity().X
+}
+
+func (pself *Sprite) GetVelY() float32 {
+	return pself.GetVelocity().Y
+}
+
+func (pself *Sprite) SetVelX(value float32) {
+	pos := pself.GetVelocity()
+	pos.X = value
+	pself.SetVelocity(pos)
+}
+
+func (pself *Sprite) SetVelY(value float32) {
+	pos := pself.GetVelocity()
+	pos.Y = value
+	pself.SetVelocity(pos)
 }

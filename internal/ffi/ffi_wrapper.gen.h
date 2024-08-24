@@ -57,8 +57,8 @@ void cgo_callfn_GDExtensionSpxInputGetMouseState(const GDExtensionSpxInputGetMou
 void cgo_callfn_GDExtensionSpxInputGetKeyState(const GDExtensionSpxInputGetKeyState fn, GdInt key, GdInt* ret_val) {
 	fn(key,ret_val);
 }
-void cgo_callfn_GDExtensionSpxInputGetAxis(const GDExtensionSpxInputGetAxis fn, GdString axis, GdFloat* ret_val) {
-	fn(axis,ret_val);
+void cgo_callfn_GDExtensionSpxInputGetAxis(const GDExtensionSpxInputGetAxis fn, GdString neg_action, GdString pos_action, GdFloat* ret_val) {
+	fn(neg_action, pos_action,ret_val);
 }
 void cgo_callfn_GDExtensionSpxInputIsActionPressed(const GDExtensionSpxInputIsActionPressed fn, GdString action, GdBool* ret_val) {
 	fn(action,ret_val);
@@ -185,6 +185,48 @@ void cgo_callfn_GDExtensionSpxSpriteSetAnimFlipV(const GDExtensionSpxSpriteSetAn
 }
 void cgo_callfn_GDExtensionSpxSpriteIsAnimFlippedV(const GDExtensionSpxSpriteIsAnimFlippedV fn, GdObj obj, GdBool* ret_val) {
 	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetVelocity(const GDExtensionSpxSpriteSetVelocity fn, GdObj obj, GdVec2 velocity) {
+	fn(obj, velocity);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetVelocity(const GDExtensionSpxSpriteGetVelocity fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteIsOnFloor(const GDExtensionSpxSpriteIsOnFloor fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteIsOnFloorOnly(const GDExtensionSpxSpriteIsOnFloorOnly fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteIsOnWall(const GDExtensionSpxSpriteIsOnWall fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteIsOnWallOnly(const GDExtensionSpxSpriteIsOnWallOnly fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteIsOnCeiling(const GDExtensionSpxSpriteIsOnCeiling fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteIsOnCeilingOnly(const GDExtensionSpxSpriteIsOnCeilingOnly fn, GdObj obj, GdBool* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetLastMotion(const GDExtensionSpxSpriteGetLastMotion fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetPositionDelta(const GDExtensionSpxSpriteGetPositionDelta fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetFloorNormal(const GDExtensionSpxSpriteGetFloorNormal fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetWallNormal(const GDExtensionSpxSpriteGetWallNormal fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetRealVelocity(const GDExtensionSpxSpriteGetRealVelocity fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteMoveAndSlide(const GDExtensionSpxSpriteMoveAndSlide fn, GdObj obj) {
+	fn(obj);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetGravity(const GDExtensionSpxSpriteSetGravity fn, GdObj obj, GdFloat gravity) {
 	fn(obj, gravity);
