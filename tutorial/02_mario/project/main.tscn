@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3xy1pi6hynft"]
+
+[ext_resource type="Texture2D" uid="uid://be7uupv5pxg81" path="res://assets/bgs/1.png" id="1_njal5"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_njal5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
