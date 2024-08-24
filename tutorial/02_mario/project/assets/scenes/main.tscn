@@ -1,15 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://cy3drp5y23cr5"]
+[gd_scene load_steps=24 format=3 uid="uid://cy3drp5y23cr5"]
 
 [ext_resource type="Texture2D" uid="uid://bh2i2pbd72n30" path="res://assets/sprites/GroundBlock.png" id="1_grrf0"]
 [ext_resource type="Texture2D" uid="uid://8as4lix1a8pr" path="res://assets/sprites/HardBlock.png" id="2_enfcy"]
-[ext_resource type="PackedScene" uid="uid://dl1yh0nllbjk5" path="res://assets/scenes/player.tscn" id="5_1fb3o"]
 [ext_resource type="PackedScene" uid="uid://bei1c0pe6xtcd" path="res://assets/scenes/pipe.tscn" id="5_om4pi"]
 [ext_resource type="PackedScene" uid="uid://cid1mttkigkhf" path="res://assets/scenes/brick.tscn" id="6_vt4yb"]
 [ext_resource type="PackedScene" uid="uid://byknge8wke86h" path="res://assets/scenes/koopa.tscn" id="7_oket7"]
 [ext_resource type="PackedScene" uid="uid://bqgvnrltmnun3" path="res://assets/scenes/mystery_box.tscn" id="8_rp7hu"]
 [ext_resource type="PackedScene" uid="uid://njy08hqpoa5r" path="res://assets/scenes/ui.tscn" id="9_2yjcx"]
 [ext_resource type="PackedScene" uid="uid://cxakda6lnpdo1" path="res://assets/scenes/goomba.tscn" id="9_gr86r"]
-[ext_resource type="Script" path="res://assets/scripts/level_manager.gd" id="9_r77t1"]
 [ext_resource type="PackedScene" uid="uid://do8um68u2qr21" path="res://assets/scenes/fall_down_area.tscn" id="11_2usbf"]
 [ext_resource type="PackedScene" uid="uid://dscmko5h0dhso" path="res://assets/scenes/flag.tscn" id="11_hf8cw"]
 [ext_resource type="Texture2D" uid="uid://cq6tqakba8cj0" path="res://assets/sprites/Cloud1.png" id="12_7uet7"]
@@ -57,17 +55,7 @@ layer_0/tile_data = PackedInt32Array(327693, 0, 0, 393229, 0, 0, 458765, 0, 0, 3
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.75, 2.75)
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera_sync", "castle_path") instance=ExtResource("5_1fb3o")]
-position = Vector2(-175, 62)
-camera_sync = NodePath("../Camera2D")
-castle_path = NodePath("../Path2D/PathFollow2D")
-
 [node name="UI" parent="." instance=ExtResource("9_2yjcx")]
-
-[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("ui", "player") groups=["level_manager"]]
-script = ExtResource("9_r77t1")
-ui = NodePath("../UI")
-player = NodePath("../Player")
 
 [node name="Environment" type="Node" parent="."]
 
