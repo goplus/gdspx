@@ -52,6 +52,23 @@ func onEngineUpdate(delta float32) {
 		callback.OnEngineUpdate(delta)
 	}
 }
+
+func onEngineFixedUpdate(delta float32) {
+	for _, mgr := range mgrs {
+		mgr.OnFixedUpdate(delta)
+	}
+	TimeSinceGameStart += delta
+	sprites = sprites[:0]
+	for _, sprite := range Id2Sprites {
+		sprites = append(sprites, sprite)
+	}
+	for _, sprite := range sprites {
+		sprite.OnFixedUpdate(delta)
+	}
+	if callback.OnEngineFixedUpdate != nil {
+		callback.OnEngineFixedUpdate(delta)
+	}
+}
 func onEngineDestroy() {
 	if callback.OnEngineDestroy != nil {
 		callback.OnEngineDestroy()

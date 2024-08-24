@@ -18,6 +18,8 @@ func (pself *baseMgr) OnStart() {
 }
 func (pself *baseMgr) OnUpdate(delta float32) {
 }
+func (pself *baseMgr) OnFixedUpdate(delta float32) {
+}
 func (pself *baseMgr) OnDestroy() {
 }
 

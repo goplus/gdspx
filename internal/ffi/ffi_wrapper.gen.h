@@ -45,6 +45,18 @@ void cgo_callfn_GDExtensionSpxAudioGetMusicTimer(const GDExtensionSpxAudioGetMus
 void cgo_callfn_GDExtensionSpxAudioSetMusicTimer(const GDExtensionSpxAudioSetMusicTimer fn, GdFloat time) {
 	fn(time);
 }
+void cgo_callfn_GDExtensionSpxCameraGetCameraPosition(const GDExtensionSpxCameraGetCameraPosition fn, GdVec2* ret_val) {
+	fn(ret_val);
+}
+void cgo_callfn_GDExtensionSpxCameraSetCameraPosition(const GDExtensionSpxCameraSetCameraPosition fn, GdVec2 position) {
+	fn(position);
+}
+void cgo_callfn_GDExtensionSpxCameraGetCameraZoom(const GDExtensionSpxCameraGetCameraZoom fn, GdVec2* ret_val) {
+	fn(ret_val);
+}
+void cgo_callfn_GDExtensionSpxCameraSetCameraZoom(const GDExtensionSpxCameraSetCameraZoom fn, GdVec2 size) {
+	fn(size);
+}
 void cgo_callfn_GDExtensionSpxInputGetMousePos(const GDExtensionSpxInputGetMousePos fn, GdVec2* ret_val) {
 	fn(ret_val);
 }
@@ -71,6 +83,18 @@ void cgo_callfn_GDExtensionSpxInputIsActionJustReleased(const GDExtensionSpxInpu
 }
 void cgo_callfn_GDExtensionSpxPhysicRaycast(const GDExtensionSpxPhysicRaycast fn, GdVec2 from, GdVec2 to, GdInt collision_mask, GdObj* ret_val) {
 	fn(from, to, collision_mask,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSceneChangeSceneToFile(const GDExtensionSpxSceneChangeSceneToFile fn, GdString path) {
+	fn(path);
+}
+void cgo_callfn_GDExtensionSpxSceneReloadCurrentScene(const GDExtensionSpxSceneReloadCurrentScene fn, GdInt* ret_val) {
+	fn(ret_val);
+}
+void cgo_callfn_GDExtensionSpxSceneUnloadCurrentScene(const GDExtensionSpxSceneUnloadCurrentScene fn) {
+	fn();
+}
+void cgo_callfn_GDExtensionSpxSpriteSetDontDestroyOnLoad(const GDExtensionSpxSpriteSetDontDestroyOnLoad fn, GdObj obj) {
+	fn(obj);
 }
 void cgo_callfn_GDExtensionSpxSpriteCreateSprite(const GDExtensionSpxSpriteCreateSprite fn, GdString path, GdObj* ret_val) {
 	fn(path,ret_val);
@@ -300,73 +324,73 @@ void cgo_callfn_GDExtensionSpxSpriteSetTriggerEnabled(const GDExtensionSpxSprite
 void cgo_callfn_GDExtensionSpxSpriteIsTriggerEnabled(const GDExtensionSpxSpriteIsTriggerEnabled fn, GdObj obj, GdBool* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateNode(const GDExtensionSpxUICreateNode fn, GdString path, GdObj* ret_val) {
+void cgo_callfn_GDExtensionSpxUiCreateNode(const GDExtensionSpxUiCreateNode fn, GdString path, GdObj* ret_val) {
 	fn(path,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateButton(const GDExtensionSpxUICreateButton fn, GdString path, GdString text, GdObj* ret_val) {
+void cgo_callfn_GDExtensionSpxUiCreateButton(const GDExtensionSpxUiCreateButton fn, GdString path, GdString text, GdObj* ret_val) {
 	fn(path, text,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateLabel(const GDExtensionSpxUICreateLabel fn, GdString path, GdString text, GdObj* ret_val) {
+void cgo_callfn_GDExtensionSpxUiCreateLabel(const GDExtensionSpxUiCreateLabel fn, GdString path, GdString text, GdObj* ret_val) {
 	fn(path, text,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateImage(const GDExtensionSpxUICreateImage fn, GdString path, GdObj* ret_val) {
+void cgo_callfn_GDExtensionSpxUiCreateImage(const GDExtensionSpxUiCreateImage fn, GdString path, GdObj* ret_val) {
 	fn(path,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateToggle(const GDExtensionSpxUICreateToggle fn, GdString path, GdBool value, GdObj* ret_val) {
+void cgo_callfn_GDExtensionSpxUiCreateToggle(const GDExtensionSpxUiCreateToggle fn, GdString path, GdBool value, GdObj* ret_val) {
 	fn(path, value,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateSlider(const GDExtensionSpxUICreateSlider fn, GdString path, GdFloat value, GdObj* ret_val) {
+void cgo_callfn_GDExtensionSpxUiCreateSlider(const GDExtensionSpxUiCreateSlider fn, GdString path, GdFloat value, GdObj* ret_val) {
 	fn(path, value,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUICreateInput(const GDExtensionSpxUICreateInput fn, GdString path, GdString text, GdObj* ret_val) {
+void cgo_callfn_GDExtensionSpxUiCreateInput(const GDExtensionSpxUiCreateInput fn, GdString path, GdString text, GdObj* ret_val) {
 	fn(path, text,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUIDestroyNode(const GDExtensionSpxUIDestroyNode fn, GdObj obj, GdBool* ret_val) {
+void cgo_callfn_GDExtensionSpxUiDestroyNode(const GDExtensionSpxUiDestroyNode fn, GdObj obj, GdBool* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUIGetType(const GDExtensionSpxUIGetType fn, GdObj obj, GdInt* ret_val) {
+void cgo_callfn_GDExtensionSpxUiGetType(const GDExtensionSpxUiGetType fn, GdObj obj, GdInt* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUISetText(const GDExtensionSpxUISetText fn, GdObj obj, GdString text) {
+void cgo_callfn_GDExtensionSpxUiSetText(const GDExtensionSpxUiSetText fn, GdObj obj, GdString text) {
 	fn(obj, text);
 }
-void cgo_callfn_GDExtensionSpxUIGetText(const GDExtensionSpxUIGetText fn, GdObj obj, GdString* ret_val) {
+void cgo_callfn_GDExtensionSpxUiGetText(const GDExtensionSpxUiGetText fn, GdObj obj, GdString* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUISetTexture(const GDExtensionSpxUISetTexture fn, GdObj obj, GdString path) {
+void cgo_callfn_GDExtensionSpxUiSetTexture(const GDExtensionSpxUiSetTexture fn, GdObj obj, GdString path) {
 	fn(obj, path);
 }
-void cgo_callfn_GDExtensionSpxUIGetTexture(const GDExtensionSpxUIGetTexture fn, GdObj obj, GdString* ret_val) {
+void cgo_callfn_GDExtensionSpxUiGetTexture(const GDExtensionSpxUiGetTexture fn, GdObj obj, GdString* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUISetColor(const GDExtensionSpxUISetColor fn, GdObj obj, GdColor color) {
+void cgo_callfn_GDExtensionSpxUiSetColor(const GDExtensionSpxUiSetColor fn, GdObj obj, GdColor color) {
 	fn(obj, color);
 }
-void cgo_callfn_GDExtensionSpxUIGetColor(const GDExtensionSpxUIGetColor fn, GdObj obj, GdColor* ret_val) {
+void cgo_callfn_GDExtensionSpxUiGetColor(const GDExtensionSpxUiGetColor fn, GdObj obj, GdColor* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUISetFontSize(const GDExtensionSpxUISetFontSize fn, GdObj obj, GdInt size) {
+void cgo_callfn_GDExtensionSpxUiSetFontSize(const GDExtensionSpxUiSetFontSize fn, GdObj obj, GdInt size) {
 	fn(obj, size);
 }
-void cgo_callfn_GDExtensionSpxUIGetFontSize(const GDExtensionSpxUIGetFontSize fn, GdObj obj, GdInt* ret_val) {
+void cgo_callfn_GDExtensionSpxUiGetFontSize(const GDExtensionSpxUiGetFontSize fn, GdObj obj, GdInt* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUISetVisible(const GDExtensionSpxUISetVisible fn, GdObj obj, GdBool visible) {
+void cgo_callfn_GDExtensionSpxUiSetVisible(const GDExtensionSpxUiSetVisible fn, GdObj obj, GdBool visible) {
 	fn(obj, visible);
 }
-void cgo_callfn_GDExtensionSpxUIGetVisible(const GDExtensionSpxUIGetVisible fn, GdObj obj, GdBool* ret_val) {
+void cgo_callfn_GDExtensionSpxUiGetVisible(const GDExtensionSpxUiGetVisible fn, GdObj obj, GdBool* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUISetInteractable(const GDExtensionSpxUISetInteractable fn, GdObj obj, GdBool interactable) {
+void cgo_callfn_GDExtensionSpxUiSetInteractable(const GDExtensionSpxUiSetInteractable fn, GdObj obj, GdBool interactable) {
 	fn(obj, interactable);
 }
-void cgo_callfn_GDExtensionSpxUIGetInteractable(const GDExtensionSpxUIGetInteractable fn, GdObj obj, GdBool* ret_val) {
+void cgo_callfn_GDExtensionSpxUiGetInteractable(const GDExtensionSpxUiGetInteractable fn, GdObj obj, GdBool* ret_val) {
 	fn(obj,ret_val);
 }
-void cgo_callfn_GDExtensionSpxUISetRect(const GDExtensionSpxUISetRect fn, GdObj obj, GdRect2 rect) {
+void cgo_callfn_GDExtensionSpxUiSetRect(const GDExtensionSpxUiSetRect fn, GdObj obj, GdRect2 rect) {
 	fn(obj, rect);
 }
-void cgo_callfn_GDExtensionSpxUIGetRect(const GDExtensionSpxUIGetRect fn, GdObj obj, GdRect2* ret_val) {
+void cgo_callfn_GDExtensionSpxUiGetRect(const GDExtensionSpxUiGetRect fn, GdObj obj, GdRect2* ret_val) {
 	fn(obj,ret_val);
 }
 #endif

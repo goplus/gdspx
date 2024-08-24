@@ -177,7 +177,7 @@ func (pself *Sprite) SetTriggerEnabled(trigger bool) {
 func (pself *Sprite) IsTriggerEnabled() bool {
 	return SpriteMgr.IsTriggerEnabled(pself.Id)
 }
-func (pself *Sprite) SetVelocity(velocity Vec2){
+func (pself *Sprite) SetVelocity(velocity Vec2) {
 	SpriteMgr.SetVelocity(pself.Id, velocity)
 }
 func (pself *Sprite) GetVelocity() Vec2 {

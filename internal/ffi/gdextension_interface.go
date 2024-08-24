@@ -328,6 +328,13 @@ func func_on_engine_update(delta C.GDReal) {
 	}
 }
 
+//export func_on_engine_fixed_update
+func func_on_engine_fixed_update(delta C.GDReal) {
+	if callbacks.OnEngineFixedUpdate != nil {
+		callbacks.OnEngineFixedUpdate(float32(delta))
+	}
+}
+
 //export func_on_engine_destroy
 func func_on_engine_destroy() {
 	if callbacks.OnEngineDestroy != nil {
@@ -343,9 +350,16 @@ func func_on_sprite_ready(id C.GDExtensionInt) {
 }
 
 //export func_on_sprite_updated
-func func_on_sprite_updated(id C.GDExtensionInt) {
+func func_on_sprite_updated(id C.GDReal) {
 	if callbacks.OnSpriteUpdated != nil {
-		callbacks.OnSpriteUpdated(int64(id))
+		callbacks.OnSpriteUpdated(float32(id))
+	}
+}
+
+//export func_on_sprite_fixed_updated
+func func_on_sprite_fixed_updated(id C.GDReal) {
+	if callbacks.OnSpriteFixedUpdated != nil {
+		callbacks.OnSpriteFixedUpdated(float32(id))
 	}
 }
 
@@ -519,5 +533,61 @@ func func_on_ui_text_changed(id C.GDExtensionInt, text C.GdString) {
 	str := ToString(GdString(text))
 	if callbacks.OnUiTextChanged != nil {
 		callbacks.OnUiTextChanged(int64(id), str)
+	}
+}
+
+//export func_on_sprite_screen_entered
+func func_on_sprite_screen_entered(id C.GDExtensionInt) {
+	if callbacks.OnSpriteScreenEntered != nil {
+		callbacks.OnSpriteScreenEntered(int64(id))
+	}
+}
+
+//export func_on_sprite_screen_exited
+func func_on_sprite_screen_exited(id C.GDExtensionInt) {
+	if callbacks.OnSpriteScreenExited != nil {
+		callbacks.OnSpriteScreenExited(int64(id))
+	}
+}
+
+//export func_on_sprite_vfx_finished
+func func_on_sprite_vfx_finished(id C.GDExtensionInt) {
+	if callbacks.OnSpriteVfxFinished != nil {
+		callbacks.OnSpriteVfxFinished(int64(id))
+	}
+}
+
+//export func_on_sprite_animation_finished
+func func_on_sprite_animation_finished(id C.GDExtensionInt) {
+	if callbacks.OnSpriteAnimationFinished != nil {
+		callbacks.OnSpriteAnimationFinished(int64(id))
+	}
+}
+
+//export func_on_sprite_animation_looped
+func func_on_sprite_animation_looped(id C.GDExtensionInt) {
+	if callbacks.OnSpriteAnimationLooped != nil {
+		callbacks.OnSpriteAnimationLooped(int64(id))
+	}
+}
+
+//export func_on_sprite_frame_changed
+func func_on_sprite_frame_changed(id C.GDExtensionInt) {
+	if callbacks.OnSpriteFrameChanged != nil {
+		callbacks.OnSpriteFrameChanged(int64(id))
+	}
+}
+
+//export func_on_sprite_animation_changed
+func func_on_sprite_animation_changed(id C.GDExtensionInt) {
+	if callbacks.OnSpriteAnimationChanged != nil {
+		callbacks.OnSpriteAnimationChanged(int64(id))
+	}
+}
+
+//export func_on_sprite_frames_set_changed
+func func_on_sprite_frames_set_changed(id C.GDExtensionInt) {
+	if callbacks.OnSpriteFramesSetChanged != nil {
+		callbacks.OnSpriteFramesSetChanged(int64(id))
 	}
 }

@@ -16,126 +16,134 @@ var (
 
 type GDExtensionInterface struct {
 	// All of the GDExtension interface functions.
-	SpxAudioPlayAudio GDExtensionSpxAudioPlayAudio
-	SpxAudioSetAudioVolume GDExtensionSpxAudioSetAudioVolume
-	SpxAudioGetAudioVolume GDExtensionSpxAudioGetAudioVolume
-	SpxAudioIsMusicPlaying GDExtensionSpxAudioIsMusicPlaying
-	SpxAudioPlayMusic GDExtensionSpxAudioPlayMusic
-	SpxAudioSetMusicVolume GDExtensionSpxAudioSetMusicVolume
-	SpxAudioGetMusicVolume GDExtensionSpxAudioGetMusicVolume
-	SpxAudioPauseMusic GDExtensionSpxAudioPauseMusic
-	SpxAudioResumeMusic GDExtensionSpxAudioResumeMusic
-	SpxAudioGetMusicTimer GDExtensionSpxAudioGetMusicTimer
-	SpxAudioSetMusicTimer GDExtensionSpxAudioSetMusicTimer
-	SpxInputGetMousePos GDExtensionSpxInputGetMousePos
-	SpxInputGetKey GDExtensionSpxInputGetKey
-	SpxInputGetMouseState GDExtensionSpxInputGetMouseState
-	SpxInputGetKeyState GDExtensionSpxInputGetKeyState
-	SpxInputGetAxis GDExtensionSpxInputGetAxis
-	SpxInputIsActionPressed GDExtensionSpxInputIsActionPressed
-	SpxInputIsActionJustPressed GDExtensionSpxInputIsActionJustPressed
-	SpxInputIsActionJustReleased GDExtensionSpxInputIsActionJustReleased
-	SpxPhysicRaycast GDExtensionSpxPhysicRaycast
-	SpxSpriteCreateSprite GDExtensionSpxSpriteCreateSprite
-	SpxSpriteCloneSprite GDExtensionSpxSpriteCloneSprite
-	SpxSpriteDestroySprite GDExtensionSpxSpriteDestroySprite
-	SpxSpriteIsSpriteAlive GDExtensionSpxSpriteIsSpriteAlive
-	SpxSpriteSetPosition GDExtensionSpxSpriteSetPosition
-	SpxSpriteSetRotation GDExtensionSpxSpriteSetRotation
-	SpxSpriteSetScale GDExtensionSpxSpriteSetScale
-	SpxSpriteGetPosition GDExtensionSpxSpriteGetPosition
-	SpxSpriteGetRotation GDExtensionSpxSpriteGetRotation
-	SpxSpriteGetScale GDExtensionSpxSpriteGetScale
-	SpxSpriteSetColor GDExtensionSpxSpriteSetColor
-	SpxSpriteGetColor GDExtensionSpxSpriteGetColor
-	SpxSpriteSetTexture GDExtensionSpxSpriteSetTexture
-	SpxSpriteGetTexture GDExtensionSpxSpriteGetTexture
-	SpxSpriteSetVisible GDExtensionSpxSpriteSetVisible
-	SpxSpriteGetVisible GDExtensionSpxSpriteGetVisible
-	SpxSpriteGetZIndex GDExtensionSpxSpriteGetZIndex
-	SpxSpriteSetZIndex GDExtensionSpxSpriteSetZIndex
-	SpxSpritePlayAnim GDExtensionSpxSpritePlayAnim
-	SpxSpritePlayBackwardsAnim GDExtensionSpxSpritePlayBackwardsAnim
-	SpxSpritePauseAnim GDExtensionSpxSpritePauseAnim
-	SpxSpriteStopAnim GDExtensionSpxSpriteStopAnim
-	SpxSpriteIsPlayingAnim GDExtensionSpxSpriteIsPlayingAnim
-	SpxSpriteSetAnim GDExtensionSpxSpriteSetAnim
-	SpxSpriteGetAnim GDExtensionSpxSpriteGetAnim
-	SpxSpriteSetAnimFrame GDExtensionSpxSpriteSetAnimFrame
-	SpxSpriteGetAnimFrame GDExtensionSpxSpriteGetAnimFrame
-	SpxSpriteSetAnimSpeedScale GDExtensionSpxSpriteSetAnimSpeedScale
-	SpxSpriteGetAnimSpeedScale GDExtensionSpxSpriteGetAnimSpeedScale
-	SpxSpriteGetAnimPlayingSpeed GDExtensionSpxSpriteGetAnimPlayingSpeed
-	SpxSpriteSetAnimCentered GDExtensionSpxSpriteSetAnimCentered
-	SpxSpriteIsAnimCentered GDExtensionSpxSpriteIsAnimCentered
-	SpxSpriteSetAnimOffset GDExtensionSpxSpriteSetAnimOffset
-	SpxSpriteGetAnimOffset GDExtensionSpxSpriteGetAnimOffset
-	SpxSpriteSetAnimFlipH GDExtensionSpxSpriteSetAnimFlipH
-	SpxSpriteIsAnimFlippedH GDExtensionSpxSpriteIsAnimFlippedH
-	SpxSpriteSetAnimFlipV GDExtensionSpxSpriteSetAnimFlipV
-	SpxSpriteIsAnimFlippedV GDExtensionSpxSpriteIsAnimFlippedV
-	SpxSpriteSetVelocity GDExtensionSpxSpriteSetVelocity
-	SpxSpriteGetVelocity GDExtensionSpxSpriteGetVelocity
-	SpxSpriteIsOnFloor GDExtensionSpxSpriteIsOnFloor
-	SpxSpriteIsOnFloorOnly GDExtensionSpxSpriteIsOnFloorOnly
-	SpxSpriteIsOnWall GDExtensionSpxSpriteIsOnWall
-	SpxSpriteIsOnWallOnly GDExtensionSpxSpriteIsOnWallOnly
-	SpxSpriteIsOnCeiling GDExtensionSpxSpriteIsOnCeiling
-	SpxSpriteIsOnCeilingOnly GDExtensionSpxSpriteIsOnCeilingOnly
-	SpxSpriteGetLastMotion GDExtensionSpxSpriteGetLastMotion
-	SpxSpriteGetPositionDelta GDExtensionSpxSpriteGetPositionDelta
-	SpxSpriteGetFloorNormal GDExtensionSpxSpriteGetFloorNormal
-	SpxSpriteGetWallNormal GDExtensionSpxSpriteGetWallNormal
-	SpxSpriteGetRealVelocity GDExtensionSpxSpriteGetRealVelocity
-	SpxSpriteMoveAndSlide GDExtensionSpxSpriteMoveAndSlide
-	SpxSpriteSetGravity GDExtensionSpxSpriteSetGravity
-	SpxSpriteGetGravity GDExtensionSpxSpriteGetGravity
-	SpxSpriteSetMass GDExtensionSpxSpriteSetMass
-	SpxSpriteGetMass GDExtensionSpxSpriteGetMass
-	SpxSpriteAddForce GDExtensionSpxSpriteAddForce
-	SpxSpriteAddImpulse GDExtensionSpxSpriteAddImpulse
-	SpxSpriteSetCollisionLayer GDExtensionSpxSpriteSetCollisionLayer
-	SpxSpriteGetCollisionLayer GDExtensionSpxSpriteGetCollisionLayer
-	SpxSpriteSetCollisionMask GDExtensionSpxSpriteSetCollisionMask
-	SpxSpriteGetCollisionMask GDExtensionSpxSpriteGetCollisionMask
-	SpxSpriteSetTriggerLayer GDExtensionSpxSpriteSetTriggerLayer
-	SpxSpriteGetTriggerLayer GDExtensionSpxSpriteGetTriggerLayer
-	SpxSpriteSetTriggerMask GDExtensionSpxSpriteSetTriggerMask
-	SpxSpriteGetTriggerMask GDExtensionSpxSpriteGetTriggerMask
-	SpxSpriteSetColliderRect GDExtensionSpxSpriteSetColliderRect
-	SpxSpriteSetColliderCircle GDExtensionSpxSpriteSetColliderCircle
-	SpxSpriteSetColliderCapsule GDExtensionSpxSpriteSetColliderCapsule
-	SpxSpriteSetCollisionEnabled GDExtensionSpxSpriteSetCollisionEnabled
-	SpxSpriteIsCollisionEnabled GDExtensionSpxSpriteIsCollisionEnabled
-	SpxSpriteSetTriggerRect GDExtensionSpxSpriteSetTriggerRect
-	SpxSpriteSetTriggerCircle GDExtensionSpxSpriteSetTriggerCircle
-	SpxSpriteSetTriggerCapsule GDExtensionSpxSpriteSetTriggerCapsule
-	SpxSpriteSetTriggerEnabled GDExtensionSpxSpriteSetTriggerEnabled
-	SpxSpriteIsTriggerEnabled GDExtensionSpxSpriteIsTriggerEnabled
-	SpxUICreateNode GDExtensionSpxUICreateNode
-	SpxUICreateButton GDExtensionSpxUICreateButton
-	SpxUICreateLabel GDExtensionSpxUICreateLabel
-	SpxUICreateImage GDExtensionSpxUICreateImage
-	SpxUICreateToggle GDExtensionSpxUICreateToggle
-	SpxUICreateSlider GDExtensionSpxUICreateSlider
-	SpxUICreateInput GDExtensionSpxUICreateInput
-	SpxUIDestroyNode GDExtensionSpxUIDestroyNode
-	SpxUIGetType GDExtensionSpxUIGetType
-	SpxUISetText GDExtensionSpxUISetText
-	SpxUIGetText GDExtensionSpxUIGetText
-	SpxUISetTexture GDExtensionSpxUISetTexture
-	SpxUIGetTexture GDExtensionSpxUIGetTexture
-	SpxUISetColor GDExtensionSpxUISetColor
-	SpxUIGetColor GDExtensionSpxUIGetColor
-	SpxUISetFontSize GDExtensionSpxUISetFontSize
-	SpxUIGetFontSize GDExtensionSpxUIGetFontSize
-	SpxUISetVisible GDExtensionSpxUISetVisible
-	SpxUIGetVisible GDExtensionSpxUIGetVisible
-	SpxUISetInteractable GDExtensionSpxUISetInteractable
-	SpxUIGetInteractable GDExtensionSpxUIGetInteractable
-	SpxUISetRect GDExtensionSpxUISetRect
-	SpxUIGetRect GDExtensionSpxUIGetRect
-	}
+	SpxAudioPlayAudio             GDExtensionSpxAudioPlayAudio
+	SpxAudioSetAudioVolume        GDExtensionSpxAudioSetAudioVolume
+	SpxAudioGetAudioVolume        GDExtensionSpxAudioGetAudioVolume
+	SpxAudioIsMusicPlaying        GDExtensionSpxAudioIsMusicPlaying
+	SpxAudioPlayMusic             GDExtensionSpxAudioPlayMusic
+	SpxAudioSetMusicVolume        GDExtensionSpxAudioSetMusicVolume
+	SpxAudioGetMusicVolume        GDExtensionSpxAudioGetMusicVolume
+	SpxAudioPauseMusic            GDExtensionSpxAudioPauseMusic
+	SpxAudioResumeMusic           GDExtensionSpxAudioResumeMusic
+	SpxAudioGetMusicTimer         GDExtensionSpxAudioGetMusicTimer
+	SpxAudioSetMusicTimer         GDExtensionSpxAudioSetMusicTimer
+	SpxCameraGetCameraPosition    GDExtensionSpxCameraGetCameraPosition
+	SpxCameraSetCameraPosition    GDExtensionSpxCameraSetCameraPosition
+	SpxCameraGetCameraZoom        GDExtensionSpxCameraGetCameraZoom
+	SpxCameraSetCameraZoom        GDExtensionSpxCameraSetCameraZoom
+	SpxInputGetMousePos           GDExtensionSpxInputGetMousePos
+	SpxInputGetKey                GDExtensionSpxInputGetKey
+	SpxInputGetMouseState         GDExtensionSpxInputGetMouseState
+	SpxInputGetKeyState           GDExtensionSpxInputGetKeyState
+	SpxInputGetAxis               GDExtensionSpxInputGetAxis
+	SpxInputIsActionPressed       GDExtensionSpxInputIsActionPressed
+	SpxInputIsActionJustPressed   GDExtensionSpxInputIsActionJustPressed
+	SpxInputIsActionJustReleased  GDExtensionSpxInputIsActionJustReleased
+	SpxPhysicRaycast              GDExtensionSpxPhysicRaycast
+	SpxSceneChangeSceneToFile     GDExtensionSpxSceneChangeSceneToFile
+	SpxSceneReloadCurrentScene    GDExtensionSpxSceneReloadCurrentScene
+	SpxSceneUnloadCurrentScene    GDExtensionSpxSceneUnloadCurrentScene
+	SpxSpriteSetDontDestroyOnLoad GDExtensionSpxSpriteSetDontDestroyOnLoad
+	SpxSpriteCreateSprite         GDExtensionSpxSpriteCreateSprite
+	SpxSpriteCloneSprite          GDExtensionSpxSpriteCloneSprite
+	SpxSpriteDestroySprite        GDExtensionSpxSpriteDestroySprite
+	SpxSpriteIsSpriteAlive        GDExtensionSpxSpriteIsSpriteAlive
+	SpxSpriteSetPosition          GDExtensionSpxSpriteSetPosition
+	SpxSpriteSetRotation          GDExtensionSpxSpriteSetRotation
+	SpxSpriteSetScale             GDExtensionSpxSpriteSetScale
+	SpxSpriteGetPosition          GDExtensionSpxSpriteGetPosition
+	SpxSpriteGetRotation          GDExtensionSpxSpriteGetRotation
+	SpxSpriteGetScale             GDExtensionSpxSpriteGetScale
+	SpxSpriteSetColor             GDExtensionSpxSpriteSetColor
+	SpxSpriteGetColor             GDExtensionSpxSpriteGetColor
+	SpxSpriteSetTexture           GDExtensionSpxSpriteSetTexture
+	SpxSpriteGetTexture           GDExtensionSpxSpriteGetTexture
+	SpxSpriteSetVisible           GDExtensionSpxSpriteSetVisible
+	SpxSpriteGetVisible           GDExtensionSpxSpriteGetVisible
+	SpxSpriteGetZIndex            GDExtensionSpxSpriteGetZIndex
+	SpxSpriteSetZIndex            GDExtensionSpxSpriteSetZIndex
+	SpxSpritePlayAnim             GDExtensionSpxSpritePlayAnim
+	SpxSpritePlayBackwardsAnim    GDExtensionSpxSpritePlayBackwardsAnim
+	SpxSpritePauseAnim            GDExtensionSpxSpritePauseAnim
+	SpxSpriteStopAnim             GDExtensionSpxSpriteStopAnim
+	SpxSpriteIsPlayingAnim        GDExtensionSpxSpriteIsPlayingAnim
+	SpxSpriteSetAnim              GDExtensionSpxSpriteSetAnim
+	SpxSpriteGetAnim              GDExtensionSpxSpriteGetAnim
+	SpxSpriteSetAnimFrame         GDExtensionSpxSpriteSetAnimFrame
+	SpxSpriteGetAnimFrame         GDExtensionSpxSpriteGetAnimFrame
+	SpxSpriteSetAnimSpeedScale    GDExtensionSpxSpriteSetAnimSpeedScale
+	SpxSpriteGetAnimSpeedScale    GDExtensionSpxSpriteGetAnimSpeedScale
+	SpxSpriteGetAnimPlayingSpeed  GDExtensionSpxSpriteGetAnimPlayingSpeed
+	SpxSpriteSetAnimCentered      GDExtensionSpxSpriteSetAnimCentered
+	SpxSpriteIsAnimCentered       GDExtensionSpxSpriteIsAnimCentered
+	SpxSpriteSetAnimOffset        GDExtensionSpxSpriteSetAnimOffset
+	SpxSpriteGetAnimOffset        GDExtensionSpxSpriteGetAnimOffset
+	SpxSpriteSetAnimFlipH         GDExtensionSpxSpriteSetAnimFlipH
+	SpxSpriteIsAnimFlippedH       GDExtensionSpxSpriteIsAnimFlippedH
+	SpxSpriteSetAnimFlipV         GDExtensionSpxSpriteSetAnimFlipV
+	SpxSpriteIsAnimFlippedV       GDExtensionSpxSpriteIsAnimFlippedV
+	SpxSpriteSetVelocity          GDExtensionSpxSpriteSetVelocity
+	SpxSpriteGetVelocity          GDExtensionSpxSpriteGetVelocity
+	SpxSpriteIsOnFloor            GDExtensionSpxSpriteIsOnFloor
+	SpxSpriteIsOnFloorOnly        GDExtensionSpxSpriteIsOnFloorOnly
+	SpxSpriteIsOnWall             GDExtensionSpxSpriteIsOnWall
+	SpxSpriteIsOnWallOnly         GDExtensionSpxSpriteIsOnWallOnly
+	SpxSpriteIsOnCeiling          GDExtensionSpxSpriteIsOnCeiling
+	SpxSpriteIsOnCeilingOnly      GDExtensionSpxSpriteIsOnCeilingOnly
+	SpxSpriteGetLastMotion        GDExtensionSpxSpriteGetLastMotion
+	SpxSpriteGetPositionDelta     GDExtensionSpxSpriteGetPositionDelta
+	SpxSpriteGetFloorNormal       GDExtensionSpxSpriteGetFloorNormal
+	SpxSpriteGetWallNormal        GDExtensionSpxSpriteGetWallNormal
+	SpxSpriteGetRealVelocity      GDExtensionSpxSpriteGetRealVelocity
+	SpxSpriteMoveAndSlide         GDExtensionSpxSpriteMoveAndSlide
+	SpxSpriteSetGravity           GDExtensionSpxSpriteSetGravity
+	SpxSpriteGetGravity           GDExtensionSpxSpriteGetGravity
+	SpxSpriteSetMass              GDExtensionSpxSpriteSetMass
+	SpxSpriteGetMass              GDExtensionSpxSpriteGetMass
+	SpxSpriteAddForce             GDExtensionSpxSpriteAddForce
+	SpxSpriteAddImpulse           GDExtensionSpxSpriteAddImpulse
+	SpxSpriteSetCollisionLayer    GDExtensionSpxSpriteSetCollisionLayer
+	SpxSpriteGetCollisionLayer    GDExtensionSpxSpriteGetCollisionLayer
+	SpxSpriteSetCollisionMask     GDExtensionSpxSpriteSetCollisionMask
+	SpxSpriteGetCollisionMask     GDExtensionSpxSpriteGetCollisionMask
+	SpxSpriteSetTriggerLayer      GDExtensionSpxSpriteSetTriggerLayer
+	SpxSpriteGetTriggerLayer      GDExtensionSpxSpriteGetTriggerLayer
+	SpxSpriteSetTriggerMask       GDExtensionSpxSpriteSetTriggerMask
+	SpxSpriteGetTriggerMask       GDExtensionSpxSpriteGetTriggerMask
+	SpxSpriteSetColliderRect      GDExtensionSpxSpriteSetColliderRect
+	SpxSpriteSetColliderCircle    GDExtensionSpxSpriteSetColliderCircle
+	SpxSpriteSetColliderCapsule   GDExtensionSpxSpriteSetColliderCapsule
+	SpxSpriteSetCollisionEnabled  GDExtensionSpxSpriteSetCollisionEnabled
+	SpxSpriteIsCollisionEnabled   GDExtensionSpxSpriteIsCollisionEnabled
+	SpxSpriteSetTriggerRect       GDExtensionSpxSpriteSetTriggerRect
+	SpxSpriteSetTriggerCircle     GDExtensionSpxSpriteSetTriggerCircle
+	SpxSpriteSetTriggerCapsule    GDExtensionSpxSpriteSetTriggerCapsule
+	SpxSpriteSetTriggerEnabled    GDExtensionSpxSpriteSetTriggerEnabled
+	SpxSpriteIsTriggerEnabled     GDExtensionSpxSpriteIsTriggerEnabled
+	SpxUiCreateNode               GDExtensionSpxUiCreateNode
+	SpxUiCreateButton             GDExtensionSpxUiCreateButton
+	SpxUiCreateLabel              GDExtensionSpxUiCreateLabel
+	SpxUiCreateImage              GDExtensionSpxUiCreateImage
+	SpxUiCreateToggle             GDExtensionSpxUiCreateToggle
+	SpxUiCreateSlider             GDExtensionSpxUiCreateSlider
+	SpxUiCreateInput              GDExtensionSpxUiCreateInput
+	SpxUiDestroyNode              GDExtensionSpxUiDestroyNode
+	SpxUiGetType                  GDExtensionSpxUiGetType
+	SpxUiSetText                  GDExtensionSpxUiSetText
+	SpxUiGetText                  GDExtensionSpxUiGetText
+	SpxUiSetTexture               GDExtensionSpxUiSetTexture
+	SpxUiGetTexture               GDExtensionSpxUiGetTexture
+	SpxUiSetColor                 GDExtensionSpxUiSetColor
+	SpxUiGetColor                 GDExtensionSpxUiGetColor
+	SpxUiSetFontSize              GDExtensionSpxUiSetFontSize
+	SpxUiGetFontSize              GDExtensionSpxUiGetFontSize
+	SpxUiSetVisible               GDExtensionSpxUiSetVisible
+	SpxUiGetVisible               GDExtensionSpxUiGetVisible
+	SpxUiSetInteractable          GDExtensionSpxUiSetInteractable
+	SpxUiGetInteractable          GDExtensionSpxUiGetInteractable
+	SpxUiSetRect                  GDExtensionSpxUiSetRect
+	SpxUiGetRect                  GDExtensionSpxUiGetRect
+}
 
 func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxAudioPlayAudio = (GDExtensionSpxAudioPlayAudio)(dlsymGD("spx_audio_play_audio"))
@@ -149,6 +157,10 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxAudioResumeMusic = (GDExtensionSpxAudioResumeMusic)(dlsymGD("spx_audio_resume_music"))
 	x.SpxAudioGetMusicTimer = (GDExtensionSpxAudioGetMusicTimer)(dlsymGD("spx_audio_get_music_timer"))
 	x.SpxAudioSetMusicTimer = (GDExtensionSpxAudioSetMusicTimer)(dlsymGD("spx_audio_set_music_timer"))
+	x.SpxCameraGetCameraPosition = (GDExtensionSpxCameraGetCameraPosition)(dlsymGD("spx_camera_get_camera_position"))
+	x.SpxCameraSetCameraPosition = (GDExtensionSpxCameraSetCameraPosition)(dlsymGD("spx_camera_set_camera_position"))
+	x.SpxCameraGetCameraZoom = (GDExtensionSpxCameraGetCameraZoom)(dlsymGD("spx_camera_get_camera_zoom"))
+	x.SpxCameraSetCameraZoom = (GDExtensionSpxCameraSetCameraZoom)(dlsymGD("spx_camera_set_camera_zoom"))
 	x.SpxInputGetMousePos = (GDExtensionSpxInputGetMousePos)(dlsymGD("spx_input_get_mouse_pos"))
 	x.SpxInputGetKey = (GDExtensionSpxInputGetKey)(dlsymGD("spx_input_get_key"))
 	x.SpxInputGetMouseState = (GDExtensionSpxInputGetMouseState)(dlsymGD("spx_input_get_mouse_state"))
@@ -158,6 +170,10 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxInputIsActionJustPressed = (GDExtensionSpxInputIsActionJustPressed)(dlsymGD("spx_input_is_action_just_pressed"))
 	x.SpxInputIsActionJustReleased = (GDExtensionSpxInputIsActionJustReleased)(dlsymGD("spx_input_is_action_just_released"))
 	x.SpxPhysicRaycast = (GDExtensionSpxPhysicRaycast)(dlsymGD("spx_physic_raycast"))
+	x.SpxSceneChangeSceneToFile = (GDExtensionSpxSceneChangeSceneToFile)(dlsymGD("spx_scene_change_scene_to_file"))
+	x.SpxSceneReloadCurrentScene = (GDExtensionSpxSceneReloadCurrentScene)(dlsymGD("spx_scene_reload_current_scene"))
+	x.SpxSceneUnloadCurrentScene = (GDExtensionSpxSceneUnloadCurrentScene)(dlsymGD("spx_scene_unload_current_scene"))
+	x.SpxSpriteSetDontDestroyOnLoad = (GDExtensionSpxSpriteSetDontDestroyOnLoad)(dlsymGD("spx_sprite_set_dont_destroy_on_load"))
 	x.SpxSpriteCreateSprite = (GDExtensionSpxSpriteCreateSprite)(dlsymGD("spx_sprite_create_sprite"))
 	x.SpxSpriteCloneSprite = (GDExtensionSpxSpriteCloneSprite)(dlsymGD("spx_sprite_clone_sprite"))
 	x.SpxSpriteDestroySprite = (GDExtensionSpxSpriteDestroySprite)(dlsymGD("spx_sprite_destroy_sprite"))
@@ -234,27 +250,27 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteSetTriggerCapsule = (GDExtensionSpxSpriteSetTriggerCapsule)(dlsymGD("spx_sprite_set_trigger_capsule"))
 	x.SpxSpriteSetTriggerEnabled = (GDExtensionSpxSpriteSetTriggerEnabled)(dlsymGD("spx_sprite_set_trigger_enabled"))
 	x.SpxSpriteIsTriggerEnabled = (GDExtensionSpxSpriteIsTriggerEnabled)(dlsymGD("spx_sprite_is_trigger_enabled"))
-	x.SpxUICreateNode = (GDExtensionSpxUICreateNode)(dlsymGD("spx_ui_create_node"))
-	x.SpxUICreateButton = (GDExtensionSpxUICreateButton)(dlsymGD("spx_ui_create_button"))
-	x.SpxUICreateLabel = (GDExtensionSpxUICreateLabel)(dlsymGD("spx_ui_create_label"))
-	x.SpxUICreateImage = (GDExtensionSpxUICreateImage)(dlsymGD("spx_ui_create_image"))
-	x.SpxUICreateToggle = (GDExtensionSpxUICreateToggle)(dlsymGD("spx_ui_create_toggle"))
-	x.SpxUICreateSlider = (GDExtensionSpxUICreateSlider)(dlsymGD("spx_ui_create_slider"))
-	x.SpxUICreateInput = (GDExtensionSpxUICreateInput)(dlsymGD("spx_ui_create_input"))
-	x.SpxUIDestroyNode = (GDExtensionSpxUIDestroyNode)(dlsymGD("spx_ui_destroy_node"))
-	x.SpxUIGetType = (GDExtensionSpxUIGetType)(dlsymGD("spx_ui_get_type"))
-	x.SpxUISetText = (GDExtensionSpxUISetText)(dlsymGD("spx_ui_set_text"))
-	x.SpxUIGetText = (GDExtensionSpxUIGetText)(dlsymGD("spx_ui_get_text"))
-	x.SpxUISetTexture = (GDExtensionSpxUISetTexture)(dlsymGD("spx_ui_set_texture"))
-	x.SpxUIGetTexture = (GDExtensionSpxUIGetTexture)(dlsymGD("spx_ui_get_texture"))
-	x.SpxUISetColor = (GDExtensionSpxUISetColor)(dlsymGD("spx_ui_set_color"))
-	x.SpxUIGetColor = (GDExtensionSpxUIGetColor)(dlsymGD("spx_ui_get_color"))
-	x.SpxUISetFontSize = (GDExtensionSpxUISetFontSize)(dlsymGD("spx_ui_set_font_size"))
-	x.SpxUIGetFontSize = (GDExtensionSpxUIGetFontSize)(dlsymGD("spx_ui_get_font_size"))
-	x.SpxUISetVisible = (GDExtensionSpxUISetVisible)(dlsymGD("spx_ui_set_visible"))
-	x.SpxUIGetVisible = (GDExtensionSpxUIGetVisible)(dlsymGD("spx_ui_get_visible"))
-	x.SpxUISetInteractable = (GDExtensionSpxUISetInteractable)(dlsymGD("spx_ui_set_interactable"))
-	x.SpxUIGetInteractable = (GDExtensionSpxUIGetInteractable)(dlsymGD("spx_ui_get_interactable"))
-	x.SpxUISetRect = (GDExtensionSpxUISetRect)(dlsymGD("spx_ui_set_rect"))
-	x.SpxUIGetRect = (GDExtensionSpxUIGetRect)(dlsymGD("spx_ui_get_rect"))
-	}
+	x.SpxUiCreateNode = (GDExtensionSpxUiCreateNode)(dlsymGD("spx_ui_create_node"))
+	x.SpxUiCreateButton = (GDExtensionSpxUiCreateButton)(dlsymGD("spx_ui_create_button"))
+	x.SpxUiCreateLabel = (GDExtensionSpxUiCreateLabel)(dlsymGD("spx_ui_create_label"))
+	x.SpxUiCreateImage = (GDExtensionSpxUiCreateImage)(dlsymGD("spx_ui_create_image"))
+	x.SpxUiCreateToggle = (GDExtensionSpxUiCreateToggle)(dlsymGD("spx_ui_create_toggle"))
+	x.SpxUiCreateSlider = (GDExtensionSpxUiCreateSlider)(dlsymGD("spx_ui_create_slider"))
+	x.SpxUiCreateInput = (GDExtensionSpxUiCreateInput)(dlsymGD("spx_ui_create_input"))
+	x.SpxUiDestroyNode = (GDExtensionSpxUiDestroyNode)(dlsymGD("spx_ui_destroy_node"))
+	x.SpxUiGetType = (GDExtensionSpxUiGetType)(dlsymGD("spx_ui_get_type"))
+	x.SpxUiSetText = (GDExtensionSpxUiSetText)(dlsymGD("spx_ui_set_text"))
+	x.SpxUiGetText = (GDExtensionSpxUiGetText)(dlsymGD("spx_ui_get_text"))
+	x.SpxUiSetTexture = (GDExtensionSpxUiSetTexture)(dlsymGD("spx_ui_set_texture"))
+	x.SpxUiGetTexture = (GDExtensionSpxUiGetTexture)(dlsymGD("spx_ui_get_texture"))
+	x.SpxUiSetColor = (GDExtensionSpxUiSetColor)(dlsymGD("spx_ui_set_color"))
+	x.SpxUiGetColor = (GDExtensionSpxUiGetColor)(dlsymGD("spx_ui_get_color"))
+	x.SpxUiSetFontSize = (GDExtensionSpxUiSetFontSize)(dlsymGD("spx_ui_set_font_size"))
+	x.SpxUiGetFontSize = (GDExtensionSpxUiGetFontSize)(dlsymGD("spx_ui_get_font_size"))
+	x.SpxUiSetVisible = (GDExtensionSpxUiSetVisible)(dlsymGD("spx_ui_set_visible"))
+	x.SpxUiGetVisible = (GDExtensionSpxUiGetVisible)(dlsymGD("spx_ui_get_visible"))
+	x.SpxUiSetInteractable = (GDExtensionSpxUiSetInteractable)(dlsymGD("spx_ui_set_interactable"))
+	x.SpxUiGetInteractable = (GDExtensionSpxUiGetInteractable)(dlsymGD("spx_ui_get_interactable"))
+	x.SpxUiSetRect = (GDExtensionSpxUiSetRect)(dlsymGD("spx_ui_set_rect"))
+	x.SpxUiGetRect = (GDExtensionSpxUiGetRect)(dlsymGD("spx_ui_get_rect"))
+}

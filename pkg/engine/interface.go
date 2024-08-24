@@ -2,6 +2,7 @@ package engine
 
 type ILifeCycle interface {
 	OnStart()
+	OnFixedUpdate(delta float32)
 	OnUpdate(delta float32)
 	OnDestroy()
 }
@@ -48,18 +49,20 @@ type IUiNode interface {
 	V_OnUiTextChanged(txt string)
 }
 type EngineCallbackInfo struct {
-	OnEngineStart   func()
-	OnEngineUpdate  func(float32)
-	OnEngineDestroy func()
+	OnEngineStart       func()
+	OnEngineUpdate      func(float32)
+	OnEngineFixedUpdate func(float32)
+	OnEngineDestroy     func()
 }
 
 type CallbackInfo struct {
 	EngineCallbackInfo
 
 	// life cycle
-	OnSpriteReady     func(int64)
-	OnSpriteUpdated   func(int64)
-	OnSpriteDestroyed func(int64)
+	OnSpriteReady        func(int64)
+	OnSpriteUpdated      func(float32)
+	OnSpriteFixedUpdated func(float32)
+	OnSpriteDestroyed    func(int64)
 
 	// input
 	OnMousePressed       func(int64)
@@ -90,4 +93,13 @@ type CallbackInfo struct {
 	OnUiClicked     func(int64)
 	OnUiToggle      func(int64, bool)
 	OnUiTextChanged func(int64, string)
+
+	OnSpriteScreenEntered     func(int64)
+	OnSpriteScreenExited      func(int64)
+	OnSpriteVfxFinished       func(int64)
+	OnSpriteAnimationFinished func(int64)
+	OnSpriteAnimationLooped   func(int64)
+	OnSpriteFrameChanged      func(int64)
+	OnSpriteAnimationChanged  func(int64)
+	OnSpriteFramesSetChanged  func(int64)
 }

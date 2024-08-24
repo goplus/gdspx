@@ -8,9 +8,11 @@ func bindCallbacks() CallbackInfo {
 	infos := CallbackInfo{}
 	infos.OnEngineStart = onEngineStart
 	infos.OnEngineUpdate = onEngineUpdate
+	infos.OnEngineFixedUpdate = onEngineFixedUpdate
 	infos.OnEngineDestroy = onEngineDestroy
 	infos.OnSpriteReady = onSpriteReady
 	infos.OnSpriteUpdated = onSpriteUpdated
+	infos.OnSpriteFixedUpdated = onSpriteFixedUpdated
 	infos.OnSpriteDestroyed = onSpriteDestroyed
 
 	// input
@@ -40,6 +42,14 @@ func bindCallbacks() CallbackInfo {
 	infos.OnUiToggle = onUiToggle
 	infos.OnUiTextChanged = onUiTextChanged
 
+	infos.OnSpriteScreenExited = onSpriteScreenExited
+	infos.OnSpriteVfxFinished = onSpriteVfxFinished
+	infos.OnSpriteAnimationFinished = onSpriteAnimationFinished
+	infos.OnSpriteAnimationLooped = onSpriteAnimationLooped
+	infos.OnSpriteFrameChanged = onSpriteFrameChanged
+	infos.OnSpriteAnimationChanged = onSpriteAnimationChanged
+	infos.OnSpriteFramesSetChanged = onSpriteFramesSetChanged
+
 	return infos
 }
 
@@ -49,8 +59,11 @@ func onSpriteReady(id int64) {
 		sprite.OnStart()
 	}
 }
-func onSpriteUpdated(id int64) {
-	println("onSpriteUpdated ", id)
+func onSpriteUpdated(delta float32) {
+	println("onSpriteUpdated ", delta)
+}
+func onSpriteFixedUpdated(delta float32) {
+	println("onSpriteFixedUpdated ", delta)
 }
 func onSpriteDestroyed(id int64) {
 	delete(Id2Sprites, Object(id))
@@ -148,4 +161,26 @@ func onUiTextChanged(id int64, text string) {
 		node.V_OnUiTextChanged(text)
 		node.OnUiTextChanged(text)
 	}
+}
+
+func onSpriteScreenExited(id int64) {
+	println("onEngineFixedUpdate ", id)
+}
+func onSpriteVfxFinished(id int64) {
+	println("onEngineFixedUpdate ", id)
+}
+func onSpriteAnimationFinished(id int64) {
+	println("onEngineFixedUpdate ", id)
+}
+func onSpriteAnimationLooped(id int64) {
+	println("onEngineFixedUpdate ", id)
+}
+func onSpriteFrameChanged(id int64) {
+	println("onEngineFixedUpdate ", id)
+}
+func onSpriteAnimationChanged(id int64) {
+	println("onEngineFixedUpdate ", id)
+}
+func onSpriteFramesSetChanged(id int64) {
+	println("onEngineFixedUpdate ", id)
 }

@@ -64,5 +64,8 @@ func (pself *UiNode) OnStart() {
 }
 func (pself *UiNode) OnUpdate(delta float32) {
 }
+func (pself *UiNode) OnFixedUpdate(delta float32) {
+}
+
 func (pself *UiNode) OnDestroy() {
 }

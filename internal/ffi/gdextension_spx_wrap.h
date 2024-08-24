@@ -32,11 +32,23 @@ static inline void *get_proc_address(uintptr_t fn, const char* p_name) {
 // engine
 extern void func_on_engine_start();  
 extern void func_on_engine_update(GdFloat delta);  
+extern void func_on_engine_fixed_update(GdFloat delta);  
 extern void func_on_engine_destroy();  
 // sprite
 extern void func_on_sprite_ready(GdInt id);  
-extern void func_on_sprite_updated(GdInt id);  
+extern void func_on_sprite_updated(GdFloat id);  
+extern void func_on_sprite_fixed_updated(GdFloat id);  
 extern void func_on_sprite_destroyed(GdInt id);  
+
+extern void func_on_sprite_screen_entered(GdInt id);
+extern void func_on_sprite_screen_exited(GdInt id);
+extern void func_on_sprite_vfx_finished(GdInt id);
+extern void func_on_sprite_animation_finished(GdInt id);
+extern void func_on_sprite_animation_looped(GdInt id);
+extern void func_on_sprite_frame_changed(GdInt id);
+extern void func_on_sprite_animation_changed(GdInt id);
+extern void func_on_sprite_frames_set_changed(GdInt id);
+
 // input
 extern void func_on_mouse_pressed(GdInt keyid);  
 extern void func_on_mouse_released(GdInt keyid);  
@@ -71,11 +83,25 @@ static inline void spx_global_register_callbacks(pointer fn) {
     // engine
 	p_extension_funcs->func_on_engine_start = func_on_engine_start;
 	p_extension_funcs->func_on_engine_update = func_on_engine_update;
+	p_extension_funcs->func_on_engine_fixed_update = func_on_engine_fixed_update;
 	p_extension_funcs->func_on_engine_destroy = func_on_engine_destroy;
     // sprite
 	p_extension_funcs->func_on_sprite_ready = func_on_sprite_ready;
 	p_extension_funcs->func_on_sprite_updated = func_on_sprite_updated;
+	p_extension_funcs->func_on_sprite_fixed_updated = func_on_sprite_fixed_updated;
 	p_extension_funcs->func_on_sprite_destroyed = func_on_sprite_destroyed;
+	// animation
+	p_extension_funcs->func_on_sprite_frames_set_changed = func_on_sprite_frames_set_changed;
+	p_extension_funcs->func_on_sprite_animation_changed = func_on_sprite_animation_changed;
+	p_extension_funcs->func_on_sprite_frame_changed = func_on_sprite_frame_changed;
+	p_extension_funcs->func_on_sprite_animation_looped = func_on_sprite_animation_looped;
+	p_extension_funcs->func_on_sprite_animation_finished = func_on_sprite_animation_finished;
+	// vfx
+	p_extension_funcs->func_on_sprite_vfx_finished = func_on_sprite_vfx_finished;
+	// visibility
+	p_extension_funcs->func_on_sprite_screen_exited = func_on_sprite_screen_exited;
+	p_extension_funcs->func_on_sprite_screen_entered = func_on_sprite_screen_entered;
+
     // input
 	p_extension_funcs->func_on_mouse_pressed = func_on_mouse_pressed;
 	p_extension_funcs->func_on_mouse_released = func_on_mouse_released;
