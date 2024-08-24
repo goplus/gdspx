@@ -51,6 +51,7 @@ func onEngineUpdate(delta float32) {
 	if callback.OnEngineUpdate != nil {
 		callback.OnEngineUpdate(delta)
 	}
+	CheckTimers(delta)
 }
 
 func onEngineFixedUpdate(delta float32) {
