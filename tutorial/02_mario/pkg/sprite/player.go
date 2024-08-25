@@ -29,10 +29,12 @@ var PlayModeAnimName = [...]string{
 }
 
 var (
-	gravity       = float32(-980)
 	SPEED         = float32(300)
 	JUMP_VELOCITY = float32(400.0)
 	PLAYER_MODE   = int64(1)
+	GRAVITY       = float32(-980)
+
+	ShouldSyncCamera = true
 )
 
 func (pself *Player) OnStart() {
@@ -43,11 +45,17 @@ func (pself *Player) OnStart() {
 }
 
 func (pself *Player) OnUpdate(delta float32) {
+	if pself.GetPosX() > CameraMgr.GetCameraPosition().X && ShouldSyncCamera {
+		CameraMgr.SetCameraPosition(Vec2{pself.GetPosX(), CameraMgr.GetCameraPosition().Y})
+	}
+}
+
+func (pself *Player) OnFixedUpdate(delta float32) {
 	cameraRect := CameraMgr.GetViewportRect()
 	cameraLeftBound := CameraMgr.GetCameraPosition().X - cameraRect.Size.X/2/CameraMgr.GetCameraZoom().X
 
 	if !pself.IsOnFloor() {
-		pself.AddVelY(gravity * delta)
+		pself.AddVelY(GRAVITY * delta)
 	}
 
 	if pself.GetPosX() < cameraLeftBound+8 && pself.GetVelX() < 0 {
@@ -81,10 +89,6 @@ func (pself *Player) setAnimSign(isRight bool) {
 	dir := int64(1)
 	if !isRight {
 		dir = -1
-	}
-	lastDir := pself.getAnimDir()
-	if lastDir != dir {
-		println("setAnimSign ", lastDir, "=>", dir)
 	}
 	pself.SetChildScale("AnimatedSprite2D", Vec2{float32(dir), 1})
 }
