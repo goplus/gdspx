@@ -1,6 +1,5 @@
 [gd_scene load_steps=28 format=3 uid="uid://dl1yh0nllbjk5"]
 
-[ext_resource type="Script" path="res://assets/scripts/player.gd" id="1_i28to"]
 [ext_resource type="Texture2D" uid="uid://d3jwm15et3t22" path="res://assets/sprites/Mario_Small_Idle.png" id="1_rbppx"]
 [ext_resource type="Shape2D" uid="uid://cta002cfcr0l2" path="res://assets/resources/collision_shapes/small_mario_collision_shape.tres" id="2_2r7cn"]
 [ext_resource type="Texture2D" uid="uid://ct8uqpacoxaq1" path="res://assets/sprites/Mario_Big_Idle.png" id="2_s57qn"]
@@ -271,9 +270,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="SpxSprite"]
 collision_mask = 22
-script = ExtResource("1_i28to")
+gid = 562640977979
+spx_type_name = "Player"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pie86")

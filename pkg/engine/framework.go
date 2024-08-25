@@ -8,6 +8,7 @@ var (
 	Id2Sprites         = make(map[Object]ISpriter)
 	Id2UiNodes         = make(map[Object]IUiNode)
 	TimeSinceGameStart = float32(0)
+	name2SpriteType    = make(map[string]reflect.Type)
 )
 
 func isNodeExist(id Object) bool {
@@ -39,16 +40,26 @@ func ClearAllSprites() {
 	}
 	Id2Sprites = make(map[Object]ISpriter)
 }
+
+func RegisterSpriteType[T any]() {
+	tType := reflect.TypeOf((*T)(nil)).Elem()
+	name := tType.Name()
+	name2SpriteType[name] = tType
+}
+
+func BindSceneInstantiatedSprite(id Object, type_name string) {
+	println("BindSceneInstantiatedSprite ", id, type_name)
+	if t, ok := name2SpriteType[type_name]; ok {
+		createSprite(t, id)
+	} else {
+		println("BindSceneInstantiatedSprite: type not found", type_name)
+	}
+}
 func CreateSprite[T any]() *T {
 	tType := reflect.TypeOf((*T)(nil)).Elem()
 	name := tType.Name()
-	spriteValue := reflect.New(tType).Elem()
 	id := SpriteMgr.CreateSprite(getPrefabPath(name))
-	sprite := spriteValue.Addr().Interface().(ISpriter)
-	sprite.SetId(id)
-	sprite.onCreate()
-	Id2Sprites[id] = sprite
-	sprite.OnStart()
+	spriteValue := createSprite(tType, id)
 	return spriteValue.Addr().Interface().(*T)
 }
 func CreateUI[T any](prefabName string) *T {
@@ -65,4 +76,14 @@ func CreateUI[T any](prefabName string) *T {
 	Id2UiNodes[id] = node
 	node.OnStart()
 	return nodeValue.Addr().Interface().(*T)
+}
+
+func createSprite(tType reflect.Type, id Object) reflect.Value {
+	spriteValue := reflect.New(tType).Elem()
+	sprite := spriteValue.Addr().Interface().(ISpriter)
+	sprite.SetId(id)
+	sprite.onCreate()
+	Id2Sprites[id] = sprite
+	sprite.OnStart()
+	return spriteValue
 }

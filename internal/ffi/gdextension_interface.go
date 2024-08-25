@@ -342,6 +342,16 @@ func func_on_engine_destroy() {
 	}
 }
 
+//export func_on_scene_sprite_instantiated
+func func_on_scene_sprite_instantiated(id C.GDExtensionInt, typeName C.GdString) {
+	ch2 := (*C.char)(unsafe.Pointer(typeName))
+	name := C.GoString(ch2)
+	println("func_on_scene_sprite_instantiated", id, name)
+	if callbacks.OnSceneSpriteInstantiated != nil {
+		callbacks.OnSceneSpriteInstantiated(int64(id), name)
+	}
+}
+
 //export func_on_sprite_ready
 func func_on_sprite_ready(id C.GDExtensionInt) {
 	if callbacks.OnSpriteReady != nil {
@@ -350,16 +360,16 @@ func func_on_sprite_ready(id C.GDExtensionInt) {
 }
 
 //export func_on_sprite_updated
-func func_on_sprite_updated(id C.GDReal) {
+func func_on_sprite_updated(delta C.GDReal) {
 	if callbacks.OnSpriteUpdated != nil {
-		callbacks.OnSpriteUpdated(float32(id))
+		callbacks.OnSpriteUpdated(float32(delta))
 	}
 }
 
 //export func_on_sprite_fixed_updated
-func func_on_sprite_fixed_updated(id C.GDReal) {
+func func_on_sprite_fixed_updated(delta C.GDReal) {
 	if callbacks.OnSpriteFixedUpdated != nil {
-		callbacks.OnSpriteFixedUpdated(float32(id))
+		callbacks.OnSpriteFixedUpdated(float32(delta))
 	}
 }
 

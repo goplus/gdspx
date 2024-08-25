@@ -9,6 +9,12 @@ var (
 	timer = float32(0)
 )
 
+func RegisterTypes() {
+	RegisterSpriteType[Player]()
+	RegisterSpriteType[Enemy]()
+	RegisterSpriteType[Bullet]()
+}
+
 func OnStart() {
 	CameraMgr.SetCameraZoom(Vec2{2.75, 2.75})
 	player := CreateSprite[Player]()

@@ -57,7 +57,8 @@ type EngineCallbackInfo struct {
 
 type CallbackInfo struct {
 	EngineCallbackInfo
-
+	// scene
+	OnSceneSpriteInstantiated func(int64, string)
 	// life cycle
 	OnSpriteReady        func(int64)
 	OnSpriteUpdated      func(float32)

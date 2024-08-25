@@ -10,6 +10,9 @@ func bindCallbacks() CallbackInfo {
 	infos.OnEngineUpdate = onEngineUpdate
 	infos.OnEngineFixedUpdate = onEngineFixedUpdate
 	infos.OnEngineDestroy = onEngineDestroy
+
+	infos.OnSceneSpriteInstantiated = onSceneSpriteInstantiated
+
 	infos.OnSpriteReady = onSpriteReady
 	infos.OnSpriteUpdated = onSpriteUpdated
 	infos.OnSpriteFixedUpdated = onSpriteFixedUpdated
@@ -51,6 +54,9 @@ func bindCallbacks() CallbackInfo {
 	infos.OnSpriteFramesSetChanged = onSpriteFramesSetChanged
 
 	return infos
+}
+func onSceneSpriteInstantiated(id int64, type_name string) {
+	BindSceneInstantiatedSprite(Object(id), type_name)
 }
 
 // sprite

@@ -34,6 +34,9 @@ extern void func_on_engine_start();
 extern void func_on_engine_update(GdFloat delta);  
 extern void func_on_engine_fixed_update(GdFloat delta);  
 extern void func_on_engine_destroy();  
+
+extern void func_on_scene_sprite_instantiated(GdInt id,GdString type_name);  
+
 // sprite
 extern void func_on_sprite_ready(GdInt id);  
 extern void func_on_sprite_updated(GdFloat id);  
@@ -85,6 +88,9 @@ static inline void spx_global_register_callbacks(pointer fn) {
 	p_extension_funcs->func_on_engine_update = func_on_engine_update;
 	p_extension_funcs->func_on_engine_fixed_update = func_on_engine_fixed_update;
 	p_extension_funcs->func_on_engine_destroy = func_on_engine_destroy;
+
+	p_extension_funcs->func_on_scene_sprite_instantiated = func_on_scene_sprite_instantiated;
+
     // sprite
 	p_extension_funcs->func_on_sprite_ready = func_on_sprite_ready;
 	p_extension_funcs->func_on_sprite_updated = func_on_sprite_updated;
