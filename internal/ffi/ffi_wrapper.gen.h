@@ -57,6 +57,9 @@ void cgo_callfn_GDExtensionSpxCameraGetCameraZoom(const GDExtensionSpxCameraGetC
 void cgo_callfn_GDExtensionSpxCameraSetCameraZoom(const GDExtensionSpxCameraSetCameraZoom fn, GdVec2 size) {
 	fn(size);
 }
+void cgo_callfn_GDExtensionSpxCameraGetViewportRect(const GDExtensionSpxCameraGetViewportRect fn, GdRect2* ret_val) {
+	fn(ret_val);
+}
 void cgo_callfn_GDExtensionSpxInputGetMousePos(const GDExtensionSpxInputGetMousePos fn, GdVec2* ret_val) {
 	fn(ret_val);
 }

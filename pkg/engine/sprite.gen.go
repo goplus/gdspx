@@ -219,3 +219,22 @@ func (pself *Sprite) GetRealVelocity() Vec2 {
 func (pself *Sprite) MoveAndSlide() {
 	SpriteMgr.MoveAndSlide(pself.Id)
 }
+
+func (pself *Sprite) SetChildPosition(path string, pos Vec2) {
+	SpriteMgr.SetChildPosition(pself.Id, path, pos)
+}
+func (pself *Sprite) GetChildPosition(path string) Vec2 {
+	return SpriteMgr.GetChildPosition(pself.Id, path)
+}
+func (pself *Sprite) SetChildRotation(path string, rot float32) {
+	SpriteMgr.SetChildRotation(pself.Id, path, rot)
+}
+func (pself *Sprite) GetChildRotation(path string) float32 {
+	return SpriteMgr.GetChildRotation(pself.Id, path)
+}
+func (pself *Sprite) SetChildScale(path string, scale Vec2) {
+	SpriteMgr.SetChildScale(pself.Id, path, scale)
+}
+func (pself *Sprite) GetChildScale(path string) Vec2 {
+	return SpriteMgr.GetChildScale(pself.Id, path)
+}

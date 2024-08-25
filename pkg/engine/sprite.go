@@ -145,3 +145,7 @@ func (pself *Sprite) SetScaleY(value float32) {
 	pos.Y = value
 	pself.SetScale(pos)
 }
+
+func (pself *Sprite) PlayAnimation(name string) {
+	pself.PlayAnim(name, 1, false)
+}
