@@ -6,12 +6,14 @@ import (
 )
 
 var (
-	timer        = float32(0)
+	timer = float32(0)
 )
 
 func OnStart() {
+	CameraMgr.SetCameraZoom(Vec2{2.75, 2.75})
 	player := CreateSprite[Player]()
-	player.SetPosition(Vec2{-175, 62})
+	player.SetPosition(Vec2{-175, 0})
+
 }
 
 func OnUpdate(delta float32) {
