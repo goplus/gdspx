@@ -3,7 +3,6 @@
 GOOS?=$(shell go env GOOS)
 GOARCH?=$(shell go env GOARCH)
 CLANG_FORMAT?=$(shell which clang-format | which clang-format-10 | which clang-format-11 | which clang-format-12)
-GODOT?=$(shell which godot)
 CWD=$(shell pwd)
 
 CURRENT_DIR_NAME = $(notdir $(CURDIR))
@@ -13,12 +12,16 @@ TEST_MAIN=main.go
 
 ifeq ($(GOOS),windows)
 	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-windows-$(GOARCH).dll
+	GODOT="../../godot/bin/godot.windows.editor.x86_64.exe"
 else ifeq ($(GOOS),darwin)
 	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-macos-$(GOARCH).framework
+	GODOT="../../godot/bin/godot.linuxbsd.editor.x86_64.app"
 else ifeq ($(GOOS),linux)
 	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-linux-$(GOARCH).so
+	GODOT="../../godot/bin/godot.linuxbsd.editor.x86_64"
 else
 	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-$(GOOS)-$(GOARCH).so
+	GODOT="../../godot/bin/godot.linuxbsd.editor.x86_64"
 endif
 
 .PHONY: goenv build clean run
@@ -55,6 +58,12 @@ editor:
 	GOTRACEBACK=1 \
 	GODEBUG=sbrk=1,asyncpreemptoff=1,cgocheck=0,invalidptr=1,clobberfree=1,tracebackancestors=0 \
 	$(GODOT) --verbose --debug  --path project/ --editor
+
+initload:
+	LOG_LEVEL=info \
+	GOTRACEBACK=1 \
+	GODEBUG=sbrk=1,asyncpreemptoff=1,cgocheck=0,invalidptr=1,clobberfree=1,tracebackancestors=0 \
+	$(GODOT) --verbose --debug  --path project/ --editor --quit
 
 
 gen:
