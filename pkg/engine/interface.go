@@ -23,6 +23,31 @@ type ISpriter interface {
 
 	OnTriggerExit(ISpriter)
 	V_OnTriggerExit(ISpriter)
+
+	OnScreenEntered()
+	V_OnScreenEntered()
+
+	OnScreenExited()
+	V_OnScreenExited()
+
+	OnVfxFinished()
+	V_OnVfxFinished()
+
+	OnAnimationFinished()
+	V_OnAnimationFinished()
+
+	OnAnimationLooped()
+	V_OnAnimationLooped()
+
+	OnFrameChanged()
+	V_OnFrameChanged()
+
+	OnAnimationChanged()
+	V_OnAnimationChanged()
+
+	OnFramesSetChanged()
+	V_OnFramesSetChanged()
+
 }
 type IUiNode interface {
 	ILifeCycle
@@ -47,6 +72,7 @@ type IUiNode interface {
 
 	OnUiTextChanged(txt string)
 	V_OnUiTextChanged(txt string)
+
 }
 type EngineCallbackInfo struct {
 	OnEngineStart       func()
@@ -103,4 +129,5 @@ type CallbackInfo struct {
 	OnSpriteFrameChanged      func(int64)
 	OnSpriteAnimationChanged  func(int64)
 	OnSpriteFramesSetChanged  func(int64)
+
 }

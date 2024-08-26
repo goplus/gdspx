@@ -45,6 +45,7 @@ func bindCallbacks() CallbackInfo {
 	infos.OnUiToggle = onUiToggle
 	infos.OnUiTextChanged = onUiTextChanged
 
+	infos.OnSpriteScreenEntered = onSpriteScreenEntered
 	infos.OnSpriteScreenExited = onSpriteScreenExited
 	infos.OnSpriteVfxFinished = onSpriteVfxFinished
 	infos.OnSpriteAnimationFinished = onSpriteAnimationFinished
@@ -169,24 +170,57 @@ func onUiTextChanged(id int64, text string) {
 	}
 }
 
+func onSpriteScreenEntered(id int64) {
+	if sprite, ok := Id2Sprites[Object(id)]; ok {
+		sprite.V_OnScreenEntered()
+		sprite.OnScreenEntered()
+	}
+}
+
 func onSpriteScreenExited(id int64) {
-	println("onEngineFixedUpdate ", id)
+	if sprite, ok := Id2Sprites[Object(id)]; ok {
+		sprite.V_OnScreenExited()
+		sprite.OnScreenExited()
+	}
 }
 func onSpriteVfxFinished(id int64) {
-	println("onEngineFixedUpdate ", id)
+	if sprite, ok := Id2Sprites[Object(id)]; ok {
+		sprite.V_OnVfxFinished()
+		sprite.OnVfxFinished()
+	}
 }
+
 func onSpriteAnimationFinished(id int64) {
-	println("onEngineFixedUpdate ", id)
+	if sprite, ok := Id2Sprites[Object(id)]; ok {
+		sprite.V_OnAnimationFinished()
+		sprite.OnAnimationFinished()
+	}
 }
+
 func onSpriteAnimationLooped(id int64) {
-	println("onEngineFixedUpdate ", id)
+	if sprite, ok := Id2Sprites[Object(id)]; ok {
+		sprite.V_OnAnimationLooped()
+		sprite.OnAnimationLooped()
+	}
 }
+
 func onSpriteFrameChanged(id int64) {
-	println("onEngineFixedUpdate ", id)
+	if sprite, ok := Id2Sprites[Object(id)]; ok {
+		sprite.V_OnFrameChanged()
+		sprite.OnFrameChanged()
+	}
 }
+
 func onSpriteAnimationChanged(id int64) {
-	println("onEngineFixedUpdate ", id)
+	if sprite, ok := Id2Sprites[Object(id)]; ok {
+		sprite.V_OnAnimationChanged()
+		sprite.OnAnimationChanged()
+	}
 }
+
 func onSpriteFramesSetChanged(id int64) {
-	println("onEngineFixedUpdate ", id)
+	if sprite, ok := Id2Sprites[Object(id)]; ok {
+		sprite.V_OnFramesSetChanged()
+		sprite.OnFramesSetChanged()
+	}
 }

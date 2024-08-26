@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://cy3drp5y23cr5"]
+[gd_scene load_steps=25 format=3 uid="uid://cy3drp5y23cr5"]
 
 [ext_resource type="Texture2D" uid="uid://bh2i2pbd72n30" path="res://assets/sprites/GroundBlock.png" id="1_grrf0"]
 [ext_resource type="Texture2D" uid="uid://8as4lix1a8pr" path="res://assets/sprites/HardBlock.png" id="2_enfcy"]
+[ext_resource type="PackedScene" uid="uid://cdb3od736ijg6" path="res://assets/scenes/test_player2.tscn" id="3_242vo"]
 [ext_resource type="PackedScene" uid="uid://bei1c0pe6xtcd" path="res://assets/scenes/pipe.tscn" id="5_om4pi"]
 [ext_resource type="PackedScene" uid="uid://cid1mttkigkhf" path="res://assets/scenes/brick.tscn" id="6_vt4yb"]
 [ext_resource type="PackedScene" uid="uid://byknge8wke86h" path="res://assets/scenes/koopa.tscn" id="7_oket7"]
@@ -54,6 +55,9 @@ layer_0/tile_data = PackedInt32Array(327693, 0, 0, 393229, 0, 0, 458765, 0, 0, 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.75, 2.75)
+
+[node name="TestBind" parent="." instance=ExtResource("3_242vo")]
+position = Vector2(-100, 0)
 
 [node name="UI" parent="." instance=ExtResource("9_2yjcx")]
 

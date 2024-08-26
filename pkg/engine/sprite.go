@@ -1,24 +1,97 @@
 package engine
 
 type Sprite struct {
-	Id                  Object
-	OnTriggerEnterEvent *Event1[ISpriter]
-	OnTriggerExitEvent  *Event1[ISpriter]
+	Id                      Object
+	OnTriggerEnterEvent     *Event1[ISpriter]
+	OnTriggerExitEvent      *Event1[ISpriter]
+	OnScreenExitedEvent     *Event0
+	OnScreenEnteredEvent    *Event0
+	OnFramesSetChangedEvent *Event0
+	OnAnimationChangedEvent *Event0
+	OnFrameChangedEvent     *Event0
+	OnAnimationLoopedEvent  *Event0
+	OnAnimationFinishedEvent *Event0
+	OnVfxFinishedEvent *Event0
+	
 }
 
 func (pself *Sprite) onCreate() {
 	pself.OnTriggerEnterEvent = NewEvent1[ISpriter]()
 	pself.OnTriggerExitEvent = NewEvent1[ISpriter]()
+	pself.OnScreenExitedEvent = NewEvent0()
+	pself.OnScreenEnteredEvent = NewEvent0()
+	pself.OnFramesSetChangedEvent = NewEvent0()
+	pself.OnAnimationChangedEvent = NewEvent0()
+	pself.OnFrameChangedEvent = NewEvent0()
+	pself.OnAnimationLoopedEvent = NewEvent0()
+	pself.OnAnimationFinishedEvent = NewEvent0()
+}
+
+func (pself *Sprite) V_OnScreenExited() {
+	pself.OnScreenExitedEvent.Trigger()
+}
+
+func (pself *Sprite) OnScreenExited() {
+}
+
+func (pself *Sprite) V_OnScreenEntered() {
+	pself.OnScreenEnteredEvent.Trigger()
+}
+
+func (pself *Sprite) OnScreenEntered() {
+}
+
+func (pself *Sprite) V_OnFramesSetChanged() {
+	pself.OnFramesSetChangedEvent.Trigger()
+}
+
+func (pself *Sprite) OnFramesSetChanged() {
+}
+
+func (pself *Sprite) V_OnAnimationChanged() {
+	pself.OnAnimationChangedEvent.Trigger()
+}
+
+func (pself *Sprite) OnAnimationChanged() {
+}
+
+func (pself *Sprite) V_OnFrameChanged() {
+	pself.OnFrameChangedEvent.Trigger()
+}
+
+func (pself *Sprite) OnFrameChanged() {
+}
+
+func (pself *Sprite) V_OnAnimationLooped() {
+	pself.OnAnimationLoopedEvent.Trigger()
+}
+
+
+func (pself *Sprite) OnAnimationLooped() {
+}
+
+
+func (pself *Sprite) V_OnVfxFinished() {
+	pself.OnVfxFinishedEvent.Trigger()
+}
+
+func (pself *Sprite) OnVfxFinished() {
+}
+
+
+func (pself *Sprite) V_OnAnimationFinished() {
+	pself.OnAnimationFinishedEvent.Trigger()
+}
+
+func (pself *Sprite) OnAnimationFinished() {
 }
 
 func (pself *Sprite) V_OnTriggerEnter(other ISpriter) {
 	pself.OnTriggerEnterEvent.Trigger(other)
-	pself.OnTriggerEnter(other)
 }
 
 func (pself *Sprite) V_OnTriggerExit(other ISpriter) {
 	pself.OnTriggerExitEvent.Trigger(other)
-	pself.OnTriggerExit(other)
 }
 
 func (pself *Sprite) OnTriggerEnter(ISpriter) {}

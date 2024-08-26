@@ -346,7 +346,6 @@ func func_on_engine_destroy() {
 func func_on_scene_sprite_instantiated(id C.GDExtensionInt, typeName C.GdString) {
 	ch2 := (*C.char)(unsafe.Pointer(typeName))
 	name := C.GoString(ch2)
-	println("func_on_scene_sprite_instantiated", id, name)
 	if callbacks.OnSceneSpriteInstantiated != nil {
 		callbacks.OnSceneSpriteInstantiated(int64(id), name)
 	}

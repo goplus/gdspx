@@ -8,8 +8,6 @@ type Player struct {
 	Sprite
 	OnDieEvent *Event0
 
-	timer           float32
-	moveSpeed       float32
 	runSpeedDamping float32
 	PlayerMode      EPlayerMode
 }
@@ -29,7 +27,7 @@ var PlayModeAnimName = [...]string{
 }
 
 var (
-	SPEED         = float32(300)
+	SPEED         = float32(600)
 	JUMP_VELOCITY = float32(400.0)
 	PLAYER_MODE   = int64(1)
 	GRAVITY       = float32(-980)
@@ -38,7 +36,6 @@ var (
 )
 
 func (pself *Player) OnStart() {
-	pself.moveSpeed = 600
 	pself.OnDieEvent = NewEvent0()
 	pself.runSpeedDamping = 0.5
 	pself.PlayerMode = SMALL

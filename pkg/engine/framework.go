@@ -48,7 +48,6 @@ func RegisterSpriteType[T any]() {
 }
 
 func BindSceneInstantiatedSprite(id Object, type_name string) {
-	println("BindSceneInstantiatedSprite ", id, type_name)
 	if t, ok := name2SpriteType[type_name]; ok {
 		createSprite(t, id)
 	} else {

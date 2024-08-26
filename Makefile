@@ -23,6 +23,7 @@ else
 	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-$(GOOS)-$(GOARCH).so
 	GODOT="../../godot/bin/godot.linuxbsd.editor.x86_64"
 endif
+GODOT="godot"
 
 .PHONY: goenv build clean run
 
