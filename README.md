@@ -11,7 +11,7 @@
 
 ## run demo
 ```
-./scripts/run.sh
+./scripts/run.sh -i tutorial/01_aircraft
 ```
 
 Use the "WSAD" keys to move the player
