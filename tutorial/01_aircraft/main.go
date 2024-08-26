@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	game.RegisterTypes()
 	gdspx.LinkEngine(EngineCallbackInfo{
 		OnEngineStart:   game.OnStart,
 		OnEngineUpdate:  game.OnUpdate,

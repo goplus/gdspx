@@ -15,7 +15,7 @@ ifeq ($(GOOS),windows)
 	GODOT="../../godot/bin/godot.windows.editor.x86_64.exe"
 else ifeq ($(GOOS),darwin)
 	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-macos-$(GOARCH).framework
-	GODOT="../../godot/bin/godot.linuxbsd.editor.x86_64.app"
+	GODOT="../../godot/bin/godot.macos.editor.x86_64.app"
 else ifeq ($(GOOS),linux)
 	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-linux-$(GOARCH).so
 	GODOT="../../godot/bin/godot.linuxbsd.editor.x86_64"

@@ -13,7 +13,9 @@ var (
 	scoreText    *UiScore
 	restartPanel *UiNode
 )
+func RegisterTypes() {	
 
+}
 func OnStart() {
 	scoreText = CreateUI[UiScore]("Score")
 	restartPanel = CreateUI[UiNode]("Restart")

@@ -1,5 +1,7 @@
 #!/bin/bash
-cd tutorial/01_aircraft
+dstdir=tutorial/01_aircraft
+cp Makefile $dstdir
+cd $dstdir
 pwd
 if [ "$1" == "--init" ]; then
     make initload 

@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	RegisterTypes()
 	gdspx.LinkEngine(EngineCallbackInfo{
 		OnEngineStart:   onStart,
 		OnEngineUpdate:  onUpdate,
@@ -13,6 +14,9 @@ func main() {
 	})
 }
 
+func RegisterTypes() {	
+
+}
 func onStart() {
 	println("hello world!")
 }
