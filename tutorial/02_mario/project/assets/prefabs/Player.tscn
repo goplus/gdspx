@@ -1,7 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://dl1yh0nllbjk5"]
 
 [ext_resource type="Texture2D" uid="uid://d3jwm15et3t22" path="res://assets/sprites/Mario_Small_Idle.png" id="1_rbppx"]
-[ext_resource type="Shape2D" uid="uid://cta002cfcr0l2" path="res://assets/resources/collision_shapes/small_mario_collision_shape.tres" id="2_2r7cn"]
 [ext_resource type="Texture2D" uid="uid://ct8uqpacoxaq1" path="res://assets/sprites/Mario_Big_Idle.png" id="2_s57qn"]
 [ext_resource type="Texture2D" uid="uid://c3njnoy5owfh3" path="res://assets/sprites/Mario_Big_Jump.png" id="3_l1ryk"]
 [ext_resource type="Texture2D" uid="uid://crqgheu7ndoxs" path="res://assets/sprites/Mario_Big_Pole.png" id="4_1qh5m"]
@@ -270,8 +269,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovywh"]
+size = Vector2(13, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bimju"]
+size = Vector2(13.5, 17)
+
 [node name="Player" type="SpxSprite"]
 collision_mask = 22
+gid = 562640977979
+spx_type_name = "Player"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pie86")
@@ -282,14 +289,12 @@ script = ExtResource("25_84ua1")
 collision_mask = 60
 
 [node name="AreaCollisionShape" type="CollisionShape2D" parent="Area2D"]
-shape = ExtResource("2_2r7cn")
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_ovywh")
 
 [node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
-shape = ExtResource("2_2r7cn")
+position = Vector2(0.75, -1.5)
+shape = SubResource("RectangleShape2D_bimju")
 
 [node name="ShootingPoint" type="Marker2D" parent="."]
 position = Vector2(7, -5)
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
-[connection signal="frame_changed" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_frame_changed"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

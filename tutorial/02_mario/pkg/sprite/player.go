@@ -32,6 +32,9 @@ var (
 	PLAYER_MODE   = int64(1)
 	GRAVITY       = float32(-980)
 
+	minStompDegree = float32(35)
+	maxStompDegree = float32(145)
+
 	ShouldSyncCamera = true
 )
 
@@ -123,4 +126,21 @@ func (pself *Player) shoot() {
 }
 func (pself *Player) OnHit() {
 	pself.OnDieEvent.Trigger()
+}
+
+func (pself *Player) OnTriggerEnter(target ISpriter) {
+	if enemy, ok := target.(*Goomba); ok {
+		angleOfCollision := RadToDeg(pself.GetPosition().AngleToPoint(enemy.GetPosition()))
+		println("angleOfCollision", angleOfCollision)
+		if angleOfCollision > minStompDegree && maxStompDegree > angleOfCollision {
+			enemy.Die()
+		} else {
+			pself.Die()
+		}
+	}
+}
+
+func (pself *Player) Die() {
+	println("Player.Die")
+	pself.Destroy()
 }

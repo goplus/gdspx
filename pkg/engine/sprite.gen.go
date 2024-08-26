@@ -238,3 +238,11 @@ func (pself *Sprite) SetChildScale(path string, scale Vec2) {
 func (pself *Sprite) GetChildScale(path string) Vec2 {
 	return SpriteMgr.GetChildScale(pself.Id, path)
 }
+
+func (pself *Sprite) SetProcess(isOn bool)  {
+	SpriteMgr.SetProcess(pself.Id, isOn)
+}
+
+func (pself *Sprite) SetPhysicProcess(isOn bool)  {
+	SpriteMgr.SetPhysicProcess(pself.Id, isOn)
+}
