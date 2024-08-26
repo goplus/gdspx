@@ -9,7 +9,8 @@
     ```
 
 
-## run demo
+## run demo 
+Only tested on Linux & Windows, TODO Mac 
 ```
 ./scripts/run.sh -i tutorial/01_aircraft
 ```
