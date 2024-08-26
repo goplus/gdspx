@@ -1,14 +1,9 @@
 #!/bin/bash
 
-extra_init=""
-
-while getopts ":t:i:e" opt; do
+while getopts ":t:i:" opt; do
   case ${opt} in
     t )
       cmdname=$OPTARG
-      ;;
-    e )
-      extra_init="true"
       ;;
     i )
       dstdir=$OPTARG
@@ -35,10 +30,8 @@ fi
 cp Makefile $dstdir
 cd $dstdir
 
-if [ "$extra_init" == "true" ]; then
+if [ ! -d ".godot" ]; then
     make initload 
-    make run
-else
-    make $cmdname
 fi
+make $cmdname
 cd ../../

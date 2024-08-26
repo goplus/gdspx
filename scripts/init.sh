@@ -21,4 +21,4 @@ scons target=editor arch=x86_64
 cd ..
 
 echo "init and run demo project."
-./scripts/run.sh -e
+./scripts/run.sh
