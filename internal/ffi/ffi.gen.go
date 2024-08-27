@@ -41,6 +41,7 @@ type GDExtensionInterface struct {
 	SpxInputIsActionJustPressed GDExtensionSpxInputIsActionJustPressed
 	SpxInputIsActionJustReleased GDExtensionSpxInputIsActionJustReleased
 	SpxPhysicRaycast GDExtensionSpxPhysicRaycast
+	SpxPhysicCheckCollision GDExtensionSpxPhysicCheckCollision
 	SpxSceneChangeSceneToFile GDExtensionSpxSceneChangeSceneToFile
 	SpxSceneReloadCurrentScene GDExtensionSpxSceneReloadCurrentScene
 	SpxSceneUnloadCurrentScene GDExtensionSpxSceneUnloadCurrentScene
@@ -180,6 +181,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxInputIsActionJustPressed = (GDExtensionSpxInputIsActionJustPressed)(dlsymGD("spx_input_is_action_just_pressed"))
 	x.SpxInputIsActionJustReleased = (GDExtensionSpxInputIsActionJustReleased)(dlsymGD("spx_input_is_action_just_released"))
 	x.SpxPhysicRaycast = (GDExtensionSpxPhysicRaycast)(dlsymGD("spx_physic_raycast"))
+	x.SpxPhysicCheckCollision = (GDExtensionSpxPhysicCheckCollision)(dlsymGD("spx_physic_check_collision"))
 	x.SpxSceneChangeSceneToFile = (GDExtensionSpxSceneChangeSceneToFile)(dlsymGD("spx_scene_change_scene_to_file"))
 	x.SpxSceneReloadCurrentScene = (GDExtensionSpxSceneReloadCurrentScene)(dlsymGD("spx_scene_reload_current_scene"))
 	x.SpxSceneUnloadCurrentScene = (GDExtensionSpxSceneUnloadCurrentScene)(dlsymGD("spx_scene_unload_current_scene"))

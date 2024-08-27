@@ -96,6 +96,7 @@ type GDExtensionSpxInputIsActionPressed C.GDExtensionSpxInputIsActionPressed
 type GDExtensionSpxInputIsActionJustPressed C.GDExtensionSpxInputIsActionJustPressed
 type GDExtensionSpxInputIsActionJustReleased C.GDExtensionSpxInputIsActionJustReleased
 type GDExtensionSpxPhysicRaycast C.GDExtensionSpxPhysicRaycast
+type GDExtensionSpxPhysicCheckCollision C.GDExtensionSpxPhysicCheckCollision
 type GDExtensionSpxSceneChangeSceneToFile C.GDExtensionSpxSceneChangeSceneToFile
 type GDExtensionSpxSceneReloadCurrentScene C.GDExtensionSpxSceneReloadCurrentScene
 type GDExtensionSpxSceneUnloadCurrentScene C.GDExtensionSpxSceneUnloadCurrentScene
@@ -429,6 +430,28 @@ func CallPhysicRaycast(
 	
 	
 	return (GdObj)(ret_val)
+}
+func CallPhysicCheckCollision(
+	from GdVec2,
+	to GdVec2,
+	collision_mask GdInt,
+	collide_with_areas GdBool,
+	collide_with_bodies GdBool,
+	) GdBool {
+	arg0 := (C.GDExtensionSpxPhysicCheckCollision)(api.SpxPhysicCheckCollision)
+	arg1GdVec2 = (C.GdVec2)(from)
+	arg2GdVec2 = (C.GdVec2)(to)
+	arg3GdInt = (C.GdInt)(collision_mask)
+	arg4GdBool = (C.GdBool)(collide_with_areas)
+	arg5GdBool = (C.GdBool)(collide_with_bodies)
+	var ret_val C.GdBool 
+	C.cgo_callfn_GDExtensionSpxPhysicCheckCollision(arg0,arg1GdVec2,arg2GdVec2,arg3GdInt,arg4GdBool,arg5GdBool, &ret_val)
+	
+	
+	
+	
+	
+	return (GdBool)(ret_val)
 }
 func CallSceneChangeSceneToFile(
 	path GdString,

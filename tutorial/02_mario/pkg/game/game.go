@@ -14,7 +14,7 @@ func RegisterTypes() {
 	RegisterSpriteType[Enemy]()
 	RegisterSpriteType[Bullet]()
 	RegisterSpriteType[Goomba]()
-	
+
 }
 
 func OnStart() {

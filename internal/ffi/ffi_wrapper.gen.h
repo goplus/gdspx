@@ -87,6 +87,9 @@ void cgo_callfn_GDExtensionSpxInputIsActionJustReleased(const GDExtensionSpxInpu
 void cgo_callfn_GDExtensionSpxPhysicRaycast(const GDExtensionSpxPhysicRaycast fn, GdVec2 from, GdVec2 to, GdInt collision_mask, GdObj* ret_val) {
 	fn(from, to, collision_mask,ret_val);
 }
+void cgo_callfn_GDExtensionSpxPhysicCheckCollision(const GDExtensionSpxPhysicCheckCollision fn, GdVec2 from, GdVec2 to, GdInt collision_mask, GdBool collide_with_areas, GdBool collide_with_bodies, GdBool* ret_val) {
+	fn(from, to, collision_mask, collide_with_areas, collide_with_bodies,ret_val);
+}
 void cgo_callfn_GDExtensionSpxSceneChangeSceneToFile(const GDExtensionSpxSceneChangeSceneToFile fn, GdString path) {
 	fn(path);
 }

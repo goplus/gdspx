@@ -196,6 +196,15 @@ func (pself *physicMgr) Raycast(from Vec2, to Vec2, collision_mask int64) Object
 	retValue := CallPhysicRaycast(arg0, arg1, arg2)
 	return ToObject(retValue)
 }
+func (pself *physicMgr) CheckCollision(from Vec2, to Vec2, collision_mask int64, collide_with_areas bool, collide_with_bodies bool) bool  {
+	arg0 := ToGdVec2(from)
+	arg1 := ToGdVec2(to)
+	arg2 := ToGdInt(collision_mask)
+	arg3 := ToGdBool(collide_with_areas)
+	arg4 := ToGdBool(collide_with_bodies)
+	retValue := CallPhysicCheckCollision(arg0, arg1, arg2, arg3, arg4)
+	return ToBool(retValue)
+}
 func (pself *sceneMgr) ChangeSceneToFile(path string) {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString() 
