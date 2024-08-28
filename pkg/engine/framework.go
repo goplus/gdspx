@@ -31,9 +31,15 @@ func getUiPath(name string) string {
 	return "res://assets/ui/" + assetName + ".tscn"
 }
 
-func InitEngine() {
+func InternalInitEngine() {
 	initKeyCode()
 }
+
+func InternalUpdateEngine(delta float32) {
+	updateTimers(delta)
+	updateTweens(delta)
+}
+
 func ClearAllSprites() {
 	for _, sprite := range Id2Sprites {
 		sprite.Destroy()
@@ -45,6 +51,13 @@ func RegisterSpriteType[T any]() {
 	tType := reflect.TypeOf((*T)(nil)).Elem()
 	name := tType.Name()
 	name2SpriteType[name] = tType
+}
+
+func GetSprite(id Object) ISpriter {
+	if sprite, ok := Id2Sprites[id]; ok {
+		return sprite
+	}
+	return nil
 }
 
 func BindSceneInstantiatedSprite(id Object, type_name string) {

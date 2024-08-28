@@ -1,18 +1,17 @@
 package engine
 
 type Sprite struct {
-	Id                      Object
-	OnTriggerEnterEvent     *Event1[ISpriter]
-	OnTriggerExitEvent      *Event1[ISpriter]
-	OnScreenExitedEvent     *Event0
-	OnScreenEnteredEvent    *Event0
-	OnFramesSetChangedEvent *Event0
-	OnAnimationChangedEvent *Event0
-	OnFrameChangedEvent     *Event0
-	OnAnimationLoopedEvent  *Event0
+	Id                       Object
+	OnTriggerEnterEvent      *Event1[ISpriter]
+	OnTriggerExitEvent       *Event1[ISpriter]
+	OnScreenExitedEvent      *Event0
+	OnScreenEnteredEvent     *Event0
+	OnFramesSetChangedEvent  *Event0
+	OnAnimationChangedEvent  *Event0
+	OnFrameChangedEvent      *Event0
+	OnAnimationLoopedEvent   *Event0
 	OnAnimationFinishedEvent *Event0
-	OnVfxFinishedEvent *Event0
-	
+	OnVfxFinishedEvent       *Event0
 }
 
 func (pself *Sprite) onCreate() {
@@ -66,10 +65,8 @@ func (pself *Sprite) V_OnAnimationLooped() {
 	pself.OnAnimationLoopedEvent.Trigger()
 }
 
-
 func (pself *Sprite) OnAnimationLooped() {
 }
-
 
 func (pself *Sprite) V_OnVfxFinished() {
 	pself.OnVfxFinishedEvent.Trigger()
@@ -77,7 +74,6 @@ func (pself *Sprite) V_OnVfxFinished() {
 
 func (pself *Sprite) OnVfxFinished() {
 }
-
 
 func (pself *Sprite) V_OnAnimationFinished() {
 	pself.OnAnimationFinishedEvent.Trigger()
