@@ -24,7 +24,7 @@ else
 	GODOT="../../godot/bin/godot.linuxbsd.editor.x86_64"
 endif
 
-.PHONY: goenv build clean run
+.PHONY: goenv build clean run fmt gen editor
 
 goenv:
 	go env
@@ -47,6 +47,7 @@ ci_gen_project_files:
 	$(GODOT) --headless --verbose --path project/ --editor --quit
 
 run:
+	$(MAKE) fmt 
 	$(MAKE) build 
 	LOG_LEVEL=info \
 	GOTRACEBACK=1 \
@@ -69,6 +70,7 @@ initload:
 gen:
 	cd ../../cmd && go run . && cd ../tutorial/$(CURRENT_DIR_NAME) && \
 	$(MAKE) build
+	$(MAKE) fmt 
 	
 fmt:
 	cd ../.. && go fmt ./... && cd tutorial/$(CURRENT_DIR_NAME) 

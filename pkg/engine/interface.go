@@ -17,6 +17,8 @@ type ISpriter interface {
 	GetId() Object
 	SetId(Object)
 	Destroy() bool
+	GetPosition() Vec2
+	SetPosition(pos Vec2)
 
 	OnTriggerEnter(ISpriter)
 	V_OnTriggerEnter(ISpriter)
@@ -47,7 +49,6 @@ type ISpriter interface {
 
 	OnFramesSetChanged()
 	V_OnFramesSetChanged()
-
 }
 type IUiNode interface {
 	ILifeCycle
@@ -72,7 +73,6 @@ type IUiNode interface {
 
 	OnUiTextChanged(txt string)
 	V_OnUiTextChanged(txt string)
-
 }
 type EngineCallbackInfo struct {
 	OnEngineStart       func()
@@ -129,5 +129,4 @@ type CallbackInfo struct {
 	OnSpriteFrameChanged      func(int64)
 	OnSpriteAnimationChanged  func(int64)
 	OnSpriteFramesSetChanged  func(int64)
-
 }

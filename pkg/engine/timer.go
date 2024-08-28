@@ -11,7 +11,7 @@ var (
 	tempDelaySpriteCalls = make([]*delaySpriteCallInfo, 0)
 )
 
-func CheckTimers(delta float32) {
+func updateTimers(delta float32) {
 	tempDelaySpriteCalls = tempDelaySpriteCalls[:0]
 	count := len(delaySpriteCalls)
 	for i := 0; i < count; i++ {

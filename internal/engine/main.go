@@ -23,7 +23,7 @@ func Link(engineCallback EngineCallbackInfo) []IManager {
 	infos := bindCallbacks()
 	RegisterCallbacks(infos)
 	BindMgr(mgrs)
-	InitEngine()
+	InternalInitEngine()
 	return mgrs
 }
 
@@ -51,7 +51,7 @@ func onEngineUpdate(delta float32) {
 	if callback.OnEngineUpdate != nil {
 		callback.OnEngineUpdate(delta)
 	}
-	CheckTimers(delta)
+	InternalUpdateEngine(delta)
 }
 
 func onEngineFixedUpdate(delta float32) {
