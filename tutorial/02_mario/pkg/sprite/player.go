@@ -5,11 +5,12 @@ import (
 )
 
 type Player struct {
-	Sprite
+	Actor
 	OnDieEvent *Event0
 
 	runSpeedDamping float32
 	PlayerMode      EPlayerMode
+	isControlled    bool
 }
 
 type EPlayerMode int64
@@ -32,8 +33,8 @@ var (
 	PLAYER_MODE   = int64(1)
 	GRAVITY       = float32(-980)
 
-	minStompDegree = float32(35)
-	maxStompDegree = float32(145)
+	minStompDegree = float32(25)
+	maxStompDegree = float32(155)
 
 	ShouldSyncCamera = true
 )
@@ -42,8 +43,8 @@ func (pself *Player) OnStart() {
 	pself.OnDieEvent = NewEvent0()
 	pself.runSpeedDamping = 0.5
 	pself.PlayerMode = SMALL
+	pself.isControlled = false
 }
-
 func (pself *Player) OnUpdate(delta float32) {
 	if pself.GetPosX() > CameraMgr.GetCameraPosition().X && ShouldSyncCamera {
 		CameraMgr.SetCameraPosition(Vec2{pself.GetPosX(), CameraMgr.GetCameraPosition().Y})
@@ -51,6 +52,9 @@ func (pself *Player) OnUpdate(delta float32) {
 }
 
 func (pself *Player) OnFixedUpdate(delta float32) {
+	if pself.isControlled {
+		return
+	}
 	cameraRect := CameraMgr.GetViewportRect()
 	cameraLeftBound := CameraMgr.GetCameraPosition().X - cameraRect.Size.X/2/CameraMgr.GetCameraZoom().X
 
@@ -129,9 +133,12 @@ func (pself *Player) OnHit() {
 }
 
 func (pself *Player) OnTriggerEnter(target ISpriter) {
+	if pself.isControlled {
+		return
+	}
 	if enemy, ok := target.(*Goomba); ok {
 		angleOfCollision := RadToDeg(pself.GetPosition().AngleToPoint(enemy.GetPosition()))
-		println("angleOfCollision", angleOfCollision)
+		println("angleOfCollision", int(angleOfCollision))
 		if angleOfCollision > minStompDegree && maxStompDegree > angleOfCollision {
 			enemy.Die()
 		} else {
@@ -141,6 +148,9 @@ func (pself *Player) OnTriggerEnter(target ISpriter) {
 }
 
 func (pself *Player) Die() {
-	println("Player.Die")
-	pself.Destroy()
+	pself.DisablePhysic()
+	pself.isControlled = true
+	TweenPos2(pself, Vec2{pself.GetPosX(), pself.GetPosY() + 25}, 0.3, Vec2{pself.GetPosX(), pself.GetPosY() - 500}, 2, func() {
+		pself.Destroy()
+	})
 }

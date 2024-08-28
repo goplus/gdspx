@@ -1,11 +1,7 @@
 package sprite
 
-import (
-	. "godot-ext/gdspx/pkg/engine"
-)
-
 type Enemy struct {
-	Sprite
+	Actor
 }
 
 func (pself *Enemy) OnStart() {

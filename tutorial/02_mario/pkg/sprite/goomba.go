@@ -36,7 +36,11 @@ func (pself *Goomba) OnHit() {
 }
 
 func (pself *Goomba) Die() {
-	pself.Destroy()
+	pself.DisablePhysic()
+	pself.is_visible = false
+	TweenPos(pself, Vec2{pself.GetPosX(), pself.GetPosY() - 500}, 2, func() {
+		pself.Destroy()
+	})
 }
 
 func (pself *Goomba) OnScreenExited() {

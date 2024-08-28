@@ -272,6 +272,10 @@ position = Vector2(2936, 56)
 position = Vector2(416, 72)
 gid = -71872871789717448
 
+[node name="Goomba13" parent="Enemies" instance=ExtResource("9_gr86r")]
+position = Vector2(-83, 71)
+gid = 4775620378003977538
+
 [node name="Goomba12" parent="Enemies" instance=ExtResource("9_gr86r")]
 position = Vector2(60, 72)
 gid = 4775620378003977538

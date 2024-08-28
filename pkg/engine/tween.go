@@ -96,6 +96,7 @@ func TweenPos(node ISpriter, pos Vec2, duration float32, callback func()) {
 	info.curIndex = 0
 	info.timer = 0
 	info.infos = []posTweenInfo{{pos, duration, 0}}
+	info.updateStartInfo()
 	tweenInfos = append(tweenInfos, info)
 }
 
@@ -106,6 +107,7 @@ func TweenPos2(node ISpriter, pos Vec2, duration float32, pos2 Vec2, duration2 f
 	info.curIndex = 0
 	info.timer = 0
 	info.infos = []posTweenInfo{{pos, duration, 0}, {pos2, duration2, 0}}
+	info.updateStartInfo()
 	for i := 1; i < len(info.infos); i++ {
 		lastInfo := info.infos[i-1]
 		info.infos[i].startTime = lastInfo.startTime + lastInfo.duration
