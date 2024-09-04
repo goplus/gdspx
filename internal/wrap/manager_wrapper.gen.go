@@ -85,6 +85,7 @@ func createMgrs() []IManager {
 func (pself *audioMgr) PlayAudio(path string) {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	CallAudioPlayAudio(arg0)
 }
 func (pself *audioMgr) SetAudioVolume(volume float32) {
@@ -102,6 +103,7 @@ func (pself *audioMgr) IsMusicPlaying() bool {
 func (pself *audioMgr) PlayMusic(path string) {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	CallAudioPlayMusic(arg0)
 }
 func (pself *audioMgr) SetMusicVolume(volume float32) {
@@ -168,26 +170,31 @@ func (pself *inputMgr) GetKeyState(key int64) int64 {
 func (pself *inputMgr) GetAxis(neg_action string, pos_action string) float32 {
 	arg0Str := NewCString(neg_action)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	arg1Str := NewCString(pos_action)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	retValue := CallInputGetAxis(arg0, arg1)
 	return ToFloat32(retValue)
 }
 func (pself *inputMgr) IsActionPressed(action string) bool {
 	arg0Str := NewCString(action)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	retValue := CallInputIsActionPressed(arg0)
 	return ToBool(retValue)
 }
 func (pself *inputMgr) IsActionJustPressed(action string) bool {
 	arg0Str := NewCString(action)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	retValue := CallInputIsActionJustPressed(arg0)
 	return ToBool(retValue)
 }
 func (pself *inputMgr) IsActionJustReleased(action string) bool {
 	arg0Str := NewCString(action)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	retValue := CallInputIsActionJustReleased(arg0)
 	return ToBool(retValue)
 }
@@ -210,6 +217,7 @@ func (pself *physicMgr) CheckCollision(from Vec2, to Vec2, collision_mask int64,
 func (pself *sceneMgr) ChangeSceneToFile(path string) {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	CallSceneChangeSceneToFile(arg0)
 }
 func (pself *sceneMgr) ReloadCurrentScene() int64 {
@@ -237,6 +245,7 @@ func (pself *spriteMgr) SetChildPosition(obj Object, path string, pos Vec2) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	arg2 := ToGdVec2(pos)
 	CallSpriteSetChildPosition(arg0, arg1, arg2)
 }
@@ -244,6 +253,7 @@ func (pself *spriteMgr) GetChildPosition(obj Object, path string) Vec2 {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	retValue := CallSpriteGetChildPosition(arg0, arg1)
 	return ToVec2(retValue)
 }
@@ -251,6 +261,7 @@ func (pself *spriteMgr) SetChildRotation(obj Object, path string, rot float32) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	arg2 := ToGdFloat(rot)
 	CallSpriteSetChildRotation(arg0, arg1, arg2)
 }
@@ -258,6 +269,7 @@ func (pself *spriteMgr) GetChildRotation(obj Object, path string) float32 {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	retValue := CallSpriteGetChildRotation(arg0, arg1)
 	return ToFloat32(retValue)
 }
@@ -265,6 +277,7 @@ func (pself *spriteMgr) SetChildScale(obj Object, path string, scale Vec2) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	arg2 := ToGdVec2(scale)
 	CallSpriteSetChildScale(arg0, arg1, arg2)
 }
@@ -272,12 +285,14 @@ func (pself *spriteMgr) GetChildScale(obj Object, path string) Vec2 {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	retValue := CallSpriteGetChildScale(arg0, arg1)
 	return ToVec2(retValue)
 }
 func (pself *spriteMgr) CreateSprite(path string) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	retValue := CallSpriteCreateSprite(arg0)
 	return ToObject(retValue)
 }
@@ -340,6 +355,7 @@ func (pself *spriteMgr) SetTexture(obj Object, path string) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	CallSpriteSetTexture(arg0, arg1)
 }
 func (pself *spriteMgr) GetTexture(obj Object) string {
@@ -371,6 +387,7 @@ func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_custom_scale float
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(p_name)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	arg2 := ToGdFloat(p_custom_scale)
 	arg3 := ToGdBool(p_from_end)
 	CallSpritePlayAnim(arg0, arg1, arg2, arg3)
@@ -379,6 +396,7 @@ func (pself *spriteMgr) PlayBackwardsAnim(obj Object, p_name string) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(p_name)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	CallSpritePlayBackwardsAnim(arg0, arg1)
 }
 func (pself *spriteMgr) PauseAnim(obj Object) {
@@ -398,6 +416,7 @@ func (pself *spriteMgr) SetAnim(obj Object, p_name string) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(p_name)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	CallSpriteSetAnim(arg0, arg1)
 }
 func (pself *spriteMgr) GetAnim(obj Object) string {
@@ -668,34 +687,41 @@ func (pself *spriteMgr) IsTriggerEnabled(obj Object) bool {
 func (pself *uiMgr) CreateNode(path string) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	retValue := CallUiCreateNode(arg0)
 	return ToObject(retValue)
 }
 func (pself *uiMgr) CreateButton(path string, text string) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	arg1Str := NewCString(text)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	retValue := CallUiCreateButton(arg0, arg1)
 	return ToObject(retValue)
 }
 func (pself *uiMgr) CreateLabel(path string, text string) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	arg1Str := NewCString(text)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	retValue := CallUiCreateLabel(arg0, arg1)
 	return ToObject(retValue)
 }
 func (pself *uiMgr) CreateImage(path string) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	retValue := CallUiCreateImage(arg0)
 	return ToObject(retValue)
 }
 func (pself *uiMgr) CreateToggle(path string, value bool) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	arg1 := ToGdBool(value)
 	retValue := CallUiCreateToggle(arg0, arg1)
 	return ToObject(retValue)
@@ -703,6 +729,7 @@ func (pself *uiMgr) CreateToggle(path string, value bool) Object {
 func (pself *uiMgr) CreateSlider(path string, value float32) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	arg1 := ToGdFloat(value)
 	retValue := CallUiCreateSlider(arg0, arg1)
 	return ToObject(retValue)
@@ -710,8 +737,10 @@ func (pself *uiMgr) CreateSlider(path string, value float32) Object {
 func (pself *uiMgr) CreateInput(path string, text string) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
 	arg1Str := NewCString(text)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	retValue := CallUiCreateInput(arg0, arg1)
 	return ToObject(retValue)
 }
@@ -729,6 +758,7 @@ func (pself *uiMgr) SetText(obj Object, text string) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(text)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	CallUiSetText(arg0, arg1)
 }
 func (pself *uiMgr) GetText(obj Object) string {
@@ -740,6 +770,7 @@ func (pself *uiMgr) SetTexture(obj Object, path string) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)
 	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
 	CallUiSetTexture(arg0, arg1)
 }
 func (pself *uiMgr) GetTexture(obj Object) string {

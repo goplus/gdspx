@@ -282,7 +282,7 @@ func getManagerFuncBody(function *clang.TypedefFunction) string {
 			sb.WriteString(")")
 			sb.WriteString("\n" + prefixTab)
 			sb.WriteString(argName + " := " + argName + "Str.ToGdString() \n")
-			sb.WriteString("\t//defer " + argName + "Str.Destroy() ")
+			sb.WriteString("\tdefer " + argName + "Str.Destroy() ")
 
 		default:
 			sb.WriteString(argName + " := ")
@@ -311,6 +311,7 @@ func getManagerFuncBody(function *clang.TypedefFunction) string {
 		}
 	}
 	sb.WriteString(")")
+
 	if function.ReturnType.Name != "void" {
 		sb.WriteString("\n" + prefixTab)
 		sb.WriteString("return ")
