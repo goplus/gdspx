@@ -273,6 +273,7 @@ type initialization = C.GDExtensionInitialization
 type initializationLevel = C.GDExtensionInitializationLevel
 
 func doInitialization(init *initialization) {
+	stringInitConstructorBindings()
 	C.initialization(init)
 }
 func getProcAddress(handle uintptr, name string) unsafe.Pointer {
