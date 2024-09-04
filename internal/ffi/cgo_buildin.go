@@ -1,6 +1,7 @@
 package ffi
 
 import (
+	"runtime"
 	"unsafe"
 )
 
@@ -71,8 +72,7 @@ func (x *GDExtensionBuiltinInterface) loadProcAddresses() {
 	x.SpxVariantGetPtrDestructor = (GDExtensionSpxVariantGetPtrDestructor)(dlsymGD("spx_variant_get_ptr_destructor"))
 }
 
-// TODO(tanjiepeng) support infinite string length
-type CString [128]uint8
+type CString [8]uint8
 
 func (c *CString) ToGdString() GdString {
 	return (GdString)(unsafe.Pointer(c))
@@ -83,10 +83,6 @@ func (c *CString) NativeConstPtr() GDExtensionConstTypePtr {
 
 func (c *CString) NativePtr() GDExtensionTypePtr {
 	return (GDExtensionTypePtr)(unsafe.Pointer(c))
-}
-
-func FromGdString(gdstr GdString) *CString {
-	return (*CString)(unsafe.Pointer(&gdstr))
 }
 
 type stringMethodBindings struct {
@@ -113,6 +109,7 @@ func NewCStringEmpty() CString {
 	cx := CString{}
 	ptr := (GDExtensionUninitializedTypePtr)(unsafe.Pointer(cx.NativePtr()))
 	CallBuiltinConstructor(globalStringMethodBindings.constructor, ptr)
+	runtime.KeepAlive(cx)
 	return cx
 }
 
@@ -120,6 +117,7 @@ func NewCStringWithLatin1Chars(content string) CString {
 	cx := CString{}
 	ptr := (GDExtensionUninitializedStringPtr)(unsafe.Pointer(cx.NativePtr()))
 	CallStringNewWithLatin1Chars(ptr, content)
+	runtime.KeepAlive(cx)
 	return cx
 }
 
@@ -127,6 +125,7 @@ func NewCStringWithUtf8Chars(content string) CString {
 	cx := CString{}
 	ptr := (GDExtensionUninitializedStringPtr)(unsafe.Pointer(cx.NativePtr()))
 	CallStringNewWithUtf8Chars(ptr, content)
+	runtime.KeepAlive(cx)
 	return cx
 }
 
@@ -140,21 +139,13 @@ func (cx *CString) String() string {
 	return cx.ToUtf8()
 }
 
-func (cx *CString) ToAscii() string {
-	size := CallStringToLatin1Chars((GDExtensionConstStringPtr)(cx.NativeConstPtr()), (*Char)(nullptr), (GdInt)(0))
-	cstrSlice := make([]C.char, int(size)+1)
-	cstr := unsafe.SliceData(cstrSlice)
-	CallStringToLatin1Chars((GDExtensionConstStringPtr)(cx.NativeConstPtr()), (*Char)(cstr), (GdInt)(size+1))
-	ret := C.GoString(cstr)[:]
-	return ret
-}
-
 func (cx *CString) ToUtf8() string {
 	size := CallStringToUtf8Chars((GDExtensionConstStringPtr)(cx.NativeConstPtr()), (*Char)(nullptr), (GdInt)(0))
 	cstrSlice := make([]C.char, int(size)+1)
 	cstr := unsafe.SliceData(cstrSlice)
 	CallStringToUtf8Chars((GDExtensionConstStringPtr)(cx.NativeConstPtr()), (*Char)(cstr), (GdInt)(size+1))
 	ret := C.GoString(cstr)[:]
+	runtime.KeepAlive(cstr)
 	return ret
 }
 

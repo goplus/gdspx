@@ -26,7 +26,7 @@ func (pself *Goomba) OnUpdate(delta float32) {
 	if !pself.IsOnFloor() {
 		pself.AddVelY(-pself.verticalSpeed * delta)
 	}
-	if PhysicMgr.CheckCollision(pself.GetPosition(), pself.GetPosition().AddX(Signf(pself.horizontalSpeed)*12), CollisionLayer_Pipe, true, true) {
+	if PhysicMgr.CheckCollision(pself.GetPosition(), pself.GetPosition().AddX(Signf(pself.horizontalSpeed)*6), CollisionLayer_Pipe, true, true) {
 		println("Collision")
 		pself.horizontalSpeed = -pself.horizontalSpeed
 	}

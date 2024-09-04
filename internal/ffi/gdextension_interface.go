@@ -97,11 +97,6 @@ func ToString(val GdString) string {
 	cstrPtr := (*CString)(unsafe.Pointer(&val))
 	return cstrPtr.ToUtf8()
 }
-func ToGdString(val string) GdString {
-	cstr := NewCString(val)
-	// TODO (jiepengtan): free cstring
-	return cstr.ToGdString()
-}
 
 type GDExtensionSpxCallbackInfoPtr C.GDExtensionSpxCallbackInfoPtr
 type SpxCallbackInfo C.SpxCallbackInfo
