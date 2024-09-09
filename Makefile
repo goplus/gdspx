@@ -13,7 +13,6 @@ TEST_MAIN=main.go
 ifeq ($(GOOS),windows)
 	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-windows-$(GOARCH).dll
 	GODOT="../../godot/bin/godot.windows.editor.dev.x86_64.exe"
-	GODOT="../../godot/bin/godot.bat"
 else ifeq ($(GOOS),darwin)
 	TEST_BINARY_PATH=$(OUTPUT_PATH)/gdspx-macos-$(GOARCH).framework
 	GODOT="../../godot/bin/godot.macos.editor.dev.x86_64"
