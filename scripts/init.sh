@@ -1,5 +1,4 @@
 #!/bin/bash
-
 pip install scons
 pip install ninja 
 
@@ -17,7 +16,13 @@ else
     echo "Godot directory already exists."
 fi
 #  dev_build=yes
-scons target=editor arch=x86_64
+
+if [ "$OS" = "Windows_NT" ]; then
+    scons target=editor arch=x86_64 vsproj=yes dev_build=yes
+    echo '"godot.windows.editor.dev.x86_64.exe" %*' > bin/godot.bat
+else
+    scons target=editor arch=x86_64 dev_build=yes
+fi
 cd ..
 
 echo "init and run demo project."
