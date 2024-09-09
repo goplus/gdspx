@@ -46,7 +46,7 @@ func fileCopy(src, dst string) error {
 	return dstFile.Sync()
 }
 func GenerateHeader(projectPath string) {
-	dir := filepath.Join(projectPath, "../../godot/core/extension")
+	dir := filepath.Join(projectPath, "../godot/core/extension")
 	_, err := os.Stat(dir)
 	if os.IsNotExist(err) {
 		println("dir not exist", dir)
@@ -56,7 +56,7 @@ func GenerateHeader(projectPath string) {
 	generateSpxExtHeader(dir, outputFile, true)
 }
 func Generate(projectPath string, ast clang.CHeaderFileAST) {
-	dir := filepath.Join(projectPath, "../../godot/core/extension")
+	dir := filepath.Join(projectPath, "../godot/core/extension")
 	_, err := os.Stat(dir)
 	if os.IsNotExist(err) {
 		println("dir not exist", dir)
