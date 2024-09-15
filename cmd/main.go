@@ -12,6 +12,7 @@ import (
 	"godot-ext/gdspx/cmd/gdextensionparser/clang"
 	"godot-ext/gdspx/cmd/generate/ffi"
 	"godot-ext/gdspx/cmd/generate/gdext"
+	"godot-ext/gdspx/cmd/generate/webffi"
 
 	"github.com/spf13/cobra"
 )
@@ -106,6 +107,7 @@ var rootCmd = &cobra.Command{
 				println("Generating gdextension C wrapper functions...")
 			}
 			ffi.Generate(packagePath, ast)
+			webffi.Generate(packagePath, ast)
 			gdext.Generate(packagePath, ast)
 		}
 

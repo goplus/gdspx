@@ -1,7 +1,6 @@
 package engine
 
 import (
-	"godot-ext/gdspx/internal/ffi"
 	. "godot-ext/gdspx/internal/wrap"
 	. "godot-ext/gdspx/pkg/engine"
 )
@@ -13,8 +12,8 @@ var (
 	timer    = float32(0)
 )
 
-func Link(engineCallback EngineCallbackInfo) []IManager {
-	ok := ffi.Link()
+func Link(engineCallback EngineCallbackInfo) {
+	ok := LinkFFI()
 	if !ok {
 		panic("godot bind symbol failed!")
 	}
@@ -24,7 +23,7 @@ func Link(engineCallback EngineCallbackInfo) []IManager {
 	RegisterCallbacks(infos)
 	BindMgr(mgrs)
 	InternalInitEngine()
-	return mgrs
+	OnLinked()
 }
 
 func onEngineStart() {

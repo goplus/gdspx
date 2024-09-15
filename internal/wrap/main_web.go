@@ -1,9 +1,9 @@
-//go:build platform_pc
+//go:build platform_web
 
 package wrap
 
 import (
-	"godot-ext/gdspx/internal/ffi"
+	"godot-ext/gdspx/internal/webffi"
 	. "godot-ext/gdspx/pkg/engine"
 )
 
@@ -23,9 +23,14 @@ func addManager[T IManager](mgr T) T {
 	return mgr
 }
 func LinkFFI() bool {
-	return ffi.Link()
+	return webffi.Link()
 }
+
 func OnLinked() {
+	println("OnLinked block forever")
+	// wasm need Block forever
+	c := make(chan struct{})
+	<-c
 }
 
 func CreateMgrs() []IManager {
@@ -33,5 +38,5 @@ func CreateMgrs() []IManager {
 }
 
 func RegisterCallbacks(callbacks CallbackInfo) {
-	ffi.BindCallback(callbacks)
+	webffi.BindCallback(callbacks)
 }

@@ -21,6 +21,9 @@ var (
 	//go:embed gdextension_spx_ext.cpp.tmpl
 	gdSpxExtCpp string
 
+	//go:embed godot_js_spx.cpp.tmpl
+	gdJsSpxCpp string
+
 	//go:embed gdextension_spx_ext.h.tmpl
 	gdSpxExtH string
 )
@@ -74,6 +77,14 @@ func Generate(projectPath string, ast clang.CHeaderFileAST) {
 	outputFile = filepath.Join(projectPath, RelDir, "gdextension_spx_ext.h")
 	generateSpxExtHeader(dir, outputFile, false)
 	fileCopy(outputFile, filepath.Join(dir, "gdextension_spx_ext.h"))
+
+	err = generateGdCppFile(projectPath, gdJsSpxCpp, ast, "godot_js_spx.cpp")
+	if err != nil {
+		panic(err)
+	}
+	outputFile = filepath.Join(projectPath, RelDir, "godot_js_spx.cpp")
+	fileCopy(outputFile, filepath.Join(filepath.Join(projectPath, "../godot/platform/web"), "godot_js_spx.cpp"))
+	os.Remove(outputFile)
 }
 
 func generateGdCppFile(projectPath string, templateStr string, ast clang.CHeaderFileAST, outputFileName string) error {
