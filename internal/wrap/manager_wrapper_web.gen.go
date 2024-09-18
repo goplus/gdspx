@@ -334,10 +334,8 @@ func (pself *spriteMgr) GetTexture(obj Object) string {
 	return JsToGdString(_retValue)
 }
 func (pself *spriteMgr) SetVisible(obj Object, visible bool) {
-	println("======== SetVisible ")
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdBool(visible)
-	println(obj, " SetVisible", visible)
 	API.SpxSpriteSetVisible.Invoke(arg0, arg1)
 }
 func (pself *spriteMgr) GetVisible(obj Object) bool {
