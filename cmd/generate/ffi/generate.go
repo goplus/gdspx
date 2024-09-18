@@ -8,9 +8,11 @@ import (
 	_ "embed"
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 	"text/template"
+	"unicode"
 
 	"godot-ext/gdspx/cmd/gdextensionparser/clang"
 	. "godot-ext/gdspx/cmd/generate/common"
@@ -32,6 +34,8 @@ var (
 	wrapManagerGoFileText string
 	//go:embed interface.go.tmpl
 	interfaceGoFileText string
+	//go:embed sprite.go.tmpl
+	implGoFileText string
 )
 
 func Generate(projectPath string, ast clang.CHeaderFileAST) {
@@ -56,6 +60,13 @@ func Generate(projectPath string, ast clang.CHeaderFileAST) {
 		panic(err)
 	}
 
+	clsNames := []string{"Sprite"} // add other classes if needed, Audio, Camera, Input, etc
+	for _, clsName := range clsNames {
+		err = GenerateManagerImplGoFile(projectPath, ast, clsName)
+		if err != nil {
+			panic(err)
+		}
+	}
 }
 
 func GenerateGDExtensionWrapperHeaderFile(projectPath string, ast clang.CHeaderFileAST) error {
@@ -236,6 +247,39 @@ func GenerateManagerInterfaceGoFile(projectPath string, ast clang.CHeaderFileAST
 	return err
 }
 
+type ImplData struct {
+	Ast     clang.CHeaderFileAST
+	Methods []clang.TypedefFunction
+	ClsName string
+}
+
+func GenerateManagerImplGoFile(projectPath string, ast clang.CHeaderFileAST, clsName string) error {
+	funcs := template.FuncMap{
+		"getManagerImpl": getManagerImpl,
+	}
+
+	genFile := strings.ToLower(clsName) + ".gen.go"
+	tmpl, err := template.New(genFile).
+		Funcs(funcs).
+		Parse(implGoFileText)
+	if err != nil {
+		return err
+	}
+	var b bytes.Buffer
+
+	methods := ast.CollectFunctionsOfClass(clsName)
+	sort.Sort(ByName(methods))
+	err = tmpl.Execute(&b, ImplData{Ast: ast, Methods: methods, ClsName: clsName})
+	if err != nil {
+		return err
+	}
+	implFileName := filepath.Join(projectPath, RelDir, "../../pkg/engine/"+genFile)
+	f, err := os.Create(implFileName)
+	f.Write(b.Bytes())
+	f.Close()
+	return err
+}
+
 func getManagerFuncName(function *clang.TypedefFunction) string {
 	prefix := "GDExtensionSpx"
 	sb := strings.Builder{}
@@ -343,5 +387,56 @@ func getManagerInterface(function *clang.TypedefFunction) string {
 		typeName := GetFuncParamTypeString(function.ReturnType.Name)
 		sb.WriteString(" " + typeName + " ")
 	}
+	return sb.String()
+}
+
+type ByName []clang.TypedefFunction
+
+func (arr ByName) Len() int      { return len(arr) }
+func (arr ByName) Swap(i, j int) { arr[i], arr[j] = arr[j], arr[i] }
+func (arr ByName) Less(i, j int) bool {
+	return arr[i].Name < arr[j].Name
+}
+
+func getManagerImpl(function *clang.TypedefFunction, clsName string) string {
+	prefix := "GDExtensionSpx"
+	sb := strings.Builder{}
+	lowcaseMgr := GetManagerName(function.Name)
+	mgrName := string(unicode.ToUpper(rune(lowcaseMgr[0]))) + lowcaseMgr[1:]
+	funcName := function.Name[len(prefix)+len(mgrName):]
+	sb.WriteString("func (pself *" + clsName + ") " + funcName + "(")
+	count := len(function.Arguments)
+	for i, arg := range function.Arguments {
+		if i == 0 {
+			continue
+		}
+		sb.WriteString(arg.Name)
+		sb.WriteString(" ")
+		typeName := GetFuncParamTypeString(arg.Type.Primative.Name)
+		sb.WriteString(typeName)
+		if i != count-1 {
+			sb.WriteString(", ")
+		}
+	}
+	sb.WriteString(") ")
+	anyRet := function.ReturnType.Name != "void"
+	if anyRet {
+		typeName := GetFuncParamTypeString(function.ReturnType.Name)
+		sb.WriteString(typeName + " ")
+	}
+	sb.WriteString("{\n")
+	sb.WriteString("\t")
+	if anyRet {
+		sb.WriteString("return ")
+	}
+	sb.WriteString(mgrName + "Mgr." + funcName + "(pself.Id")
+	for i, arg := range function.Arguments {
+		if i == 0 {
+			continue
+		}
+		sb.WriteString(", " + arg.Name)
+	}
+	sb.WriteString(")\n")
+	sb.WriteString("}\n")
 	return sb.String()
 }
