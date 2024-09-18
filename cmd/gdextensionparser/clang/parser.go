@@ -43,6 +43,27 @@ func (a CHeaderFileAST) CollectFunctions() []TypedefFunction {
 	}
 	return fns
 }
+
+func (a CHeaderFileAST) CollectFunctionsOfClass(className string) []TypedefFunction {
+	allFns := a.CollectFunctions()
+
+	fns := make([]TypedefFunction, 0, len(allFns))
+
+	prefix := "GDExtensionSpx" + className
+	for _, fn := range allFns {
+		if strings.HasPrefix(fn.Name, prefix) &&
+			!strings.HasPrefix(fn.Name, "GDExtensionSpxCallback") &&
+			!strings.HasPrefix(fn.Name, "GDExtensionSpxString") &&
+			!strings.HasPrefix(fn.Name, "GDExtensionSpxVariant") &&
+			!strings.HasPrefix(fn.Name, "GDExtensionSpxGlobal") &&
+			!slices.Contains(legacyGDExtentionInterfaceFunctionNames, fn.Name) {
+			fns = append(fns, fn)
+		}
+	}
+
+	return fns
+}
+
 func (a CHeaderFileAST) CollectGDExtensionManagerFunctions(managerName string) []TypedefFunction {
 	allFns := a.CollectFunctions()
 
@@ -81,23 +102,31 @@ func (a CHeaderFileAST) CollectGDExtensionInterfaceFunctions() []TypedefFunction
 	return fns
 }
 
-func (a CHeaderFileAST) CollectFunctionsOfClass(className string) []TypedefFunction {
+func (a CHeaderFileAST) CollectGDExtensionISpriteFunctions() []TypedefFunction {
 	allFns := a.CollectFunctions()
 
 	fns := make([]TypedefFunction, 0, len(allFns))
 
-	prefix := "GDExtensionSpx" + className
 	for _, fn := range allFns {
-		if strings.HasPrefix(fn.Name, prefix) &&
-			!strings.HasPrefix(fn.Name, "GDExtensionSpxCallback") &&
-			!strings.HasPrefix(fn.Name, "GDExtensionSpxString") &&
-			!strings.HasPrefix(fn.Name, "GDExtensionSpxVariant") &&
-			!strings.HasPrefix(fn.Name, "GDExtensionSpxGlobal") &&
+		if strings.HasPrefix(fn.Name, "GDExtensionSpxSprite") &&
 			!slices.Contains(legacyGDExtentionInterfaceFunctionNames, fn.Name) {
 			fns = append(fns, fn)
 		}
 	}
 
+	return fns
+}
+func (a CHeaderFileAST) CollectGDExtensionICallbackFunctions() []TypedefFunction {
+	allFns := a.CollectFunctions()
+
+	fns := make([]TypedefFunction, 0, len(allFns))
+
+	for _, fn := range allFns {
+		if strings.HasPrefix(fn.Name, "GDExtensionSpxCallback") &&
+			!slices.Contains(legacyGDExtentionInterfaceFunctionNames, fn.Name) {
+			fns = append(fns, fn)
+		}
+	}
 	return fns
 }
 
@@ -286,6 +315,29 @@ func (a Argument) IsPinnable() bool {
 	}
 
 	return false
+}
+func (a Argument) CStylePtrString(i int) string {
+	if a.Type.Function != nil {
+		return a.Type.CStyleString()
+	}
+
+	name := a.ResolvedName(i)
+	typeName := a.Type.CStyleString()
+	typeName = typeName + "*"
+	return fmt.Sprintf("%s %s", typeName, name)
+}
+func (a Argument) ResolvedPtrName(i int) string {
+	if a.Type.Function != nil && a.Type.Function.Name != "" {
+		return a.Type.Function.Name
+	}
+	retStr := ""
+	if a.Name != "" {
+		retStr = a.Name
+	} else {
+		retStr = fmt.Sprintf("arg_%d", i)
+	}
+	retStr = "*" + retStr
+	return retStr
 }
 
 func (a Argument) CStyleString(i int) string {

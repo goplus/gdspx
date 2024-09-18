@@ -1,0 +1,4 @@
+*.so
+*.dylib
+*.gdextension
+*export_presets.cfg
