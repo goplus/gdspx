@@ -4,8 +4,8 @@ GOOS?=$(shell go env GOOS)
 GOARCH?=$(shell go env GOARCH)
 CLANG_FORMAT?=$(shell which clang-format | which clang-format-10 | which clang-format-11 | which clang-format-12)
 CURRENT_PATH=$(shell pwd)
-PROJECT_PATH?="./tutorial/01_aircraft"  # Use ?= for default value
-.PHONY: engine init run fmt gen server wasm web pc editor
+PROJECT_PATH?="./tutorial/02_mario"  # Use ?= for default value
+.PHONY: engine init run fmt gen server wasm web pc editor upload
 
 # Check if an argument is passed to 'run' target, only then override PROJECT_PATH
 override PROJECT_PATH := $(if $(word 2,$(MAKECMDGOALS)),$(word 2,$(MAKECMDGOALS)),$(PROJECT_PATH))
@@ -61,3 +61,6 @@ gen:
 	cd ./cmd && go run . && cd $(CURRENT_PATH) && \
 	$(MAKE) wasm
 	$(MAKE) fmt 
+	
+upload:
+	./webserver/upload.sh 

@@ -39,18 +39,18 @@ mkdir -p $LIB_DIR
 
 if [ "$PLATFORM" = "web" ]; then
     # update extension list
-    mkdir -p ./builds/web_go
+    mkdir -p ./builds/games
 
     # Build wasm
     cd "$PROJECT_PATH" || { echo "Project path not found"; exit 1; }
     echo "Building Go wasm"
-    GOOS=js GOARCH=wasm go build -tags platform_web -o "$CURRENT_PATH/builds/web_go/gdspx.wasm"
+    GOOS=js GOARCH=wasm go build -tags platform_web -o "$CURRENT_PATH/builds/games/gdspx.wasm"
     cd $CURRENT_PATH
 
     # Export to web if enabled
     if [ "$EXPORT_WEB" = true ]; then
         echo "================ EXPORT_WEB ====================="
-        $GODOT --headless --quit --path $GD_PROJ_DIR --export-debug "Web" "$CURRENT_PATH/builds/web_go/index.html"
+        $GODOT --headless --quit --path $GD_PROJ_DIR --export-debug "Web" "$CURRENT_PATH/builds/games/index.html"
     fi
 elif  [ "$PLATFORM" = "pc" ]; then
     # update extension list

@@ -8,3 +8,6 @@ cmd/_debug_parsed_ast.json
 internal/ffi/_temp_output*.h
 /godot
 /builds
+/webtools
+/bin
+/tools/publish
