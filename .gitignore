@@ -11,3 +11,4 @@ internal/ffi/_temp_output*.h
 /webtools
 /bin
 /tools/publish
+/test/*

@@ -131,8 +131,8 @@ func wrap() error {
 		return nil
 	case "run", "editor", "export", "build":
 		buildDll(libPath)
-	case "build_web", "export_web":
-		buildWasm(path.Join(project, "lib", "gdspx.wasm"))
+	case "buildweb", "exportweb":
+		buildWasm(project)
 	}
 
 	switch os.Args[1] {
@@ -149,9 +149,12 @@ func buildDll(path string) {
 	runGolang(nil, "build", "-tags", "platform_pc", "-buildmode=c-shared", "-o", path)
 }
 
-func buildWasm(path string) {
+func buildWasm(project string) {
+	dir := path.Join(project, "../build/web/")
+	os.MkdirAll(dir, 0755)
+	filePath := path.Join(dir, "gdspx.wasm")
 	envVars := []string{"GOOS=js", "GOARCH=wasm"}
-	runGolang(envVars, "build", "-tags", "platform_web", "-o", path)
+	runGolang(envVars, "build", "-tags", "platform_web", "-o", filePath)
 }
 
 func setup(gd4spxPath string, wd, project, libraryName string) error {
@@ -187,13 +190,12 @@ func setup(gd4spxPath string, wd, project, libraryName string) error {
 func runGolang(envVars []string, args ...string) error {
 	golang := exec.Command("go", args...)
 
-	if envVars == nil {
+	if envVars != nil {
 		golang.Env = append(os.Environ(), envVars...)
 	}
 	golang.Stderr = os.Stderr
 	golang.Stdout = os.Stdout
 	golang.Stdin = os.Stdin
-
 	return golang.Run()
 }
 func runGd4spx(gd4spxPath string, project string, args string) error {
