@@ -86,6 +86,7 @@ func wrap() error {
 		return errors.New("gd4spx requires an amd64, or an arm64 system")
 	}
 	gd4spxPath, err := useGd4spx()
+
 	if err != nil {
 		return fmt.Errorf("gd4spx requires Godot v%s to be installed as a binary at $GOPATH/bin/gd4spx-%s: %w", version, err)
 	}
@@ -104,6 +105,7 @@ func wrap() error {
 			return err
 		}
 	}
+
 	curDir := targetDir
 	project := path.Join(curDir, "project")
 	if GOOS == "android" {
@@ -132,12 +134,14 @@ func wrap() error {
 	case "build_web", "export_web":
 		buildWasm(path.Join(project, "lib", "gdspx.wasm"))
 	}
+
 	switch os.Args[1] {
 	case "run":
 		return runGd4spx(gd4spxPath, project, "")
 	case "editor":
 		return runGd4spx(gd4spxPath, project, "-e")
 	}
+
 	return nil
 }
 
@@ -151,6 +155,8 @@ func buildWasm(path string) {
 }
 
 func setup(gd4spxPath string, wd, project, libraryName string) error {
+	_, err := os.Stat(project + "/.godot")
+	hasInited := !os.IsNotExist(err)
 	if err := os.MkdirAll(project+"/.godot", 0755); err != nil {
 		return err
 	}
@@ -166,8 +172,8 @@ func setup(gd4spxPath string, wd, project, libraryName string) error {
 	if err := setupFile(false, project+"/.godot/extension_list.cfg", extension_list_cfg); err != nil {
 		return err
 	}
-	buildDll(libraryName)
-	if true {
+	if !hasInited {
+		buildDll(libraryName)
 		gd4spx := exec.Command(gd4spxPath, "--import", "--headless")
 		gd4spx.Dir = project
 		gd4spx.Stderr = os.Stderr
