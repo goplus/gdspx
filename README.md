@@ -1,7 +1,7 @@
 # godot for spx
 
 
-## get start (WIP) (linux only now)
+## Getting Started (WIP, Linux only for now)
 
 ### install cmd
 ```

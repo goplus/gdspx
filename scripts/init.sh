@@ -1,5 +1,5 @@
 #!/bin/bash
-pip install scons
+pip install scons==4.8.1
 pip install ninja 
 
 if [ ! -d "godot" ]; then

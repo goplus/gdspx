@@ -4,7 +4,7 @@ GOOS?=$(shell go env GOOS)
 GOARCH?=$(shell go env GOARCH)
 CLANG_FORMAT?=$(shell which clang-format | which clang-format-10 | which clang-format-11 | which clang-format-12)
 CURRENT_PATH=$(shell pwd)
-PROJECT_PATH?="./tutorial/02_mario"  # Use ?= for default value
+PROJECT_PATH?="./tutorial/01_aircraft"  # Use ?= for default value
 .PHONY: engine init run fmt gen server wasm web pc editor upload
 
 # Check if an argument is passed to 'run' target, only then override PROJECT_PATH
@@ -64,3 +64,9 @@ gen:
 	
 upload:
 	./webserver/upload.sh 
+
+initload:
+	LOG_LEVEL=info \
+	GOTRACEBACK=1 \
+	GODEBUG=sbrk=1,asyncpreemptoff=1,cgocheck=0,invalidptr=1,clobberfree=1,tracebackancestors=0 \
+	$(GODOT) --verbose --debug  --path  $(PROJECT_PATH)/project/ --editor --quit

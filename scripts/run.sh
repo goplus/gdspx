@@ -30,8 +30,7 @@ fi
 cp Makefile $dstdir
 cd $dstdir
 
-if [ ! -d ".godot" ]; then
-    make initload 
-fi
 make $cmdname
 cd ../../
+
+make initload $dstdir
