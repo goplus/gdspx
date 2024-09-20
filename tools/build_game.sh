@@ -55,7 +55,7 @@ if [ "$PLATFORM" = "web" ]; then
 elif  [ "$PLATFORM" = "pc" ]; then
     # update extension list
     echo "res://gdspx.gdextension" > $GD_LIB_DIR/extension_list.cfg
-    TEMPLATE_DIR=$CURRENT_PATH/cmd/template/project/gdspx.gdextension
+    TEMPLATE_DIR=$CURRENT_PATH/cmd/gdspx/template/project/gdspx.gdextension
     cp $TEMPLATE_DIR $GD_PROJ_DIR/gdspx.gdextension 
 
     cd $PROJECT_PATH 
