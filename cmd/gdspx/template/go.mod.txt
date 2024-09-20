@@ -4,7 +4,9 @@ go 1.22.3
 
 toolchain go1.22.5
 
-require	github.com/realdream-ai/gdspx
+require (
+    github.com/iancoleman/strcase v0.3.0 // indirect
+    godot-ext/gdspx v0.0.0
+)
 
-require github.com/iancoleman/strcase v0.3.0 // indirect
-
+replace godot-ext/gdspx => github.com/realdream-ai/gdspx main

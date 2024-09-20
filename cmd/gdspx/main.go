@@ -57,7 +57,16 @@ func main() {
 		if err := setupFile(false, targetDir+"/main.go", main_go); err != nil {
 			panic(err)
 		}
-		println("gd4spx project initialized")
+		rawDir, err := os.Getwd()
+		os.Chdir(targetDir)
+		err = runGolang(nil, "mod", "tidy")
+		os.Chdir(rawDir)
+		if err != nil {
+			println("gdspx project create failed ", targetDir)
+			panic(err)
+		} else {
+			println("gdspx project create succ ", targetDir)
+		}
 	}
 	if err := wrap(); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
@@ -110,8 +119,8 @@ func wrap() error {
 	default:
 		libraryName += ".so"
 	}
-
-	if err := setup(gd4spxPath, wd, project); err != nil {
+	libPath := path.Join(project, "lib", libraryName)
+	if err := setup(gd4spxPath, wd, project, libPath); err != nil {
 		return err
 	}
 
@@ -119,7 +128,7 @@ func wrap() error {
 	case "init":
 		return nil
 	case "run", "editor", "export", "build":
-		buildDll(path.Join(project, "lib", libraryName))
+		buildDll(libPath)
 	case "build_web", "export_web":
 		buildWasm(path.Join(project, "lib", "gdspx.wasm"))
 	}
@@ -133,7 +142,7 @@ func wrap() error {
 }
 
 func buildDll(path string) {
-	runGolang(nil, "build", "-buildmode=c-shared", "-o", path)
+	runGolang(nil, "build", "-tags", "platform_pc", "-buildmode=c-shared", "-o", path)
 }
 
 func buildWasm(path string) {
@@ -141,24 +150,24 @@ func buildWasm(path string) {
 	runGolang(envVars, "build", "-tags", "platform_web", "-o", path)
 }
 
-func setup(gd4spxPath string, wd, project string) error {
+func setup(gd4spxPath string, wd, project, libraryName string) error {
 	if err := os.MkdirAll(project+"/.godot", 0755); err != nil {
 		return err
 	}
 	if err := setupFile(false, project+"/main.tscn", main_tscn); err != nil {
 		return err
 	}
-	if err := setupFile(false, project+"/project.godot", project_gd4spx, filepath.Base(wd)); err != nil {
+	if err := setupFile(false, project+"/project.godot", project_gd4spx); err != nil {
 		return err
 	}
-	if err := setupFile(true, project+"/library.gdextension", library_gdextension); err != nil {
+	if err := setupFile(true, project+"/gdspx.gdextension", library_gdextension); err != nil {
 		return err
 	}
 	if err := setupFile(false, project+"/.godot/extension_list.cfg", extension_list_cfg); err != nil {
 		return err
 	}
-	_, err := os.Stat(project + "/.godot")
-	if os.IsNotExist(err) {
+	buildDll(libraryName)
+	if true {
 		gd4spx := exec.Command(gd4spxPath, "--import", "--headless")
 		gd4spx.Dir = project
 		gd4spx.Stderr = os.Stderr
