@@ -11,8 +11,8 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"godot-ext/gdspx/cmd/gdextensionparser/clang"
-	. "godot-ext/gdspx/cmd/generate/common"
+	"godot-ext/gdspx/cmd/codegen/gdextensionparser/clang"
+	. "godot-ext/gdspx/cmd/codegen/generate/common"
 
 	"github.com/iancoleman/strcase"
 )

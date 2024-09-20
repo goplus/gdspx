@@ -8,11 +8,11 @@ import (
 	"runtime"
 	"strings"
 
-	"godot-ext/gdspx/cmd/gdextensionparser"
-	"godot-ext/gdspx/cmd/gdextensionparser/clang"
-	"godot-ext/gdspx/cmd/generate/ffi"
-	"godot-ext/gdspx/cmd/generate/gdext"
-	"godot-ext/gdspx/cmd/generate/webffi"
+	"godot-ext/gdspx/cmd/codegen/gdextensionparser"
+	"godot-ext/gdspx/cmd/codegen/gdextensionparser/clang"
+	"godot-ext/gdspx/cmd/codegen/generate/ffi"
+	"godot-ext/gdspx/cmd/codegen/generate/gdext"
+	"godot-ext/gdspx/cmd/codegen/generate/webffi"
 )
 
 var (
@@ -99,4 +99,8 @@ func execGoImports(filePath string) {
 	if err != nil {
 		log.Print(fmt.Errorf("error running goimports: \n%s\n%w", output, err))
 	}
+}
+
+func main() {
+	generateCode()
 }

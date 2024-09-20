@@ -30,4 +30,9 @@ eg:  make pc
 - init          : init the environment
 - wasm          : build web wasm 
 - editor        : run in editor mode
-- 
+
+
+
+```
+	go install realdream-ai/gdspx/cmd/gdspx@main
+```

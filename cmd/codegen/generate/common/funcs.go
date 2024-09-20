@@ -2,7 +2,7 @@ package common
 
 import (
 	"fmt"
-	"godot-ext/gdspx/cmd/gdextensionparser/clang"
+	"godot-ext/gdspx/cmd/codegen/gdextensionparser/clang"
 	"sort"
 	"strconv"
 	"strings"
@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	RelDir = "../internal/ffi"
+	RelDir = "../../internal/ffi"
 )
 
 func Add(a int, b int) int {
