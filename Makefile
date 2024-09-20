@@ -43,7 +43,7 @@ engine:
 build: 
 	./tools/build_game.sh --platform pc --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH)
 
-pc:
+run:
 	$(MAKE) fmt 
 	./tools/build_game.sh --platform pc --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH)
 web:
