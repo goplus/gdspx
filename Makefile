@@ -58,7 +58,7 @@ wasm:
 
 
 gen:
-	cd ./cmd && go run . && cd $(CURRENT_PATH) && \
+	cd ./cmd/codegen && go run . && cd $(CURRENT_PATH) && \
 	$(MAKE) wasm
 	$(MAKE) fmt 
 	
