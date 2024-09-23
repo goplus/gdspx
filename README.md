@@ -3,9 +3,14 @@
 
 ## Getting Started (WIP, Linux only for now)
 
-### install cmd
+### start and run 
 ```
-	go install realdream-ai/gdspx/cmd/gdspx@main
+    git clone git@github.com:realdream-ai/gdspx.git
+    cd gdspx 
+    cd cmd/gdspx/
+    go install .
+    cd ../../
+    gdspx editor tutorial/01_aircraft
 ```
 
 ### how to use
