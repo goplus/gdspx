@@ -11,6 +11,7 @@
     go install .
     cd ../../
     gdspx editor tutorial/01_aircraft
+    # gdspx run tutorial/01_aircraft  
 ```
 
 ### how to use
