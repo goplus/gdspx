@@ -1,3 +1,8 @@
+
+
+
+
+exit 
 #!/bin/bash
 pip install scons==4.8.1
 pip install ninja 
@@ -25,5 +30,8 @@ else
 fi
 cd ..
 
-echo "init and run demo project."
-./scripts/run.sh
+echo "init engine done."
+gopath=${GOPATH:-$(go env GOPATH)}
+dstBinPath="$gopath/bin/gd4spx4.2.2"
+echo "Destination binary path: $dstBinPath"
+cp godot/bin/godot.linuxbsd.editor.dev.x86_64 $dstBinPath
