@@ -407,7 +407,7 @@ func getManagerImpl(function *clang.TypedefFunction, clsName string) string {
 	sb.WriteString("func (pself *" + clsName + ") " + funcName + "(")
 	count := len(function.Arguments)
 	for i, arg := range function.Arguments {
-		if i == 0 {
+		if i == 0 && arg.Name == "obj" {
 			continue
 		}
 		sb.WriteString(arg.Name)
@@ -429,12 +429,18 @@ func getManagerImpl(function *clang.TypedefFunction, clsName string) string {
 	if anyRet {
 		sb.WriteString("return ")
 	}
-	sb.WriteString(mgrName + "Mgr." + funcName + "(pself.Id")
+	sb.WriteString(mgrName + "Mgr." + funcName + "(")
+	if !strings.HasSuffix(function.Name, "CreateSprite") {
+		sb.WriteString("pself.Id, ")
+	}
 	for i, arg := range function.Arguments {
-		if i == 0 {
+		if i == 0 && arg.Name == "obj" {
 			continue
 		}
-		sb.WriteString(", " + arg.Name)
+		sb.WriteString(arg.Name)
+		if i != count-1 {
+			sb.WriteString(", ")
+		}
 	}
 	sb.WriteString(")\n")
 	sb.WriteString("}\n")
