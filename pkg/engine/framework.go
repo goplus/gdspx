@@ -74,6 +74,13 @@ func CreateSprite[T any]() *T {
 	spriteValue := createSprite(tType, id)
 	return spriteValue.Addr().Interface().(*T)
 }
+func CreateEmptySprite[T any]() *T {
+	tType := reflect.TypeOf((*T)(nil)).Elem()
+	id := SpriteMgr.CreateSprite("")
+	spriteValue := createSprite(tType, id)
+	return spriteValue.Addr().Interface().(*T)
+}
+
 func CreateUI[T any](prefabName string) *T {
 	tType := reflect.TypeOf((*T)(nil)).Elem()
 	name := tType.Name()
