@@ -58,7 +58,7 @@ func readLines(path string) ([]string, error) {
 	return lines, scanner.Err()
 }
 func expandIncludeFiles(projectPath, header, outputName string) (string, error) {
-	dirPath := filepath.Join(projectPath, "/../internal/ffi/")
+	dirPath := filepath.Join(projectPath, "../../internal/ffi/")
 	allStrs := ReadFiles(dirPath, header)
 	tempPath := filepath.Join(dirPath, outputName)
 	ioutil.WriteFile(tempPath, []byte(allStrs), 0644)
