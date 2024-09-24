@@ -58,7 +58,6 @@ wasm:
 
 gen:
 	cd ./cmd/codegen && go run . && cd $(CURRENT_PATH) && \
-	$(MAKE) wasm
 	$(MAKE) fmt 
 	
 upload:

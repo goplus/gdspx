@@ -12,3 +12,4 @@ internal/ffi/_temp_output*.h
 /bin
 /tools/publish
 /test/*
+/spx
