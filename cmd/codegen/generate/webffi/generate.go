@@ -196,7 +196,7 @@ func GenerateJsEngineJsFile(projectPath string, ast clang.CHeaderFileAST) error 
 		return err
 	}
 
-	headerFileName := filepath.Join(filepath.Join(projectPath, "../godot/platform/web/js/engine"), "gdspx.js")
+	headerFileName := filepath.Join(filepath.Join(projectPath, "../../godot/platform/web/js/engine"), "gdspx.js")
 	f, err := os.Create(headerFileName)
 	f.Write(b.Bytes())
 	f.Close()
