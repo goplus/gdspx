@@ -11,13 +11,14 @@
 package engine
 
 var (
-	AudioMgr  IAudioMgr
-	CameraMgr ICameraMgr
-	InputMgr  IInputMgr
-	PhysicMgr IPhysicMgr
-	SceneMgr  ISceneMgr
-	SpriteMgr ISpriteMgr
-	UiMgr     IUiMgr
+	AudioMgr    IAudioMgr
+	CameraMgr   ICameraMgr
+	InputMgr    IInputMgr
+	PhysicMgr   IPhysicMgr
+	PlatformMgr IPlatformMgr
+	SceneMgr    ISceneMgr
+	SpriteMgr   ISpriteMgr
+	UiMgr       IUiMgr
 )
 
 type IAudioMgr interface {
@@ -56,6 +57,15 @@ type IInputMgr interface {
 type IPhysicMgr interface {
 	Raycast(from Vec2, to Vec2, collision_mask int64) Object
 	CheckCollision(from Vec2, to Vec2, collision_mask int64, collide_with_areas bool, collide_with_bodies bool) bool
+}
+
+type IPlatformMgr interface {
+	SetWindowSize(width int64, height int64)
+	GetWindowSize() Vec2
+	SetWindowTitle(title string)
+	GetWindowTitle() string
+	SetWindowFullscreen(enable bool)
+	IsWindowFullscreen() bool
 }
 
 type ISceneMgr interface {

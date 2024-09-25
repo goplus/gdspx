@@ -98,6 +98,12 @@ type GDExtensionSpxInputIsActionJustPressed C.GDExtensionSpxInputIsActionJustPre
 type GDExtensionSpxInputIsActionJustReleased C.GDExtensionSpxInputIsActionJustReleased
 type GDExtensionSpxPhysicRaycast C.GDExtensionSpxPhysicRaycast
 type GDExtensionSpxPhysicCheckCollision C.GDExtensionSpxPhysicCheckCollision
+type GDExtensionSpxPlatformSetWindowSize C.GDExtensionSpxPlatformSetWindowSize
+type GDExtensionSpxPlatformGetWindowSize C.GDExtensionSpxPlatformGetWindowSize
+type GDExtensionSpxPlatformSetWindowTitle C.GDExtensionSpxPlatformSetWindowTitle
+type GDExtensionSpxPlatformGetWindowTitle C.GDExtensionSpxPlatformGetWindowTitle
+type GDExtensionSpxPlatformSetWindowFullscreen C.GDExtensionSpxPlatformSetWindowFullscreen
+type GDExtensionSpxPlatformIsWindowFullscreen C.GDExtensionSpxPlatformIsWindowFullscreen
 type GDExtensionSpxSceneChangeSceneToFile C.GDExtensionSpxSceneChangeSceneToFile
 type GDExtensionSpxSceneReloadCurrentScene C.GDExtensionSpxSceneReloadCurrentScene
 type GDExtensionSpxSceneUnloadCurrentScene C.GDExtensionSpxSceneUnloadCurrentScene
@@ -434,6 +440,53 @@ func CallPhysicCheckCollision(
 	var ret_val C.GdBool
 	C.cgo_callfn_GDExtensionSpxPhysicCheckCollision(arg0, arg1GdVec2, arg2GdVec2, arg3GdInt, arg4GdBool, arg5GdBool, &ret_val)
 
+	return (GdBool)(ret_val)
+}
+func CallPlatformSetWindowSize(
+	width GdInt,
+	height GdInt,
+) {
+	arg0 := (C.GDExtensionSpxPlatformSetWindowSize)(api.SpxPlatformSetWindowSize)
+	arg1GdInt = (C.GdInt)(width)
+	arg2GdInt = (C.GdInt)(height)
+
+	C.cgo_callfn_GDExtensionSpxPlatformSetWindowSize(arg0, arg1GdInt, arg2GdInt)
+
+}
+func CallPlatformGetWindowSize() GdVec2 {
+	arg0 := (C.GDExtensionSpxPlatformGetWindowSize)(api.SpxPlatformGetWindowSize)
+	var ret_val C.GdVec2
+	C.cgo_callfn_GDExtensionSpxPlatformGetWindowSize(arg0, &ret_val)
+	return (GdVec2)(ret_val)
+}
+func CallPlatformSetWindowTitle(
+	title GdString,
+) {
+	arg0 := (C.GDExtensionSpxPlatformSetWindowTitle)(api.SpxPlatformSetWindowTitle)
+	arg1GdString = (C.GdString)(title)
+
+	C.cgo_callfn_GDExtensionSpxPlatformSetWindowTitle(arg0, arg1GdString)
+
+}
+func CallPlatformGetWindowTitle() GdString {
+	arg0 := (C.GDExtensionSpxPlatformGetWindowTitle)(api.SpxPlatformGetWindowTitle)
+	var ret_val C.GdString
+	C.cgo_callfn_GDExtensionSpxPlatformGetWindowTitle(arg0, &ret_val)
+	return (GdString)(ret_val)
+}
+func CallPlatformSetWindowFullscreen(
+	enable GdBool,
+) {
+	arg0 := (C.GDExtensionSpxPlatformSetWindowFullscreen)(api.SpxPlatformSetWindowFullscreen)
+	arg1GdBool = (C.GdBool)(enable)
+
+	C.cgo_callfn_GDExtensionSpxPlatformSetWindowFullscreen(arg0, arg1GdBool)
+
+}
+func CallPlatformIsWindowFullscreen() GdBool {
+	arg0 := (C.GDExtensionSpxPlatformIsWindowFullscreen)(api.SpxPlatformIsWindowFullscreen)
+	var ret_val C.GdBool
+	C.cgo_callfn_GDExtensionSpxPlatformIsWindowFullscreen(arg0, &ret_val)
 	return (GdBool)(ret_val)
 }
 func CallSceneChangeSceneToFile(

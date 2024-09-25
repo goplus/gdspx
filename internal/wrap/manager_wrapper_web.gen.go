@@ -32,6 +32,9 @@ func BindMgr(mgrs []IManager) {
 		case IPhysicMgr:
 			PhysicMgr = v
 
+		case IPlatformMgr:
+			PlatformMgr = v
+
 		case ISceneMgr:
 			SceneMgr = v
 
@@ -59,6 +62,9 @@ type inputMgr struct {
 type physicMgr struct {
 	baseMgr
 }
+type platformMgr struct {
+	baseMgr
+}
 type sceneMgr struct {
 	baseMgr
 }
@@ -74,6 +80,7 @@ func createMgrs() []IManager {
 	addManager(&cameraMgr{})
 	addManager(&inputMgr{})
 	addManager(&physicMgr{})
+	addManager(&platformMgr{})
 	addManager(&sceneMgr{})
 	addManager(&spriteMgr{})
 	addManager(&uiMgr{})
@@ -198,6 +205,31 @@ func (pself *physicMgr) CheckCollision(from Vec2, to Vec2, collision_mask int64,
 	arg3 := JsFromGdBool(collide_with_areas)
 	arg4 := JsFromGdBool(collide_with_bodies)
 	_retValue := API.SpxPhysicCheckCollision.Invoke(arg0, arg1, arg2, arg3, arg4)
+	return JsToGdBool(_retValue)
+}
+func (pself *platformMgr) SetWindowSize(width int64, height int64) {
+	arg0 := JsFromGdInt(width)
+	arg1 := JsFromGdInt(height)
+	API.SpxPlatformSetWindowSize.Invoke(arg0, arg1)
+}
+func (pself *platformMgr) GetWindowSize() Vec2 {
+	_retValue := API.SpxPlatformGetWindowSize.Invoke()
+	return JsToGdVec2(_retValue)
+}
+func (pself *platformMgr) SetWindowTitle(title string) {
+	arg0 := JsFromGdString(title)
+	API.SpxPlatformSetWindowTitle.Invoke(arg0)
+}
+func (pself *platformMgr) GetWindowTitle() string {
+	_retValue := API.SpxPlatformGetWindowTitle.Invoke()
+	return JsToGdString(_retValue)
+}
+func (pself *platformMgr) SetWindowFullscreen(enable bool) {
+	arg0 := JsFromGdBool(enable)
+	API.SpxPlatformSetWindowFullscreen.Invoke(arg0)
+}
+func (pself *platformMgr) IsWindowFullscreen() bool {
+	_retValue := API.SpxPlatformIsWindowFullscreen.Invoke()
 	return JsToGdBool(_retValue)
 }
 func (pself *sceneMgr) ChangeSceneToFile(path string) {

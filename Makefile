@@ -37,7 +37,7 @@ server:
 
 engine: 
 	./tools/build_engine.sh 
-	$(MAKE) web 
+	./tools/init.sh
 
 build: 
 	./tools/build_game.sh --platform pc --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH)

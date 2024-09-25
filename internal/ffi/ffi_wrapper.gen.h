@@ -90,6 +90,24 @@ void cgo_callfn_GDExtensionSpxPhysicRaycast(const GDExtensionSpxPhysicRaycast fn
 void cgo_callfn_GDExtensionSpxPhysicCheckCollision(const GDExtensionSpxPhysicCheckCollision fn, GdVec2 from, GdVec2 to, GdInt collision_mask, GdBool collide_with_areas, GdBool collide_with_bodies, GdBool* ret_val) {
 	fn(from, to, collision_mask, collide_with_areas, collide_with_bodies,ret_val);
 }
+void cgo_callfn_GDExtensionSpxPlatformSetWindowSize(const GDExtensionSpxPlatformSetWindowSize fn, GdInt width, GdInt height) {
+	fn(width, height);
+}
+void cgo_callfn_GDExtensionSpxPlatformGetWindowSize(const GDExtensionSpxPlatformGetWindowSize fn, GdVec2* ret_val) {
+	fn(ret_val);
+}
+void cgo_callfn_GDExtensionSpxPlatformSetWindowTitle(const GDExtensionSpxPlatformSetWindowTitle fn, GdString title) {
+	fn(title);
+}
+void cgo_callfn_GDExtensionSpxPlatformGetWindowTitle(const GDExtensionSpxPlatformGetWindowTitle fn, GdString* ret_val) {
+	fn(ret_val);
+}
+void cgo_callfn_GDExtensionSpxPlatformSetWindowFullscreen(const GDExtensionSpxPlatformSetWindowFullscreen fn, GdBool enable) {
+	fn(enable);
+}
+void cgo_callfn_GDExtensionSpxPlatformIsWindowFullscreen(const GDExtensionSpxPlatformIsWindowFullscreen fn, GdBool* ret_val) {
+	fn(ret_val);
+}
 void cgo_callfn_GDExtensionSpxSceneChangeSceneToFile(const GDExtensionSpxSceneChangeSceneToFile fn, GdString path) {
 	fn(path);
 }

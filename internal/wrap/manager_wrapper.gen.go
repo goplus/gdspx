@@ -34,6 +34,9 @@ func BindMgr(mgrs []IManager) {
 		case IPhysicMgr:
 			PhysicMgr = v
 
+		case IPlatformMgr:
+			PlatformMgr = v
+
 		case ISceneMgr:
 			SceneMgr = v
 
@@ -61,6 +64,9 @@ type inputMgr struct {
 type physicMgr struct {
 	baseMgr
 }
+type platformMgr struct {
+	baseMgr
+}
 type sceneMgr struct {
 	baseMgr
 }
@@ -76,6 +82,7 @@ func createMgrs() []IManager {
 	addManager(&cameraMgr{})
 	addManager(&inputMgr{})
 	addManager(&physicMgr{})
+	addManager(&platformMgr{})
 	addManager(&sceneMgr{})
 	addManager(&spriteMgr{})
 	addManager(&uiMgr{})
@@ -214,6 +221,33 @@ func (pself *physicMgr) CheckCollision(from Vec2, to Vec2, collision_mask int64,
 	arg3 := ToGdBool(collide_with_areas)
 	arg4 := ToGdBool(collide_with_bodies)
 	retValue := CallPhysicCheckCollision(arg0, arg1, arg2, arg3, arg4)
+	return ToBool(retValue)
+}
+func (pself *platformMgr) SetWindowSize(width int64, height int64) {
+	arg0 := ToGdInt(width)
+	arg1 := ToGdInt(height)
+	CallPlatformSetWindowSize(arg0, arg1)
+}
+func (pself *platformMgr) GetWindowSize() Vec2 {
+	retValue := CallPlatformGetWindowSize()
+	return ToVec2(retValue)
+}
+func (pself *platformMgr) SetWindowTitle(title string) {
+	arg0Str := NewCString(title)
+	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
+	CallPlatformSetWindowTitle(arg0)
+}
+func (pself *platformMgr) GetWindowTitle() string {
+	retValue := CallPlatformGetWindowTitle()
+	return ToString(retValue)
+}
+func (pself *platformMgr) SetWindowFullscreen(enable bool) {
+	arg0 := ToGdBool(enable)
+	CallPlatformSetWindowFullscreen(arg0)
+}
+func (pself *platformMgr) IsWindowFullscreen() bool {
+	retValue := CallPlatformIsWindowFullscreen()
 	return ToBool(retValue)
 }
 func (pself *sceneMgr) ChangeSceneToFile(path string) {
