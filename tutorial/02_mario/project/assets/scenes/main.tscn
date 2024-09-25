@@ -74,7 +74,6 @@ position = Vector2(64, 0)
 
 [node name="MysteryBox2" parent="Environment/Platforms/Platform1" instance=ExtResource("8_rp7hu")]
 position = Vector2(16, 0)
-bonus_type = 1
 
 [node name="MysteryBox3" parent="Environment/Platforms/Platform1" instance=ExtResource("8_rp7hu")]
 position = Vector2(48, 0)
@@ -89,7 +88,6 @@ position = Vector2(32, 0)
 
 [node name="MysteryBox2" parent="Environment/Platforms/Platform2" instance=ExtResource("8_rp7hu")]
 position = Vector2(16, 0)
-bonus_type = 1
 
 [node name="Platform3" type="Node2D" parent="Environment/Platforms"]
 position = Vector2(984, -32)
@@ -176,7 +174,6 @@ position = Vector2(88, 0)
 
 [node name="MysteryBox5" parent="Environment/Platforms/Platform7" instance=ExtResource("8_rp7hu")]
 position = Vector2(48, -56)
-bonus_type = 2
 
 [node name="Platform8" type="Node2D" parent="Environment/Platforms"]
 position = Vector2(1728, 24)
@@ -232,7 +229,6 @@ position = Vector2(32, 0)
 
 [node name="MysteryBox3" parent="Environment/Platforms/Platform12" instance=ExtResource("8_rp7hu")]
 position = Vector2(152, -1)
-bonus_type = 1
 
 [node name="MysteryBoxes" type="Node" parent="Environment"]
 
@@ -244,7 +240,6 @@ position = Vector2(32, -40)
 
 [node name="MysteryBox3" parent="Environment/MysteryBoxes" instance=ExtResource("8_rp7hu")]
 position = Vector2(576, 16)
-invisible = true
 
 [node name="Pipes" type="Node" parent="Environment"]
 
@@ -253,12 +248,9 @@ position = Vector2(200, 56)
 
 [node name="Pipe2" parent="Environment/Pipes" instance=ExtResource("5_om4pi")]
 position = Vector2(344, 40)
-height = 64
 
 [node name="Pipe3" parent="Environment/Pipes" instance=ExtResource("5_om4pi")]
 position = Vector2(472, 24)
-height = 100
-is_traversable = true
 
 [node name="Pipe4" parent="Environment/Pipes" instance=ExtResource("5_om4pi")]
 position = Vector2(2664, 56)

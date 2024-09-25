@@ -24,7 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://dlhg7nbxeials" path="res://assets/sprites/Mario_Small_Run2.png" id="22_l2usn"]
 [ext_resource type="Texture2D" uid="uid://d01eopk6c4cx1" path="res://assets/sprites/Mario_Small_Run3.png" id="23_3mc67"]
 [ext_resource type="Texture2D" uid="uid://cal7r48xqmfrt" path="res://assets/sprites/Mario_Small_Slide.png" id="24_3fbyf"]
-[ext_resource type="Script" path="res://assets/scripts/player_animated_sprite.gd" id="25_84ua1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pie86"]
 animations = [{
@@ -278,7 +277,6 @@ spx_type_name = "Player"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pie86")
 animation = &"shoot"
-script = ExtResource("25_84ua1")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 60

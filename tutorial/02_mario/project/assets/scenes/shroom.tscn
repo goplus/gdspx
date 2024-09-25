@@ -1,7 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://chr8d4fyc57e8"]
 
 [ext_resource type="Texture2D" uid="uid://80dij0rowpdx" path="res://assets/sprites/MagicMushroom.png" id="1_acucw"]
-[ext_resource type="Script" path="res://assets/scripts/shroom.gd" id="1_kovwo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrp5w"]
 size = Vector2(16, 16)
@@ -11,7 +10,6 @@ size = Vector2(18, 18)
 
 [node name="Shroom" type="Area2D"]
 collision_layer = 32
-script = ExtResource("1_kovwo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_acucw")

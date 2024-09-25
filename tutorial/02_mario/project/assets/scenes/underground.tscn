@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dl1yh0nllbjk5" path="res://assets/scenes/player.tscn" id="5_tcbop"]
 [ext_resource type="PackedScene" uid="uid://4fe6usbjj45w" path="res://assets/scenes/pipe_connector.tscn" id="6_j8xfi"]
 [ext_resource type="PackedScene" uid="uid://bei1c0pe6xtcd" path="res://assets/scenes/pipe.tscn" id="7_4lvpc"]
-[ext_resource type="Script" path="res://assets/scripts/level_manager.gd" id="8_ombec"]
 [ext_resource type="PackedScene" uid="uid://bpy3r3x21vpnj" path="res://assets/scenes/collectable_coin.tscn" id="9_5yoxh"]
 [ext_resource type="PackedScene" uid="uid://njy08hqpoa5r" path="res://assets/scenes/ui.tscn" id="10_f1las"]
 
@@ -81,7 +80,6 @@ height = 160
 [node name="UI" parent="." instance=ExtResource("10_f1las")]
 
 [node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("ui", "player") groups=["level_manager"]]
-script = ExtResource("8_ombec")
 ui = NodePath("../UI")
 player = NodePath("../Player")
 
