@@ -26,26 +26,26 @@
 
 
 
-## develop 
+## Build from source
 ### prepare env
 1. install "**make**" for build
 2. install python
 3. run script 
     ```
-    ./tools/init.sh
+    make init
     ```
-
 
 ### make cmd
 eg:  make pc 
 
-    - make server        # Launch a local web server (http://127.0.0.1:8005/)
+    - make init          # Initialize the environment
+    - make engine        # Rebuild engine
+    - make editor        # Run in editor mode
     - make build         # Build DLL for PC (Windows, macOS, Linux)
     - make run           # Run on PC (Windows, macOS, Linux)
-    - make web           # Build and export the web package to the directory (./build/games)
-    - make fmt           # Format the code
-    - make init          # Initialize the environment
     - make wasm          # Build for WebAssembly (WASM)
-    - make editor        # Run in editor mode
+    - make web           # Build and export the web package to the directory (./build/games)
+    - make server        # Launch a local web server (http://127.0.0.1:8005/)
+    - make fmt           # Format the code
 
 
