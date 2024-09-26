@@ -218,3 +218,10 @@ func (pself *Sprite) SetScaleY(value float32) {
 func (pself *Sprite) PlayAnimation(name string) {
 	pself.PlayAnim(name, 1, false)
 }
+
+func (pself *Sprite) DisablePhysic() {
+	pself.SetTriggerLayer(0)
+	pself.SetCollisionLayer(0)
+	pself.SetCollisionMask(0)
+	pself.SetTriggerMask(0)
+}
