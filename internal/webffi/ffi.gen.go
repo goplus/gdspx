@@ -54,6 +54,8 @@ type GDExtensionInterface struct {
 	SpxPlatformGetWindowTitle      js.Value
 	SpxPlatformSetWindowFullscreen js.Value
 	SpxPlatformIsWindowFullscreen  js.Value
+	SpxPlatformSetDebugMode        js.Value
+	SpxPlatformIsDebugMode         js.Value
 	SpxSceneChangeSceneToFile      js.Value
 	SpxSceneReloadCurrentScene     js.Value
 	SpxSceneUnloadCurrentScene     js.Value
@@ -200,6 +202,8 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPlatformGetWindowTitle = dlsymGD("gdspx_platform_get_window_title")
 	x.SpxPlatformSetWindowFullscreen = dlsymGD("gdspx_platform_set_window_fullscreen")
 	x.SpxPlatformIsWindowFullscreen = dlsymGD("gdspx_platform_is_window_fullscreen")
+	x.SpxPlatformSetDebugMode = dlsymGD("gdspx_platform_set_debug_mode")
+	x.SpxPlatformIsDebugMode = dlsymGD("gdspx_platform_is_debug_mode")
 	x.SpxSceneChangeSceneToFile = dlsymGD("gdspx_scene_change_scene_to_file")
 	x.SpxSceneReloadCurrentScene = dlsymGD("gdspx_scene_reload_current_scene")
 	x.SpxSceneUnloadCurrentScene = dlsymGD("gdspx_scene_unload_current_scene")

@@ -66,6 +66,8 @@ type IPlatformMgr interface {
 	GetWindowTitle() string
 	SetWindowFullscreen(enable bool)
 	IsWindowFullscreen() bool
+	SetDebugMode(enable bool)
+	IsDebugMode() bool
 }
 
 type ISceneMgr interface {

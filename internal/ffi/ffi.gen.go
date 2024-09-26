@@ -50,6 +50,8 @@ type GDExtensionInterface struct {
 	SpxPlatformGetWindowTitle      GDExtensionSpxPlatformGetWindowTitle
 	SpxPlatformSetWindowFullscreen GDExtensionSpxPlatformSetWindowFullscreen
 	SpxPlatformIsWindowFullscreen  GDExtensionSpxPlatformIsWindowFullscreen
+	SpxPlatformSetDebugMode        GDExtensionSpxPlatformSetDebugMode
+	SpxPlatformIsDebugMode         GDExtensionSpxPlatformIsDebugMode
 	SpxSceneChangeSceneToFile      GDExtensionSpxSceneChangeSceneToFile
 	SpxSceneReloadCurrentScene     GDExtensionSpxSceneReloadCurrentScene
 	SpxSceneUnloadCurrentScene     GDExtensionSpxSceneUnloadCurrentScene
@@ -196,6 +198,8 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPlatformGetWindowTitle = (GDExtensionSpxPlatformGetWindowTitle)(dlsymGD("spx_platform_get_window_title"))
 	x.SpxPlatformSetWindowFullscreen = (GDExtensionSpxPlatformSetWindowFullscreen)(dlsymGD("spx_platform_set_window_fullscreen"))
 	x.SpxPlatformIsWindowFullscreen = (GDExtensionSpxPlatformIsWindowFullscreen)(dlsymGD("spx_platform_is_window_fullscreen"))
+	x.SpxPlatformSetDebugMode = (GDExtensionSpxPlatformSetDebugMode)(dlsymGD("spx_platform_set_debug_mode"))
+	x.SpxPlatformIsDebugMode = (GDExtensionSpxPlatformIsDebugMode)(dlsymGD("spx_platform_is_debug_mode"))
 	x.SpxSceneChangeSceneToFile = (GDExtensionSpxSceneChangeSceneToFile)(dlsymGD("spx_scene_change_scene_to_file"))
 	x.SpxSceneReloadCurrentScene = (GDExtensionSpxSceneReloadCurrentScene)(dlsymGD("spx_scene_reload_current_scene"))
 	x.SpxSceneUnloadCurrentScene = (GDExtensionSpxSceneUnloadCurrentScene)(dlsymGD("spx_scene_unload_current_scene"))

@@ -250,6 +250,14 @@ func (pself *platformMgr) IsWindowFullscreen() bool {
 	retValue := CallPlatformIsWindowFullscreen()
 	return ToBool(retValue)
 }
+func (pself *platformMgr) SetDebugMode(enable bool) {
+	arg0 := ToGdBool(enable)
+	CallPlatformSetDebugMode(arg0)
+}
+func (pself *platformMgr) IsDebugMode() bool {
+	retValue := CallPlatformIsDebugMode()
+	return ToBool(retValue)
+}
 func (pself *sceneMgr) ChangeSceneToFile(path string) {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()

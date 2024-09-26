@@ -108,6 +108,12 @@ void cgo_callfn_GDExtensionSpxPlatformSetWindowFullscreen(const GDExtensionSpxPl
 void cgo_callfn_GDExtensionSpxPlatformIsWindowFullscreen(const GDExtensionSpxPlatformIsWindowFullscreen fn, GdBool* ret_val) {
 	fn(ret_val);
 }
+void cgo_callfn_GDExtensionSpxPlatformSetDebugMode(const GDExtensionSpxPlatformSetDebugMode fn, GdBool enable) {
+	fn(enable);
+}
+void cgo_callfn_GDExtensionSpxPlatformIsDebugMode(const GDExtensionSpxPlatformIsDebugMode fn, GdBool* ret_val) {
+	fn(ret_val);
+}
 void cgo_callfn_GDExtensionSpxSceneChangeSceneToFile(const GDExtensionSpxSceneChangeSceneToFile fn, GdString path) {
 	fn(path);
 }

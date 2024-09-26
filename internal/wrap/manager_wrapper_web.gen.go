@@ -232,6 +232,14 @@ func (pself *platformMgr) IsWindowFullscreen() bool {
 	_retValue := API.SpxPlatformIsWindowFullscreen.Invoke()
 	return JsToGdBool(_retValue)
 }
+func (pself *platformMgr) SetDebugMode(enable bool) {
+	arg0 := JsFromGdBool(enable)
+	API.SpxPlatformSetDebugMode.Invoke(arg0)
+}
+func (pself *platformMgr) IsDebugMode() bool {
+	_retValue := API.SpxPlatformIsDebugMode.Invoke()
+	return JsToGdBool(_retValue)
+}
 func (pself *sceneMgr) ChangeSceneToFile(path string) {
 	arg0 := JsFromGdString(path)
 	API.SpxSceneChangeSceneToFile.Invoke(arg0)

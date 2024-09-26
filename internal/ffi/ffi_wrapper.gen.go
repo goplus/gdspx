@@ -104,6 +104,8 @@ type GDExtensionSpxPlatformSetWindowTitle C.GDExtensionSpxPlatformSetWindowTitle
 type GDExtensionSpxPlatformGetWindowTitle C.GDExtensionSpxPlatformGetWindowTitle
 type GDExtensionSpxPlatformSetWindowFullscreen C.GDExtensionSpxPlatformSetWindowFullscreen
 type GDExtensionSpxPlatformIsWindowFullscreen C.GDExtensionSpxPlatformIsWindowFullscreen
+type GDExtensionSpxPlatformSetDebugMode C.GDExtensionSpxPlatformSetDebugMode
+type GDExtensionSpxPlatformIsDebugMode C.GDExtensionSpxPlatformIsDebugMode
 type GDExtensionSpxSceneChangeSceneToFile C.GDExtensionSpxSceneChangeSceneToFile
 type GDExtensionSpxSceneReloadCurrentScene C.GDExtensionSpxSceneReloadCurrentScene
 type GDExtensionSpxSceneUnloadCurrentScene C.GDExtensionSpxSceneUnloadCurrentScene
@@ -487,6 +489,21 @@ func CallPlatformIsWindowFullscreen() GdBool {
 	arg0 := (C.GDExtensionSpxPlatformIsWindowFullscreen)(api.SpxPlatformIsWindowFullscreen)
 	var ret_val C.GdBool
 	C.cgo_callfn_GDExtensionSpxPlatformIsWindowFullscreen(arg0, &ret_val)
+	return (GdBool)(ret_val)
+}
+func CallPlatformSetDebugMode(
+	enable GdBool,
+) {
+	arg0 := (C.GDExtensionSpxPlatformSetDebugMode)(api.SpxPlatformSetDebugMode)
+	arg1GdBool = (C.GdBool)(enable)
+
+	C.cgo_callfn_GDExtensionSpxPlatformSetDebugMode(arg0, arg1GdBool)
+
+}
+func CallPlatformIsDebugMode() GdBool {
+	arg0 := (C.GDExtensionSpxPlatformIsDebugMode)(api.SpxPlatformIsDebugMode)
+	var ret_val C.GdBool
+	C.cgo_callfn_GDExtensionSpxPlatformIsDebugMode(arg0, &ret_val)
 	return (GdBool)(ret_val)
 }
 func CallSceneChangeSceneToFile(
