@@ -18,6 +18,14 @@ func (pself *Sprite) AddImpulse(impulse Vec2) {
 	SpriteMgr.AddImpulse(pself.Id, impulse)
 }
 
+func (pself *Sprite) CheckCollision(target Object, is_src_trigger bool, is_dst_trigger bool) bool {
+	return SpriteMgr.CheckCollision(pself.Id, target, is_src_trigger, is_dst_trigger)
+}
+
+func (pself *Sprite) CheckCollisionWithPoint(point Vec2, is_trigger bool) bool {
+	return SpriteMgr.CheckCollisionWithPoint(pself.Id, point, is_trigger)
+}
+
 func (pself *Sprite) CloneSprite() Object {
 	return SpriteMgr.CloneSprite(pself.Id)
 }

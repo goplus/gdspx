@@ -86,6 +86,8 @@ type ISpriteMgr interface {
 	GetChildRotation(obj Object, path string) float32
 	SetChildScale(obj Object, path string, scale Vec2)
 	GetChildScale(obj Object, path string) Vec2
+	CheckCollision(obj Object, target Object, is_src_trigger bool, is_dst_trigger bool) bool
+	CheckCollisionWithPoint(obj Object, point Vec2, is_trigger bool) bool
 	CreateSprite(path string) Object
 	CloneSprite(obj Object) Object
 	DestroySprite(obj Object) bool

@@ -301,6 +301,21 @@ func (pself *spriteMgr) GetChildScale(obj Object, path string) Vec2 {
 	_retValue := API.SpxSpriteGetChildScale.Invoke(arg0, arg1)
 	return JsToGdVec2(_retValue)
 }
+func (pself *spriteMgr) CheckCollision(obj Object, target Object, is_src_trigger bool, is_dst_trigger bool) bool {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdObj(target)
+	arg2 := JsFromGdBool(is_src_trigger)
+	arg3 := JsFromGdBool(is_dst_trigger)
+	_retValue := API.SpxSpriteCheckCollision.Invoke(arg0, arg1, arg2, arg3)
+	return JsToGdBool(_retValue)
+}
+func (pself *spriteMgr) CheckCollisionWithPoint(obj Object, point Vec2, is_trigger bool) bool {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdVec2(point)
+	arg2 := JsFromGdBool(is_trigger)
+	_retValue := API.SpxSpriteCheckCollisionWithPoint.Invoke(arg0, arg1, arg2)
+	return JsToGdBool(_retValue)
+}
 func (pself *spriteMgr) CreateSprite(path string) Object {
 	arg0 := JsFromGdString(path)
 	_retValue := API.SpxSpriteCreateSprite.Invoke(arg0)

@@ -333,6 +333,21 @@ func (pself *spriteMgr) GetChildScale(obj Object, path string) Vec2 {
 	retValue := CallSpriteGetChildScale(arg0, arg1)
 	return ToVec2(retValue)
 }
+func (pself *spriteMgr) CheckCollision(obj Object, target Object, is_src_trigger bool, is_dst_trigger bool) bool {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdObj(target)
+	arg2 := ToGdBool(is_src_trigger)
+	arg3 := ToGdBool(is_dst_trigger)
+	retValue := CallSpriteCheckCollision(arg0, arg1, arg2, arg3)
+	return ToBool(retValue)
+}
+func (pself *spriteMgr) CheckCollisionWithPoint(obj Object, point Vec2, is_trigger bool) bool {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdVec2(point)
+	arg2 := ToGdBool(is_trigger)
+	retValue := CallSpriteCheckCollisionWithPoint(arg0, arg1, arg2)
+	return ToBool(retValue)
+}
 func (pself *spriteMgr) CreateSprite(path string) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()

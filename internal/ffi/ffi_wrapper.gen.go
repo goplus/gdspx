@@ -118,6 +118,8 @@ type GDExtensionSpxSpriteSetChildRotation C.GDExtensionSpxSpriteSetChildRotation
 type GDExtensionSpxSpriteGetChildRotation C.GDExtensionSpxSpriteGetChildRotation
 type GDExtensionSpxSpriteSetChildScale C.GDExtensionSpxSpriteSetChildScale
 type GDExtensionSpxSpriteGetChildScale C.GDExtensionSpxSpriteGetChildScale
+type GDExtensionSpxSpriteCheckCollision C.GDExtensionSpxSpriteCheckCollision
+type GDExtensionSpxSpriteCheckCollisionWithPoint C.GDExtensionSpxSpriteCheckCollisionWithPoint
 type GDExtensionSpxSpriteCreateSprite C.GDExtensionSpxSpriteCreateSprite
 type GDExtensionSpxSpriteCloneSprite C.GDExtensionSpxSpriteCloneSprite
 type GDExtensionSpxSpriteDestroySprite C.GDExtensionSpxSpriteDestroySprite
@@ -631,6 +633,36 @@ func CallSpriteGetChildScale(
 	C.cgo_callfn_GDExtensionSpxSpriteGetChildScale(arg0, arg1GdObj, arg2GdString, &ret_val)
 
 	return (GdVec2)(ret_val)
+}
+func CallSpriteCheckCollision(
+	obj GdObj,
+	target GdObj,
+	is_src_trigger GdBool,
+	is_dst_trigger GdBool,
+) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteCheckCollision)(api.SpxSpriteCheckCollision)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdObj = (C.GdObj)(target)
+	arg3GdBool = (C.GdBool)(is_src_trigger)
+	arg4GdBool = (C.GdBool)(is_dst_trigger)
+	var ret_val C.GdBool
+	C.cgo_callfn_GDExtensionSpxSpriteCheckCollision(arg0, arg1GdObj, arg2GdObj, arg3GdBool, arg4GdBool, &ret_val)
+
+	return (GdBool)(ret_val)
+}
+func CallSpriteCheckCollisionWithPoint(
+	obj GdObj,
+	point GdVec2,
+	is_trigger GdBool,
+) GdBool {
+	arg0 := (C.GDExtensionSpxSpriteCheckCollisionWithPoint)(api.SpxSpriteCheckCollisionWithPoint)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdVec2 = (C.GdVec2)(point)
+	arg3GdBool = (C.GdBool)(is_trigger)
+	var ret_val C.GdBool
+	C.cgo_callfn_GDExtensionSpxSpriteCheckCollisionWithPoint(arg0, arg1GdObj, arg2GdVec2, arg3GdBool, &ret_val)
+
+	return (GdBool)(ret_val)
 }
 func CallSpriteCreateSprite(
 	path GdString,

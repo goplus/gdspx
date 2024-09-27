@@ -150,6 +150,12 @@ void cgo_callfn_GDExtensionSpxSpriteSetChildScale(const GDExtensionSpxSpriteSetC
 void cgo_callfn_GDExtensionSpxSpriteGetChildScale(const GDExtensionSpxSpriteGetChildScale fn, GdObj obj, GdString path, GdVec2* ret_val) {
 	fn(obj, path,ret_val);
 }
+void cgo_callfn_GDExtensionSpxSpriteCheckCollision(const GDExtensionSpxSpriteCheckCollision fn, GdObj obj, GdObj target, GdBool is_src_trigger, GdBool is_dst_trigger, GdBool* ret_val) {
+	fn(obj, target, is_src_trigger, is_dst_trigger,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteCheckCollisionWithPoint(const GDExtensionSpxSpriteCheckCollisionWithPoint fn, GdObj obj, GdVec2 point, GdBool is_trigger, GdBool* ret_val) {
+	fn(obj, point, is_trigger,ret_val);
+}
 void cgo_callfn_GDExtensionSpxSpriteCreateSprite(const GDExtensionSpxSpriteCreateSprite fn, GdString path, GdObj* ret_val) {
 	fn(path,ret_val);
 }
