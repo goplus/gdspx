@@ -1,17 +1,14 @@
 # godot for spx
 
 
-## Getting Started
+## Quick start
 
-### start and run 
+### install and run demo 
 ```
-# install env
     git clone git@github.com:realdream-ai/gdspx.git
     cd gdspx/cmd/gdspx/
     go install .
     cd ../../
-
-# run demo
     gdspx run tutorial/01_aircraft
 
 ```
