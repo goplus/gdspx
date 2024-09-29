@@ -185,7 +185,7 @@ func buildDll(projectPath, outputPath string) {
 
 func buildWasm(project string) {
 	rawdir, _ := os.Getwd()
-	os.Chdir(path.Join(projectPath, "../"))
+	os.Chdir(path.Join(project, "../"))
 	dir := path.Join(project, "../build/web/")
 	os.MkdirAll(dir, 0755)
 	filePath := path.Join(dir, "gdspx.wasm")
