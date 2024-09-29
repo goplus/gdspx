@@ -175,8 +175,11 @@ func wrap() error {
 	return nil
 }
 
-func buildDll(projectPath, path string) {
-	runGolang(nil, "build", "-tags", "platform_pc", "-buildmode=c-shared", "-o", path, projectPath)
+func buildDll(projectPath, outputPath string) {
+	rawdir, _ := os.Getwd()
+	os.Chdir(path.Join(projectPath, "../"))
+	runGolang(nil, "build", "-tags", "platform_pc", "-o", outputPath, "-buildmode=c-shared")
+	os.Chdir(rawdir)
 }
 
 func buildWasm(project string) {
