@@ -178,16 +178,20 @@ func wrap() error {
 func buildDll(projectPath, outputPath string) {
 	rawdir, _ := os.Getwd()
 	os.Chdir(path.Join(projectPath, "../"))
+	envVars := []string{"CGO_ENABLED=1"}
 	runGolang(nil, "build", "-tags", "platform_pc", "-o", outputPath, "-buildmode=c-shared")
 	os.Chdir(rawdir)
 }
 
 func buildWasm(project string) {
+	rawdir, _ := os.Getwd()
+	os.Chdir(path.Join(projectPath, "../"))
 	dir := path.Join(project, "../build/web/")
 	os.MkdirAll(dir, 0755)
 	filePath := path.Join(dir, "gdspx.wasm")
 	envVars := []string{"GOOS=js", "GOARCH=wasm"}
 	runGolang(envVars, "build", "-tags", "platform_web", "-o", filePath)
+	os.Chdir(rawdir)
 }
 
 func setup(gd4spxPath string, wd, project, libPath string) error {
