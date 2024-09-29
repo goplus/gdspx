@@ -179,7 +179,7 @@ func buildDll(projectPath, outputPath string) {
 	rawdir, _ := os.Getwd()
 	os.Chdir(path.Join(projectPath, "../"))
 	envVars := []string{"CGO_ENABLED=1"}
-	runGolang(nil, "build", "-tags", "platform_pc", "-o", outputPath, "-buildmode=c-shared")
+	runGolang(envVars, "build", "-tags", "platform_pc", "-o", outputPath, "-buildmode=c-shared")
 	os.Chdir(rawdir)
 }
 
