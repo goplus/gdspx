@@ -66,6 +66,7 @@ The commands are:
 	`)
 }
 func main() {
+	checkPythonInstalled()
 	targetDir = "."
 	if len(os.Args) > 2 {
 		targetDir = os.Args[2]
@@ -159,7 +160,7 @@ func wrap() error {
 	case "init":
 		return nil
 	case "run", "editor", "export", "build":
-		buildDll(libPath)
+		buildDll(project, libPath)
 	case "buildweb", "exportweb":
 		buildWasm(project)
 	}
@@ -174,8 +175,8 @@ func wrap() error {
 	return nil
 }
 
-func buildDll(path string) {
-	runGolang(nil, "build", "-tags", "platform_pc", "-buildmode=c-shared", "-o", path)
+func buildDll(projectPath, path string) {
+	runGolang(nil, "build", "-tags", "platform_pc", "-buildmode=c-shared", "-o", path, projectPath)
 }
 
 func buildWasm(project string) {
@@ -186,7 +187,7 @@ func buildWasm(project string) {
 	runGolang(envVars, "build", "-tags", "platform_web", "-o", filePath)
 }
 
-func setup(gd4spxPath string, wd, project, libraryName string) error {
+func setup(gd4spxPath string, wd, project, libPath string) error {
 	_, err := os.Stat(project + "/.godot")
 	hasInited := !os.IsNotExist(err)
 	if err := os.MkdirAll(project+"/.godot", 0755); err != nil {
@@ -205,7 +206,7 @@ func setup(gd4spxPath string, wd, project, libraryName string) error {
 		return err
 	}
 	if !hasInited {
-		buildDll(libraryName)
+		buildDll(project, libPath)
 		gd4spx := exec.Command(gd4spxPath, "--import", "--headless")
 		gd4spx.Dir = project
 		gd4spx.Stderr = os.Stderr

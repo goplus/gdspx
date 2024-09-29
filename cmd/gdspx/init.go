@@ -118,14 +118,13 @@ func runCommand(name string, args ...string) {
 
 // Install SCons and Ninja using pip
 func installPythonPackages() {
-	checkPythonInstalled()
 	runCommand("pip", "install", "scons==4.8.1")
 	runCommand("pip", "install", "ninja")
 }
 
 func checkPythonInstalled() {
 	if !isPythonInstalled("python3") && !isPythonInstalled("python") {
-		fmt.Println("Python is not installed.")
+		fmt.Println("Python is not installed. Please install Python first, python version should >= 3.8")
 		os.Exit(1)
 	}
 }
