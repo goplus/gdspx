@@ -81,6 +81,7 @@ func main() {
 		printHelp()
 		return
 	case "init":
+		os.MkdirAll(targetDir, 0755)
 		if err := setupFile(false, targetDir+"/go.mod", go_mode_txt); err != nil {
 			panic(err)
 		}
@@ -158,7 +159,8 @@ func wrap() error {
 
 	switch os.Args[1] {
 	case "init":
-		return nil
+		os.Args[1] = "run"
+		buildDll(project, libPath)
 	case "run", "editor", "export", "build":
 		buildDll(project, libPath)
 	case "buildweb", "exportweb":
