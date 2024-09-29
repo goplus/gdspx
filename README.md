@@ -21,6 +21,7 @@ Usage:
     gdspx <command> [path]      
 
 The commands are:
+
     - help            # Show help info
     - init            # Create a gdspx project in the current directory
     - run             # Run the current project
