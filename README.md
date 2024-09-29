@@ -20,7 +20,7 @@
     - gdspx init            # Create a gdspx project in the current directory
     - gdspx run             # Run the current project
     - gdspx build           # Build the dynamic library
-    - gdspx export          # Export the PC package (supports macOS, Windows, Linux)
+    - gdspx export          # Export the PC package (macOS, Windows, Linux) (TODO)
     - gdspx buildweb        # Build for WebAssembly (WASM)
     - gdspx exportweb       # Export the web package
 
