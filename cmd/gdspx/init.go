@@ -118,8 +118,7 @@ func runCommand(name string, args ...string) {
 
 // Install SCons and Ninja using pip
 func installPythonPackages() {
-	runCommand("pip", "install", "scons==4.8.1")
-	runCommand("pip", "install", "ninja")
+	runCommand("pip", "install", "scons==4.7.0")
 }
 
 func checkPythonInstalled() {
