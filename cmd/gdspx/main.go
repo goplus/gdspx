@@ -151,7 +151,7 @@ func wrap() error {
 	default:
 		libraryName += ".so"
 	}
-	libPath := path.Join(project, "lib", libraryName)
+	libPath := path.Join("project/lib", libraryName)
 	if err := setup(gd4spxPath, wd, project, libPath); err != nil {
 		return err
 	}
