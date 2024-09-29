@@ -4,7 +4,6 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
-	"go/build"
 	"io"
 	"net/http"
 	"os"
@@ -12,7 +11,6 @@ import (
 	"path"
 	"path/filepath"
 	"runtime"
-	"strings"
 
 	_ "embed"
 )
@@ -44,12 +42,31 @@ var (
 	targetDir string
 )
 
+func printHelp() {
+	fmt.Println("gd4spx version", version)
+	fmt.Println(`
+	- gdspx init            # Create a gdspx project in the current directory
+    - gdspx run             # Run the current project
+    - gdspx build           # Build the dynamic library
+    - gdspx export          # Export the PC package (supports macOS, Windows, Linux)
+    - gdspx buildweb        # Build for WebAssembly (WASM)
+    - gdspx exportweb       # Export the web package
+	`)
+}
 func main() {
 	targetDir = "."
 	if len(os.Args) > 2 {
 		targetDir = os.Args[2]
 	}
+	if len(os.Args) <= 1 {
+		printHelp()
+		return
+	}
+
 	switch os.Args[1] {
+	case "help", "version":
+		printHelp()
+		return
 	case "init":
 		if err := setupFile(false, targetDir+"/go.mod", go_mode_txt); err != nil {
 			panic(err)
@@ -85,7 +102,7 @@ func wrap() error {
 	if GOARCH != "amd64" && GOARCH != "arm64" {
 		return errors.New("gd4spx requires an amd64, or an arm64 system")
 	}
-	gd4spxPath, err := useGd4spx()
+	gd4spxPath, err := checkAndGetBinPath()
 
 	if err != nil {
 		return fmt.Errorf("gd4spx requires Godot v%s to be installed as a binary at $GOPATH/bin/gd4spx-%s: %w", version, err)
@@ -246,51 +263,4 @@ func downloadFile(url string, dest string) error {
 	}
 
 	return nil
-}
-
-func downloadGd4spx(fileName string, dstPath string) error {
-	url := "https://118.195.190.67/bin/" + fileName
-	dest := dstPath
-	fmt.Println("Downloading file... ", url, "=>", dest)
-	err := downloadFile(url, dest)
-	return err
-}
-
-func useGd4spx() (string, error) {
-	gopath := os.Getenv("GOPATH")
-	if gopath == "" {
-		gopath = build.Default.GOPATH
-	}
-	dstBinPath := gopath + "/bin/gd4spx" + version
-	gd4spx, err := exec.LookPath("gd4spx")
-	if err == nil {
-		if current, err := exec.Command(gd4spx, "--version").CombinedOutput(); err == nil {
-			if strings.HasPrefix(string(current), version+".") {
-				return gd4spx, nil
-			}
-		}
-	}
-	info, err := os.Stat(dstBinPath)
-	if os.IsNotExist(err) {
-		switch runtime.GOOS {
-		case "android":
-			return "echo", nil
-		case "darwin":
-			downloadGd4spx("gd4spx"+version+".darwin.x86_64", dstBinPath)
-		case "linux":
-			fmt.Println("gd: downloading Godot v" + version + " stable for linux")
-			downloadGd4spx("gd4spx"+version+".linux.x86_64", dstBinPath)
-		default:
-			return "", err
-		}
-	} else if err != nil {
-		return "", err
-	} else {
-		if info.Mode()&0111 == 0 {
-			if err := os.Chmod(gopath+"/bin/gd4spx"+version, 0755); err != nil {
-				return "", err
-			}
-		}
-	}
-	return dstBinPath, nil
 }
