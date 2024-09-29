@@ -64,7 +64,7 @@ func buildFromSource() {
 		gopath = getGoEnv()
 	}
 
-	dstBinPath := filepath.Join(gopath, "bin", "gd4spx"+version)
+	dstBinPath := filepath.Join(strings.TrimSpace(gopath), "bin", "gd4spx"+strings.TrimSpace(version))
 	fmt.Printf("Destination binary path: %s\n", dstBinPath)
 	filePath := findFirstMatchingFile("godot/bin", "godot.*.editor.dev.*", "console")
 	if filePath == "" {
