@@ -96,7 +96,7 @@ func main() {
 			println("gdspx project create failed ", targetDir)
 			panic(err)
 		} else {
-			println("gdspx project create succ ", targetDir)
+			println("gdspx project create succ ", targetDir, "\n=====you can type  'gdspx run "+targetDir+"'  to run the project======")
 		}
 	}
 	if err := wrap(); err != nil {
@@ -159,8 +159,7 @@ func wrap() error {
 
 	switch os.Args[1] {
 	case "init":
-		os.Args[1] = "run"
-		buildDll(project, libPath)
+		return nil
 	case "run", "editor", "export", "build":
 		buildDll(project, libPath)
 	case "buildweb", "exportweb":
