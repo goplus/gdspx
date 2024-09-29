@@ -12,7 +12,8 @@
     cd ../../
 
 # run demo
-    gdspx run tutorial/01_aircraft  
+    gdspx run tutorial/01_aircraft
+
 ```
 
 ### how to use
