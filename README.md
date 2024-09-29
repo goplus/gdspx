@@ -16,12 +16,22 @@
 ```
 
 ### how to use
-    
-    - gdspx init            # Create a gdspx project in the current directory
-    - gdspx run             # Run the current project
-    - gdspx build           # Build the dynamic library
-    - gdspx export          # Export the PC package (macOS, Windows, Linux) (TODO)
-    - gdspx buildweb        # Build for WebAssembly (WASM)
-    - gdspx exportweb       # Export the web package
+Usage:
 
+    gdspx <command> [path]      
+
+The commands are:
+    - help            # Show help info
+    - init            # Create a gdspx project in the current directory
+    - run             # Run the current project
+    - editor          # Open the current project in editor mode
+    - build           # Build the dynamic library
+    - export          # Export the PC package (macOS, Windows, Linux) (TODO)
+    - buildweb        # Build for WebAssembly (WASM)
+    - exportweb       # Export the web package
+
+ eg:
+
+    gdspx init                      # create a project in current path
+    gdspx init ./test/demo01        # create a project at path ./test/demo01 
 

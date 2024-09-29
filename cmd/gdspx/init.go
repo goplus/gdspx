@@ -18,6 +18,7 @@ func buildFromSource() {
 	// Install SCons and Ninja
 	installPythonPackages()
 
+	isNeedDelete := true
 	// Check if the "godot" directory exists
 	if _, err := os.Stat("godot"); os.IsNotExist(err) {
 		fmt.Println("Godot directory not found. Creating and initializing...")
@@ -31,8 +32,8 @@ func buildFromSource() {
 
 		runCommand("git", "init")
 		runCommand("git", "remote", "add", "origin", "git@github.com:JiepengTan/godot.git")
-		runCommand("git", "fetch", "--depth", "1", "origin", "spx-4.2.2")
-		runCommand("git", "checkout", "spx-4.2.2")
+		runCommand("git", "fetch", "--depth", "1", "origin", "spx-"+version)
+		runCommand("git", "checkout", "spx-"+version)
 
 		fmt.Println("Godot repository setup complete.")
 	} else {
@@ -41,6 +42,7 @@ func buildFromSource() {
 		}
 
 		fmt.Println("Godot directory already exists.")
+		isNeedDelete = false
 	}
 
 	// Check the operating system
@@ -62,17 +64,21 @@ func buildFromSource() {
 		gopath = getGoEnv()
 	}
 
-	dstBinPath := filepath.Join(gopath, "bin", "gd4spx4.2.2")
+	dstBinPath := filepath.Join(gopath, "bin", "gd4spx"+version)
 	fmt.Printf("Destination binary path: %s\n", dstBinPath)
 	filePath := findFirstMatchingFile("godot/bin", "godot.*.editor.dev.*", "console")
-	if filePath != "" {
-		fmt.Println("Found file:", filePath)
-	} else {
-		panic("No matching file found. " + filePath)
+	if filePath == "" {
+		fmt.Println("No matching file found. " + filePath)
+		if isNeedDelete {
+			os.RemoveAll("./godot")
+		}
 	}
 
 	if err := copyFile(filePath, dstBinPath); err != nil {
 		log.Fatalf("Failed to copy binary: %v", err)
+	}
+	if isNeedDelete {
+		os.RemoveAll("./godot")
 	}
 }
 
