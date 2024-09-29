@@ -2,6 +2,14 @@
 
 
 ## Quick start
+### Prerequisite Environment Setup
+- Install Go (version >= 1.22.3)
+- Install Python (version >= 3.8)
+- Add the Go environment's bin directory to the system PATH.
+```
+    export PATH=$PATH:$GOPATH/bin
+```
+
 
 ### install and run demo 
 ```
