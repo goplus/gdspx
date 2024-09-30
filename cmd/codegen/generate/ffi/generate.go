@@ -36,6 +36,9 @@ var (
 	interfaceGoFileText string
 	//go:embed sprite.go.tmpl
 	implGoFileText string
+
+	//go:embed sync.gen.go.tmpl
+	syncApiText string
 )
 
 func Generate(projectPath string, ast clang.CHeaderFileAST) {
@@ -56,6 +59,10 @@ func Generate(projectPath string, ast clang.CHeaderFileAST) {
 		panic(err)
 	}
 	err = GenerateManagerInterfaceGoFile(projectPath, ast)
+	if err != nil {
+		panic(err)
+	}
+	err = GenerateSyncApiGoFile(projectPath, ast)
 	if err != nil {
 		panic(err)
 	}
@@ -246,6 +253,42 @@ func GenerateManagerInterfaceGoFile(projectPath string, ast clang.CHeaderFileAST
 	f.Close()
 	return err
 }
+func GenerateSyncApiGoFile(projectPath string, ast clang.CHeaderFileAST) error {
+	funcs := template.FuncMap{
+		"gdiVariableName":        GdiVariableName,
+		"snakeCase":              strcase.ToSnake,
+		"camelCase":              strcase.ToCamel,
+		"goReturnType":           GoReturnType,
+		"goArgumentType":         GoArgumentType,
+		"goEnumValue":            GoEnumValue,
+		"add":                    Add,
+		"cgoCastArgument":        CgoCastArgument,
+		"cgoCastReturnType":      CgoCastReturnType,
+		"cgoCleanUpArgument":     CgoCleanUpArgument,
+		"trimPrefix":             TrimPrefix,
+		"isManagerMethod":        IsManagerMethod,
+		"genSyncApiWrapFunction": genSyncApiWrapFunction,
+	}
+
+	tmpl, err := template.New("sync.gen.go").
+		Funcs(funcs).
+		Parse(syncApiText)
+	if err != nil {
+		return err
+	}
+	var b bytes.Buffer
+	err = tmpl.Execute(&b, ManagerData{Ast: ast, Mangers: GetManagers(ast)})
+	if err != nil {
+		return err
+	}
+
+	headerFileName := filepath.Join(projectPath, RelDir, "../../spx/internal/engine/sync.gen.go")
+	println("===========", headerFileName)
+	f, err := os.Create(headerFileName)
+	f.Write(b.Bytes())
+	f.Close()
+	return err
+}
 
 type ImplData struct {
 	Ast     clang.CHeaderFileAST
@@ -387,6 +430,86 @@ func getManagerInterface(function *clang.TypedefFunction) string {
 		typeName := GetFuncParamTypeString(function.ReturnType.Name)
 		sb.WriteString(" " + typeName + " ")
 	}
+	return sb.String()
+}
+
+func genSyncApiWrapFunction(function *clang.TypedefFunction) string {
+	/*
+	   func SyncGetMousePos() Vec2 {
+	   	var retValue Vec2
+	   	done := make(chan struct{})
+	   	job := func() {
+	   		retValue = InputMgr.GetMousePos()
+	   		done <- struct{}{}
+	   	}
+	   	updateJobQueue <- job
+	   	<-done
+	   	return retValue
+	   }
+	*/
+
+	prefix := "GDExtensionSpx"
+	sb := strings.Builder{}
+	mgrName := strcase.ToCamel(GetManagerName(function.Name))
+	pureFuncName := function.Name[len(prefix)+len(mgrName):]
+	funcName := function.Name[len(prefix):]
+	mgrName += "Mgr"
+	sb.WriteString("func Sync")
+	sb.WriteString(funcName)
+	sb.WriteString("(")
+	count := len(function.Arguments)
+	for i, arg := range function.Arguments {
+		sb.WriteString(arg.Name)
+		sb.WriteString(" ")
+		typeName := GetFuncParamTypeString(arg.Type.Primative.Name)
+		sb.WriteString(typeName)
+		if i != count-1 {
+			sb.WriteString(", ")
+		}
+	}
+	sb.WriteString(")")
+
+	if function.ReturnType.Name != "void" {
+		typeName := GetFuncParamTypeString(function.ReturnType.Name)
+		sb.WriteString(" " + typeName + " ")
+	}
+	sb.WriteString("{\n")
+	prefixStr := "\t"
+	// body
+	if function.ReturnType.Name != "void" {
+		typeName := GetFuncParamTypeString(function.ReturnType.Name)
+		sb.WriteString(prefixStr + "var __ret " + typeName + "")
+	}
+
+	sb.WriteString(`	
+	done := make(chan struct{})
+	job := func() {
+`)
+	if function.ReturnType.Name != "void" {
+		sb.WriteString(prefixStr + "\t__ret =")
+	} else {
+		sb.WriteString(prefixStr + "\t")
+	}
+	sb.WriteString(mgrName + "." + pureFuncName + "(")
+	for i, arg := range function.Arguments {
+		sb.WriteString(arg.Name)
+		if i != count-1 {
+			sb.WriteString(", ")
+		}
+	}
+	sb.WriteString(")")
+
+	sb.WriteString(`
+		done <- struct{}{}
+	}
+	updateJobQueue <- job
+	<-done
+`)
+
+	if function.ReturnType.Name != "void" {
+		sb.WriteString(prefixStr + "return __ret \n")
+	}
+	sb.WriteString("}")
 	return sb.String()
 }
 

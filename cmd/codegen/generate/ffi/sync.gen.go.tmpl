@@ -1,0 +1,16 @@
+package engine
+
+import (
+	. "godot-ext/gdspx/pkg/engine"
+)
+
+
+{{ $view := . -}}
+
+{{ range $i, $name := $view.Mangers -}}
+// I{{camelCase $name}}Mgr
+{{- range $i, $f := $view.Ast.CollectGDExtensionManagerFunctions $name }}
+{{ genSyncApiWrapFunction $f }}
+{{- end }} 
+
+{{ end }}
