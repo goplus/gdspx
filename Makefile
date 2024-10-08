@@ -57,7 +57,7 @@ wasm:
 
 gen:
 	cd ./cmd/codegen && go run . && cd $(CURRENT_PATH) && \
-	$(MAKE) fmt 
+	$(MAKE) fmt && $(MAKE) fmt 
 	
 upload:
 	./webserver/upload.sh 
