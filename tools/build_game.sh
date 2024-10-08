@@ -59,7 +59,7 @@ elif  [ "$PLATFORM" = "pc" ]; then
     cp $TEMPLATE_DIR $GD_PROJ_DIR/gdspx.gdextension 
 
     cd $PROJECT_PATH 
-	CGO_ENABLED=1 go build -tags platform_pc -buildmode=c-shared -o ./project/lib/$LIB_NAME main.go
+	CGO_ENABLED=1 go build -buildmode=c-shared -o ./project/lib/$LIB_NAME main.go
     cd $CURRENT_PATH
     
     if [ "$EDITOR" = true ]; then
