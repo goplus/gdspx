@@ -1,5 +1,5 @@
 #!/bin/bash
-pip install scons==4.8.1
+pip install scons==4.7.0
 pip install ninja 
 
 if [ ! -d "godot" ]; then
@@ -29,4 +29,10 @@ echo "init engine done."
 gopath=${GOPATH:-$(go env GOPATH)}
 dstBinPath="$gopath/bin/gd4spx4.2.2"
 echo "Destination binary path: $dstBinPath"
-cp godot/bin/godot.linuxbsd.editor.dev.x86_64 $dstBinPath
+if [ "$OS" = "Windows_NT" ]; then
+    cp godot/bin/godot.windows.editor.dev.x86_64 $dstBinPath
+elif [ "$OS" = "Linux" ]; then
+    cp godot/bin/godot.linuxbsd.editor.dev.x86_64 $dstBinPath
+else
+    cp godot/bin/godot.darwin.editor.dev.x86_64 $dstBinPath
+fi
