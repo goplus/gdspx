@@ -13,3 +13,4 @@ internal/ffi/_temp_output*.h
 /tools/publish
 /test/*
 /spx
+/oldspx

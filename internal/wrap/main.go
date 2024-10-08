@@ -1,4 +1,4 @@
-//go:build !platform_web
+//go:build !js
 
 package wrap
 

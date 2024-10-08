@@ -191,7 +191,7 @@ func buildWasm(project string) {
 	os.MkdirAll(dir, 0755)
 	filePath := path.Join(dir, "gdspx.wasm")
 	envVars := []string{"GOOS=js", "GOARCH=wasm"}
-	runGolang(envVars, "build", "-tags", "platform_web", "-o", filePath)
+	runGolang(envVars, "build", "-o", filePath)
 	os.Chdir(rawdir)
 }
 

@@ -39,20 +39,20 @@ engine:
 	./tools/build_engine.sh 
 
 build: 
-	./tools/build_game.sh --platform pc --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH)
+	./tools/build_game.sh --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH)
 
 run:
 	$(MAKE) fmt 
-	./tools/build_game.sh --platform pc --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH)
+	./tools/build_game.sh --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH)
 web:
 	$(MAKE) fmt 
-	./tools/build_game.sh --platform web --gd $(GODOT) --lib $(LIB_PATH) --export --path $(PROJECT_PATH)
+	./tools/build_game.sh --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH) --export  --platform web
 
 editor:
-	./tools/build_game.sh --platform pc --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH) --editor
+	./tools/build_game.sh --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH) --editor
 
 wasm:
-	./tools/build_game.sh --platform web --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH)
+	./tools/build_game.sh --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH) --platform web
 
 
 gen:

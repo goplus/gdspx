@@ -7,7 +7,7 @@ CURRENT_PATH=("$PWD")
 EXPORT_WEB=false
 PROJECT_PATH="tutorial/01_aircraft"
 GODOT="./godot/bin/godot.linuxbsd.editor.dev.x86_64"
-PLATFORM="pc"
+PLATFORM=""
 EDITOR=false
 LIB_NAME=false
 # Parse command line arguments
@@ -44,7 +44,7 @@ if [ "$PLATFORM" = "web" ]; then
     # Build wasm
     cd "$PROJECT_PATH" || { echo "Project path not found"; exit 1; }
     echo "Building Go wasm"
-    GOOS=js GOARCH=wasm go build -tags platform_web -o "$CURRENT_PATH/builds/games/gdspx.wasm"
+    GOOS=js GOARCH=wasm go build -o "$CURRENT_PATH/builds/games/gdspx.wasm"
     cd $CURRENT_PATH
 
     # Export to web if enabled
@@ -52,7 +52,7 @@ if [ "$PLATFORM" = "web" ]; then
         echo "================ EXPORT_WEB ====================="
         $GODOT --headless --quit --path $GD_PROJ_DIR --export-debug "Web" "$CURRENT_PATH/builds/games/index.html"
     fi
-elif  [ "$PLATFORM" = "pc" ]; then
+elif  [ "$PLATFORM" = "" ]; then #pc
     # update extension list
     echo "res://gdspx.gdextension" > $GD_LIB_DIR/extension_list.cfg
     TEMPLATE_DIR=$CURRENT_PATH/cmd/gdspx/template/project/gdspx.gdextension
