@@ -13,7 +13,11 @@ import (
 	_ "embed"
 )
 
-func buildFromSource() {
+var (
+	binPostfix = ""
+)
+
+func buildFromSource(dstBinPath string) {
 	println("======== Building from source =======")
 	// Install SCons and Ninja
 	installPythonPackages()
@@ -64,7 +68,6 @@ func buildFromSource() {
 		gopath = getGoEnv()
 	}
 
-	dstBinPath := filepath.Join(strings.TrimSpace(gopath), "bin", "gd4spx"+strings.TrimSpace(version))
 	fmt.Printf("Destination binary path: %s\n", dstBinPath)
 	filePath := findFirstMatchingFile("godot/bin", "godot.*.editor.dev.*", "console")
 	if filePath == "" {
@@ -166,11 +169,14 @@ func downloadGd4spx(fileName string, dstPath string) error {
 }
 
 func checkAndGetBinPath() (string, error) {
+	if runtime.GOOS == "windows" {
+		binPostfix = ".exe"
+	}
 	gopath := os.Getenv("GOPATH")
 	if gopath == "" {
 		gopath = build.Default.GOPATH
 	}
-	dstBinPath := gopath + "/bin/gd4spx" + version
+	dstBinPath := gopath + "/bin/gd4spx" + version + binPostfix
 	gd4spx, err := exec.LookPath("gd4spx")
 	if err == nil {
 		if current, err := exec.Command(gd4spx, "--version").CombinedOutput(); err == nil {
@@ -181,12 +187,12 @@ func checkAndGetBinPath() (string, error) {
 	}
 	info, err := os.Stat(dstBinPath)
 	if os.IsNotExist(err) {
-		buildFromSource()
+		buildFromSource(dstBinPath)
 	} else if err != nil {
 		return "", err
 	} else {
 		if info.Mode()&0111 == 0 {
-			if err := os.Chmod(gopath+"/bin/gd4spx"+version, 0755); err != nil {
+			if err := os.Chmod(dstBinPath, 0755); err != nil {
 				return "", err
 			}
 		}

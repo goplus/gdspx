@@ -117,9 +117,8 @@ func wrap() error {
 		return errors.New("gd4spx requires an amd64, or an arm64 system")
 	}
 	gd4spxPath, err := checkAndGetBinPath()
-
 	if err != nil {
-		return fmt.Errorf("gd4spx requires Godot v%s to be installed as a binary at $GOPATH/bin/gd4spx-%s: %w", version, err)
+		return fmt.Errorf("gd4spx requires Godot v%s to be installed as a binary at $GOPATH/bin/gd4spx-%s: %w", version, version, err)
 	}
 	wd := targetDir
 	// look for a go.mod file
@@ -237,6 +236,7 @@ func runGolang(envVars []string, args ...string) error {
 	return golang.Run()
 }
 func runGd4spx(gd4spxPath string, project string, args string) error {
+	println("run: ", gd4spxPath, project, args)
 	gd4spx := exec.Command(gd4spxPath, args)
 	gd4spx.Dir = project
 	gd4spx.Stderr = os.Stderr
