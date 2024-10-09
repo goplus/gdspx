@@ -22,17 +22,20 @@ var (
 
 type GDExtensionInterface struct {
 	// All of the GDExtension interface functions.
-	SpxAudioPlayAudio                js.Value
-	SpxAudioSetAudioVolume           js.Value
-	SpxAudioGetAudioVolume           js.Value
-	SpxAudioIsMusicPlaying           js.Value
+	SpxAudioStopAll                  js.Value
+	SpxAudioPlaySfx                  js.Value
 	SpxAudioPlayMusic                js.Value
-	SpxAudioSetMusicVolume           js.Value
-	SpxAudioGetMusicVolume           js.Value
 	SpxAudioPauseMusic               js.Value
 	SpxAudioResumeMusic              js.Value
 	SpxAudioGetMusicTimer            js.Value
 	SpxAudioSetMusicTimer            js.Value
+	SpxAudioIsMusicPlaying           js.Value
+	SpxAudioSetSfxVolume             js.Value
+	SpxAudioGetSfxVolume             js.Value
+	SpxAudioSetMusicVolume           js.Value
+	SpxAudioGetMusicVolume           js.Value
+	SpxAudioSetMasterVolume          js.Value
+	SpxAudioGetMasterVolume          js.Value
 	SpxCameraGetCameraPosition       js.Value
 	SpxCameraSetCameraPosition       js.Value
 	SpxCameraGetCameraZoom           js.Value
@@ -172,17 +175,20 @@ type GDExtensionInterface struct {
 }
 
 func (x *GDExtensionInterface) loadProcAddresses() {
-	x.SpxAudioPlayAudio = dlsymGD("gdspx_audio_play_audio")
-	x.SpxAudioSetAudioVolume = dlsymGD("gdspx_audio_set_audio_volume")
-	x.SpxAudioGetAudioVolume = dlsymGD("gdspx_audio_get_audio_volume")
-	x.SpxAudioIsMusicPlaying = dlsymGD("gdspx_audio_is_music_playing")
+	x.SpxAudioStopAll = dlsymGD("gdspx_audio_stop_all")
+	x.SpxAudioPlaySfx = dlsymGD("gdspx_audio_play_sfx")
 	x.SpxAudioPlayMusic = dlsymGD("gdspx_audio_play_music")
-	x.SpxAudioSetMusicVolume = dlsymGD("gdspx_audio_set_music_volume")
-	x.SpxAudioGetMusicVolume = dlsymGD("gdspx_audio_get_music_volume")
 	x.SpxAudioPauseMusic = dlsymGD("gdspx_audio_pause_music")
 	x.SpxAudioResumeMusic = dlsymGD("gdspx_audio_resume_music")
 	x.SpxAudioGetMusicTimer = dlsymGD("gdspx_audio_get_music_timer")
 	x.SpxAudioSetMusicTimer = dlsymGD("gdspx_audio_set_music_timer")
+	x.SpxAudioIsMusicPlaying = dlsymGD("gdspx_audio_is_music_playing")
+	x.SpxAudioSetSfxVolume = dlsymGD("gdspx_audio_set_sfx_volume")
+	x.SpxAudioGetSfxVolume = dlsymGD("gdspx_audio_get_sfx_volume")
+	x.SpxAudioSetMusicVolume = dlsymGD("gdspx_audio_set_music_volume")
+	x.SpxAudioGetMusicVolume = dlsymGD("gdspx_audio_get_music_volume")
+	x.SpxAudioSetMasterVolume = dlsymGD("gdspx_audio_set_master_volume")
+	x.SpxAudioGetMasterVolume = dlsymGD("gdspx_audio_get_master_volume")
 	x.SpxCameraGetCameraPosition = dlsymGD("gdspx_camera_get_camera_position")
 	x.SpxCameraSetCameraPosition = dlsymGD("gdspx_camera_set_camera_position")
 	x.SpxCameraGetCameraZoom = dlsymGD("gdspx_camera_get_camera_zoom")

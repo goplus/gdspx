@@ -22,17 +22,20 @@ var (
 )
 
 type IAudioMgr interface {
-	PlayAudio(path string)
-	SetAudioVolume(volume float32)
-	GetAudioVolume() float32
-	IsMusicPlaying() bool
+	StopAll()
+	PlaySfx(path string)
 	PlayMusic(path string)
-	SetMusicVolume(volume float32)
-	GetMusicVolume() float32
 	PauseMusic()
 	ResumeMusic()
 	GetMusicTimer() float32
 	SetMusicTimer(time float32)
+	IsMusicPlaying() bool
+	SetSfxVolume(volume float32)
+	GetSfxVolume() float32
+	SetMusicVolume(volume float32)
+	GetMusicVolume() float32
+	SetMasterVolume(volume float32)
+	GetMasterVolume() float32
 }
 
 type ICameraMgr interface {

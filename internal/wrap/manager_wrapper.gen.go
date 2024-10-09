@@ -91,37 +91,20 @@ func createMgrs() []IManager {
 
 // call gdextension interface functions
 
-func (pself *audioMgr) PlayAudio(path string) {
+func (pself *audioMgr) StopAll() {
+	CallAudioStopAll()
+}
+func (pself *audioMgr) PlaySfx(path string) {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
 	defer arg0Str.Destroy()
-	CallAudioPlayAudio(arg0)
-}
-func (pself *audioMgr) SetAudioVolume(volume float32) {
-	arg0 := ToGdFloat(volume)
-	CallAudioSetAudioVolume(arg0)
-}
-func (pself *audioMgr) GetAudioVolume() float32 {
-	retValue := CallAudioGetAudioVolume()
-	return ToFloat32(retValue)
-}
-func (pself *audioMgr) IsMusicPlaying() bool {
-	retValue := CallAudioIsMusicPlaying()
-	return ToBool(retValue)
+	CallAudioPlaySfx(arg0)
 }
 func (pself *audioMgr) PlayMusic(path string) {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
 	defer arg0Str.Destroy()
 	CallAudioPlayMusic(arg0)
-}
-func (pself *audioMgr) SetMusicVolume(volume float32) {
-	arg0 := ToGdFloat(volume)
-	CallAudioSetMusicVolume(arg0)
-}
-func (pself *audioMgr) GetMusicVolume() float32 {
-	retValue := CallAudioGetMusicVolume()
-	return ToFloat32(retValue)
 }
 func (pself *audioMgr) PauseMusic() {
 	CallAudioPauseMusic()
@@ -136,6 +119,34 @@ func (pself *audioMgr) GetMusicTimer() float32 {
 func (pself *audioMgr) SetMusicTimer(time float32) {
 	arg0 := ToGdFloat(time)
 	CallAudioSetMusicTimer(arg0)
+}
+func (pself *audioMgr) IsMusicPlaying() bool {
+	retValue := CallAudioIsMusicPlaying()
+	return ToBool(retValue)
+}
+func (pself *audioMgr) SetSfxVolume(volume float32) {
+	arg0 := ToGdFloat(volume)
+	CallAudioSetSfxVolume(arg0)
+}
+func (pself *audioMgr) GetSfxVolume() float32 {
+	retValue := CallAudioGetSfxVolume()
+	return ToFloat32(retValue)
+}
+func (pself *audioMgr) SetMusicVolume(volume float32) {
+	arg0 := ToGdFloat(volume)
+	CallAudioSetMusicVolume(arg0)
+}
+func (pself *audioMgr) GetMusicVolume() float32 {
+	retValue := CallAudioGetMusicVolume()
+	return ToFloat32(retValue)
+}
+func (pself *audioMgr) SetMasterVolume(volume float32) {
+	arg0 := ToGdFloat(volume)
+	CallAudioSetMasterVolume(arg0)
+}
+func (pself *audioMgr) GetMasterVolume() float32 {
+	retValue := CallAudioGetMasterVolume()
+	return ToFloat32(retValue)
 }
 func (pself *cameraMgr) GetCameraPosition() Vec2 {
 	retValue := CallCameraGetCameraPosition()

@@ -91,33 +91,16 @@ func createMgrs() []IManager {
 
 // call gdextension interface functions
 
-func (pself *audioMgr) PlayAudio(path string) {
+func (pself *audioMgr) StopAll() {
+	API.SpxAudioStopAll.Invoke()
+}
+func (pself *audioMgr) PlaySfx(path string) {
 	arg0 := JsFromGdString(path)
-	API.SpxAudioPlayAudio.Invoke(arg0)
-}
-func (pself *audioMgr) SetAudioVolume(volume float32) {
-	arg0 := JsFromGdFloat(volume)
-	API.SpxAudioSetAudioVolume.Invoke(arg0)
-}
-func (pself *audioMgr) GetAudioVolume() float32 {
-	_retValue := API.SpxAudioGetAudioVolume.Invoke()
-	return JsToGdFloat(_retValue)
-}
-func (pself *audioMgr) IsMusicPlaying() bool {
-	_retValue := API.SpxAudioIsMusicPlaying.Invoke()
-	return JsToGdBool(_retValue)
+	API.SpxAudioPlaySfx.Invoke(arg0)
 }
 func (pself *audioMgr) PlayMusic(path string) {
 	arg0 := JsFromGdString(path)
 	API.SpxAudioPlayMusic.Invoke(arg0)
-}
-func (pself *audioMgr) SetMusicVolume(volume float32) {
-	arg0 := JsFromGdFloat(volume)
-	API.SpxAudioSetMusicVolume.Invoke(arg0)
-}
-func (pself *audioMgr) GetMusicVolume() float32 {
-	_retValue := API.SpxAudioGetMusicVolume.Invoke()
-	return JsToGdFloat(_retValue)
 }
 func (pself *audioMgr) PauseMusic() {
 	API.SpxAudioPauseMusic.Invoke()
@@ -132,6 +115,34 @@ func (pself *audioMgr) GetMusicTimer() float32 {
 func (pself *audioMgr) SetMusicTimer(time float32) {
 	arg0 := JsFromGdFloat(time)
 	API.SpxAudioSetMusicTimer.Invoke(arg0)
+}
+func (pself *audioMgr) IsMusicPlaying() bool {
+	_retValue := API.SpxAudioIsMusicPlaying.Invoke()
+	return JsToGdBool(_retValue)
+}
+func (pself *audioMgr) SetSfxVolume(volume float32) {
+	arg0 := JsFromGdFloat(volume)
+	API.SpxAudioSetSfxVolume.Invoke(arg0)
+}
+func (pself *audioMgr) GetSfxVolume() float32 {
+	_retValue := API.SpxAudioGetSfxVolume.Invoke()
+	return JsToGdFloat(_retValue)
+}
+func (pself *audioMgr) SetMusicVolume(volume float32) {
+	arg0 := JsFromGdFloat(volume)
+	API.SpxAudioSetMusicVolume.Invoke(arg0)
+}
+func (pself *audioMgr) GetMusicVolume() float32 {
+	_retValue := API.SpxAudioGetMusicVolume.Invoke()
+	return JsToGdFloat(_retValue)
+}
+func (pself *audioMgr) SetMasterVolume(volume float32) {
+	arg0 := JsFromGdFloat(volume)
+	API.SpxAudioSetMasterVolume.Invoke(arg0)
+}
+func (pself *audioMgr) GetMasterVolume() float32 {
+	_retValue := API.SpxAudioGetMasterVolume.Invoke()
+	return JsToGdFloat(_retValue)
 }
 func (pself *cameraMgr) GetCameraPosition() Vec2 {
 	_retValue := API.SpxCameraGetCameraPosition.Invoke()

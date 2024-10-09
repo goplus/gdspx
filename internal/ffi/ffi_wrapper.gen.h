@@ -12,26 +12,14 @@
 //----------------------------------------------------------------------------*/
 #include "gdextension_spx_codegen_header.h"
 
-/* Go cannot call C function pointers directly, so we must generate C wrapper code to call the functions. */void cgo_callfn_GDExtensionSpxAudioPlayAudio(const GDExtensionSpxAudioPlayAudio fn, GdString path) {
+/* Go cannot call C function pointers directly, so we must generate C wrapper code to call the functions. */void cgo_callfn_GDExtensionSpxAudioStopAll(const GDExtensionSpxAudioStopAll fn) {
+	fn();
+}
+void cgo_callfn_GDExtensionSpxAudioPlaySfx(const GDExtensionSpxAudioPlaySfx fn, GdString path) {
 	fn(path);
-}
-void cgo_callfn_GDExtensionSpxAudioSetAudioVolume(const GDExtensionSpxAudioSetAudioVolume fn, GdFloat volume) {
-	fn(volume);
-}
-void cgo_callfn_GDExtensionSpxAudioGetAudioVolume(const GDExtensionSpxAudioGetAudioVolume fn, GdFloat* ret_val) {
-	fn(ret_val);
-}
-void cgo_callfn_GDExtensionSpxAudioIsMusicPlaying(const GDExtensionSpxAudioIsMusicPlaying fn, GdBool* ret_val) {
-	fn(ret_val);
 }
 void cgo_callfn_GDExtensionSpxAudioPlayMusic(const GDExtensionSpxAudioPlayMusic fn, GdString path) {
 	fn(path);
-}
-void cgo_callfn_GDExtensionSpxAudioSetMusicVolume(const GDExtensionSpxAudioSetMusicVolume fn, GdFloat volume) {
-	fn(volume);
-}
-void cgo_callfn_GDExtensionSpxAudioGetMusicVolume(const GDExtensionSpxAudioGetMusicVolume fn, GdFloat* ret_val) {
-	fn(ret_val);
 }
 void cgo_callfn_GDExtensionSpxAudioPauseMusic(const GDExtensionSpxAudioPauseMusic fn) {
 	fn();
@@ -44,6 +32,27 @@ void cgo_callfn_GDExtensionSpxAudioGetMusicTimer(const GDExtensionSpxAudioGetMus
 }
 void cgo_callfn_GDExtensionSpxAudioSetMusicTimer(const GDExtensionSpxAudioSetMusicTimer fn, GdFloat time) {
 	fn(time);
+}
+void cgo_callfn_GDExtensionSpxAudioIsMusicPlaying(const GDExtensionSpxAudioIsMusicPlaying fn, GdBool* ret_val) {
+	fn(ret_val);
+}
+void cgo_callfn_GDExtensionSpxAudioSetSfxVolume(const GDExtensionSpxAudioSetSfxVolume fn, GdFloat volume) {
+	fn(volume);
+}
+void cgo_callfn_GDExtensionSpxAudioGetSfxVolume(const GDExtensionSpxAudioGetSfxVolume fn, GdFloat* ret_val) {
+	fn(ret_val);
+}
+void cgo_callfn_GDExtensionSpxAudioSetMusicVolume(const GDExtensionSpxAudioSetMusicVolume fn, GdFloat volume) {
+	fn(volume);
+}
+void cgo_callfn_GDExtensionSpxAudioGetMusicVolume(const GDExtensionSpxAudioGetMusicVolume fn, GdFloat* ret_val) {
+	fn(ret_val);
+}
+void cgo_callfn_GDExtensionSpxAudioSetMasterVolume(const GDExtensionSpxAudioSetMasterVolume fn, GdFloat volume) {
+	fn(volume);
+}
+void cgo_callfn_GDExtensionSpxAudioGetMasterVolume(const GDExtensionSpxAudioGetMasterVolume fn, GdFloat* ret_val) {
+	fn(ret_val);
 }
 void cgo_callfn_GDExtensionSpxCameraGetCameraPosition(const GDExtensionSpxCameraGetCameraPosition fn, GdVec2* ret_val) {
 	fn(ret_val);

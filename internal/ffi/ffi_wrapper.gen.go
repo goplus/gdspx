@@ -72,17 +72,20 @@ type GDExtensionSpxCallbackOnUiHovered C.GDExtensionSpxCallbackOnUiHovered
 type GDExtensionSpxCallbackOnUiClicked C.GDExtensionSpxCallbackOnUiClicked
 type GDExtensionSpxCallbackOnUiToggle C.GDExtensionSpxCallbackOnUiToggle
 type GDExtensionSpxCallbackOnUiTextChanged C.GDExtensionSpxCallbackOnUiTextChanged
-type GDExtensionSpxAudioPlayAudio C.GDExtensionSpxAudioPlayAudio
-type GDExtensionSpxAudioSetAudioVolume C.GDExtensionSpxAudioSetAudioVolume
-type GDExtensionSpxAudioGetAudioVolume C.GDExtensionSpxAudioGetAudioVolume
-type GDExtensionSpxAudioIsMusicPlaying C.GDExtensionSpxAudioIsMusicPlaying
+type GDExtensionSpxAudioStopAll C.GDExtensionSpxAudioStopAll
+type GDExtensionSpxAudioPlaySfx C.GDExtensionSpxAudioPlaySfx
 type GDExtensionSpxAudioPlayMusic C.GDExtensionSpxAudioPlayMusic
-type GDExtensionSpxAudioSetMusicVolume C.GDExtensionSpxAudioSetMusicVolume
-type GDExtensionSpxAudioGetMusicVolume C.GDExtensionSpxAudioGetMusicVolume
 type GDExtensionSpxAudioPauseMusic C.GDExtensionSpxAudioPauseMusic
 type GDExtensionSpxAudioResumeMusic C.GDExtensionSpxAudioResumeMusic
 type GDExtensionSpxAudioGetMusicTimer C.GDExtensionSpxAudioGetMusicTimer
 type GDExtensionSpxAudioSetMusicTimer C.GDExtensionSpxAudioSetMusicTimer
+type GDExtensionSpxAudioIsMusicPlaying C.GDExtensionSpxAudioIsMusicPlaying
+type GDExtensionSpxAudioSetSfxVolume C.GDExtensionSpxAudioSetSfxVolume
+type GDExtensionSpxAudioGetSfxVolume C.GDExtensionSpxAudioGetSfxVolume
+type GDExtensionSpxAudioSetMusicVolume C.GDExtensionSpxAudioSetMusicVolume
+type GDExtensionSpxAudioGetMusicVolume C.GDExtensionSpxAudioGetMusicVolume
+type GDExtensionSpxAudioSetMasterVolume C.GDExtensionSpxAudioSetMasterVolume
+type GDExtensionSpxAudioGetMasterVolume C.GDExtensionSpxAudioGetMasterVolume
 type GDExtensionSpxCameraGetCameraPosition C.GDExtensionSpxCameraGetCameraPosition
 type GDExtensionSpxCameraSetCameraPosition C.GDExtensionSpxCameraSetCameraPosition
 type GDExtensionSpxCameraGetCameraZoom C.GDExtensionSpxCameraGetCameraZoom
@@ -221,35 +224,19 @@ type GDExtensionSpxUiSetRect C.GDExtensionSpxUiSetRect
 type GDExtensionSpxUiGetRect C.GDExtensionSpxUiGetRect
 
 // call gdextension interface functions
-func CallAudioPlayAudio(
+func CallAudioStopAll() {
+	arg0 := (C.GDExtensionSpxAudioStopAll)(api.SpxAudioStopAll)
+
+	C.cgo_callfn_GDExtensionSpxAudioStopAll(arg0)
+}
+func CallAudioPlaySfx(
 	path GdString,
 ) {
-	arg0 := (C.GDExtensionSpxAudioPlayAudio)(api.SpxAudioPlayAudio)
+	arg0 := (C.GDExtensionSpxAudioPlaySfx)(api.SpxAudioPlaySfx)
 	arg1GdString = (C.GdString)(path)
 
-	C.cgo_callfn_GDExtensionSpxAudioPlayAudio(arg0, arg1GdString)
+	C.cgo_callfn_GDExtensionSpxAudioPlaySfx(arg0, arg1GdString)
 
-}
-func CallAudioSetAudioVolume(
-	volume GdFloat,
-) {
-	arg0 := (C.GDExtensionSpxAudioSetAudioVolume)(api.SpxAudioSetAudioVolume)
-	arg1GdFloat = (C.GdFloat)(volume)
-
-	C.cgo_callfn_GDExtensionSpxAudioSetAudioVolume(arg0, arg1GdFloat)
-
-}
-func CallAudioGetAudioVolume() GdFloat {
-	arg0 := (C.GDExtensionSpxAudioGetAudioVolume)(api.SpxAudioGetAudioVolume)
-	var ret_val C.GdFloat
-	C.cgo_callfn_GDExtensionSpxAudioGetAudioVolume(arg0, &ret_val)
-	return (GdFloat)(ret_val)
-}
-func CallAudioIsMusicPlaying() GdBool {
-	arg0 := (C.GDExtensionSpxAudioIsMusicPlaying)(api.SpxAudioIsMusicPlaying)
-	var ret_val C.GdBool
-	C.cgo_callfn_GDExtensionSpxAudioIsMusicPlaying(arg0, &ret_val)
-	return (GdBool)(ret_val)
 }
 func CallAudioPlayMusic(
 	path GdString,
@@ -259,21 +246,6 @@ func CallAudioPlayMusic(
 
 	C.cgo_callfn_GDExtensionSpxAudioPlayMusic(arg0, arg1GdString)
 
-}
-func CallAudioSetMusicVolume(
-	volume GdFloat,
-) {
-	arg0 := (C.GDExtensionSpxAudioSetMusicVolume)(api.SpxAudioSetMusicVolume)
-	arg1GdFloat = (C.GdFloat)(volume)
-
-	C.cgo_callfn_GDExtensionSpxAudioSetMusicVolume(arg0, arg1GdFloat)
-
-}
-func CallAudioGetMusicVolume() GdFloat {
-	arg0 := (C.GDExtensionSpxAudioGetMusicVolume)(api.SpxAudioGetMusicVolume)
-	var ret_val C.GdFloat
-	C.cgo_callfn_GDExtensionSpxAudioGetMusicVolume(arg0, &ret_val)
-	return (GdFloat)(ret_val)
 }
 func CallAudioPauseMusic() {
 	arg0 := (C.GDExtensionSpxAudioPauseMusic)(api.SpxAudioPauseMusic)
@@ -299,6 +271,57 @@ func CallAudioSetMusicTimer(
 
 	C.cgo_callfn_GDExtensionSpxAudioSetMusicTimer(arg0, arg1GdFloat)
 
+}
+func CallAudioIsMusicPlaying() GdBool {
+	arg0 := (C.GDExtensionSpxAudioIsMusicPlaying)(api.SpxAudioIsMusicPlaying)
+	var ret_val C.GdBool
+	C.cgo_callfn_GDExtensionSpxAudioIsMusicPlaying(arg0, &ret_val)
+	return (GdBool)(ret_val)
+}
+func CallAudioSetSfxVolume(
+	volume GdFloat,
+) {
+	arg0 := (C.GDExtensionSpxAudioSetSfxVolume)(api.SpxAudioSetSfxVolume)
+	arg1GdFloat = (C.GdFloat)(volume)
+
+	C.cgo_callfn_GDExtensionSpxAudioSetSfxVolume(arg0, arg1GdFloat)
+
+}
+func CallAudioGetSfxVolume() GdFloat {
+	arg0 := (C.GDExtensionSpxAudioGetSfxVolume)(api.SpxAudioGetSfxVolume)
+	var ret_val C.GdFloat
+	C.cgo_callfn_GDExtensionSpxAudioGetSfxVolume(arg0, &ret_val)
+	return (GdFloat)(ret_val)
+}
+func CallAudioSetMusicVolume(
+	volume GdFloat,
+) {
+	arg0 := (C.GDExtensionSpxAudioSetMusicVolume)(api.SpxAudioSetMusicVolume)
+	arg1GdFloat = (C.GdFloat)(volume)
+
+	C.cgo_callfn_GDExtensionSpxAudioSetMusicVolume(arg0, arg1GdFloat)
+
+}
+func CallAudioGetMusicVolume() GdFloat {
+	arg0 := (C.GDExtensionSpxAudioGetMusicVolume)(api.SpxAudioGetMusicVolume)
+	var ret_val C.GdFloat
+	C.cgo_callfn_GDExtensionSpxAudioGetMusicVolume(arg0, &ret_val)
+	return (GdFloat)(ret_val)
+}
+func CallAudioSetMasterVolume(
+	volume GdFloat,
+) {
+	arg0 := (C.GDExtensionSpxAudioSetMasterVolume)(api.SpxAudioSetMasterVolume)
+	arg1GdFloat = (C.GdFloat)(volume)
+
+	C.cgo_callfn_GDExtensionSpxAudioSetMasterVolume(arg0, arg1GdFloat)
+
+}
+func CallAudioGetMasterVolume() GdFloat {
+	arg0 := (C.GDExtensionSpxAudioGetMasterVolume)(api.SpxAudioGetMasterVolume)
+	var ret_val C.GdFloat
+	C.cgo_callfn_GDExtensionSpxAudioGetMasterVolume(arg0, &ret_val)
+	return (GdFloat)(ret_val)
 }
 func CallCameraGetCameraPosition() GdVec2 {
 	arg0 := (C.GDExtensionSpxCameraGetCameraPosition)(api.SpxCameraGetCameraPosition)

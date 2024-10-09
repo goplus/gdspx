@@ -18,17 +18,20 @@ var (
 
 type GDExtensionInterface struct {
 	// All of the GDExtension interface functions.
-	SpxAudioPlayAudio                GDExtensionSpxAudioPlayAudio
-	SpxAudioSetAudioVolume           GDExtensionSpxAudioSetAudioVolume
-	SpxAudioGetAudioVolume           GDExtensionSpxAudioGetAudioVolume
-	SpxAudioIsMusicPlaying           GDExtensionSpxAudioIsMusicPlaying
+	SpxAudioStopAll                  GDExtensionSpxAudioStopAll
+	SpxAudioPlaySfx                  GDExtensionSpxAudioPlaySfx
 	SpxAudioPlayMusic                GDExtensionSpxAudioPlayMusic
-	SpxAudioSetMusicVolume           GDExtensionSpxAudioSetMusicVolume
-	SpxAudioGetMusicVolume           GDExtensionSpxAudioGetMusicVolume
 	SpxAudioPauseMusic               GDExtensionSpxAudioPauseMusic
 	SpxAudioResumeMusic              GDExtensionSpxAudioResumeMusic
 	SpxAudioGetMusicTimer            GDExtensionSpxAudioGetMusicTimer
 	SpxAudioSetMusicTimer            GDExtensionSpxAudioSetMusicTimer
+	SpxAudioIsMusicPlaying           GDExtensionSpxAudioIsMusicPlaying
+	SpxAudioSetSfxVolume             GDExtensionSpxAudioSetSfxVolume
+	SpxAudioGetSfxVolume             GDExtensionSpxAudioGetSfxVolume
+	SpxAudioSetMusicVolume           GDExtensionSpxAudioSetMusicVolume
+	SpxAudioGetMusicVolume           GDExtensionSpxAudioGetMusicVolume
+	SpxAudioSetMasterVolume          GDExtensionSpxAudioSetMasterVolume
+	SpxAudioGetMasterVolume          GDExtensionSpxAudioGetMasterVolume
 	SpxCameraGetCameraPosition       GDExtensionSpxCameraGetCameraPosition
 	SpxCameraSetCameraPosition       GDExtensionSpxCameraSetCameraPosition
 	SpxCameraGetCameraZoom           GDExtensionSpxCameraGetCameraZoom
@@ -168,17 +171,20 @@ type GDExtensionInterface struct {
 }
 
 func (x *GDExtensionInterface) loadProcAddresses() {
-	x.SpxAudioPlayAudio = (GDExtensionSpxAudioPlayAudio)(dlsymGD("spx_audio_play_audio"))
-	x.SpxAudioSetAudioVolume = (GDExtensionSpxAudioSetAudioVolume)(dlsymGD("spx_audio_set_audio_volume"))
-	x.SpxAudioGetAudioVolume = (GDExtensionSpxAudioGetAudioVolume)(dlsymGD("spx_audio_get_audio_volume"))
-	x.SpxAudioIsMusicPlaying = (GDExtensionSpxAudioIsMusicPlaying)(dlsymGD("spx_audio_is_music_playing"))
+	x.SpxAudioStopAll = (GDExtensionSpxAudioStopAll)(dlsymGD("spx_audio_stop_all"))
+	x.SpxAudioPlaySfx = (GDExtensionSpxAudioPlaySfx)(dlsymGD("spx_audio_play_sfx"))
 	x.SpxAudioPlayMusic = (GDExtensionSpxAudioPlayMusic)(dlsymGD("spx_audio_play_music"))
-	x.SpxAudioSetMusicVolume = (GDExtensionSpxAudioSetMusicVolume)(dlsymGD("spx_audio_set_music_volume"))
-	x.SpxAudioGetMusicVolume = (GDExtensionSpxAudioGetMusicVolume)(dlsymGD("spx_audio_get_music_volume"))
 	x.SpxAudioPauseMusic = (GDExtensionSpxAudioPauseMusic)(dlsymGD("spx_audio_pause_music"))
 	x.SpxAudioResumeMusic = (GDExtensionSpxAudioResumeMusic)(dlsymGD("spx_audio_resume_music"))
 	x.SpxAudioGetMusicTimer = (GDExtensionSpxAudioGetMusicTimer)(dlsymGD("spx_audio_get_music_timer"))
 	x.SpxAudioSetMusicTimer = (GDExtensionSpxAudioSetMusicTimer)(dlsymGD("spx_audio_set_music_timer"))
+	x.SpxAudioIsMusicPlaying = (GDExtensionSpxAudioIsMusicPlaying)(dlsymGD("spx_audio_is_music_playing"))
+	x.SpxAudioSetSfxVolume = (GDExtensionSpxAudioSetSfxVolume)(dlsymGD("spx_audio_set_sfx_volume"))
+	x.SpxAudioGetSfxVolume = (GDExtensionSpxAudioGetSfxVolume)(dlsymGD("spx_audio_get_sfx_volume"))
+	x.SpxAudioSetMusicVolume = (GDExtensionSpxAudioSetMusicVolume)(dlsymGD("spx_audio_set_music_volume"))
+	x.SpxAudioGetMusicVolume = (GDExtensionSpxAudioGetMusicVolume)(dlsymGD("spx_audio_get_music_volume"))
+	x.SpxAudioSetMasterVolume = (GDExtensionSpxAudioSetMasterVolume)(dlsymGD("spx_audio_set_master_volume"))
+	x.SpxAudioGetMasterVolume = (GDExtensionSpxAudioGetMasterVolume)(dlsymGD("spx_audio_get_master_volume"))
 	x.SpxCameraGetCameraPosition = (GDExtensionSpxCameraGetCameraPosition)(dlsymGD("spx_camera_get_camera_position"))
 	x.SpxCameraSetCameraPosition = (GDExtensionSpxCameraSetCameraPosition)(dlsymGD("spx_camera_set_camera_position"))
 	x.SpxCameraGetCameraZoom = (GDExtensionSpxCameraGetCameraZoom)(dlsymGD("spx_camera_get_camera_zoom"))
