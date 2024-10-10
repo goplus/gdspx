@@ -906,3 +906,83 @@ func (pself *uiMgr) GetRect(obj Object) Rect2 {
 	retValue := CallUiGetRect(arg0)
 	return ToRect2(retValue)
 }
+func (pself *uiMgr) GetLayoutDirection(obj Object) int64 {
+	arg0 := ToGdObj(obj)
+	retValue := CallUiGetLayoutDirection(arg0)
+	return ToInt64(retValue)
+}
+func (pself *uiMgr) SetLayoutDirection(obj Object, value int64) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdInt(value)
+	CallUiSetLayoutDirection(arg0, arg1)
+}
+func (pself *uiMgr) GetLayoutMode(obj Object) int64 {
+	arg0 := ToGdObj(obj)
+	retValue := CallUiGetLayoutMode(arg0)
+	return ToInt64(retValue)
+}
+func (pself *uiMgr) SetLayoutMode(obj Object, value int64) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdInt(value)
+	CallUiSetLayoutMode(arg0, arg1)
+}
+func (pself *uiMgr) GetAnchorsPreset(obj Object) int64 {
+	arg0 := ToGdObj(obj)
+	retValue := CallUiGetAnchorsPreset(arg0)
+	return ToInt64(retValue)
+}
+func (pself *uiMgr) SetAnchorsPreset(obj Object, value int64) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdInt(value)
+	CallUiSetAnchorsPreset(arg0, arg1)
+}
+func (pself *uiMgr) GetScale(obj Object) Vec2 {
+	arg0 := ToGdObj(obj)
+	retValue := CallUiGetScale(arg0)
+	return ToVec2(retValue)
+}
+func (pself *uiMgr) SetScale(obj Object, value Vec2) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdVec2(value)
+	CallUiSetScale(arg0, arg1)
+}
+func (pself *uiMgr) GetPosition(obj Object) Vec2 {
+	arg0 := ToGdObj(obj)
+	retValue := CallUiGetPosition(arg0)
+	return ToVec2(retValue)
+}
+func (pself *uiMgr) SetPosition(obj Object, value Vec2) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdVec2(value)
+	CallUiSetPosition(arg0, arg1)
+}
+func (pself *uiMgr) GetSize(obj Object) Vec2 {
+	arg0 := ToGdObj(obj)
+	retValue := CallUiGetSize(arg0)
+	return ToVec2(retValue)
+}
+func (pself *uiMgr) SetSize(obj Object, value Vec2) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdVec2(value)
+	CallUiSetSize(arg0, arg1)
+}
+func (pself *uiMgr) GetGlobalPosition(obj Object) Vec2 {
+	arg0 := ToGdObj(obj)
+	retValue := CallUiGetGlobalPosition(arg0)
+	return ToVec2(retValue)
+}
+func (pself *uiMgr) SetGlobalPosition(obj Object, value Vec2) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdVec2(value)
+	CallUiSetGlobalPosition(arg0, arg1)
+}
+func (pself *uiMgr) GetRotation(obj Object) float32 {
+	arg0 := ToGdObj(obj)
+	retValue := CallUiGetRotation(arg0)
+	return ToFloat32(retValue)
+}
+func (pself *uiMgr) SetRotation(obj Object, value float32) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdFloat(value)
+	CallUiSetRotation(arg0, arg1)
+}

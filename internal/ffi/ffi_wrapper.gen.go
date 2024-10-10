@@ -223,6 +223,22 @@ type GDExtensionSpxUiSetInteractable C.GDExtensionSpxUiSetInteractable
 type GDExtensionSpxUiGetInteractable C.GDExtensionSpxUiGetInteractable
 type GDExtensionSpxUiSetRect C.GDExtensionSpxUiSetRect
 type GDExtensionSpxUiGetRect C.GDExtensionSpxUiGetRect
+type GDExtensionSpxUiGetLayoutDirection C.GDExtensionSpxUiGetLayoutDirection
+type GDExtensionSpxUiSetLayoutDirection C.GDExtensionSpxUiSetLayoutDirection
+type GDExtensionSpxUiGetLayoutMode C.GDExtensionSpxUiGetLayoutMode
+type GDExtensionSpxUiSetLayoutMode C.GDExtensionSpxUiSetLayoutMode
+type GDExtensionSpxUiGetAnchorsPreset C.GDExtensionSpxUiGetAnchorsPreset
+type GDExtensionSpxUiSetAnchorsPreset C.GDExtensionSpxUiSetAnchorsPreset
+type GDExtensionSpxUiGetScale C.GDExtensionSpxUiGetScale
+type GDExtensionSpxUiSetScale C.GDExtensionSpxUiSetScale
+type GDExtensionSpxUiGetPosition C.GDExtensionSpxUiGetPosition
+type GDExtensionSpxUiSetPosition C.GDExtensionSpxUiSetPosition
+type GDExtensionSpxUiGetSize C.GDExtensionSpxUiGetSize
+type GDExtensionSpxUiSetSize C.GDExtensionSpxUiSetSize
+type GDExtensionSpxUiGetGlobalPosition C.GDExtensionSpxUiGetGlobalPosition
+type GDExtensionSpxUiSetGlobalPosition C.GDExtensionSpxUiSetGlobalPosition
+type GDExtensionSpxUiGetRotation C.GDExtensionSpxUiGetRotation
+type GDExtensionSpxUiSetRotation C.GDExtensionSpxUiSetRotation
 
 // call gdextension interface functions
 func CallAudioStopAll() {
@@ -1752,4 +1768,172 @@ func CallUiGetRect(
 	C.cgo_callfn_GDExtensionSpxUiGetRect(arg0, arg1GdObj, &ret_val)
 
 	return (GdRect2)(ret_val)
+}
+func CallUiGetLayoutDirection(
+	obj GdObj,
+) GdInt {
+	arg0 := (C.GDExtensionSpxUiGetLayoutDirection)(api.SpxUiGetLayoutDirection)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdInt
+	C.cgo_callfn_GDExtensionSpxUiGetLayoutDirection(arg0, arg1GdObj, &ret_val)
+
+	return (GdInt)(ret_val)
+}
+func CallUiSetLayoutDirection(
+	obj GdObj,
+	value GdInt,
+) {
+	arg0 := (C.GDExtensionSpxUiSetLayoutDirection)(api.SpxUiSetLayoutDirection)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdInt = (C.GdInt)(value)
+
+	C.cgo_callfn_GDExtensionSpxUiSetLayoutDirection(arg0, arg1GdObj, arg2GdInt)
+
+}
+func CallUiGetLayoutMode(
+	obj GdObj,
+) GdInt {
+	arg0 := (C.GDExtensionSpxUiGetLayoutMode)(api.SpxUiGetLayoutMode)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdInt
+	C.cgo_callfn_GDExtensionSpxUiGetLayoutMode(arg0, arg1GdObj, &ret_val)
+
+	return (GdInt)(ret_val)
+}
+func CallUiSetLayoutMode(
+	obj GdObj,
+	value GdInt,
+) {
+	arg0 := (C.GDExtensionSpxUiSetLayoutMode)(api.SpxUiSetLayoutMode)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdInt = (C.GdInt)(value)
+
+	C.cgo_callfn_GDExtensionSpxUiSetLayoutMode(arg0, arg1GdObj, arg2GdInt)
+
+}
+func CallUiGetAnchorsPreset(
+	obj GdObj,
+) GdInt {
+	arg0 := (C.GDExtensionSpxUiGetAnchorsPreset)(api.SpxUiGetAnchorsPreset)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdInt
+	C.cgo_callfn_GDExtensionSpxUiGetAnchorsPreset(arg0, arg1GdObj, &ret_val)
+
+	return (GdInt)(ret_val)
+}
+func CallUiSetAnchorsPreset(
+	obj GdObj,
+	value GdInt,
+) {
+	arg0 := (C.GDExtensionSpxUiSetAnchorsPreset)(api.SpxUiSetAnchorsPreset)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdInt = (C.GdInt)(value)
+
+	C.cgo_callfn_GDExtensionSpxUiSetAnchorsPreset(arg0, arg1GdObj, arg2GdInt)
+
+}
+func CallUiGetScale(
+	obj GdObj,
+) GdVec2 {
+	arg0 := (C.GDExtensionSpxUiGetScale)(api.SpxUiGetScale)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2
+	C.cgo_callfn_GDExtensionSpxUiGetScale(arg0, arg1GdObj, &ret_val)
+
+	return (GdVec2)(ret_val)
+}
+func CallUiSetScale(
+	obj GdObj,
+	value GdVec2,
+) {
+	arg0 := (C.GDExtensionSpxUiSetScale)(api.SpxUiSetScale)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdVec2 = (C.GdVec2)(value)
+
+	C.cgo_callfn_GDExtensionSpxUiSetScale(arg0, arg1GdObj, arg2GdVec2)
+
+}
+func CallUiGetPosition(
+	obj GdObj,
+) GdVec2 {
+	arg0 := (C.GDExtensionSpxUiGetPosition)(api.SpxUiGetPosition)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2
+	C.cgo_callfn_GDExtensionSpxUiGetPosition(arg0, arg1GdObj, &ret_val)
+
+	return (GdVec2)(ret_val)
+}
+func CallUiSetPosition(
+	obj GdObj,
+	value GdVec2,
+) {
+	arg0 := (C.GDExtensionSpxUiSetPosition)(api.SpxUiSetPosition)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdVec2 = (C.GdVec2)(value)
+
+	C.cgo_callfn_GDExtensionSpxUiSetPosition(arg0, arg1GdObj, arg2GdVec2)
+
+}
+func CallUiGetSize(
+	obj GdObj,
+) GdVec2 {
+	arg0 := (C.GDExtensionSpxUiGetSize)(api.SpxUiGetSize)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2
+	C.cgo_callfn_GDExtensionSpxUiGetSize(arg0, arg1GdObj, &ret_val)
+
+	return (GdVec2)(ret_val)
+}
+func CallUiSetSize(
+	obj GdObj,
+	value GdVec2,
+) {
+	arg0 := (C.GDExtensionSpxUiSetSize)(api.SpxUiSetSize)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdVec2 = (C.GdVec2)(value)
+
+	C.cgo_callfn_GDExtensionSpxUiSetSize(arg0, arg1GdObj, arg2GdVec2)
+
+}
+func CallUiGetGlobalPosition(
+	obj GdObj,
+) GdVec2 {
+	arg0 := (C.GDExtensionSpxUiGetGlobalPosition)(api.SpxUiGetGlobalPosition)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2
+	C.cgo_callfn_GDExtensionSpxUiGetGlobalPosition(arg0, arg1GdObj, &ret_val)
+
+	return (GdVec2)(ret_val)
+}
+func CallUiSetGlobalPosition(
+	obj GdObj,
+	value GdVec2,
+) {
+	arg0 := (C.GDExtensionSpxUiSetGlobalPosition)(api.SpxUiSetGlobalPosition)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdVec2 = (C.GdVec2)(value)
+
+	C.cgo_callfn_GDExtensionSpxUiSetGlobalPosition(arg0, arg1GdObj, arg2GdVec2)
+
+}
+func CallUiGetRotation(
+	obj GdObj,
+) GdFloat {
+	arg0 := (C.GDExtensionSpxUiGetRotation)(api.SpxUiGetRotation)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdFloat
+	C.cgo_callfn_GDExtensionSpxUiGetRotation(arg0, arg1GdObj, &ret_val)
+
+	return (GdFloat)(ret_val)
+}
+func CallUiSetRotation(
+	obj GdObj,
+	value GdFloat,
+) {
+	arg0 := (C.GDExtensionSpxUiSetRotation)(api.SpxUiSetRotation)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdFloat = (C.GdFloat)(value)
+
+	C.cgo_callfn_GDExtensionSpxUiSetRotation(arg0, arg1GdObj, arg2GdFloat)
+
 }

@@ -173,6 +173,22 @@ type GDExtensionInterface struct {
 	SpxUiGetInteractable             js.Value
 	SpxUiSetRect                     js.Value
 	SpxUiGetRect                     js.Value
+	SpxUiGetLayoutDirection          js.Value
+	SpxUiSetLayoutDirection          js.Value
+	SpxUiGetLayoutMode               js.Value
+	SpxUiSetLayoutMode               js.Value
+	SpxUiGetAnchorsPreset            js.Value
+	SpxUiSetAnchorsPreset            js.Value
+	SpxUiGetScale                    js.Value
+	SpxUiSetScale                    js.Value
+	SpxUiGetPosition                 js.Value
+	SpxUiSetPosition                 js.Value
+	SpxUiGetSize                     js.Value
+	SpxUiSetSize                     js.Value
+	SpxUiGetGlobalPosition           js.Value
+	SpxUiSetGlobalPosition           js.Value
+	SpxUiGetRotation                 js.Value
+	SpxUiSetRotation                 js.Value
 }
 
 func (x *GDExtensionInterface) loadProcAddresses() {
@@ -327,4 +343,20 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxUiGetInteractable = dlsymGD("gdspx_ui_get_interactable")
 	x.SpxUiSetRect = dlsymGD("gdspx_ui_set_rect")
 	x.SpxUiGetRect = dlsymGD("gdspx_ui_get_rect")
+	x.SpxUiGetLayoutDirection = dlsymGD("gdspx_ui_get_layout_direction")
+	x.SpxUiSetLayoutDirection = dlsymGD("gdspx_ui_set_layout_direction")
+	x.SpxUiGetLayoutMode = dlsymGD("gdspx_ui_get_layout_mode")
+	x.SpxUiSetLayoutMode = dlsymGD("gdspx_ui_set_layout_mode")
+	x.SpxUiGetAnchorsPreset = dlsymGD("gdspx_ui_get_anchors_preset")
+	x.SpxUiSetAnchorsPreset = dlsymGD("gdspx_ui_set_anchors_preset")
+	x.SpxUiGetScale = dlsymGD("gdspx_ui_get_scale")
+	x.SpxUiSetScale = dlsymGD("gdspx_ui_set_scale")
+	x.SpxUiGetPosition = dlsymGD("gdspx_ui_get_position")
+	x.SpxUiSetPosition = dlsymGD("gdspx_ui_set_position")
+	x.SpxUiGetSize = dlsymGD("gdspx_ui_get_size")
+	x.SpxUiSetSize = dlsymGD("gdspx_ui_set_size")
+	x.SpxUiGetGlobalPosition = dlsymGD("gdspx_ui_get_global_position")
+	x.SpxUiSetGlobalPosition = dlsymGD("gdspx_ui_set_global_position")
+	x.SpxUiGetRotation = dlsymGD("gdspx_ui_get_rotation")
+	x.SpxUiSetRotation = dlsymGD("gdspx_ui_set_rotation")
 }

@@ -169,6 +169,22 @@ type GDExtensionInterface struct {
 	SpxUiGetInteractable             GDExtensionSpxUiGetInteractable
 	SpxUiSetRect                     GDExtensionSpxUiSetRect
 	SpxUiGetRect                     GDExtensionSpxUiGetRect
+	SpxUiGetLayoutDirection          GDExtensionSpxUiGetLayoutDirection
+	SpxUiSetLayoutDirection          GDExtensionSpxUiSetLayoutDirection
+	SpxUiGetLayoutMode               GDExtensionSpxUiGetLayoutMode
+	SpxUiSetLayoutMode               GDExtensionSpxUiSetLayoutMode
+	SpxUiGetAnchorsPreset            GDExtensionSpxUiGetAnchorsPreset
+	SpxUiSetAnchorsPreset            GDExtensionSpxUiSetAnchorsPreset
+	SpxUiGetScale                    GDExtensionSpxUiGetScale
+	SpxUiSetScale                    GDExtensionSpxUiSetScale
+	SpxUiGetPosition                 GDExtensionSpxUiGetPosition
+	SpxUiSetPosition                 GDExtensionSpxUiSetPosition
+	SpxUiGetSize                     GDExtensionSpxUiGetSize
+	SpxUiSetSize                     GDExtensionSpxUiSetSize
+	SpxUiGetGlobalPosition           GDExtensionSpxUiGetGlobalPosition
+	SpxUiSetGlobalPosition           GDExtensionSpxUiSetGlobalPosition
+	SpxUiGetRotation                 GDExtensionSpxUiGetRotation
+	SpxUiSetRotation                 GDExtensionSpxUiSetRotation
 }
 
 func (x *GDExtensionInterface) loadProcAddresses() {
@@ -323,4 +339,20 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxUiGetInteractable = (GDExtensionSpxUiGetInteractable)(dlsymGD("spx_ui_get_interactable"))
 	x.SpxUiSetRect = (GDExtensionSpxUiSetRect)(dlsymGD("spx_ui_set_rect"))
 	x.SpxUiGetRect = (GDExtensionSpxUiGetRect)(dlsymGD("spx_ui_get_rect"))
+	x.SpxUiGetLayoutDirection = (GDExtensionSpxUiGetLayoutDirection)(dlsymGD("spx_ui_get_layout_direction"))
+	x.SpxUiSetLayoutDirection = (GDExtensionSpxUiSetLayoutDirection)(dlsymGD("spx_ui_set_layout_direction"))
+	x.SpxUiGetLayoutMode = (GDExtensionSpxUiGetLayoutMode)(dlsymGD("spx_ui_get_layout_mode"))
+	x.SpxUiSetLayoutMode = (GDExtensionSpxUiSetLayoutMode)(dlsymGD("spx_ui_set_layout_mode"))
+	x.SpxUiGetAnchorsPreset = (GDExtensionSpxUiGetAnchorsPreset)(dlsymGD("spx_ui_get_anchors_preset"))
+	x.SpxUiSetAnchorsPreset = (GDExtensionSpxUiSetAnchorsPreset)(dlsymGD("spx_ui_set_anchors_preset"))
+	x.SpxUiGetScale = (GDExtensionSpxUiGetScale)(dlsymGD("spx_ui_get_scale"))
+	x.SpxUiSetScale = (GDExtensionSpxUiSetScale)(dlsymGD("spx_ui_set_scale"))
+	x.SpxUiGetPosition = (GDExtensionSpxUiGetPosition)(dlsymGD("spx_ui_get_position"))
+	x.SpxUiSetPosition = (GDExtensionSpxUiSetPosition)(dlsymGD("spx_ui_set_position"))
+	x.SpxUiGetSize = (GDExtensionSpxUiGetSize)(dlsymGD("spx_ui_get_size"))
+	x.SpxUiSetSize = (GDExtensionSpxUiSetSize)(dlsymGD("spx_ui_set_size"))
+	x.SpxUiGetGlobalPosition = (GDExtensionSpxUiGetGlobalPosition)(dlsymGD("spx_ui_get_global_position"))
+	x.SpxUiSetGlobalPosition = (GDExtensionSpxUiSetGlobalPosition)(dlsymGD("spx_ui_set_global_position"))
+	x.SpxUiGetRotation = (GDExtensionSpxUiGetRotation)(dlsymGD("spx_ui_get_rotation"))
+	x.SpxUiSetRotation = (GDExtensionSpxUiSetRotation)(dlsymGD("spx_ui_set_rotation"))
 }

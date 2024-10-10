@@ -465,4 +465,52 @@ void cgo_callfn_GDExtensionSpxUiSetRect(const GDExtensionSpxUiSetRect fn, GdObj 
 void cgo_callfn_GDExtensionSpxUiGetRect(const GDExtensionSpxUiGetRect fn, GdObj obj, GdRect2* ret_val) {
 	fn(obj,ret_val);
 }
+void cgo_callfn_GDExtensionSpxUiGetLayoutDirection(const GDExtensionSpxUiGetLayoutDirection fn, GdObj obj, GdInt* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUiSetLayoutDirection(const GDExtensionSpxUiSetLayoutDirection fn, GdObj obj, GdInt value) {
+	fn(obj, value);
+}
+void cgo_callfn_GDExtensionSpxUiGetLayoutMode(const GDExtensionSpxUiGetLayoutMode fn, GdObj obj, GdInt* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUiSetLayoutMode(const GDExtensionSpxUiSetLayoutMode fn, GdObj obj, GdInt value) {
+	fn(obj, value);
+}
+void cgo_callfn_GDExtensionSpxUiGetAnchorsPreset(const GDExtensionSpxUiGetAnchorsPreset fn, GdObj obj, GdInt* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUiSetAnchorsPreset(const GDExtensionSpxUiSetAnchorsPreset fn, GdObj obj, GdInt value) {
+	fn(obj, value);
+}
+void cgo_callfn_GDExtensionSpxUiGetScale(const GDExtensionSpxUiGetScale fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUiSetScale(const GDExtensionSpxUiSetScale fn, GdObj obj, GdVec2 value) {
+	fn(obj, value);
+}
+void cgo_callfn_GDExtensionSpxUiGetPosition(const GDExtensionSpxUiGetPosition fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUiSetPosition(const GDExtensionSpxUiSetPosition fn, GdObj obj, GdVec2 value) {
+	fn(obj, value);
+}
+void cgo_callfn_GDExtensionSpxUiGetSize(const GDExtensionSpxUiGetSize fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUiSetSize(const GDExtensionSpxUiSetSize fn, GdObj obj, GdVec2 value) {
+	fn(obj, value);
+}
+void cgo_callfn_GDExtensionSpxUiGetGlobalPosition(const GDExtensionSpxUiGetGlobalPosition fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUiSetGlobalPosition(const GDExtensionSpxUiSetGlobalPosition fn, GdObj obj, GdVec2 value) {
+	fn(obj, value);
+}
+void cgo_callfn_GDExtensionSpxUiGetRotation(const GDExtensionSpxUiGetRotation fn, GdObj obj, GdFloat* ret_val) {
+	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUiSetRotation(const GDExtensionSpxUiSetRotation fn, GdObj obj, GdFloat value) {
+	fn(obj, value);
+}
 #endif

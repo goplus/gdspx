@@ -840,3 +840,83 @@ func (pself *uiMgr) GetRect(obj Object) Rect2 {
 	_retValue := API.SpxUiGetRect.Invoke(arg0)
 	return JsToGdRect2(_retValue)
 }
+func (pself *uiMgr) GetLayoutDirection(obj Object) int64 {
+	arg0 := JsFromGdObj(obj)
+	_retValue := API.SpxUiGetLayoutDirection.Invoke(arg0)
+	return JsToGdInt(_retValue)
+}
+func (pself *uiMgr) SetLayoutDirection(obj Object, value int64) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdInt(value)
+	API.SpxUiSetLayoutDirection.Invoke(arg0, arg1)
+}
+func (pself *uiMgr) GetLayoutMode(obj Object) int64 {
+	arg0 := JsFromGdObj(obj)
+	_retValue := API.SpxUiGetLayoutMode.Invoke(arg0)
+	return JsToGdInt(_retValue)
+}
+func (pself *uiMgr) SetLayoutMode(obj Object, value int64) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdInt(value)
+	API.SpxUiSetLayoutMode.Invoke(arg0, arg1)
+}
+func (pself *uiMgr) GetAnchorsPreset(obj Object) int64 {
+	arg0 := JsFromGdObj(obj)
+	_retValue := API.SpxUiGetAnchorsPreset.Invoke(arg0)
+	return JsToGdInt(_retValue)
+}
+func (pself *uiMgr) SetAnchorsPreset(obj Object, value int64) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdInt(value)
+	API.SpxUiSetAnchorsPreset.Invoke(arg0, arg1)
+}
+func (pself *uiMgr) GetScale(obj Object) Vec2 {
+	arg0 := JsFromGdObj(obj)
+	_retValue := API.SpxUiGetScale.Invoke(arg0)
+	return JsToGdVec2(_retValue)
+}
+func (pself *uiMgr) SetScale(obj Object, value Vec2) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdVec2(value)
+	API.SpxUiSetScale.Invoke(arg0, arg1)
+}
+func (pself *uiMgr) GetPosition(obj Object) Vec2 {
+	arg0 := JsFromGdObj(obj)
+	_retValue := API.SpxUiGetPosition.Invoke(arg0)
+	return JsToGdVec2(_retValue)
+}
+func (pself *uiMgr) SetPosition(obj Object, value Vec2) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdVec2(value)
+	API.SpxUiSetPosition.Invoke(arg0, arg1)
+}
+func (pself *uiMgr) GetSize(obj Object) Vec2 {
+	arg0 := JsFromGdObj(obj)
+	_retValue := API.SpxUiGetSize.Invoke(arg0)
+	return JsToGdVec2(_retValue)
+}
+func (pself *uiMgr) SetSize(obj Object, value Vec2) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdVec2(value)
+	API.SpxUiSetSize.Invoke(arg0, arg1)
+}
+func (pself *uiMgr) GetGlobalPosition(obj Object) Vec2 {
+	arg0 := JsFromGdObj(obj)
+	_retValue := API.SpxUiGetGlobalPosition.Invoke(arg0)
+	return JsToGdVec2(_retValue)
+}
+func (pself *uiMgr) SetGlobalPosition(obj Object, value Vec2) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdVec2(value)
+	API.SpxUiSetGlobalPosition.Invoke(arg0, arg1)
+}
+func (pself *uiMgr) GetRotation(obj Object) float32 {
+	arg0 := JsFromGdObj(obj)
+	_retValue := API.SpxUiGetRotation.Invoke(arg0)
+	return JsToGdFloat(_retValue)
+}
+func (pself *uiMgr) SetRotation(obj Object, value float32) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdFloat(value)
+	API.SpxUiSetRotation.Invoke(arg0, arg1)
+}

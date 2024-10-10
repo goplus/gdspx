@@ -194,4 +194,20 @@ type IUiMgr interface {
 	GetInteractable(obj Object) bool
 	SetRect(obj Object, rect Rect2)
 	GetRect(obj Object) Rect2
+	GetLayoutDirection(obj Object) int64
+	SetLayoutDirection(obj Object, value int64)
+	GetLayoutMode(obj Object) int64
+	SetLayoutMode(obj Object, value int64)
+	GetAnchorsPreset(obj Object) int64
+	SetAnchorsPreset(obj Object, value int64)
+	GetScale(obj Object) Vec2
+	SetScale(obj Object, value Vec2)
+	GetPosition(obj Object) Vec2
+	SetPosition(obj Object, value Vec2)
+	GetSize(obj Object) Vec2
+	SetSize(obj Object, value Vec2)
+	GetGlobalPosition(obj Object) Vec2
+	SetGlobalPosition(obj Object, value Vec2)
+	GetRotation(obj Object) float32
+	SetRotation(obj Object, value float32)
 }
