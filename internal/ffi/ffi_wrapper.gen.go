@@ -239,6 +239,8 @@ type GDExtensionSpxUiGetGlobalPosition C.GDExtensionSpxUiGetGlobalPosition
 type GDExtensionSpxUiSetGlobalPosition C.GDExtensionSpxUiSetGlobalPosition
 type GDExtensionSpxUiGetRotation C.GDExtensionSpxUiGetRotation
 type GDExtensionSpxUiSetRotation C.GDExtensionSpxUiSetRotation
+type GDExtensionSpxUiGetFlip C.GDExtensionSpxUiGetFlip
+type GDExtensionSpxUiSetFlip C.GDExtensionSpxUiSetFlip
 
 // call gdextension interface functions
 func CallAudioStopAll() {
@@ -1935,5 +1937,30 @@ func CallUiSetRotation(
 	arg2GdFloat = (C.GdFloat)(value)
 
 	C.cgo_callfn_GDExtensionSpxUiSetRotation(arg0, arg1GdObj, arg2GdFloat)
+
+}
+func CallUiGetFlip(
+	obj GdObj,
+	horizontal GdBool,
+) GdBool {
+	arg0 := (C.GDExtensionSpxUiGetFlip)(api.SpxUiGetFlip)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdBool = (C.GdBool)(horizontal)
+	var ret_val C.GdBool
+	C.cgo_callfn_GDExtensionSpxUiGetFlip(arg0, arg1GdObj, arg2GdBool, &ret_val)
+
+	return (GdBool)(ret_val)
+}
+func CallUiSetFlip(
+	obj GdObj,
+	horizontal GdBool,
+	is_flip GdBool,
+) {
+	arg0 := (C.GDExtensionSpxUiSetFlip)(api.SpxUiSetFlip)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdBool = (C.GdBool)(horizontal)
+	arg3GdBool = (C.GdBool)(is_flip)
+
+	C.cgo_callfn_GDExtensionSpxUiSetFlip(arg0, arg1GdObj, arg2GdBool, arg3GdBool)
 
 }

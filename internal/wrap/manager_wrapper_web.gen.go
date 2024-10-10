@@ -920,3 +920,15 @@ func (pself *uiMgr) SetRotation(obj Object, value float32) {
 	arg1 := JsFromGdFloat(value)
 	API.SpxUiSetRotation.Invoke(arg0, arg1)
 }
+func (pself *uiMgr) GetFlip(obj Object, horizontal bool) bool {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdBool(horizontal)
+	_retValue := API.SpxUiGetFlip.Invoke(arg0, arg1)
+	return JsToGdBool(_retValue)
+}
+func (pself *uiMgr) SetFlip(obj Object, horizontal bool, is_flip bool) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdBool(horizontal)
+	arg2 := JsFromGdBool(is_flip)
+	API.SpxUiSetFlip.Invoke(arg0, arg1, arg2)
+}

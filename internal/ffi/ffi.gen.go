@@ -185,6 +185,8 @@ type GDExtensionInterface struct {
 	SpxUiSetGlobalPosition           GDExtensionSpxUiSetGlobalPosition
 	SpxUiGetRotation                 GDExtensionSpxUiGetRotation
 	SpxUiSetRotation                 GDExtensionSpxUiSetRotation
+	SpxUiGetFlip                     GDExtensionSpxUiGetFlip
+	SpxUiSetFlip                     GDExtensionSpxUiSetFlip
 }
 
 func (x *GDExtensionInterface) loadProcAddresses() {
@@ -355,4 +357,6 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxUiSetGlobalPosition = (GDExtensionSpxUiSetGlobalPosition)(dlsymGD("spx_ui_set_global_position"))
 	x.SpxUiGetRotation = (GDExtensionSpxUiGetRotation)(dlsymGD("spx_ui_get_rotation"))
 	x.SpxUiSetRotation = (GDExtensionSpxUiSetRotation)(dlsymGD("spx_ui_set_rotation"))
+	x.SpxUiGetFlip = (GDExtensionSpxUiGetFlip)(dlsymGD("spx_ui_get_flip"))
+	x.SpxUiSetFlip = (GDExtensionSpxUiSetFlip)(dlsymGD("spx_ui_set_flip"))
 }

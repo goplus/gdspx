@@ -513,4 +513,10 @@ void cgo_callfn_GDExtensionSpxUiGetRotation(const GDExtensionSpxUiGetRotation fn
 void cgo_callfn_GDExtensionSpxUiSetRotation(const GDExtensionSpxUiSetRotation fn, GdObj obj, GdFloat value) {
 	fn(obj, value);
 }
+void cgo_callfn_GDExtensionSpxUiGetFlip(const GDExtensionSpxUiGetFlip fn, GdObj obj, GdBool horizontal, GdBool* ret_val) {
+	fn(obj, horizontal,ret_val);
+}
+void cgo_callfn_GDExtensionSpxUiSetFlip(const GDExtensionSpxUiSetFlip fn, GdObj obj, GdBool horizontal, GdBool is_flip) {
+	fn(obj, horizontal, is_flip);
+}
 #endif

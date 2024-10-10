@@ -45,3 +45,16 @@ func (pself *UiNode) SetRect(rect Rect2) {
 func (pself *UiNode) GetRect() Rect2 {
 	return UiMgr.GetRect(pself.Id)
 }
+func (pself *UiNode) SetPosition(value Vec2) {
+	UiMgr.SetPosition(pself.Id, value)
+}
+func (pself *UiNode) GetPosition() Vec2 {
+	return UiMgr.GetPosition(pself.Id)
+}
+
+func (pself *UiNode) SetGlobalPosition(value Vec2) {
+	UiMgr.SetGlobalPosition(pself.Id, value)
+}
+func (pself *UiNode) GetGlobalPosition() Vec2 {
+	return UiMgr.GetGlobalPosition(pself.Id)
+}

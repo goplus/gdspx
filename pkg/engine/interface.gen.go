@@ -210,4 +210,6 @@ type IUiMgr interface {
 	SetGlobalPosition(obj Object, value Vec2)
 	GetRotation(obj Object) float32
 	SetRotation(obj Object, value float32)
+	GetFlip(obj Object, horizontal bool) bool
+	SetFlip(obj Object, horizontal bool, is_flip bool)
 }

@@ -986,3 +986,15 @@ func (pself *uiMgr) SetRotation(obj Object, value float32) {
 	arg1 := ToGdFloat(value)
 	CallUiSetRotation(arg0, arg1)
 }
+func (pself *uiMgr) GetFlip(obj Object, horizontal bool) bool {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdBool(horizontal)
+	retValue := CallUiGetFlip(arg0, arg1)
+	return ToBool(retValue)
+}
+func (pself *uiMgr) SetFlip(obj Object, horizontal bool, is_flip bool) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdBool(horizontal)
+	arg2 := ToGdBool(is_flip)
+	CallUiSetFlip(arg0, arg1, arg2)
+}
