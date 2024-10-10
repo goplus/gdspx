@@ -393,6 +393,9 @@ void cgo_callfn_GDExtensionSpxSpriteSetTriggerEnabled(const GDExtensionSpxSprite
 void cgo_callfn_GDExtensionSpxSpriteIsTriggerEnabled(const GDExtensionSpxSpriteIsTriggerEnabled fn, GdObj obj, GdBool* ret_val) {
 	fn(obj,ret_val);
 }
+void cgo_callfn_GDExtensionSpxUiBindNode(const GDExtensionSpxUiBindNode fn, GdObj obj, GdString rel_path, GdObj* ret_val) {
+	fn(obj, rel_path,ret_val);
+}
 void cgo_callfn_GDExtensionSpxUiCreateNode(const GDExtensionSpxUiCreateNode fn, GdString path, GdObj* ret_val) {
 	fn(path,ret_val);
 }

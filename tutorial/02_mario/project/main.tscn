@@ -57,6 +57,8 @@ zoom = Vector2(2.75, 2.75)
 
 [node name="UI" parent="." instance=ExtResource("9_2yjcx")]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
+
 [node name="Environment" type="Node" parent="."]
 
 [node name="Platforms" type="Node" parent="Environment"]

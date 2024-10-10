@@ -199,6 +199,7 @@ type GDExtensionSpxSpriteSetTriggerCircle C.GDExtensionSpxSpriteSetTriggerCircle
 type GDExtensionSpxSpriteSetTriggerCapsule C.GDExtensionSpxSpriteSetTriggerCapsule
 type GDExtensionSpxSpriteSetTriggerEnabled C.GDExtensionSpxSpriteSetTriggerEnabled
 type GDExtensionSpxSpriteIsTriggerEnabled C.GDExtensionSpxSpriteIsTriggerEnabled
+type GDExtensionSpxUiBindNode C.GDExtensionSpxUiBindNode
 type GDExtensionSpxUiCreateNode C.GDExtensionSpxUiCreateNode
 type GDExtensionSpxUiCreateButton C.GDExtensionSpxUiCreateButton
 type GDExtensionSpxUiCreateLabel C.GDExtensionSpxUiCreateLabel
@@ -1492,6 +1493,18 @@ func CallSpriteIsTriggerEnabled(
 	C.cgo_callfn_GDExtensionSpxSpriteIsTriggerEnabled(arg0, arg1GdObj, &ret_val)
 
 	return (GdBool)(ret_val)
+}
+func CallUiBindNode(
+	obj GdObj,
+	rel_path GdString,
+) GdObj {
+	arg0 := (C.GDExtensionSpxUiBindNode)(api.SpxUiBindNode)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(rel_path)
+	var ret_val C.GdObj
+	C.cgo_callfn_GDExtensionSpxUiBindNode(arg0, arg1GdObj, arg2GdString, &ret_val)
+
+	return (GdObj)(ret_val)
 }
 func CallUiCreateNode(
 	path GdString,

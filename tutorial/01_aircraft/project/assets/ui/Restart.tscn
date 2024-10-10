@@ -42,7 +42,7 @@ cache/0/60/0/kerning_overrides/60/0 = Vector2(0, 0)
 default_font = SubResource("FontFile_jpoch")
 default_font_size = 30
 
-[node name="SpxButton" type="SpxButton"]
+[node name="Button" type="Button"]
 offset_left = 170.0
 offset_top = 492.0
 offset_right = 362.0

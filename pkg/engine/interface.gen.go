@@ -170,6 +170,7 @@ type ISpriteMgr interface {
 }
 
 type IUiMgr interface {
+	BindNode(obj Object, rel_path string) Object
 	CreateNode(path string) Object
 	CreateButton(path string, text string) Object
 	CreateLabel(path string, text string) Object

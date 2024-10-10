@@ -13,11 +13,17 @@ var (
 	scoreText    *UiScore
 	restartPanel *UiNode
 )
-func RegisterTypes() {	
+
+func RegisterTypes() {
 
 }
 func OnStart() {
 	scoreText = CreateUI[UiScore]("Score")
+	rootId := scoreText.GetId()
+	label1 := BindUI[BindLabel](rootId, "V/Label")
+	label1.SetText("label1")
+	label3 := BindUI[BindLabel](rootId, "V/C/V/Label2")
+	label3.SetText("label333")
 	restartPanel = CreateUI[UiNode]("Restart")
 	restartPanel.OnUiClickEvent.Subscribe(func() {
 		resetGame()

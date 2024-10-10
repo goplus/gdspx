@@ -26,8 +26,11 @@ func getPrefabPath(name string) string {
 	return "res://assets/prefabs/" + assetName + ".tscn"
 }
 
-func getUiPath(name string) string {
+func getUiPath(name string, is_engine bool) string {
 	assetName := name
+	if is_engine {
+		return "res://engine/ui/" + assetName + ".tscn"
+	}
 	return "res://assets/ui/" + assetName + ".tscn"
 }
 
@@ -82,13 +85,35 @@ func CreateEmptySprite[T any]() *T {
 }
 
 func CreateUI[T any](prefabName string) *T {
+	return createUI[T](prefabName, false)
+}
+func CreateEngineUI[T any](prefabName string) *T {
+	return createUI[T](prefabName, true)
+}
+func createUI[T any](prefabName string, is_engine bool) *T {
 	tType := reflect.TypeOf((*T)(nil)).Elem()
 	name := tType.Name()
 	if prefabName != "" {
 		name = prefabName
 	}
 	nodeValue := reflect.New(tType).Elem()
-	id := UiMgr.CreateNode(getUiPath(name))
+	id := UiMgr.CreateNode(getUiPath(name, is_engine))
+	node := nodeValue.Addr().Interface().(IUiNode)
+	node.SetId(id)
+	node.onCreate()
+	Id2UiNodes[id] = node
+	node.OnStart()
+	return nodeValue.Addr().Interface().(*T)
+}
+
+func BindUI[T any](parentNode Object, path string) *T {
+	id := UiMgr.BindNode(parentNode, path)
+	if id == 0 {
+		println("BindUI failed", parentNode, path)
+		return nil
+	}
+	tType := reflect.TypeOf((*T)(nil)).Elem()
+	nodeValue := reflect.New(tType).Elem()
 	node := nodeValue.Addr().Interface().(IUiNode)
 	node.SetId(id)
 	node.onCreate()

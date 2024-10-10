@@ -42,7 +42,31 @@ cache/0/60/0/kerning_overrides/60/0 = Vector2(0, 0)
 default_font = SubResource("FontFile_jpoch")
 default_font_size = 30
 
-[node name="SpxLabel" type="SpxLabel"]
+[node name="Label" type="Label"]
 offset_right = 9.0
 offset_bottom = 26.0
 theme = SubResource("Theme_ny8x4")
+
+[node name="V" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 101.0
+offset_bottom = 157.0
+
+[node name="Label" type="Label" parent="V"]
+layout_mode = 2
+text = "asdf"
+
+[node name="C" type="PanelContainer" parent="V"]
+layout_mode = 2
+
+[node name="V" type="VBoxContainer" parent="V/C"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="V/C/V"]
+layout_mode = 2
+text = "asdf2"
+
+[node name="Label2" type="Label" parent="V/C/V"]
+layout_mode = 2
+text = "label3"

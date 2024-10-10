@@ -145,6 +145,7 @@ type GDExtensionInterface struct {
 	SpxSpriteSetTriggerCapsule       GDExtensionSpxSpriteSetTriggerCapsule
 	SpxSpriteSetTriggerEnabled       GDExtensionSpxSpriteSetTriggerEnabled
 	SpxSpriteIsTriggerEnabled        GDExtensionSpxSpriteIsTriggerEnabled
+	SpxUiBindNode                    GDExtensionSpxUiBindNode
 	SpxUiCreateNode                  GDExtensionSpxUiCreateNode
 	SpxUiCreateButton                GDExtensionSpxUiCreateButton
 	SpxUiCreateLabel                 GDExtensionSpxUiCreateLabel
@@ -298,6 +299,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteSetTriggerCapsule = (GDExtensionSpxSpriteSetTriggerCapsule)(dlsymGD("spx_sprite_set_trigger_capsule"))
 	x.SpxSpriteSetTriggerEnabled = (GDExtensionSpxSpriteSetTriggerEnabled)(dlsymGD("spx_sprite_set_trigger_enabled"))
 	x.SpxSpriteIsTriggerEnabled = (GDExtensionSpxSpriteIsTriggerEnabled)(dlsymGD("spx_sprite_is_trigger_enabled"))
+	x.SpxUiBindNode = (GDExtensionSpxUiBindNode)(dlsymGD("spx_ui_bind_node"))
 	x.SpxUiCreateNode = (GDExtensionSpxUiCreateNode)(dlsymGD("spx_ui_create_node"))
 	x.SpxUiCreateButton = (GDExtensionSpxUiCreateButton)(dlsymGD("spx_ui_create_button"))
 	x.SpxUiCreateLabel = (GDExtensionSpxUiCreateLabel)(dlsymGD("spx_ui_create_label"))

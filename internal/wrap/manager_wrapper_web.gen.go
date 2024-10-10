@@ -714,6 +714,12 @@ func (pself *spriteMgr) IsTriggerEnabled(obj Object) bool {
 	_retValue := API.SpxSpriteIsTriggerEnabled.Invoke(arg0)
 	return JsToGdBool(_retValue)
 }
+func (pself *uiMgr) BindNode(obj Object, rel_path string) Object {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdString(rel_path)
+	_retValue := API.SpxUiBindNode.Invoke(arg0, arg1)
+	return JsToGdObject(_retValue)
+}
 func (pself *uiMgr) CreateNode(path string) Object {
 	arg0 := JsFromGdString(path)
 	_retValue := API.SpxUiCreateNode.Invoke(arg0)

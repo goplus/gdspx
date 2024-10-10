@@ -754,6 +754,14 @@ func (pself *spriteMgr) IsTriggerEnabled(obj Object) bool {
 	retValue := CallSpriteIsTriggerEnabled(arg0)
 	return ToBool(retValue)
 }
+func (pself *uiMgr) BindNode(obj Object, rel_path string) Object {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(rel_path)
+	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
+	retValue := CallUiBindNode(arg0, arg1)
+	return ToObject(retValue)
+}
 func (pself *uiMgr) CreateNode(path string) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
