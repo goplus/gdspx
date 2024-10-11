@@ -220,7 +220,7 @@ func downloadFile(url string, dest string) error {
 	return nil
 }
 
-func SetupEnv(needSetup bool) (string, string, string, error) {
+func SetupEnv() (string, string, string, error) {
 	var GOOS, GOARCH = runtime.GOOS, runtime.GOARCH
 	if os.Getenv("GOOS") != "" {
 		GOOS = os.Getenv("GOOS")
@@ -267,10 +267,8 @@ func SetupEnv(needSetup bool) (string, string, string, error) {
 		libraryName += ".so"
 	}
 	libPath := path.Join("lib", libraryName)
-	if needSetup {
-		if err := setup(gd4spxPath, wd, project, libPath); err != nil {
-			return "", "", "", err
-		}
+	if err := setup(gd4spxPath, wd, project, libPath); err != nil {
+		return "", "", "", err
 	}
 	return gd4spxPath, project, libPath, nil
 }
