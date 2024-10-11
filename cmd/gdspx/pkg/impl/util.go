@@ -137,12 +137,20 @@ func setup(gd4spxPath string, wd, project, libPath string) error {
 
 	if !hasInited {
 		BuildDll(project, libPath)
-		gd4spx := exec.Command(gd4spxPath, "--import", "--headless")
-		gd4spx.Dir = project
-		gd4spx.Stderr = os.Stderr
-		gd4spx.Stdout = os.Stdout
-		gd4spx.Stdin = os.Stdin
-		return gd4spx.Run()
+		return ImportProj(project, libPath, gd4spxPath)
+	}
+	return nil
+}
+
+func ImportProj(project string, libPath string, gd4spxPath string) error {
+	cmd := exec.Command(gd4spxPath, "--import", "--headless")
+	cmd.Dir = project
+	err := cmd.Start()
+	err = cmd.Wait()
+	if err != nil {
+		fmt.Printf("ImportProj finished with error: %v\n", err)
+	} else {
+		fmt.Println("ImportProj successfully")
 	}
 	return nil
 }
@@ -212,7 +220,7 @@ func downloadFile(url string, dest string) error {
 	return nil
 }
 
-func SetupEnv() (string, string, string, error) {
+func SetupEnv(needSetup bool) (string, string, string, error) {
 	var GOOS, GOARCH = runtime.GOOS, runtime.GOARCH
 	if os.Getenv("GOOS") != "" {
 		GOOS = os.Getenv("GOOS")
@@ -259,8 +267,10 @@ func SetupEnv() (string, string, string, error) {
 		libraryName += ".so"
 	}
 	libPath := path.Join("lib", libraryName)
-	if err := setup(gd4spxPath, wd, project, libPath); err != nil {
-		return "", "", "", err
+	if needSetup {
+		if err := setup(gd4spxPath, wd, project, libPath); err != nil {
+			return "", "", "", err
+		}
 	}
 	return gd4spxPath, project, libPath, nil
 }
