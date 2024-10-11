@@ -45,17 +45,23 @@ var (
 	TargetDir string
 )
 
-func PrepareGoEnv() {
+func PrepareGoEnv(go_mode_str string, main_go_str string) {
+	if go_mode_str == "" {
+		go_mode_str = go_mode_txt
+	}
+	if main_go_str == "" {
+		main_go_str = main_go
+	}
 	os.MkdirAll(TargetDir, 0755)
-	if err := setupFile(false, TargetDir+"/go.mod", go_mode_txt); err != nil {
+	if err := SetupFile(false, TargetDir+"/go.mod", go_mode_str); err != nil {
 		panic(err)
 	}
-	if err := setupFile(false, TargetDir+"/main.go", main_go); err != nil {
+	if err := SetupFile(false, TargetDir+"/main.go", main_go_str); err != nil {
 		panic(err)
 	}
 	rawDir, err := os.Getwd()
 	os.Chdir(TargetDir)
-	err = runGolang(nil, "mod", "tidy")
+	err = RunGolang(nil, "mod", "tidy")
 	os.Chdir(rawDir)
 	if err != nil {
 		println("gdspx project create failed ", TargetDir)
@@ -92,7 +98,7 @@ func BuildDll(project, outputPath string) {
 	rawdir, _ := os.Getwd()
 	os.Chdir(project)
 	envVars := []string{"CGO_ENABLED=1"}
-	runGolang(envVars, "build", "-o", outputPath, "-buildmode=c-shared")
+	RunGolang(envVars, "build", "-o", outputPath, "-buildmode=c-shared")
 	os.Chdir(rawdir)
 }
 
@@ -103,7 +109,7 @@ func BuildWasm(project string) {
 	os.MkdirAll(dir, 0755)
 	filePath := path.Join(dir, "gdspx.wasm")
 	envVars := []string{"GOOS=js", "GOARCH=wasm"}
-	runGolang(envVars, "build", "-o", filePath)
+	RunGolang(envVars, "build", "-o", filePath)
 	os.Chdir(rawdir)
 }
 
@@ -113,19 +119,19 @@ func setup(gd4spxPath string, wd, project, libPath string) error {
 	if err := os.MkdirAll(project+"/.godot", 0755); err != nil {
 		return err
 	}
-	if err := setupFile(false, project+"/main.tscn", main_tscn); err != nil {
+	if err := SetupFile(false, project+"/main.tscn", main_tscn); err != nil {
 		return err
 	}
-	if err := setupFile(false, project+"/project.godot", project_gd4spx); err != nil {
+	if err := SetupFile(false, project+"/project.godot", project_gd4spx); err != nil {
 		return err
 	}
-	if err := setupFile(false, project+"/.gitignore", gitignore); err != nil {
+	if err := SetupFile(false, project+"/.gitignore", gitignore); err != nil {
 		return err
 	}
-	if err := setupFile(true, project+"/gdspx.gdextension", library_gdextension); err != nil {
+	if err := SetupFile(true, project+"/gdspx.gdextension", library_gdextension); err != nil {
 		return err
 	}
-	if err := setupFile(false, project+"/.godot/extension_list.cfg", extension_list_cfg); err != nil {
+	if err := SetupFile(false, project+"/.godot/extension_list.cfg", extension_list_cfg); err != nil {
 		return err
 	}
 
@@ -141,7 +147,7 @@ func setup(gd4spxPath string, wd, project, libPath string) error {
 	return nil
 }
 
-func runGolang(envVars []string, args ...string) error {
+func RunGolang(envVars []string, args ...string) error {
 	golang := exec.Command("go", args...)
 
 	if envVars != nil {
@@ -161,8 +167,11 @@ func RunGdspx(gd4spxPath string, project string, args string) error {
 	gd4spx.Stdin = os.Stdin
 	return gd4spx.Run()
 }
-
-func setupFile(force bool, name, embed string, args ...any) error {
+func IsFileExist(path string) bool {
+	_, err := os.Stat(path)
+	return err == nil
+}
+func SetupFile(force bool, name, embed string, args ...any) error {
 	if _, err := os.Stat(name); force || os.IsNotExist(err) {
 		if len(args) > 0 {
 			embed = fmt.Sprintf(embed, args...)

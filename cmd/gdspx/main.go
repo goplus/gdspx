@@ -22,7 +22,7 @@ func main() {
 		impl.ShowHelpInfo()
 		return
 	case "init":
-		impl.PrepareGoEnv()
+		impl.PrepareGoEnv("", "")
 	}
 	if err := wrap(); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
