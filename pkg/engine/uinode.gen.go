@@ -58,3 +58,9 @@ func (pself *UiNode) SetGlobalPosition(value Vec2) {
 func (pself *UiNode) GetGlobalPosition() Vec2 {
 	return UiMgr.GetGlobalPosition(pself.Id)
 }
+func (pself *UiNode) SetScale(value Vec2) {
+	UiMgr.SetScale(pself.Id, value)
+}
+func (pself *UiNode) GetScale() Vec2 {
+	return UiMgr.GetScale(pself.Id)
+}
