@@ -146,7 +146,7 @@ func runGolang(envVars []string, args ...string) error {
 	return golang.Run()
 }
 func RunGdspx(gd4spxPath string, project string, args string) error {
-	println("run gdspx: ", gd4spxPath, project, args)
+	println("run: ", gd4spxPath, project, args)
 	gd4spx := exec.Command(gd4spxPath, args)
 	gd4spx.Dir = project
 	gd4spx.Stderr = os.Stderr

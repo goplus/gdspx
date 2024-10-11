@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gdspx/pkg/impl"
+	"godot-ext/gdspx/cmd/gdspx/pkg/impl"
 	"os"
 )
 
