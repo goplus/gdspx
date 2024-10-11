@@ -1,4 +1,4 @@
-package main
+package impl
 
 import (
 	"fmt"
@@ -17,7 +17,7 @@ var (
 	binPostfix = ""
 )
 
-func buildFromSource(dstBinPath string) {
+func BuildFromSource(dstBinPath string) {
 	println("======== Building from source =======")
 	// Install SCons and Ninja
 	installPythonPackages()
@@ -124,7 +124,7 @@ func installPythonPackages() {
 	runCommand("pip", "install", "scons==4.7.0")
 }
 
-func checkPythonInstalled() {
+func CheckPresetEnvironment() {
 	if !isPythonInstalled("python3") && !isPythonInstalled("python") {
 		fmt.Println("Python is not installed. Please install Python first, python version should >= 3.8")
 		os.Exit(1)
@@ -187,7 +187,7 @@ func checkAndGetBinPath() (string, error) {
 	}
 	info, err := os.Stat(dstBinPath)
 	if os.IsNotExist(err) {
-		buildFromSource(dstBinPath)
+		BuildFromSource(dstBinPath)
 	} else if err != nil {
 		return "", err
 	} else {
