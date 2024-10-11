@@ -18,19 +18,19 @@ import (
 const version = "4.2.2"
 
 var (
-	//go:embed template/project/project.godot
+	//go:embed template/project.godot
 	project_gd4spx string
 
-	//go:embed template/project/gdspx.gdextension
+	//go:embed template/gdspx.gdextension
 	library_gdextension string
 
-	//go:embed template/project/main.tscn
+	//go:embed template/main.tscn
 	main_tscn string
 
-	//go:embed template/project/export_presets.cfg
+	//go:embed template/export_presets.cfg
 	export_presets_cfg string
 
-	//go:embed template/project/extension_list.cfg
+	//go:embed template/extension_list.cfg
 	extension_list_cfg string
 
 	//go:embed template/go.mod.txt
@@ -38,6 +38,9 @@ var (
 
 	//go:embed template/main.go
 	main_go string
+
+	//go:embed template/gitignore.txt
+	gitignore string
 
 	TargetDir string
 )
@@ -85,9 +88,9 @@ The commands are:
 	`)
 }
 
-func BuildDll(projectPath, outputPath string) {
+func BuildDll(project, outputPath string) {
 	rawdir, _ := os.Getwd()
-	os.Chdir(path.Join(projectPath, "../"))
+	os.Chdir(project)
 	envVars := []string{"CGO_ENABLED=1"}
 	runGolang(envVars, "build", "-o", outputPath, "-buildmode=c-shared")
 	os.Chdir(rawdir)
@@ -95,8 +98,8 @@ func BuildDll(projectPath, outputPath string) {
 
 func BuildWasm(project string) {
 	rawdir, _ := os.Getwd()
-	os.Chdir(path.Join(project, "../"))
-	dir := path.Join(project, "../build/web/")
+	os.Chdir(project)
+	dir := path.Join(project, "build/web/")
 	os.MkdirAll(dir, 0755)
 	filePath := path.Join(dir, "gdspx.wasm")
 	envVars := []string{"GOOS=js", "GOARCH=wasm"}
@@ -116,12 +119,16 @@ func setup(gd4spxPath string, wd, project, libPath string) error {
 	if err := setupFile(false, project+"/project.godot", project_gd4spx); err != nil {
 		return err
 	}
+	if err := setupFile(false, project+"/.gitignore", gitignore); err != nil {
+		return err
+	}
 	if err := setupFile(true, project+"/gdspx.gdextension", library_gdextension); err != nil {
 		return err
 	}
 	if err := setupFile(false, project+"/.godot/extension_list.cfg", extension_list_cfg); err != nil {
 		return err
 	}
+
 	if !hasInited {
 		BuildDll(project, libPath)
 		gd4spx := exec.Command(gd4spxPath, "--import", "--headless")
@@ -228,7 +235,7 @@ func SetupEnv() (string, string, string, error) {
 	}
 
 	curDir := TargetDir
-	project := path.Join(curDir, "project")
+	project := curDir
 	if GOOS == "android" {
 		project = "/sdcard/gd4spx/" + filepath.Base(wd)
 	}
@@ -242,7 +249,7 @@ func SetupEnv() (string, string, string, error) {
 	default:
 		libraryName += ".so"
 	}
-	libPath := path.Join("project/lib", libraryName)
+	libPath := path.Join("lib", libraryName)
 	if err := setup(gd4spxPath, wd, project, libPath); err != nil {
 		return "", "", "", err
 	}

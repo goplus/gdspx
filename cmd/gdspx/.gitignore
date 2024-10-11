@@ -1,1 +1,4 @@
-/test
+/test/go.mod
+/test/go.sum
+/test/gdspx.gdextension
+/test/.gitignore
