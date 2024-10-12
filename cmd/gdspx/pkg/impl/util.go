@@ -45,18 +45,17 @@ var (
 	TargetDir string
 )
 
-func PrepareGoEnv(go_mode_str string, main_go_str string) {
-	if go_mode_str == "" {
-		go_mode_str = go_mode_txt
-	}
-	if main_go_str == "" {
-		main_go_str = main_go
-	}
+func ReplaceTemplate(mod string, main string, ignore string) {
+	main_go = main
+	go_mode_txt = mod
+	gitignore = ignore
+}
+func PrepareGoEnv() {
 	os.MkdirAll(TargetDir, 0755)
-	if err := SetupFile(false, TargetDir+"/go.mod", go_mode_str); err != nil {
+	if err := SetupFile(false, TargetDir+"/go.mod", go_mode_txt); err != nil {
 		panic(err)
 	}
-	if err := SetupFile(false, TargetDir+"/main.go", main_go_str); err != nil {
+	if err := SetupFile(false, TargetDir+"/main.go", main_go); err != nil {
 		panic(err)
 	}
 	rawDir, err := os.Getwd()
