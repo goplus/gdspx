@@ -69,3 +69,16 @@ func (pself *UiNode) OnFixedUpdate(delta float32) {
 
 func (pself *UiNode) OnDestroy() {
 }
+
+func (pself *UiNode) SetSize(value Vec2) {
+	UiMgr.SetSize(pself.Id, value)
+}
+func (pself *UiNode) GetSize() Vec2 {
+	return UiMgr.GetSize(pself.Id)
+}
+func (pself *UiNode) SetRotation(value float32) {
+	UiMgr.SetRotation(pself.Id, value)
+}
+func (pself *UiNode) GetRotation() float32 {
+	return UiMgr.GetRotation(pself.Id)
+}
