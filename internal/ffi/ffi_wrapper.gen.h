@@ -123,6 +123,9 @@ void cgo_callfn_GDExtensionSpxPlatformSetDebugMode(const GDExtensionSpxPlatformS
 void cgo_callfn_GDExtensionSpxPlatformIsDebugMode(const GDExtensionSpxPlatformIsDebugMode fn, GdBool* ret_val) {
 	fn(ret_val);
 }
+void cgo_callfn_GDExtensionSpxResGetImageSize(const GDExtensionSpxResGetImageSize fn, GdString path, GdVec2* ret_val) {
+	fn(path,ret_val);
+}
 void cgo_callfn_GDExtensionSpxSceneChangeSceneToFile(const GDExtensionSpxSceneChangeSceneToFile fn, GdString path) {
 	fn(path);
 }
@@ -200,6 +203,9 @@ void cgo_callfn_GDExtensionSpxSpriteSetColor(const GDExtensionSpxSpriteSetColor 
 }
 void cgo_callfn_GDExtensionSpxSpriteGetColor(const GDExtensionSpxSpriteGetColor fn, GdObj obj, GdColor* ret_val) {
 	fn(obj,ret_val);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetTextureAltas(const GDExtensionSpxSpriteSetTextureAltas fn, GdObj obj, GdString path, GdRect2 rect2) {
+	fn(obj, path, rect2);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetTexture(const GDExtensionSpxSpriteSetTexture fn, GdObj obj, GdString path) {
 	fn(obj, path);

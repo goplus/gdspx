@@ -16,6 +16,7 @@ var (
 	InputMgr    IInputMgr
 	PhysicMgr   IPhysicMgr
 	PlatformMgr IPlatformMgr
+	ResMgr      IResMgr
 	SceneMgr    ISceneMgr
 	SpriteMgr   ISpriteMgr
 	UiMgr       IUiMgr
@@ -73,6 +74,10 @@ type IPlatformMgr interface {
 	IsDebugMode() bool
 }
 
+type IResMgr interface {
+	GetImageSize(path string) Vec2
+}
+
 type ISceneMgr interface {
 	ChangeSceneToFile(path string)
 	ReloadCurrentScene() int64
@@ -103,6 +108,7 @@ type ISpriteMgr interface {
 	GetScale(obj Object) Vec2
 	SetColor(obj Object, color Color)
 	GetColor(obj Object) Color
+	SetTextureAltas(obj Object, path string, rect2 Rect2)
 	SetTexture(obj Object, path string)
 	GetTexture(obj Object) string
 	SetVisible(obj Object, visible bool)

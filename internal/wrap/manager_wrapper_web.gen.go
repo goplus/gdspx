@@ -37,6 +37,9 @@ func BindMgr(mgrs []IManager) {
 		case IPlatformMgr:
 			PlatformMgr = v
 
+		case IResMgr:
+			ResMgr = v
+
 		case ISceneMgr:
 			SceneMgr = v
 
@@ -67,6 +70,9 @@ type physicMgr struct {
 type platformMgr struct {
 	baseMgr
 }
+type resMgr struct {
+	baseMgr
+}
 type sceneMgr struct {
 	baseMgr
 }
@@ -83,6 +89,7 @@ func createMgrs() []IManager {
 	addManager(&inputMgr{})
 	addManager(&physicMgr{})
 	addManager(&platformMgr{})
+	addManager(&resMgr{})
 	addManager(&sceneMgr{})
 	addManager(&spriteMgr{})
 	addManager(&uiMgr{})
@@ -253,6 +260,11 @@ func (pself *platformMgr) IsDebugMode() bool {
 	_retValue := API.SpxPlatformIsDebugMode.Invoke()
 	return JsToGdBool(_retValue)
 }
+func (pself *resMgr) GetImageSize(path string) Vec2 {
+	arg0 := JsFromGdString(path)
+	_retValue := API.SpxResGetImageSize.Invoke(arg0)
+	return JsToGdVec2(_retValue)
+}
 func (pself *sceneMgr) ChangeSceneToFile(path string) {
 	arg0 := JsFromGdString(path)
 	API.SpxSceneChangeSceneToFile.Invoke(arg0)
@@ -388,6 +400,12 @@ func (pself *spriteMgr) GetColor(obj Object) Color {
 	arg0 := JsFromGdObj(obj)
 	_retValue := API.SpxSpriteGetColor.Invoke(arg0)
 	return JsToGdColor(_retValue)
+}
+func (pself *spriteMgr) SetTextureAltas(obj Object, path string, rect2 Rect2) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdString(path)
+	arg2 := JsFromGdRect2(rect2)
+	API.SpxSpriteSetTextureAltas.Invoke(arg0, arg1, arg2)
 }
 func (pself *spriteMgr) SetTexture(obj Object, path string) {
 	arg0 := JsFromGdObj(obj)

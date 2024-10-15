@@ -59,6 +59,7 @@ type GDExtensionInterface struct {
 	SpxPlatformIsWindowFullscreen    js.Value
 	SpxPlatformSetDebugMode          js.Value
 	SpxPlatformIsDebugMode           js.Value
+	SpxResGetImageSize               js.Value
 	SpxSceneChangeSceneToFile        js.Value
 	SpxSceneReloadCurrentScene       js.Value
 	SpxSceneUnloadCurrentScene       js.Value
@@ -85,6 +86,7 @@ type GDExtensionInterface struct {
 	SpxSpriteGetScale                js.Value
 	SpxSpriteSetColor                js.Value
 	SpxSpriteGetColor                js.Value
+	SpxSpriteSetTextureAltas         js.Value
 	SpxSpriteSetTexture              js.Value
 	SpxSpriteGetTexture              js.Value
 	SpxSpriteSetVisible              js.Value
@@ -231,6 +233,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPlatformIsWindowFullscreen = dlsymGD("gdspx_platform_is_window_fullscreen")
 	x.SpxPlatformSetDebugMode = dlsymGD("gdspx_platform_set_debug_mode")
 	x.SpxPlatformIsDebugMode = dlsymGD("gdspx_platform_is_debug_mode")
+	x.SpxResGetImageSize = dlsymGD("gdspx_res_get_image_size")
 	x.SpxSceneChangeSceneToFile = dlsymGD("gdspx_scene_change_scene_to_file")
 	x.SpxSceneReloadCurrentScene = dlsymGD("gdspx_scene_reload_current_scene")
 	x.SpxSceneUnloadCurrentScene = dlsymGD("gdspx_scene_unload_current_scene")
@@ -257,6 +260,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteGetScale = dlsymGD("gdspx_sprite_get_scale")
 	x.SpxSpriteSetColor = dlsymGD("gdspx_sprite_set_color")
 	x.SpxSpriteGetColor = dlsymGD("gdspx_sprite_get_color")
+	x.SpxSpriteSetTextureAltas = dlsymGD("gdspx_sprite_set_texture_altas")
 	x.SpxSpriteSetTexture = dlsymGD("gdspx_sprite_set_texture")
 	x.SpxSpriteGetTexture = dlsymGD("gdspx_sprite_get_texture")
 	x.SpxSpriteSetVisible = dlsymGD("gdspx_sprite_set_visible")

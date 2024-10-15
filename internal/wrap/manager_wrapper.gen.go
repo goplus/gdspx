@@ -37,6 +37,9 @@ func BindMgr(mgrs []IManager) {
 		case IPlatformMgr:
 			PlatformMgr = v
 
+		case IResMgr:
+			ResMgr = v
+
 		case ISceneMgr:
 			SceneMgr = v
 
@@ -67,6 +70,9 @@ type physicMgr struct {
 type platformMgr struct {
 	baseMgr
 }
+type resMgr struct {
+	baseMgr
+}
 type sceneMgr struct {
 	baseMgr
 }
@@ -83,6 +89,7 @@ func createMgrs() []IManager {
 	addManager(&inputMgr{})
 	addManager(&physicMgr{})
 	addManager(&platformMgr{})
+	addManager(&resMgr{})
 	addManager(&sceneMgr{})
 	addManager(&spriteMgr{})
 	addManager(&uiMgr{})
@@ -269,6 +276,13 @@ func (pself *platformMgr) IsDebugMode() bool {
 	retValue := CallPlatformIsDebugMode()
 	return ToBool(retValue)
 }
+func (pself *resMgr) GetImageSize(path string) Vec2 {
+	arg0Str := NewCString(path)
+	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
+	retValue := CallResGetImageSize(arg0)
+	return ToVec2(retValue)
+}
 func (pself *sceneMgr) ChangeSceneToFile(path string) {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
@@ -420,6 +434,14 @@ func (pself *spriteMgr) GetColor(obj Object) Color {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteGetColor(arg0)
 	return ToColor(retValue)
+}
+func (pself *spriteMgr) SetTextureAltas(obj Object, path string, rect2 Rect2) {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(path)
+	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
+	arg2 := ToGdRect2(rect2)
+	CallSpriteSetTextureAltas(arg0, arg1, arg2)
 }
 func (pself *spriteMgr) SetTexture(obj Object, path string) {
 	arg0 := ToGdObj(obj)

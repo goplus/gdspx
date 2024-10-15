@@ -109,6 +109,7 @@ type GDExtensionSpxPlatformSetWindowFullscreen C.GDExtensionSpxPlatformSetWindow
 type GDExtensionSpxPlatformIsWindowFullscreen C.GDExtensionSpxPlatformIsWindowFullscreen
 type GDExtensionSpxPlatformSetDebugMode C.GDExtensionSpxPlatformSetDebugMode
 type GDExtensionSpxPlatformIsDebugMode C.GDExtensionSpxPlatformIsDebugMode
+type GDExtensionSpxResGetImageSize C.GDExtensionSpxResGetImageSize
 type GDExtensionSpxSceneChangeSceneToFile C.GDExtensionSpxSceneChangeSceneToFile
 type GDExtensionSpxSceneReloadCurrentScene C.GDExtensionSpxSceneReloadCurrentScene
 type GDExtensionSpxSceneUnloadCurrentScene C.GDExtensionSpxSceneUnloadCurrentScene
@@ -135,6 +136,7 @@ type GDExtensionSpxSpriteSetScale C.GDExtensionSpxSpriteSetScale
 type GDExtensionSpxSpriteGetScale C.GDExtensionSpxSpriteGetScale
 type GDExtensionSpxSpriteSetColor C.GDExtensionSpxSpriteSetColor
 type GDExtensionSpxSpriteGetColor C.GDExtensionSpxSpriteGetColor
+type GDExtensionSpxSpriteSetTextureAltas C.GDExtensionSpxSpriteSetTextureAltas
 type GDExtensionSpxSpriteSetTexture C.GDExtensionSpxSpriteSetTexture
 type GDExtensionSpxSpriteGetTexture C.GDExtensionSpxSpriteGetTexture
 type GDExtensionSpxSpriteSetVisible C.GDExtensionSpxSpriteSetVisible
@@ -550,6 +552,16 @@ func CallPlatformIsDebugMode() GdBool {
 	C.cgo_callfn_GDExtensionSpxPlatformIsDebugMode(arg0, &ret_val)
 	return (GdBool)(ret_val)
 }
+func CallResGetImageSize(
+	path GdString,
+) GdVec2 {
+	arg0 := (C.GDExtensionSpxResGetImageSize)(api.SpxResGetImageSize)
+	arg1GdString = (C.GdString)(path)
+	var ret_val C.GdVec2
+	C.cgo_callfn_GDExtensionSpxResGetImageSize(arg0, arg1GdString, &ret_val)
+
+	return (GdVec2)(ret_val)
+}
 func CallSceneChangeSceneToFile(
 	path GdString,
 ) {
@@ -829,6 +841,19 @@ func CallSpriteGetColor(
 	C.cgo_callfn_GDExtensionSpxSpriteGetColor(arg0, arg1GdObj, &ret_val)
 
 	return (GdColor)(ret_val)
+}
+func CallSpriteSetTextureAltas(
+	obj GdObj,
+	path GdString,
+	rect2 GdRect2,
+) {
+	arg0 := (C.GDExtensionSpxSpriteSetTextureAltas)(api.SpxSpriteSetTextureAltas)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(path)
+	arg3GdRect2 = (C.GdRect2)(rect2)
+
+	C.cgo_callfn_GDExtensionSpxSpriteSetTextureAltas(arg0, arg1GdObj, arg2GdString, arg3GdRect2)
+
 }
 func CallSpriteSetTexture(
 	obj GdObj,

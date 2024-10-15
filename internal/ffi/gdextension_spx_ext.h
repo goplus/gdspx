@@ -237,6 +237,8 @@ typedef void (*GDExtensionSpxPlatformSetWindowFullscreen)(GdBool enable);
 typedef void (*GDExtensionSpxPlatformIsWindowFullscreen)(GdBool* ret_value);
 typedef void (*GDExtensionSpxPlatformSetDebugMode)(GdBool enable);
 typedef void (*GDExtensionSpxPlatformIsDebugMode)(GdBool* ret_value);
+// SpxRes
+typedef void (*GDExtensionSpxResGetImageSize)(GdString path, GdVec2* ret_value);
 // SpxScene
 typedef void (*GDExtensionSpxSceneChangeSceneToFile)(GdString path);
 typedef void (*GDExtensionSpxSceneReloadCurrentScene)(GdInt* ret_value);
@@ -265,6 +267,7 @@ typedef void (*GDExtensionSpxSpriteSetScale)(GdObj obj, GdVec2 scale);
 typedef void (*GDExtensionSpxSpriteGetScale)(GdObj obj, GdVec2* ret_value);
 typedef void (*GDExtensionSpxSpriteSetColor)(GdObj obj, GdColor color);
 typedef void (*GDExtensionSpxSpriteGetColor)(GdObj obj, GdColor* ret_value);
+typedef void (*GDExtensionSpxSpriteSetTextureAltas)(GdObj obj, GdString path, GdRect2 rect2);
 typedef void (*GDExtensionSpxSpriteSetTexture)(GdObj obj, GdString path);
 typedef void (*GDExtensionSpxSpriteGetTexture)(GdObj obj, GdString* ret_value);
 typedef void (*GDExtensionSpxSpriteSetVisible)(GdObj obj, GdBool visible);
