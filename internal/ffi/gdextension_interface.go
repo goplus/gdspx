@@ -56,16 +56,16 @@ func ToColor(val GdColor) engine.Color {
 	return engine.Color{float32(val.R), float32(val.G), float32(val.B), float32(val.A)}
 }
 func ToGdRect2(val engine.Rect2) GdRect2 {
-	center := ToGdVec2(val.Center)
+	position := ToGdVec2(val.Position)
 	size := ToGdVec2(val.Size)
 	ret := GdRect2{}
-	ret.Center = C.GdVec2(center)
+	ret.Position = C.GdVec2(position)
 	ret.Size = C.GdVec2(size)
 	return ret
 }
 func ToRect2(val GdRect2) engine.Rect2 {
 	ret := engine.Rect2{}
-	ret.Center = ToVec2(GdVec2(val.Center))
+	ret.Position = ToVec2(GdVec2(val.Position))
 	ret.Size = ToVec2(GdVec2(val.Size))
 	return ret
 }

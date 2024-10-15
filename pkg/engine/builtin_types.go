@@ -40,9 +40,10 @@ func (val Color) String() string {
 }
 
 type Rect2 struct {
-	Center, Size Vec2
+	Position Vec2 // TopLeft point
+	Size     Vec2
 }
 
 func (val Rect2) String() string {
-	return fmt.Sprintf("(center:%s, size:%s)", val.Center.String(), val.Size.String())
+	return fmt.Sprintf("(position:%s, size:%s)", val.Position.String(), val.Size.String())
 }

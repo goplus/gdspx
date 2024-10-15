@@ -42,7 +42,7 @@ typedef struct {
 } Color;
 
 typedef struct {
-	Vector2 Center;
+	Vector2 Position; // TopLeft point
 	Vector2 Size;
 } Rect2;
 

@@ -106,7 +106,7 @@ func JsFromGdColor(color Color) js.Value {
 
 func JsFromGdRect2(rect Rect2) js.Value {
 	rectJs := js.Global().Get("Object").New()
-	rectJs.Set("center", JsFromGdVec2(rect.Center))
+	rectJs.Set("position", JsFromGdVec2(rect.Position))
 	rectJs.Set("size", JsFromGdVec2(rect.Size))
 	return rectJs
 }
