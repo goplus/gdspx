@@ -104,7 +104,7 @@ func BuildDll(project, outputPath string) {
 func BuildWasm(project string) {
 	rawdir, _ := os.Getwd()
 	os.Chdir(project)
-	dir := path.Join(project, "build/web/")
+	dir := path.Join(project, ".builds/web/")
 	os.MkdirAll(dir, 0755)
 	filePath := path.Join(dir, "gdspx.wasm")
 	envVars := []string{"GOOS=js", "GOARCH=wasm"}
@@ -175,7 +175,7 @@ func RunGdspx(gd4spxPath string, project string, args string) error {
 	return gd4spx.Run()
 }
 func Export(gd4spxPath string, project string, platform string, relpath string) error {
-	args := "--headless --quit --export-debug \"" + platform + "\" " + path.Join(project, relpath)
+	args := "--headless --quit --export-debug " + platform + " " + path.Join(project, relpath)
 	println("run: ", gd4spxPath, project, args)
 	gd4spx := exec.Command(gd4spxPath, args)
 	gd4spx.Dir = project
