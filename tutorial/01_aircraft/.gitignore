@@ -1,7 +1,8 @@
 # gdspx specific ignores
 /.godot
 /.import
-/.godot
+/.builds
+/engine
 /lib
 /Makefile
 /export.cfg
@@ -11,5 +12,7 @@
 /data_*
 /mono_crash.*.json
 
+
 # user specify ignores
 # ...
+/assets/**/*.import
