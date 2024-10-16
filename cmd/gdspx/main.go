@@ -42,7 +42,7 @@ func wrap() error {
 		return nil
 	case "run", "editor", "export", "build":
 		impl.BuildDll(project, libPath)
-	case "buildweb", "exportweb":
+	case "runweb", "buildweb", "exportweb":
 		impl.BuildWasm(project)
 	}
 
@@ -51,6 +51,12 @@ func wrap() error {
 		return impl.RunGdspx(gd4spxPath, project, "")
 	case "editor":
 		return impl.RunGdspx(gd4spxPath, project, "-e")
+	case "runweb":
+		return impl.RunWebServer(gd4spxPath, project, 8005)
+	case "exportweb":
+		return impl.ExportWeb(gd4spxPath, project)
+	case "export":
+		return impl.Export(gd4spxPath, project)
 	}
 	return nil
 }

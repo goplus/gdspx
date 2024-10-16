@@ -5,12 +5,14 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"os/exec"
 	"path"
 	"path/filepath"
 	"runtime"
+	"strings"
 
 	_ "embed"
 )
@@ -29,6 +31,9 @@ var (
 
 	//go:embed template/export_presets.cfg
 	export_presets_cfg string
+
+	//go:embed template/gdspx_web_server.py
+	gdspx_web_server_py string
 
 	//go:embed template/extension_list.cfg
 	extension_list_cfg string
@@ -112,6 +117,17 @@ func BuildWasm(project string) {
 	os.Chdir(rawdir)
 }
 
+func ExportBuild(gd4spxPath string, project string, platform string) error {
+	os.MkdirAll(filepath.Join(project, ".builds", strings.ToLower(platform)), os.ModePerm)
+	cmd := exec.Command(gd4spxPath, "--headless", "--quit", "--path", project, "--export-debug", platform)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		fmt.Println("Error exporting to web:", err)
+	}
+	return err
+}
 func setup(gd4spxPath string, wd, project, libPath string) error {
 	_, err := os.Stat(project + "/.godot")
 	hasInited := !os.IsNotExist(err)
@@ -166,6 +182,9 @@ func RunGolang(envVars []string, args ...string) error {
 	return golang.Run()
 }
 func RunGdspx(gd4spxPath string, project string, args string) error {
+	SetupFile(false, filepath.Join(project, "extension_list.cfg"), extension_list_cfg)
+	SetupFile(false, filepath.Join(project, ".godot", "gdspx.gdextension"), library_gdextension)
+
 	println("run: ", gd4spxPath, project, args)
 	gd4spx := exec.Command(gd4spxPath, args)
 	gd4spx.Dir = project
@@ -174,8 +193,37 @@ func RunGdspx(gd4spxPath string, project string, args string) error {
 	gd4spx.Stdin = os.Stdin
 	return gd4spx.Run()
 }
-func Export(gd4spxPath string, project string, platform string, relpath string) error {
-	args := "--headless --quit --export-debug " + platform + " " + path.Join(project, relpath)
+
+func RunWebServer(gd4spxPath string, projPath string, port int) error {
+	if port == 0 {
+		port = 8005
+	}
+	if runtime.GOOS == "windows" {
+		content := "taskkill /F /IM python.exe\r\ntaskkill /F /IM pythonw.exe\r\n"
+		tempFileName := "temp_kill.bat"
+		ioutil.WriteFile(tempFileName, []byte(content), 0644)
+		cmd := exec.Command("cmd.exe", "/C", tempFileName)
+		cmd.Run()
+		os.Remove(tempFileName)
+	} else {
+		cmd := exec.Command("pkill", "-f", "gdspx_web_server.py")
+		cmd.Run()
+	}
+
+	scriptPath := filepath.Join(projPath, ".godot", "gdspx_web_server.py")
+	executeDir := filepath.Join(projPath, "../", ".builds/web")
+	SetupFile(false, scriptPath, gdspx_web_server_py)
+	println("web server running at http://localhost:" + fmt.Sprint(port))
+	cmd := exec.Command("python", scriptPath, "-r", executeDir, "-p", fmt.Sprint(port))
+	err := cmd.Start()
+	if err != nil {
+		return fmt.Errorf("error starting server: %v", err)
+	}
+	return nil
+}
+func Export(gd4spxPath string, project string) error {
+	platform := "Win"
+	args := "--headless --quit --export-debug " + platform
 	println("run: ", gd4spxPath, project, args)
 	gd4spx := exec.Command(gd4spxPath, args)
 	gd4spx.Dir = project
@@ -184,6 +232,7 @@ func Export(gd4spxPath string, project string, platform string, relpath string) 
 	gd4spx.Stdin = os.Stdin
 	return gd4spx.Run()
 }
+
 func IsFileExist(path string) bool {
 	_, err := os.Stat(path)
 	return err == nil
@@ -280,4 +329,16 @@ func SetupEnv() (string, string, string, error) {
 		return "", "", "", err
 	}
 	return gd4spxPath, project, libPath, nil
+}
+
+func ExportWeb(gd4spxPath string, projectPath string) error {
+	// Delete gdextension
+	os.RemoveAll(filepath.Join(projectPath, "lib"))
+	os.Remove(filepath.Join(projectPath, ".godot", "extension_list.cfg"))
+
+	// Copy template files
+	SetupFile(false, filepath.Join(projectPath, "export_presets.cfg"), export_presets_cfg)
+
+	BuildWasm(projectPath)
+	return ExportBuild(gd4spxPath, projectPath, "Web")
 }
