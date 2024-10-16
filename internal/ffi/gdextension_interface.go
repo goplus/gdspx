@@ -94,7 +94,7 @@ func ToFloat(val GdFloat) float32 {
 	return float32(val)
 }
 func ToString(val GdString) string {
-	cstrPtr := (*CString)(unsafe.Pointer(&val))
+	cstrPtr := (*CString)(unsafe.Pointer(val))
 	return cstrPtr.ToUtf8()
 }
 
