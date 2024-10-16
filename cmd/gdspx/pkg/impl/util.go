@@ -88,9 +88,9 @@ The commands are:
     - editor          # Open the current project in editor mode
     - build           # Build the dynamic library
     - export          # Export the PC package (macOS, Windows, Linux) (TODO)
+    - runweb          # Launch the web server
     - buildweb        # Build for WebAssembly (WASM)
     - exportweb       # Export the web package
-
  eg:
 
     gdspx init                      # create a project in current path
@@ -195,6 +195,9 @@ func RunGdspx(gd4spxPath string, project string, args string) error {
 }
 
 func RunWebServer(gd4spxPath string, projPath string, port int) error {
+	if !IsFileExist(filepath.Join(projPath, ".builds", "web")) {
+		ExportWeb(gd4spxPath, projPath)
+	}
 	if port == 0 {
 		port = 8005
 	}
