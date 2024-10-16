@@ -158,8 +158,8 @@ func JsToGdColor(color js.Value) Color {
 
 func JsToGdRect2(rect js.Value) Rect2 {
 	return Rect2{
-		Center: JsToGdVec2(rect.Get("center")),
-		Size:   JsToGdVec2(rect.Get("size")),
+		Position: JsToGdVec2(rect.Get("position")),
+		Size:     JsToGdVec2(rect.Get("size")),
 	}
 }
 
