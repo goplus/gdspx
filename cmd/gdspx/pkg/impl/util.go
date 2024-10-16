@@ -174,6 +174,16 @@ func RunGdspx(gd4spxPath string, project string, args string) error {
 	gd4spx.Stdin = os.Stdin
 	return gd4spx.Run()
 }
+func Export(gd4spxPath string, project string, platform string, relpath string) error {
+	args := "--headless --quit --export-debug \"" + platform + "\" " + path.Join(project, relpath)
+	println("run: ", gd4spxPath, project, args)
+	gd4spx := exec.Command(gd4spxPath, args)
+	gd4spx.Dir = project
+	gd4spx.Stderr = os.Stderr
+	gd4spx.Stdout = os.Stdout
+	gd4spx.Stdin = os.Stdin
+	return gd4spx.Run()
+}
 func IsFileExist(path string) bool {
 	_, err := os.Stat(path)
 	return err == nil

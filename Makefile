@@ -31,12 +31,13 @@ fmt:
 
 init:
 	./tools/init.sh
+	
+init_web: 
+	./tools/init_web.sh 
 
 server:
 	./tools/start_server.sh 
 
-engine: 
-	./tools/build_engine.sh 
 
 build: 
 	./tools/build_game.sh --gd $(GODOT) --lib $(LIB_PATH) --path $(PROJECT_PATH)
