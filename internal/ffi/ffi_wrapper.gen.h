@@ -126,6 +126,9 @@ void cgo_callfn_GDExtensionSpxPlatformIsDebugMode(const GDExtensionSpxPlatformIs
 void cgo_callfn_GDExtensionSpxResGetImageSize(const GDExtensionSpxResGetImageSize fn, GdString path, GdVec2* ret_val) {
 	fn(path,ret_val);
 }
+void cgo_callfn_GDExtensionSpxResReadAllText(const GDExtensionSpxResReadAllText fn, GdString path, GdString* ret_val) {
+	fn(path,ret_val);
+}
 void cgo_callfn_GDExtensionSpxSceneChangeSceneToFile(const GDExtensionSpxSceneChangeSceneToFile fn, GdString path) {
 	fn(path);
 }

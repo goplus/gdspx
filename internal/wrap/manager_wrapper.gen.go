@@ -283,6 +283,13 @@ func (pself *resMgr) GetImageSize(path string) Vec2 {
 	retValue := CallResGetImageSize(arg0)
 	return ToVec2(retValue)
 }
+func (pself *resMgr) ReadAllText(path string) string {
+	arg0Str := NewCString(path)
+	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
+	retValue := CallResReadAllText(arg0)
+	return ToString(retValue)
+}
 func (pself *sceneMgr) ChangeSceneToFile(path string) {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()

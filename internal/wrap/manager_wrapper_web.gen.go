@@ -265,6 +265,11 @@ func (pself *resMgr) GetImageSize(path string) Vec2 {
 	_retValue := API.SpxResGetImageSize.Invoke(arg0)
 	return JsToGdVec2(_retValue)
 }
+func (pself *resMgr) ReadAllText(path string) string {
+	arg0 := JsFromGdString(path)
+	_retValue := API.SpxResReadAllText.Invoke(arg0)
+	return JsToGdString(_retValue)
+}
 func (pself *sceneMgr) ChangeSceneToFile(path string) {
 	arg0 := JsFromGdString(path)
 	API.SpxSceneChangeSceneToFile.Invoke(arg0)

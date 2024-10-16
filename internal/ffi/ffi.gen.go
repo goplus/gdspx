@@ -56,6 +56,7 @@ type GDExtensionInterface struct {
 	SpxPlatformSetDebugMode          GDExtensionSpxPlatformSetDebugMode
 	SpxPlatformIsDebugMode           GDExtensionSpxPlatformIsDebugMode
 	SpxResGetImageSize               GDExtensionSpxResGetImageSize
+	SpxResReadAllText                GDExtensionSpxResReadAllText
 	SpxSceneChangeSceneToFile        GDExtensionSpxSceneChangeSceneToFile
 	SpxSceneReloadCurrentScene       GDExtensionSpxSceneReloadCurrentScene
 	SpxSceneUnloadCurrentScene       GDExtensionSpxSceneUnloadCurrentScene
@@ -230,6 +231,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPlatformSetDebugMode = (GDExtensionSpxPlatformSetDebugMode)(dlsymGD("spx_platform_set_debug_mode"))
 	x.SpxPlatformIsDebugMode = (GDExtensionSpxPlatformIsDebugMode)(dlsymGD("spx_platform_is_debug_mode"))
 	x.SpxResGetImageSize = (GDExtensionSpxResGetImageSize)(dlsymGD("spx_res_get_image_size"))
+	x.SpxResReadAllText = (GDExtensionSpxResReadAllText)(dlsymGD("spx_res_read_all_text"))
 	x.SpxSceneChangeSceneToFile = (GDExtensionSpxSceneChangeSceneToFile)(dlsymGD("spx_scene_change_scene_to_file"))
 	x.SpxSceneReloadCurrentScene = (GDExtensionSpxSceneReloadCurrentScene)(dlsymGD("spx_scene_reload_current_scene"))
 	x.SpxSceneUnloadCurrentScene = (GDExtensionSpxSceneUnloadCurrentScene)(dlsymGD("spx_scene_unload_current_scene"))

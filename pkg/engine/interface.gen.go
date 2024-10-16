@@ -76,6 +76,7 @@ type IPlatformMgr interface {
 
 type IResMgr interface {
 	GetImageSize(path string) Vec2
+	ReadAllText(path string) string
 }
 
 type ISceneMgr interface {

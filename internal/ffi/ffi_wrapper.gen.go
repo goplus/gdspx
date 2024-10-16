@@ -110,6 +110,7 @@ type GDExtensionSpxPlatformIsWindowFullscreen C.GDExtensionSpxPlatformIsWindowFu
 type GDExtensionSpxPlatformSetDebugMode C.GDExtensionSpxPlatformSetDebugMode
 type GDExtensionSpxPlatformIsDebugMode C.GDExtensionSpxPlatformIsDebugMode
 type GDExtensionSpxResGetImageSize C.GDExtensionSpxResGetImageSize
+type GDExtensionSpxResReadAllText C.GDExtensionSpxResReadAllText
 type GDExtensionSpxSceneChangeSceneToFile C.GDExtensionSpxSceneChangeSceneToFile
 type GDExtensionSpxSceneReloadCurrentScene C.GDExtensionSpxSceneReloadCurrentScene
 type GDExtensionSpxSceneUnloadCurrentScene C.GDExtensionSpxSceneUnloadCurrentScene
@@ -561,6 +562,16 @@ func CallResGetImageSize(
 	C.cgo_callfn_GDExtensionSpxResGetImageSize(arg0, arg1GdString, &ret_val)
 
 	return (GdVec2)(ret_val)
+}
+func CallResReadAllText(
+	path GdString,
+) GdString {
+	arg0 := (C.GDExtensionSpxResReadAllText)(api.SpxResReadAllText)
+	arg1GdString = (C.GdString)(path)
+	var ret_val C.GdString
+	C.cgo_callfn_GDExtensionSpxResReadAllText(arg0, arg1GdString, &ret_val)
+
+	return (GdString)(ret_val)
 }
 func CallSceneChangeSceneToFile(
 	path GdString,

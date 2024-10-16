@@ -60,6 +60,7 @@ type GDExtensionInterface struct {
 	SpxPlatformSetDebugMode          js.Value
 	SpxPlatformIsDebugMode           js.Value
 	SpxResGetImageSize               js.Value
+	SpxResReadAllText                js.Value
 	SpxSceneChangeSceneToFile        js.Value
 	SpxSceneReloadCurrentScene       js.Value
 	SpxSceneUnloadCurrentScene       js.Value
@@ -234,6 +235,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPlatformSetDebugMode = dlsymGD("gdspx_platform_set_debug_mode")
 	x.SpxPlatformIsDebugMode = dlsymGD("gdspx_platform_is_debug_mode")
 	x.SpxResGetImageSize = dlsymGD("gdspx_res_get_image_size")
+	x.SpxResReadAllText = dlsymGD("gdspx_res_read_all_text")
 	x.SpxSceneChangeSceneToFile = dlsymGD("gdspx_scene_change_scene_to_file")
 	x.SpxSceneReloadCurrentScene = dlsymGD("gdspx_scene_reload_current_scene")
 	x.SpxSceneUnloadCurrentScene = dlsymGD("gdspx_scene_unload_current_scene")
