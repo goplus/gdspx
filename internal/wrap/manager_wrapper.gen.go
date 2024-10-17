@@ -432,6 +432,16 @@ func (pself *spriteMgr) GetScale(obj Object) Vec2 {
 	retValue := CallSpriteGetScale(arg0)
 	return ToVec2(retValue)
 }
+func (pself *spriteMgr) SetRenderScale(obj Object, scale Vec2) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdVec2(scale)
+	CallSpriteSetRenderScale(arg0, arg1)
+}
+func (pself *spriteMgr) GetRenderScale(obj Object) Vec2 {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteGetRenderScale(arg0)
+	return ToVec2(retValue)
+}
 func (pself *spriteMgr) SetColor(obj Object, color Color) {
 	arg0 := ToGdObj(obj)
 	arg1 := ToGdColor(color)

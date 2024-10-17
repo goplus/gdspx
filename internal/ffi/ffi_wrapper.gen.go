@@ -135,6 +135,8 @@ type GDExtensionSpxSpriteSetRotation C.GDExtensionSpxSpriteSetRotation
 type GDExtensionSpxSpriteGetRotation C.GDExtensionSpxSpriteGetRotation
 type GDExtensionSpxSpriteSetScale C.GDExtensionSpxSpriteSetScale
 type GDExtensionSpxSpriteGetScale C.GDExtensionSpxSpriteGetScale
+type GDExtensionSpxSpriteSetRenderScale C.GDExtensionSpxSpriteSetRenderScale
+type GDExtensionSpxSpriteGetRenderScale C.GDExtensionSpxSpriteGetRenderScale
 type GDExtensionSpxSpriteSetColor C.GDExtensionSpxSpriteSetColor
 type GDExtensionSpxSpriteGetColor C.GDExtensionSpxSpriteGetColor
 type GDExtensionSpxSpriteSetTextureAltas C.GDExtensionSpxSpriteSetTextureAltas
@@ -829,6 +831,27 @@ func CallSpriteGetScale(
 	arg1GdObj = (C.GdObj)(obj)
 	var ret_val C.GdVec2
 	C.cgo_callfn_GDExtensionSpxSpriteGetScale(arg0, arg1GdObj, &ret_val)
+
+	return (GdVec2)(ret_val)
+}
+func CallSpriteSetRenderScale(
+	obj GdObj,
+	scale GdVec2,
+) {
+	arg0 := (C.GDExtensionSpxSpriteSetRenderScale)(api.SpxSpriteSetRenderScale)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdVec2 = (C.GdVec2)(scale)
+
+	C.cgo_callfn_GDExtensionSpxSpriteSetRenderScale(arg0, arg1GdObj, arg2GdVec2)
+
+}
+func CallSpriteGetRenderScale(
+	obj GdObj,
+) GdVec2 {
+	arg0 := (C.GDExtensionSpxSpriteGetRenderScale)(api.SpxSpriteGetRenderScale)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdVec2
+	C.cgo_callfn_GDExtensionSpxSpriteGetRenderScale(arg0, arg1GdObj, &ret_val)
 
 	return (GdVec2)(ret_val)
 }

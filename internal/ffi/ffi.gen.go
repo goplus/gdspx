@@ -81,6 +81,8 @@ type GDExtensionInterface struct {
 	SpxSpriteGetRotation             GDExtensionSpxSpriteGetRotation
 	SpxSpriteSetScale                GDExtensionSpxSpriteSetScale
 	SpxSpriteGetScale                GDExtensionSpxSpriteGetScale
+	SpxSpriteSetRenderScale          GDExtensionSpxSpriteSetRenderScale
+	SpxSpriteGetRenderScale          GDExtensionSpxSpriteGetRenderScale
 	SpxSpriteSetColor                GDExtensionSpxSpriteSetColor
 	SpxSpriteGetColor                GDExtensionSpxSpriteGetColor
 	SpxSpriteSetTextureAltas         GDExtensionSpxSpriteSetTextureAltas
@@ -256,6 +258,8 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteGetRotation = (GDExtensionSpxSpriteGetRotation)(dlsymGD("spx_sprite_get_rotation"))
 	x.SpxSpriteSetScale = (GDExtensionSpxSpriteSetScale)(dlsymGD("spx_sprite_set_scale"))
 	x.SpxSpriteGetScale = (GDExtensionSpxSpriteGetScale)(dlsymGD("spx_sprite_get_scale"))
+	x.SpxSpriteSetRenderScale = (GDExtensionSpxSpriteSetRenderScale)(dlsymGD("spx_sprite_set_render_scale"))
+	x.SpxSpriteGetRenderScale = (GDExtensionSpxSpriteGetRenderScale)(dlsymGD("spx_sprite_get_render_scale"))
 	x.SpxSpriteSetColor = (GDExtensionSpxSpriteSetColor)(dlsymGD("spx_sprite_set_color"))
 	x.SpxSpriteGetColor = (GDExtensionSpxSpriteGetColor)(dlsymGD("spx_sprite_get_color"))
 	x.SpxSpriteSetTextureAltas = (GDExtensionSpxSpriteSetTextureAltas)(dlsymGD("spx_sprite_set_texture_altas"))

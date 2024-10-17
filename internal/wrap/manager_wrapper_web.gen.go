@@ -396,6 +396,16 @@ func (pself *spriteMgr) GetScale(obj Object) Vec2 {
 	_retValue := API.SpxSpriteGetScale.Invoke(arg0)
 	return JsToGdVec2(_retValue)
 }
+func (pself *spriteMgr) SetRenderScale(obj Object, scale Vec2) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdVec2(scale)
+	API.SpxSpriteSetRenderScale.Invoke(arg0, arg1)
+}
+func (pself *spriteMgr) GetRenderScale(obj Object) Vec2 {
+	arg0 := JsFromGdObj(obj)
+	_retValue := API.SpxSpriteGetRenderScale.Invoke(arg0)
+	return JsToGdVec2(_retValue)
+}
 func (pself *spriteMgr) SetColor(obj Object, color Color) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdColor(color)

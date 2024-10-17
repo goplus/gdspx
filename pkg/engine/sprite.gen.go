@@ -110,6 +110,10 @@ func (pself *Sprite) GetRealVelocity() Vec2 {
 	return SpriteMgr.GetRealVelocity(pself.Id)
 }
 
+func (pself *Sprite) GetRenderScale() Vec2 {
+	return SpriteMgr.GetRenderScale(pself.Id)
+}
+
 func (pself *Sprite) GetRotation() float32 {
 	return SpriteMgr.GetRotation(pself.Id)
 }
@@ -304,6 +308,10 @@ func (pself *Sprite) SetPosition(pos Vec2) {
 
 func (pself *Sprite) SetProcess(is_on bool) {
 	SpriteMgr.SetProcess(pself.Id, is_on)
+}
+
+func (pself *Sprite) SetRenderScale(scale Vec2) {
+	SpriteMgr.SetRenderScale(pself.Id, scale)
 }
 
 func (pself *Sprite) SetRotation(rot float32) {

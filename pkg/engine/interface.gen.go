@@ -107,6 +107,8 @@ type ISpriteMgr interface {
 	GetRotation(obj Object) float32
 	SetScale(obj Object, scale Vec2)
 	GetScale(obj Object) Vec2
+	SetRenderScale(obj Object, scale Vec2)
+	GetRenderScale(obj Object) Vec2
 	SetColor(obj Object, color Color)
 	GetColor(obj Object) Color
 	SetTextureAltas(obj Object, path string, rect2 Rect2)

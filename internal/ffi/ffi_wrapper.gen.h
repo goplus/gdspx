@@ -201,6 +201,12 @@ void cgo_callfn_GDExtensionSpxSpriteSetScale(const GDExtensionSpxSpriteSetScale 
 void cgo_callfn_GDExtensionSpxSpriteGetScale(const GDExtensionSpxSpriteGetScale fn, GdObj obj, GdVec2* ret_val) {
 	fn(obj,ret_val);
 }
+void cgo_callfn_GDExtensionSpxSpriteSetRenderScale(const GDExtensionSpxSpriteSetRenderScale fn, GdObj obj, GdVec2 scale) {
+	fn(obj, scale);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetRenderScale(const GDExtensionSpxSpriteGetRenderScale fn, GdObj obj, GdVec2* ret_val) {
+	fn(obj,ret_val);
+}
 void cgo_callfn_GDExtensionSpxSpriteSetColor(const GDExtensionSpxSpriteSetColor fn, GdObj obj, GdColor color) {
 	fn(obj, color);
 }

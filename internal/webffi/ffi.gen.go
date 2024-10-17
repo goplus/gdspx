@@ -85,6 +85,8 @@ type GDExtensionInterface struct {
 	SpxSpriteGetRotation             js.Value
 	SpxSpriteSetScale                js.Value
 	SpxSpriteGetScale                js.Value
+	SpxSpriteSetRenderScale          js.Value
+	SpxSpriteGetRenderScale          js.Value
 	SpxSpriteSetColor                js.Value
 	SpxSpriteGetColor                js.Value
 	SpxSpriteSetTextureAltas         js.Value
@@ -260,6 +262,8 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteGetRotation = dlsymGD("gdspx_sprite_get_rotation")
 	x.SpxSpriteSetScale = dlsymGD("gdspx_sprite_set_scale")
 	x.SpxSpriteGetScale = dlsymGD("gdspx_sprite_get_scale")
+	x.SpxSpriteSetRenderScale = dlsymGD("gdspx_sprite_set_render_scale")
+	x.SpxSpriteGetRenderScale = dlsymGD("gdspx_sprite_get_render_scale")
 	x.SpxSpriteSetColor = dlsymGD("gdspx_sprite_set_color")
 	x.SpxSpriteGetColor = dlsymGD("gdspx_sprite_get_color")
 	x.SpxSpriteSetTextureAltas = dlsymGD("gdspx_sprite_set_texture_altas")
