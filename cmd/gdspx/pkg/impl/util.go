@@ -182,8 +182,8 @@ func RunGolang(envVars []string, args ...string) error {
 	return golang.Run()
 }
 func RunGdspx(gd4spxPath string, project string, args string) error {
-	SetupFile(false, filepath.Join(project, "extension_list.cfg"), extension_list_cfg)
-	SetupFile(false, filepath.Join(project, ".godot", "gdspx.gdextension"), library_gdextension)
+	SetupFile(false, filepath.Join(project, ".godot", "extension_list.cfg"), extension_list_cfg)
+	SetupFile(false, filepath.Join(project, "gdspx.gdextension"), library_gdextension)
 
 	println("run: ", gd4spxPath, project, args)
 	gd4spx := exec.Command(gd4spxPath, args)
@@ -193,14 +193,7 @@ func RunGdspx(gd4spxPath string, project string, args string) error {
 	gd4spx.Stdin = os.Stdin
 	return gd4spx.Run()
 }
-
-func RunWebServer(gd4spxPath string, projPath string, port int) error {
-	if !IsFileExist(filepath.Join(projPath, ".builds", "web")) {
-		ExportWeb(gd4spxPath, projPath)
-	}
-	if port == 0 {
-		port = 8005
-	}
+func StopWebServer() {
 	if runtime.GOOS == "windows" {
 		content := "taskkill /F /IM python.exe\r\ntaskkill /F /IM pythonw.exe\r\n"
 		tempFileName := "temp_kill.bat"
@@ -212,7 +205,15 @@ func RunWebServer(gd4spxPath string, projPath string, port int) error {
 		cmd := exec.Command("pkill", "-f", "gdspx_web_server.py")
 		cmd.Run()
 	}
-
+}
+func RunWebServer(gd4spxPath string, projPath string, port int) error {
+	if !IsFileExist(filepath.Join(projPath, ".builds", "web")) {
+		ExportWeb(gd4spxPath, projPath)
+	}
+	if port == 0 {
+		port = 8005
+	}
+	StopWebServer()
 	scriptPath := filepath.Join(projPath, ".godot", "gdspx_web_server.py")
 	executeDir := filepath.Join(projPath, "../", ".builds/web")
 	SetupFile(false, scriptPath, gdspx_web_server_py)
@@ -338,10 +339,16 @@ func ExportWeb(gd4spxPath string, projectPath string) error {
 	// Delete gdextension
 	os.RemoveAll(filepath.Join(projectPath, "lib"))
 	os.Remove(filepath.Join(projectPath, ".godot", "extension_list.cfg"))
-
+	os.Remove(filepath.Join(projectPath, "gdspx.gdextension"))
 	// Copy template files
 	SetupFile(false, filepath.Join(projectPath, "export_presets.cfg"), export_presets_cfg)
 
 	BuildWasm(projectPath)
-	return ExportBuild(gd4spxPath, projectPath, "Web")
+	err := ExportBuild(gd4spxPath, projectPath, "Web")
+	return err
+}
+func ClearGdspx(projectPath string) {
+	os.RemoveAll(filepath.Join(projectPath, "lib"))
+	os.RemoveAll(filepath.Join(projectPath, ".godot"))
+	os.RemoveAll(filepath.Join(projectPath, ".build"))
 }

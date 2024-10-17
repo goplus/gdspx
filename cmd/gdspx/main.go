@@ -21,6 +21,12 @@ func main() {
 	case "help", "version":
 		impl.ShowHelpInfo()
 		return
+	case "clear":
+		impl.ClearGdspx(impl.TargetDir)
+		return
+	case "stopweb":
+		impl.StopWebServer()
+		return
 	case "init":
 		impl.PrepareGoEnv()
 	}
@@ -52,7 +58,7 @@ func wrap() error {
 	case "editor":
 		return impl.RunGdspx(gd4spxPath, project, "-e")
 	case "runweb":
-		return impl.RunWebServer(gd4spxPath, project, 8005)
+		return impl.RunWebServer(gd4spxPath, project, 8006)
 	case "exportweb":
 		return impl.ExportWeb(gd4spxPath, project)
 	case "export":
