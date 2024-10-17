@@ -2,9 +2,11 @@ package impl
 
 import (
 	"crypto/tls"
+	"embed"
 	"errors"
 	"fmt"
 	"io"
+	"io/fs"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -74,16 +76,16 @@ func PrepareGoEnv() {
 		println("gdspx project create succ ", TargetDir, "\n=====you can type  'gdspx run "+TargetDir+"'  to run the project======")
 	}
 }
-func ShowHelpInfo() {
-	fmt.Println("gd4spx version", version)
-	fmt.Println(`
+
+func ShowHelpInfo(cmdName string) {
+	msg := `
 Usage:
 
-    gdspx <command> [path]      
+    #CMDNAME <command> [path]      
 
 The commands are:
 
-    - init            # Create a gdspx project in the current directory
+    - init            # Create a #CMDNAME project in the current directory
     - run             # Run the current project
     - editor          # Open the current project in editor mode
     - build           # Build the dynamic library
@@ -91,11 +93,56 @@ The commands are:
     - runweb          # Launch the web server
     - buildweb        # Build for WebAssembly (WASM)
     - exportweb       # Export the web package
+    - clear           # Clear the project 
+
  eg:
 
-    gdspx init                      # create a project in current path
-    gdspx init ./test/demo01        # create a project at path ./test/demo01 
-	`)
+    #CMDNAME init                      # create a project in current path
+    #CMDNAME init ./test/demo01        # create a project at path ./test/demo01 
+	`
+	fmt.Println(strings.ReplaceAll(msg, "#CMDNAME", cmdName))
+}
+func CopyEmbed(embedDir embed.FS, srcDir, dstDir string) error {
+	if _, err := os.Stat(dstDir); !os.IsNotExist(err) {
+		err := os.RemoveAll(dstDir)
+		if err != nil {
+			return err
+		}
+	}
+
+	fsys, err := fs.Sub(embedDir, srcDir)
+	if err != nil {
+		return err
+	}
+	if err := os.MkdirAll(dstDir, 0755); err != nil {
+		return err
+	}
+
+	return fs.WalkDir(fsys, ".", func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+
+		dstPath := filepath.Join(dstDir, path)
+		if d.IsDir() {
+			return os.MkdirAll(dstPath, 0755)
+		} else {
+			srcFile, err := fsys.Open(path)
+			if err != nil {
+				return err
+			}
+			defer srcFile.Close()
+
+			dstFile, err := os.Create(dstPath)
+			if err != nil {
+				return err
+			}
+			defer dstFile.Close()
+
+			_, err = io.Copy(dstFile, srcFile)
+			return err
+		}
+	})
 }
 
 func BuildDll(project, outputPath string) {
@@ -118,10 +165,9 @@ func BuildWasm(project string) {
 }
 
 func ExportBuild(gd4spxPath string, project string, platform string) error {
+	println("start export: platform =", platform, " project =", project)
 	os.MkdirAll(filepath.Join(project, ".builds", strings.ToLower(platform)), os.ModePerm)
 	cmd := exec.Command(gd4spxPath, "--headless", "--quit", "--path", project, "--export-debug", platform)
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println("Error exporting to web:", err)
@@ -170,6 +216,18 @@ func ImportProj(project string, libPath string, gd4spxPath string) error {
 	return nil
 }
 
+func RunGoplus(envVars []string, args ...string) error {
+	golang := exec.Command("gop", args...)
+
+	if envVars != nil {
+		golang.Env = append(os.Environ(), envVars...)
+	}
+	golang.Stderr = os.Stderr
+	golang.Stdout = os.Stdout
+	golang.Stdin = os.Stdin
+	return golang.Run()
+}
+
 func RunGolang(envVars []string, args ...string) error {
 	golang := exec.Command("go", args...)
 
@@ -206,9 +264,9 @@ func StopWebServer() {
 		cmd.Run()
 	}
 }
-func RunWebServer(gd4spxPath string, projPath string, port int) error {
+func RunWebServer(gd4spxPath string, projPath string, libPath string, port int) error {
 	if !IsFileExist(filepath.Join(projPath, ".builds", "web")) {
-		ExportWeb(gd4spxPath, projPath)
+		ExportWeb(gd4spxPath, projPath, libPath)
 	}
 	if port == 0 {
 		port = 8005
@@ -253,6 +311,37 @@ func SetupFile(force bool, name, embed string, args ...any) error {
 	return nil
 }
 
+func ExecCmds(buildDllFunc func(project, outputPath string)) error {
+	gd4spxPath, project, libPath, err := SetupEnv()
+	if err != nil {
+		return err
+	}
+	switch os.Args[1] {
+	case "init":
+		return nil
+	case "run", "editor", "export", "build":
+		buildDllFunc(project, libPath)
+	case "runweb", "buildweb":
+		buildDllFunc(project, libPath)
+		if !IsFileExist(path.Join(TargetDir, ".builds/web/index.html")) {
+			ExportWeb(gd4spxPath, project, libPath)
+		}
+		BuildWasm(project)
+	}
+	switch os.Args[1] {
+	case "run":
+		return RunGdspx(gd4spxPath, project, "")
+	case "editor":
+		return RunGdspx(gd4spxPath, project, "-e")
+	case "runweb":
+		return RunWebServer(gd4spxPath, project, libPath, 8005)
+	case "exportweb":
+		return ExportWeb(gd4spxPath, project, libPath)
+	case "export":
+		return Export(gd4spxPath, project)
+	}
+	return nil
+}
 func downloadFile(url string, dest string) error {
 	client := &http.Client{
 		Transport: &http.Transport{
@@ -335,7 +424,8 @@ func SetupEnv() (string, string, string, error) {
 	return gd4spxPath, project, libPath, nil
 }
 
-func ExportWeb(gd4spxPath string, projectPath string) error {
+func ExportWeb(gd4spxPath string, projectPath string, libPath string) error {
+	BuildDll(projectPath, libPath)
 	// Delete gdextension
 	os.RemoveAll(filepath.Join(projectPath, "lib"))
 	os.Remove(filepath.Join(projectPath, ".godot", "extension_list.cfg"))
