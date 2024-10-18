@@ -4,13 +4,11 @@ import (
 	"crypto/tls"
 	"embed"
 	_ "embed"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
 	"io/fs"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -18,8 +16,6 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
-
-	cp "github.com/otiai10/copy"
 )
 
 const version = "4.2.2"
@@ -61,14 +57,6 @@ func ReplaceTemplate(mod string, main string, ignore string) {
 	gitignore = ignore
 }
 
-type projctConfig struct {
-	ExtAsset string `json:"extasset"`
-}
-
-const (
-	extassetDir = "extasset"
-)
-
 func PrepareGoEnv() {
 	os.MkdirAll(TargetDir, 0755)
 	if err := SetupFile(false, TargetDir+"/go.mod", go_mode_txt); err != nil {
@@ -87,25 +75,7 @@ func PrepareGoEnv() {
 	} else {
 		println("gdspx project create succ ", TargetDir, "\n=====you can type  'gdspx run "+TargetDir+"'  to run the project======")
 	}
-	configPath := path.Join(TargetDir, ".config")
-	if IsFileExist(configPath) && !IsFileExist(path.Join(TargetDir, extassetDir)) {
-		file, err := os.Open(configPath)
-		defer file.Close()
-		ctx, err := io.ReadAll(file)
-		if err != nil {
-			log.Fatalf("read config error:" + err.Error())
-		}
-		var config projctConfig
-		err = json.Unmarshal(ctx, &config)
-		if err != nil {
-			log.Fatalf("read config error:" + string(ctx) + err.Error())
-		}
-		println("src dir ", path.Join(TargetDir, config.ExtAsset))
-		err = cp.Copy(path.Join(TargetDir, config.ExtAsset), path.Join(TargetDir, extassetDir))
-		if err != nil {
-			log.Fatalf("Error copying directory: %v", err)
-		}
-	}
+
 }
 
 func ShowHelpInfo(cmdName string) {
