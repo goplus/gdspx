@@ -105,10 +105,7 @@ The commands are:
 }
 func CopyEmbed(embedDir embed.FS, srcDir, dstDir string) error {
 	if _, err := os.Stat(dstDir); !os.IsNotExist(err) {
-		err := os.RemoveAll(dstDir)
-		if err != nil {
-			return err
-		}
+		return nil
 	}
 
 	fsys, err := fs.Sub(embedDir, srcDir)
