@@ -132,6 +132,9 @@ void cgo_callfn_GDExtensionSpxResGetImageSize(const GDExtensionSpxResGetImageSiz
 void cgo_callfn_GDExtensionSpxResReadAllText(const GDExtensionSpxResReadAllText fn, GdString path, GdString* ret_val) {
 	fn(path,ret_val);
 }
+void cgo_callfn_GDExtensionSpxResHasFile(const GDExtensionSpxResHasFile fn, GdString path, GdBool* ret_val) {
+	fn(path,ret_val);
+}
 void cgo_callfn_GDExtensionSpxSceneChangeSceneToFile(const GDExtensionSpxSceneChangeSceneToFile fn, GdString path) {
 	fn(path);
 }
