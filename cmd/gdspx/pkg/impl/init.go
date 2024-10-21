@@ -35,7 +35,7 @@ func BuildFromSource(dstBinPath string) {
 		}
 
 		runCommand("git", "init")
-		runCommand("git", "remote", "add", "origin", "git@github.com:JiepengTan/godot.git")
+		runCommand("git", "remote", "add", "origin", "https://github.com/JiepengTan/godot.git")
 		runCommand("git", "fetch", "--depth", "1", "origin", "spx-"+version)
 		runCommand("git", "checkout", "spx-"+version)
 
