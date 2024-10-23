@@ -354,7 +354,7 @@ func ExecCmds(buildDllFunc func(project, outputPath string)) error {
 	case "editor":
 		return RunGdspx(gd4spxPath, project, "-e")
 	case "runweb":
-		return RunWebServer(gd4spxPath, project, libPath, 8005)
+		return RunWebServer(gd4spxPath, project, libPath, ServerPort)
 	case "exportweb":
 		return ExportWeb(gd4spxPath, project, libPath)
 	case "export":
@@ -395,6 +395,7 @@ var (
 	GdspxPath   string
 	ProjectPath string
 	LibPath     string
+	ServerPort  int = 8005
 )
 
 func SetupEnv() (string, string, string, error) {
@@ -550,9 +551,10 @@ func PackProject(baseFolder string, dstZipPath string) {
 			return err
 		}
 
-		header.Name = strings.TrimPrefix(path, filepath.Join(baseFolder, "/"))
-		header.Method = zip.Deflate
-
+		header.Name = "demo/" + strings.TrimPrefix(path, baseFolder)
+		header.Name = strings.ReplaceAll(header.Name, "\\", "/")
+		println(header.Name)
+		header.Method = zip.Store
 		writer, err := zipWriter.CreateHeader(header)
 		if err != nil {
 			return err
