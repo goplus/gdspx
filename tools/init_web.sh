@@ -28,7 +28,16 @@ em++ --version
 # build godot
 cd godot
 
+# build web editor for interupter mode
+scons platform=web target=editor
+mv bin/godot.web.editor.wasm32.zip bin/web_editor.zip
+gopath=$(go env GOPATH)
+echo $gopath
+cp bin/web_editor.zip $gopath/bin/gdspx_web_$godot_version.zip
 
+cd ..
+
+cd godot
 # gdspx disable gdextension
 #scons platform=web target=template_debug threads=no dlink_enabled=yes 
 #mv bin/godot.web.template_debug.wasm32.dlink.zip bin/web_dlink_debug.zip
@@ -49,12 +58,6 @@ cp bin/web_dlink_debug.zip $gd_template_path/web_dlink_release.zip
 cp bin/web_dlink_debug.zip $gd_template_path/web_debug.zip
 cp bin/web_dlink_debug.zip $gd_template_path/web_release.zip
 
-# build web editor for interupter mode
-scons platform=web target=editor
-mv bin/godot.web.editor.wasm32.zip bin/web_editor.zip
-gopath=$(go env GOPATH)
-echo $gopath
-cp bin/web_editor.zip $gopath/bin/gdspx_web_$godot_version.zip
 
 
 cd ..
