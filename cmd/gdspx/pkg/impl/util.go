@@ -1,14 +1,17 @@
 package impl
 
 import (
+	"archive/zip"
 	"crypto/tls"
 	"embed"
 	_ "embed"
 	"errors"
 	"fmt"
+	"go/build"
 	"io"
 	"io/fs"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -281,6 +284,25 @@ func RunWebServer(gd4spxPath string, projPath string, libPath string, port int) 
 	}
 	return nil
 }
+func IterupterRunWebServer(gd4spxPath string, projPath string, libPath string, port int) error {
+	if !IsFileExist(filepath.Join(projPath, ".builds", "web")) {
+		ExportWeb(gd4spxPath, projPath, libPath)
+	}
+	if port == 0 {
+		port = 8005
+	}
+	StopWebServer()
+	scriptPath := filepath.Join(projPath, ".godot", "gdspx_web_server.py")
+	executeDir := filepath.Join(projPath, "../", ".builds/web")
+	SetupFile(false, scriptPath, gdspx_web_server_py)
+	println("web server running at http://localhost:" + fmt.Sprint(port))
+	cmd := exec.Command("python", scriptPath, "-r", executeDir, "-p", fmt.Sprint(port))
+	err := cmd.Start()
+	if err != nil {
+		return fmt.Errorf("error starting server: %v", err)
+	}
+	return nil
+}
 func Export(gd4spxPath string, project string) error {
 	platform := "Win"
 	args := "--headless --quit --export-debug " + platform
@@ -369,6 +391,12 @@ func downloadFile(url string, dest string) error {
 	return nil
 }
 
+var (
+	GdspxPath   string
+	ProjectPath string
+	LibPath     string
+)
+
 func SetupEnv() (string, string, string, error) {
 	var GOOS, GOARCH = runtime.GOOS, runtime.GOARCH
 	if os.Getenv("GOOS") != "" {
@@ -419,7 +447,119 @@ func SetupEnv() (string, string, string, error) {
 	if err := setup(gd4spxPath, wd, project, libPath); err != nil {
 		return "", "", "", err
 	}
+	GdspxPath = gd4spxPath
+	ProjectPath = project
+	LibPath = libPath
 	return gd4spxPath, project, libPath, nil
+}
+
+func ExportWebEditor(gd4spxPath string, projectPath string, libPath string) error {
+	gopath := build.Default.GOPATH
+	editorZipPath := path.Join(gopath, "bin", "gdspx_web_"+version+".zip")
+	dstPath := path.Join(projectPath, ".builds/web")
+	os.MkdirAll(dstPath, os.ModePerm)
+	if IsFileExist(editorZipPath) {
+		unzip(editorZipPath, dstPath)
+	} else {
+		return errors.New("editor zip file not found: " + editorZipPath)
+	}
+	os.Rename(path.Join(dstPath, "godot.editor.html"), path.Join(dstPath, "index.html"))
+	return nil
+}
+
+func unzip(zipfile, dest string) {
+	r, err := zip.OpenReader(zipfile)
+	if err != nil {
+		panic(err)
+	}
+	defer r.Close()
+
+	for _, f := range r.File {
+		rc, err := f.Open()
+		if err != nil {
+			panic(err)
+		}
+		defer rc.Close()
+
+		fpath := filepath.Join(dest, f.Name)
+		if f.FileInfo().IsDir() {
+			os.MkdirAll(fpath, os.ModePerm)
+		} else {
+			var dir string
+			if lastIndex := strings.LastIndex(fpath, string(os.PathSeparator)); lastIndex > -1 {
+				dir = fpath[:lastIndex]
+			}
+
+			err = os.MkdirAll(dir, os.ModePerm)
+			if err != nil {
+				log.Fatal(err)
+				os.Exit(1)
+			}
+
+			outFile, err := os.OpenFile(fpath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, f.Mode())
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			_, err = io.Copy(outFile, rc)
+			outFile.Close()
+
+			if err != nil {
+				log.Fatal(err)
+			}
+		}
+	}
+}
+func PackProject(baseFolder string, dstZipPath string) {
+	if IsFileExist(dstZipPath) {
+		os.Remove(dstZipPath)
+	}
+	skipDirs := []string{"lib", ".godot", ".builds"}
+	file, err := os.Create(dstZipPath)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	zipWriter := zip.NewWriter(file)
+	defer zipWriter.Close()
+
+	filepath.Walk(baseFolder, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		for _, skipDir := range skipDirs {
+			if info.IsDir() && info.Name() == skipDir {
+				return filepath.SkipDir
+			}
+		}
+
+		if info.IsDir() {
+			return nil
+		}
+
+		fileToZip, err := os.Open(path)
+		if err != nil {
+			return err
+		}
+		defer fileToZip.Close()
+
+		header, err := zip.FileInfoHeader(info)
+		if err != nil {
+			return err
+		}
+
+		header.Name = strings.TrimPrefix(path, filepath.Join(baseFolder, "/"))
+		header.Method = zip.Deflate
+
+		writer, err := zipWriter.CreateHeader(header)
+		if err != nil {
+			return err
+		}
+		_, err = io.Copy(writer, fileToZip)
+		return err
+	})
 }
 
 func ExportWeb(gd4spxPath string, projectPath string, libPath string) error {

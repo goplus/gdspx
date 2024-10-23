@@ -2,7 +2,8 @@
 # build godot web version
 
 # make sure emsdk's version is same as godot build system
-godot_version="4.2.2.stable"
+godot_version="4.2.2"
+godot_version_str="4.2.2.stable"
 
 # Check if the 'emsdk' directory exists
 if [ ! -d "emsdk" ]; then
@@ -27,15 +28,16 @@ em++ --version
 # build godot
 cd godot
 
+
 # gdspx disable gdextension
 #scons platform=web target=template_debug threads=no dlink_enabled=yes 
 #mv bin/godot.web.template_debug.wasm32.dlink.zip bin/web_dlink_debug.zip
 # Get the path to the AppData\Roaming directory
 if [ "$OS" = "Windows_NT" ]; then
     appdata_path="c:$(echo $APPDATA | sed 's/\\/\//g' | sed 's/C://g')"
-    gd_template_path="${appdata_path}/Godot/export_templates/${godot_version}"
+    gd_template_path="${appdata_path}/Godot/export_templates/${godot_version_str}"
 else
-    gd_template_path=~/.local/share/godot/export_templates/$godot_version
+    gd_template_path=~/.local/share/godot/export_templates/$godot_version_str
 fi
 
 # build web export templates
@@ -46,6 +48,13 @@ cp bin/web_dlink_debug.zip $gd_template_path/web_dlink_debug.zip
 cp bin/web_dlink_debug.zip $gd_template_path/web_dlink_release.zip
 cp bin/web_dlink_debug.zip $gd_template_path/web_debug.zip
 cp bin/web_dlink_debug.zip $gd_template_path/web_release.zip
+
+# build web editor for interupter mode
+scons platform=web target=editor
+mv bin/godot.web.editor.wasm32.zip bin/web_editor.zip
+gopath=$(go env GOPATH)
+echo $gopath
+cp bin/web_editor.zip $gopath/bin/gdspx_web_$godot_version.zip
 
 
 cd ..
