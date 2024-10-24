@@ -511,58 +511,6 @@ func unzip(zipfile, dest string) {
 		}
 	}
 }
-func PackProject(baseFolder string, dstZipPath string) {
-	if IsFileExist(dstZipPath) {
-		os.Remove(dstZipPath)
-	}
-	skipDirs := []string{"lib", ".godot", ".builds"}
-	file, err := os.Create(dstZipPath)
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-
-	zipWriter := zip.NewWriter(file)
-	defer zipWriter.Close()
-
-	filepath.Walk(baseFolder, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
-
-		for _, skipDir := range skipDirs {
-			if info.IsDir() && info.Name() == skipDir {
-				return filepath.SkipDir
-			}
-		}
-
-		if info.IsDir() {
-			return nil
-		}
-
-		fileToZip, err := os.Open(path)
-		if err != nil {
-			return err
-		}
-		defer fileToZip.Close()
-
-		header, err := zip.FileInfoHeader(info)
-		if err != nil {
-			return err
-		}
-
-		header.Name = "demo/" + strings.TrimPrefix(path, baseFolder)
-		header.Name = strings.ReplaceAll(header.Name, "\\", "/")
-		println(header.Name)
-		header.Method = zip.Store
-		writer, err := zipWriter.CreateHeader(header)
-		if err != nil {
-			return err
-		}
-		_, err = io.Copy(writer, fileToZip)
-		return err
-	})
-}
 
 func ExportWeb(gd4spxPath string, projectPath string, libPath string) error {
 	BuildDll(projectPath, libPath)
