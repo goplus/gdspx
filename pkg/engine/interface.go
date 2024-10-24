@@ -79,6 +79,9 @@ type EngineCallbackInfo struct {
 	OnEngineUpdate      func(float32)
 	OnEngineFixedUpdate func(float32)
 	OnEngineDestroy     func()
+
+	OnKeyPressed  func(int64)
+	OnKeyReleased func(int64)
 }
 
 type CallbackInfo struct {
@@ -94,8 +97,6 @@ type CallbackInfo struct {
 	// input
 	OnMousePressed       func(int64)
 	OnMouseReleased      func(int64)
-	OnKeyPressed         func(int64)
-	OnKeyReleased        func(int64)
 	OnActionPressed      func(string)
 	OnActionJustPressed  func(string)
 	OnActionJustReleased func(string)

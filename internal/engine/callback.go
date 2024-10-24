@@ -84,10 +84,14 @@ func onMouseReleased(id int64) {
 	println("onMouseReleased ", id)
 }
 func onKeyPressed(id int64) {
-	println("onKeyPressed ", id)
+	if callback.OnKeyPressed != nil {
+		callback.OnKeyPressed(id)
+	}
 }
 func onKeyReleased(id int64) {
-	println("onKeyReleased ", id)
+	if callback.OnKeyReleased != nil {
+		callback.OnKeyReleased(id)
+	}
 }
 func onActionPressed(name string) {
 	println("onActionPressed ", name)
