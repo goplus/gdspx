@@ -15,3 +15,5 @@ internal/ffi/_temp_output*.h
 /spx
 /oldspx
 /emsdk
+/builder
+/ispx

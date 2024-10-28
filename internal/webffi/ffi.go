@@ -12,12 +12,12 @@ var (
 func Link() bool {
 	js.Global().Set("goWasmInit", js.FuncOf(goWasmInit))
 	API.loadProcAddresses()
+	resiterFuncPtr2Js()
 	return true
 }
 
 func goWasmInit(this js.Value, args []js.Value) interface{} {
-	println("Go wasm init succ!")
-	resiterFuncPtr2Js()
+	println("Go wasm init succ! ~")
 	return js.ValueOf(nil)
 }
 

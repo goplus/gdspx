@@ -36,7 +36,7 @@ echo $gopath
 cp bin/web_editor.zip $gopath/bin/gdspx_web_$godot_version.zip
 
 cd ..
-
+exit 1
 cd godot
 # gdspx disable gdextension
 #scons platform=web target=template_debug threads=no dlink_enabled=yes 
