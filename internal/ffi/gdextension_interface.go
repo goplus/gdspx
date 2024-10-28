@@ -6,8 +6,9 @@ package ffi
 import "C"
 
 import (
-	"godot-ext/gdspx/pkg/engine"
 	"unsafe"
+
+	"github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 type Uint64T C.uint64_t

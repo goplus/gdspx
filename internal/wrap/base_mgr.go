@@ -2,7 +2,8 @@ package wrap
 
 import (
 	"fmt"
-	. "godot-ext/gdspx/pkg/engine"
+
+	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 type baseMgr struct {

@@ -2,7 +2,8 @@ package ui
 
 import (
 	"fmt"
-	. "godot-ext/gdspx/pkg/engine"
+
+	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 type BindLabel struct {

@@ -3,8 +3,8 @@
 package wrap
 
 import (
-	"godot-ext/gdspx/internal/ffi"
-	. "godot-ext/gdspx/pkg/engine"
+	"github.com/realdream-ai/gdspx/internal/ffi"
+	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 type EngineStartFunc func()

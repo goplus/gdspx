@@ -14,9 +14,10 @@ package wrap
 
 import (
 	"fmt"
-	. "godot-ext/gdspx/internal/ffi"
-	. "godot-ext/gdspx/pkg/engine"
 	"reflect"
+
+	. "github.com/realdream-ai/gdspx/internal/ffi"
+	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 func BindMgr(mgrs []IManager) {

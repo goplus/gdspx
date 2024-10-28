@@ -1,7 +1,7 @@
 package sprite
 
 import (
-	. "godot-ext/gdspx/pkg/engine"
+	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 type Actor struct {

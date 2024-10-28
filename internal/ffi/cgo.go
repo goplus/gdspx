@@ -1,8 +1,9 @@
 package ffi
 
 import (
-	"godot-ext/gdspx/pkg/engine"
 	"unsafe"
+
+	"github.com/realdream-ai/gdspx/pkg/engine"
 )
 import "C"
 

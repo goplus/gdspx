@@ -2,7 +2,8 @@ package game
 
 import (
 	. "gdspx-demo02/pkg/sprite"
-	. "godot-ext/gdspx/pkg/engine"
+
+	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 var (

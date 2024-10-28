@@ -1,4 +1,4 @@
-module godot-ext/gdspx
+module github.com/realdream-ai/gdspx
 
 go 1.21.3
 

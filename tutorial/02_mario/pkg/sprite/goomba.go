@@ -2,7 +2,8 @@ package sprite
 
 import (
 	. "gdspx-demo02/pkg/define"
-	. "godot-ext/gdspx/pkg/engine"
+
+	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 type Goomba struct {

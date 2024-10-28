@@ -1,8 +1,8 @@
 package gdspx
 
 import (
-	inengine "godot-ext/gdspx/internal/engine"
-	. "godot-ext/gdspx/pkg/engine"
+	inengine "github.com/realdream-ai/gdspx/internal/engine"
+	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 func LinkEngine(callback EngineCallbackInfo) {

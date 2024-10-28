@@ -2,8 +2,9 @@ package main
 
 import (
 	"gdspx-demo01/pkg/game"
-	. "godot-ext/gdspx/pkg/engine"
-	"godot-ext/gdspx/pkg/gdspx"
+
+	. "github.com/realdream-ai/gdspx/pkg/engine"
+	"github.com/realdream-ai/gdspx/pkg/gdspx"
 )
 
 func main() {

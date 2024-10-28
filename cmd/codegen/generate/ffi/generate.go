@@ -14,8 +14,8 @@ import (
 	"text/template"
 	"unicode"
 
-	"godot-ext/gdspx/cmd/codegen/gdextensionparser/clang"
-	. "godot-ext/gdspx/cmd/codegen/generate/common"
+	"github.com/realdream-ai/gdspx/cmd/codegen/gdextensionparser/clang"
+	. "github.com/realdream-ai/gdspx/cmd/codegen/generate/common"
 
 	"github.com/iancoleman/strcase"
 )

@@ -1,8 +1,8 @@
 package engine
 
 import (
-	. "godot-ext/gdspx/internal/wrap"
-	. "godot-ext/gdspx/pkg/engine"
+	. "github.com/realdream-ai/gdspx/internal/wrap"
+	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 var (

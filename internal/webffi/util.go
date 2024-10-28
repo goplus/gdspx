@@ -3,8 +3,9 @@ package webffi
 import (
 	"encoding/json"
 	"fmt"
-	. "godot-ext/gdspx/pkg/engine"
 	"syscall/js"
+
+	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 func jsValue2Go(value js.Value) interface{} {

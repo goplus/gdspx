@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"godot-ext/gdspx/cmd/codegen/gdextensionparser/clang"
-	"godot-ext/gdspx/cmd/codegen/gdextensionparser/preprocessor"
+	"github.com/realdream-ai/gdspx/cmd/codegen/gdextensionparser/clang"
+	"github.com/realdream-ai/gdspx/cmd/codegen/gdextensionparser/preprocessor"
 )
 
 func ReadFiles(dir, fileName string) string {

@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"godot-ext/gdspx/cmd/gdspx/pkg/impl"
 	"os"
+
+	"github.com/realdream-ai/gdspx/cmd/gdspx/pkg/impl"
 )
 
 func main() {

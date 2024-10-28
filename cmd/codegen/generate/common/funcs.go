@@ -2,11 +2,12 @@ package common
 
 import (
 	"fmt"
-	"godot-ext/gdspx/cmd/codegen/gdextensionparser/clang"
 	"sort"
 	"strconv"
 	"strings"
 	"unicode"
+
+	"github.com/realdream-ai/gdspx/cmd/codegen/gdextensionparser/clang"
 
 	"github.com/iancoleman/strcase"
 )

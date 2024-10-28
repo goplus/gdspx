@@ -1,8 +1,9 @@
 package webffi
 
 import (
-	"godot-ext/gdspx/pkg/engine"
 	"syscall/js"
+
+	"github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 var (

@@ -4,8 +4,9 @@ import (
 	. "gdspx-demo01/pkg/define"
 	. "gdspx-demo01/pkg/sprite"
 	. "gdspx-demo01/pkg/ui"
-	. "godot-ext/gdspx/pkg/engine"
 	"math/rand"
+
+	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 var (

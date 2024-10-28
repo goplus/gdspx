@@ -8,11 +8,11 @@ import (
 	"runtime"
 	"strings"
 
-	"godot-ext/gdspx/cmd/codegen/gdextensionparser"
-	"godot-ext/gdspx/cmd/codegen/gdextensionparser/clang"
-	"godot-ext/gdspx/cmd/codegen/generate/ffi"
-	"godot-ext/gdspx/cmd/codegen/generate/gdext"
-	"godot-ext/gdspx/cmd/codegen/generate/webffi"
+	"github.com/realdream-ai/gdspx/cmd/codegen/gdextensionparser"
+	"github.com/realdream-ai/gdspx/cmd/codegen/gdextensionparser/clang"
+	"github.com/realdream-ai/gdspx/cmd/codegen/generate/ffi"
+	"github.com/realdream-ai/gdspx/cmd/codegen/generate/gdext"
+	"github.com/realdream-ai/gdspx/cmd/codegen/generate/webffi"
 )
 
 var (
