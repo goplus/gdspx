@@ -18,7 +18,8 @@ func main()
 func Link() bool {
 	return dlsymGD != nil
 }
-
+func Linked() {
+}
 func BindCallback(info engine.CallbackInfo) {
 	callbacks = info
 }

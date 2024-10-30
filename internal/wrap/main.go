@@ -26,6 +26,7 @@ func LinkFFI() bool {
 	return ffi.Link()
 }
 func OnLinked() {
+	ffi.Linked()
 }
 
 func CreateMgrs() []IManager {

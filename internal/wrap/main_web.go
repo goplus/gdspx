@@ -27,10 +27,7 @@ func LinkFFI() bool {
 }
 
 func OnLinked() {
-	println("OnLinked block forever")
-	// wasm need Block forever
-	c := make(chan struct{})
-	<-c
+	webffi.Linked()
 }
 
 func CreateMgrs() []IManager {
