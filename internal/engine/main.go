@@ -6,17 +6,19 @@ import (
 )
 
 var (
-	mgrs     []IManager
-	callback EngineCallbackInfo
-	sprites  = make([]ISpriter, 0)
-	timer    = float32(0)
+	mgrs                []IManager
+	callback            EngineCallbackInfo
+	sprites             = make([]ISpriter, 0)
+	timer               = float32(0)
+	isWebIntepreterMode bool
 )
 
+func IsWebIntepreterMode() bool {
+	return isWebIntepreterMode
+}
+
 func Link(engineCallback EngineCallbackInfo) {
-	ok := LinkFFI()
-	if !ok {
-		panic("godot bind symbol failed!")
-	}
+	isWebIntepreterMode = LinkFFI()
 	mgrs = CreateMgrs()
 	callback = engineCallback
 	infos := bindCallbacks()

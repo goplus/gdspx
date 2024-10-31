@@ -14,7 +14,7 @@ var (
 func Link() bool {
 	js.Global().Set("goWasmInit", js.FuncOf(goWasmInit))
 	API.loadProcAddresses()
-	return true
+	return !hasInitEngine
 }
 func Linked() {
 	if !hasInitEngine { // adapt for igop

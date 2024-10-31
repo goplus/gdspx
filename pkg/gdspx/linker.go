@@ -5,6 +5,10 @@ import (
 	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
+func IsWebIntepreterMode() bool {
+	return inengine.IsWebIntepreterMode()
+}
+
 func LinkEngine(callback EngineCallbackInfo) {
 	inengine.Link(EngineCallbackInfo(callback))
 }
