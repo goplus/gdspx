@@ -14,10 +14,9 @@ package wrap
 
 import (
 	"fmt"
-	"reflect"
-
 	. "github.com/realdream-ai/gdspx/internal/ffi"
 	. "github.com/realdream-ai/gdspx/pkg/engine"
+	"reflect"
 )
 
 func BindMgr(mgrs []IManager) {
@@ -247,6 +246,14 @@ func (pself *physicMgr) CheckTouchedCameraBoundary(obj Object, board_type int64)
 	arg1 := ToGdInt(board_type)
 	retValue := CallPhysicCheckTouchedCameraBoundary(arg0, arg1)
 	return ToBool(retValue)
+}
+func (pself *platformMgr) SetWindowPosition(pos Vec2) {
+	arg0 := ToGdVec2(pos)
+	CallPlatformSetWindowPosition(arg0)
+}
+func (pself *platformMgr) GetWindowPosition() Vec2 {
+	retValue := CallPlatformGetWindowPosition()
+	return ToVec2(retValue)
 }
 func (pself *platformMgr) SetWindowSize(width int64, height int64) {
 	arg0 := ToGdInt(width)

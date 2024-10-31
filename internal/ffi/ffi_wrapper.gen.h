@@ -102,6 +102,12 @@ void cgo_callfn_GDExtensionSpxPhysicCheckCollision(const GDExtensionSpxPhysicChe
 void cgo_callfn_GDExtensionSpxPhysicCheckTouchedCameraBoundary(const GDExtensionSpxPhysicCheckTouchedCameraBoundary fn, GdObj obj, GdInt board_type, GdBool* ret_val) {
 	fn(obj, board_type,ret_val);
 }
+void cgo_callfn_GDExtensionSpxPlatformSetWindowPosition(const GDExtensionSpxPlatformSetWindowPosition fn, GdVec2 pos) {
+	fn(pos);
+}
+void cgo_callfn_GDExtensionSpxPlatformGetWindowPosition(const GDExtensionSpxPlatformGetWindowPosition fn, GdVec2* ret_val) {
+	fn(ret_val);
+}
 void cgo_callfn_GDExtensionSpxPlatformSetWindowSize(const GDExtensionSpxPlatformSetWindowSize fn, GdInt width, GdInt height) {
 	fn(width, height);
 }

@@ -102,6 +102,8 @@ type GDExtensionSpxInputIsActionJustReleased C.GDExtensionSpxInputIsActionJustRe
 type GDExtensionSpxPhysicRaycast C.GDExtensionSpxPhysicRaycast
 type GDExtensionSpxPhysicCheckCollision C.GDExtensionSpxPhysicCheckCollision
 type GDExtensionSpxPhysicCheckTouchedCameraBoundary C.GDExtensionSpxPhysicCheckTouchedCameraBoundary
+type GDExtensionSpxPlatformSetWindowPosition C.GDExtensionSpxPlatformSetWindowPosition
+type GDExtensionSpxPlatformGetWindowPosition C.GDExtensionSpxPlatformGetWindowPosition
 type GDExtensionSpxPlatformSetWindowSize C.GDExtensionSpxPlatformSetWindowSize
 type GDExtensionSpxPlatformGetWindowSize C.GDExtensionSpxPlatformGetWindowSize
 type GDExtensionSpxPlatformSetWindowTitle C.GDExtensionSpxPlatformSetWindowTitle
@@ -506,6 +508,21 @@ func CallPhysicCheckTouchedCameraBoundary(
 	C.cgo_callfn_GDExtensionSpxPhysicCheckTouchedCameraBoundary(arg0, arg1GdObj, arg2GdInt, &ret_val)
 
 	return (GdBool)(ret_val)
+}
+func CallPlatformSetWindowPosition(
+	pos GdVec2,
+) {
+	arg0 := (C.GDExtensionSpxPlatformSetWindowPosition)(api.SpxPlatformSetWindowPosition)
+	arg1GdVec2 = (C.GdVec2)(pos)
+
+	C.cgo_callfn_GDExtensionSpxPlatformSetWindowPosition(arg0, arg1GdVec2)
+
+}
+func CallPlatformGetWindowPosition() GdVec2 {
+	arg0 := (C.GDExtensionSpxPlatformGetWindowPosition)(api.SpxPlatformGetWindowPosition)
+	var ret_val C.GdVec2
+	C.cgo_callfn_GDExtensionSpxPlatformGetWindowPosition(arg0, &ret_val)
+	return (GdVec2)(ret_val)
 }
 func CallPlatformSetWindowSize(
 	width GdInt,

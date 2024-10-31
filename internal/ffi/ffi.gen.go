@@ -48,6 +48,8 @@ type GDExtensionInterface struct {
 	SpxPhysicRaycast                    GDExtensionSpxPhysicRaycast
 	SpxPhysicCheckCollision             GDExtensionSpxPhysicCheckCollision
 	SpxPhysicCheckTouchedCameraBoundary GDExtensionSpxPhysicCheckTouchedCameraBoundary
+	SpxPlatformSetWindowPosition        GDExtensionSpxPlatformSetWindowPosition
+	SpxPlatformGetWindowPosition        GDExtensionSpxPlatformGetWindowPosition
 	SpxPlatformSetWindowSize            GDExtensionSpxPlatformSetWindowSize
 	SpxPlatformGetWindowSize            GDExtensionSpxPlatformGetWindowSize
 	SpxPlatformSetWindowTitle           GDExtensionSpxPlatformSetWindowTitle
@@ -227,6 +229,8 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPhysicRaycast = (GDExtensionSpxPhysicRaycast)(dlsymGD("spx_physic_raycast"))
 	x.SpxPhysicCheckCollision = (GDExtensionSpxPhysicCheckCollision)(dlsymGD("spx_physic_check_collision"))
 	x.SpxPhysicCheckTouchedCameraBoundary = (GDExtensionSpxPhysicCheckTouchedCameraBoundary)(dlsymGD("spx_physic_check_touched_camera_boundary"))
+	x.SpxPlatformSetWindowPosition = (GDExtensionSpxPlatformSetWindowPosition)(dlsymGD("spx_platform_set_window_position"))
+	x.SpxPlatformGetWindowPosition = (GDExtensionSpxPlatformGetWindowPosition)(dlsymGD("spx_platform_get_window_position"))
 	x.SpxPlatformSetWindowSize = (GDExtensionSpxPlatformSetWindowSize)(dlsymGD("spx_platform_set_window_size"))
 	x.SpxPlatformGetWindowSize = (GDExtensionSpxPlatformGetWindowSize)(dlsymGD("spx_platform_get_window_size"))
 	x.SpxPlatformSetWindowTitle = (GDExtensionSpxPlatformSetWindowTitle)(dlsymGD("spx_platform_set_window_title"))

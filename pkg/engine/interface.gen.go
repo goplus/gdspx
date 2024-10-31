@@ -65,6 +65,8 @@ type IPhysicMgr interface {
 }
 
 type IPlatformMgr interface {
+	SetWindowPosition(pos Vec2)
+	GetWindowPosition() Vec2
 	SetWindowSize(width int64, height int64)
 	GetWindowSize() Vec2
 	SetWindowTitle(title string)

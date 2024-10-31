@@ -14,10 +14,9 @@ package wrap
 
 import (
 	"fmt"
-	"reflect"
-
 	. "github.com/realdream-ai/gdspx/internal/webffi"
 	. "github.com/realdream-ai/gdspx/pkg/engine"
+	"reflect"
 )
 
 func BindMgr(mgrs []IManager) {
@@ -233,6 +232,14 @@ func (pself *physicMgr) CheckTouchedCameraBoundary(obj Object, board_type int64)
 	arg1 := JsFromGdInt(board_type)
 	_retValue := API.SpxPhysicCheckTouchedCameraBoundary.Invoke(arg0, arg1)
 	return JsToGdBool(_retValue)
+}
+func (pself *platformMgr) SetWindowPosition(pos Vec2) {
+	arg0 := JsFromGdVec2(pos)
+	API.SpxPlatformSetWindowPosition.Invoke(arg0)
+}
+func (pself *platformMgr) GetWindowPosition() Vec2 {
+	_retValue := API.SpxPlatformGetWindowPosition.Invoke()
+	return JsToGdVec2(_retValue)
 }
 func (pself *platformMgr) SetWindowSize(width int64, height int64) {
 	arg0 := JsFromGdInt(width)
