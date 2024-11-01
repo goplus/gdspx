@@ -77,7 +77,7 @@ func BuildFromSource(dstBinPath string) {
 		}
 	}
 
-	if err := copyFile(filePath, dstBinPath); err != nil {
+	if err := CopyFile(filePath, dstBinPath); err != nil {
 		log.Fatalf("Failed to copy binary: %v", err)
 	}
 	if isNeedDelete {
@@ -148,7 +148,7 @@ func getGoEnv() string {
 }
 
 // Copy a file
-func copyFile(src, dst string) error {
+func CopyFile(src, dst string) error {
 	input, err := os.ReadFile(src)
 	if err != nil {
 		return err
