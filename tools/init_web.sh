@@ -23,7 +23,7 @@ if [ ! -d "emsdk" ]; then
     fi
     cd ..
 fi
-
+export PATH="$(pwd)/emsdk/upstream/emscripten:$PATH"
 em++ --version
 # build godot
 cd godot
@@ -36,7 +36,8 @@ echo $gopath
 cp bin/web_editor.zip $gopath/bin/gdspx_web_$godot_version.zip
 
 cd ..
-exit 1
+
+
 cd godot
 # gdspx disable gdextension
 #scons platform=web target=template_debug threads=no dlink_enabled=yes 
@@ -45,9 +46,13 @@ cd godot
 if [ "$OS" = "Windows_NT" ]; then
     appdata_path="c:$(echo $APPDATA | sed 's/\\/\//g' | sed 's/C://g')"
     gd_template_path="${appdata_path}/Godot/export_templates/${godot_version_str}"
+elif [ "$(uname)" = "Darwin" ]; then
+    gd_template_path=~/Library/Application\ Support/Godot/export_templates/${godot_version_str}
 else
-    gd_template_path=~/.local/share/godot/export_templates/$godot_version_str
+    gd_template_path=~/.local/share/godot/export_templates/${godot_version_str}
 fi
+
+
 
 # build web export templates
 scons platform=web target=template_debug threads=no

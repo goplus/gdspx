@@ -34,5 +34,5 @@ if [ "$OS" = "Windows_NT" ]; then
 elif [ "$OS" = "Linux" ]; then
     cp godot/bin/godot.linuxbsd.editor.dev.x86_64 $dstBinPath
 else
-    cp godot/bin/godot.darwin.editor.dev.x86_64 $dstBinPath
+    cp godot/bin/godot.macos.editor.dev.x86_64 $dstBinPath
 fi
