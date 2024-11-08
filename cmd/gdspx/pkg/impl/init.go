@@ -18,7 +18,7 @@ var (
 )
 
 func BuildFromSource(dstBinPath string) {
-	println("======== Building from source =======")
+	println("======== Building e from source =======")
 	// Install SCons and Ninja
 	installPythonPackages()
 
@@ -35,8 +35,8 @@ func BuildFromSource(dstBinPath string) {
 		}
 
 		runCommand("git", "init")
-		runCommand("git", "remote", "add", "origin", "https://github.com/JiepengTan/godot.git")
-		runCommand("git", "fetch", "--depth", "1", "origin", "spx-"+version)
+		runCommand("git", "remote", "add", "origin", "https://github.com/realdream-ai/godot.git")
+		runCommand("git", "fetch", "--depth", "1", "origin", "spx"+version)
 		runCommand("git", "checkout", "spx-"+version)
 
 		fmt.Println("Godot repository setup complete.")
