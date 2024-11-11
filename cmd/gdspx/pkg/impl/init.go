@@ -37,7 +37,7 @@ func BuildFromSource(dstBinPath string) {
 		runCommand("git", "init")
 		runCommand("git", "remote", "add", "origin", "https://github.com/realdream-ai/godot.git")
 		runCommand("git", "fetch", "--depth", "1", "origin", "spx"+version)
-		runCommand("git", "checkout", "spx-"+version)
+		runCommand("git", "checkout", "spx"+version)
 
 		fmt.Println("Godot repository setup complete.")
 	} else {
