@@ -54,7 +54,7 @@ func getGoPackageVersion(commitHash string) (string, error) {
 	return version, nil
 }
 
-func modifyFile(filePath, modStr string) {
+func modifyFile(filePath, tag, modStr string) {
 	inputFile, err := os.Open(filePath)
 	if err != nil {
 		fmt.Printf("Error opening file %s: %v\n", filePath, err)
@@ -66,7 +66,7 @@ func modifyFile(filePath, modStr string) {
 	scanner := bufio.NewScanner(inputFile)
 	for scanner.Scan() {
 		line := scanner.Text()
-		if strings.Contains(line, "github.com/realdream-ai/gdspx") {
+		if strings.Contains(line, tag) {
 			line = modStr
 		}
 		outputLines = append(outputLines, line)
@@ -100,6 +100,28 @@ func runGoModTidy() error {
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
 }
+func replaceMod(tag string, version string, dirList []string, relDir string, fileList []string) {
+	modStr := tag + version
+	for _, dir := range dirList {
+		modPath := path.Join(relDir, dir, "go.mod")
+		modifyFile(modPath, tag, modStr)
+	}
+
+	for _, file := range fileList {
+		modPath := path.Join(relDir, file)
+		modifyFile(modPath, tag, modStr)
+	}
+}
+func directoryExists(path string) (bool, error) {
+	info, err := os.Stat(path)
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	if err != nil {
+		return false, err
+	}
+	return info.IsDir(), nil
+}
 func UpdateMod() {
 	commitHash, err := getLatestCommitHash()
 	if err != nil {
@@ -107,28 +129,26 @@ func UpdateMod() {
 		return
 	}
 
-	fmt.Printf("Latest commit hash: %s\n", commitHash)
-
 	version, err := getGoPackageVersion(commitHash)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	modStr := fmt.Sprintf("github.com/realdream-ai/gdspx %s", version)
-	println(modStr)
 
+	tag := "github.com/realdream-ai/gdspx "
 	relDir := "./spx"
-	dirList := []string{"", "cmd/spx", "cmd/ispx"}
-	for _, dir := range dirList {
-		modPath := path.Join(relDir, dir, "go.mod")
-		modifyFile(modPath, modStr)
+
+	if exists, err := directoryExists(relDir); err != nil || !exists {
+		fmt.Println("Error checking directory ", relDir)
+		return
 	}
 
+	dirList := []string{"", "cmd/spx", "cmd/ispx"}
 	fileList := []string{"cmd/spx/template/go.mod.txt"}
-	for _, file := range fileList {
-		modPath := path.Join(relDir, file)
-		modifyFile(modPath, modStr)
-	}
+
+	replaceMod(tag, version, dirList, relDir, fileList)
+	tag = "github.com/realdream-ai/gdspx/cmd/gdspx "
+	replaceMod(tag, version, dirList, relDir, fileList)
 
 	// run go mod tidy
 	rawDir, _ := os.Getwd()
