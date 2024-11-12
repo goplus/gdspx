@@ -47,22 +47,19 @@ if [ "$OS" = "Windows_NT" ]; then
     appdata_path="c:$(echo $APPDATA | sed 's/\\/\//g' | sed 's/C://g')"
     gd_template_path="${appdata_path}/Godot/export_templates/${godot_version_str}"
 elif [ "$(uname)" = "Darwin" ]; then
-    gd_template_path=~/Library/Application\ Support/Godot/export_templates/${godot_version_str}
+    gd_template_path="$HOME/Library/Application Support/Godot/export_templates/${godot_version_str}"
 else
-    gd_template_path=~/.local/share/godot/export_templates/${godot_version_str}
+    gd_template_path="$HOME/.local/share/godot/export_templates/${godot_version_str}"
 fi
-
 
 
 # build web export templates
 scons platform=web target=template_debug threads=no
 mv bin/godot.web.template_debug.wasm32.zip bin/web_dlink_debug.zip
-rm $gd_template_path/web_*.zip
-cp bin/web_dlink_debug.zip $gd_template_path/web_dlink_debug.zip
-cp bin/web_dlink_debug.zip $gd_template_path/web_dlink_release.zip
-cp bin/web_dlink_debug.zip $gd_template_path/web_debug.zip
-cp bin/web_dlink_debug.zip $gd_template_path/web_release.zip
-
-
+rm "$gd_template_path"/web_*.zip
+cp bin/web_dlink_debug.zip "$gd_template_path/web_dlink_debug.zip"
+cp bin/web_dlink_debug.zip "$gd_template_path/web_dlink_release.zip"
+cp bin/web_dlink_debug.zip "$gd_template_path/web_debug.zip"
+cp bin/web_dlink_debug.zip "$gd_template_path/web_release.zip"
 
 cd ..
