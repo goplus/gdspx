@@ -16,7 +16,7 @@ var (
 func main()
 
 func Link() bool {
-	return true
+	return false
 }
 func Linked() {
 }
