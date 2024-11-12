@@ -28,6 +28,9 @@ func main() {
 	case "stopweb":
 		impl.StopWebServer()
 		return
+	case "updatemod":
+		impl.UpdateMod()
+		return
 	case "init":
 		impl.PrepareGoEnv()
 	}

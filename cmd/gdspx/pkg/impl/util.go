@@ -210,7 +210,7 @@ func ImportProj(project string, libPath string, gd4spxPath string) error {
 	err := cmd.Start()
 	err = cmd.Wait()
 	if err != nil {
-		fmt.Printf("ImportProj finished with error: %v\n", err)
+		fmt.Println("ImportProj finished")
 	} else {
 		fmt.Println("ImportProj successfully")
 	}
