@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -16,74 +17,6 @@ import (
 var (
 	binPostfix = ""
 )
-
-func BuildFromSource(dstBinPath string) {
-	println("======== Building e from source =======")
-	// Install SCons and Ninja
-	installPythonPackages()
-
-	isNeedDelete := true
-	// Check if the "godot" directory exists
-	if _, err := os.Stat("godot"); os.IsNotExist(err) {
-		fmt.Println("Godot directory not found. Creating and initializing...")
-		if err := os.Mkdir("godot", 0755); err != nil {
-			log.Fatalf("Failed to create godot directory: %v", err)
-		}
-
-		if err := os.Chdir("godot"); err != nil {
-			log.Fatalf("Failed to change to godot directory: %v", err)
-		}
-
-		runCommand("git", "init")
-		runCommand("git", "remote", "add", "origin", "https://github.com/realdream-ai/godot.git")
-		runCommand("git", "fetch", "--depth", "1", "origin", "spx"+version)
-		runCommand("git", "checkout", "spx"+version)
-
-		fmt.Println("Godot repository setup complete.")
-	} else {
-		if err := os.Chdir("godot"); err != nil {
-			log.Fatalf("Failed to change to godot directory: %v", err)
-		}
-
-		fmt.Println("Godot directory already exists.")
-		isNeedDelete = false
-	}
-
-	// Check the operating system
-	if runtime.GOOS == "windows" {
-		runCommand("scons", "target=editor", "arch=x86_64", "vsproj=yes", "dev_build=yes")
-	} else {
-		runCommand("scons", "target=editor", "arch=x86_64", "dev_build=yes")
-	}
-
-	// Change back to the parent directory
-	if err := os.Chdir(".."); err != nil {
-		log.Fatalf("Failed to change to parent directory: %v", err)
-	}
-
-	fmt.Println("Build engine done")
-	// Copy the binary
-	gopath := os.Getenv("GOPATH")
-	if gopath == "" {
-		gopath = getGoEnv()
-	}
-
-	fmt.Printf("Destination binary path: %s\n", dstBinPath)
-	filePath := findFirstMatchingFile("godot/bin", "godot.*.editor.dev.*", "console")
-	if filePath == "" {
-		fmt.Println("No matching file found. " + filePath)
-		if isNeedDelete {
-			os.RemoveAll("./godot")
-		}
-	}
-
-	if err := CopyFile(filePath, dstBinPath); err != nil {
-		log.Fatalf("Failed to copy binary: %v", err)
-	}
-	if isNeedDelete {
-		os.RemoveAll("./godot")
-	}
-}
 
 func findFirstMatchingFile(dir, pattern, exclude string) string {
 	var foundFile string
@@ -160,34 +93,68 @@ func CopyFile(src, dst string) error {
 	return nil
 }
 
-func downloadGd4spx(fileName string, dstPath string) error {
-	url := "https://118.195.190.67/bin/" + fileName
-	dest := dstPath
-	fmt.Println("Downloading file... ", url, "=>", dest)
-	err := downloadFile(url, dest)
+func downloadPack(dstDir, tagName, postfix string) error {
+	urlHeader := "https://github.com/realdream-ai/godot/releases/download/"
+	fileName := tagName + postfix
+	url := urlHeader + tagName + "/" + fileName
+	// download pc
+	err := downloadFile(url, path.Join(dstDir, fileName))
+	if err != nil {
+		return err
+	}
+	// download web
+	fileName = tagName + "_web.zip"
+	url = urlHeader + tagName + "/" + fileName
+	err = downloadFile(url, path.Join(dstDir, fileName))
+	if err != nil {
+		return err
+	}
+	// download webpack
+	fileName = tagName + "_webpack.zip"
+	url = urlHeader + tagName + "/" + fileName
+	err = downloadFile(url, path.Join(dstDir, fileName))
+	if err != nil {
+		return err
+	}
 	return err
 }
 
 func checkAndGetBinPath() (string, error) {
 	if runtime.GOOS == "windows" {
-		binPostfix = ".exe"
+		binPostfix = "_win.exe"
+	} else if runtime.GOOS == "darwin" {
+		binPostfix = "_darwin"
+	} else if runtime.GOOS == "linux" {
+		binPostfix = "_linux"
 	}
+
 	gopath := os.Getenv("GOPATH")
 	if gopath == "" {
 		gopath = build.Default.GOPATH
 	}
-	dstBinPath := gopath + "/bin/gd4spx" + version + binPostfix
-	gd4spx, err := exec.LookPath("gd4spx")
+	version := Version
+	dstDir := gopath + "/bin"
+	tagName := "gdspx" + version
+	dstFileName := tagName + binPostfix
+	dstBinPath := path.Join(dstDir, dstFileName)
+	gdspx, err := exec.LookPath(dstFileName)
 	if err == nil {
-		if current, err := exec.Command(gd4spx, "--version").CombinedOutput(); err == nil {
-			if strings.HasPrefix(string(current), version+".") {
-				return gd4spx, nil
-			}
+		if _, err := exec.Command(gdspx, "--version").CombinedOutput(); err == nil {
+			return gdspx, nil
 		}
 	}
+
 	info, err := os.Stat(dstBinPath)
 	if os.IsNotExist(err) {
-		BuildFromSource(dstBinPath)
+		println("Downloading gdspx pack...")
+		err := downloadPack(dstDir, tagName, binPostfix)
+		if err != nil {
+			print("downloadPack error:" + err.Error())
+			return "", err
+		}
+		if err := os.Chmod(dstBinPath, 0755); err != nil {
+			return "", err
+		}
 	} else if err != nil {
 		return "", err
 	} else {
