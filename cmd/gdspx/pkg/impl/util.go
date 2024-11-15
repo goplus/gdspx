@@ -458,7 +458,7 @@ func SetupEnv() (string, string, string, error) {
 
 func ExportWebEditor(gdspxPath string, projectPath string, libPath string) error {
 	gopath := build.Default.GOPATH
-	editorZipPath := path.Join(gopath, "bin", "gdspx"+Version+"_webpack.zip")
+	editorZipPath := path.Join(gopath, "bin", "gdspx"+Version+"_web.zip")
 	dstPath := path.Join(projectPath, ".builds/web")
 	os.MkdirAll(dstPath, os.ModePerm)
 	if IsFileExist(editorZipPath) {
