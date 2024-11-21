@@ -112,6 +112,7 @@ type GDExtensionSpxPlatformSetWindowFullscreen C.GDExtensionSpxPlatformSetWindow
 type GDExtensionSpxPlatformIsWindowFullscreen C.GDExtensionSpxPlatformIsWindowFullscreen
 type GDExtensionSpxPlatformSetDebugMode C.GDExtensionSpxPlatformSetDebugMode
 type GDExtensionSpxPlatformIsDebugMode C.GDExtensionSpxPlatformIsDebugMode
+type GDExtensionSpxResGetBoundFromAlpha C.GDExtensionSpxResGetBoundFromAlpha
 type GDExtensionSpxResGetImageSize C.GDExtensionSpxResGetImageSize
 type GDExtensionSpxResReadAllText C.GDExtensionSpxResReadAllText
 type GDExtensionSpxResHasFile C.GDExtensionSpxResHasFile
@@ -585,6 +586,16 @@ func CallPlatformIsDebugMode() GdBool {
 	var ret_val C.GdBool
 	C.cgo_callfn_GDExtensionSpxPlatformIsDebugMode(arg0, &ret_val)
 	return (GdBool)(ret_val)
+}
+func CallResGetBoundFromAlpha(
+	path GdString,
+) Rect2 {
+	arg0 := (C.GDExtensionSpxResGetBoundFromAlpha)(api.SpxResGetBoundFromAlpha)
+	arg1GdString = (C.GdString)(path)
+	var ret_val C.Rect2
+	C.cgo_callfn_GDExtensionSpxResGetBoundFromAlpha(arg0, arg1GdString, &ret_val)
+
+	return (Rect2)(ret_val)
 }
 func CallResGetImageSize(
 	path GdString,

@@ -274,6 +274,11 @@ func (pself *platformMgr) IsDebugMode() bool {
 	_retValue := API.SpxPlatformIsDebugMode.Invoke()
 	return JsToGdBool(_retValue)
 }
+func (pself *resMgr) GetBoundFromAlpha(path string) {
+	arg0 := JsFromGdString(path)
+	_retValue := API.SpxResGetBoundFromAlpha.Invoke(arg0)
+	return JsToRect2(_retValue)
+}
 func (pself *resMgr) GetImageSize(path string) Vec2 {
 	arg0 := JsFromGdString(path)
 	_retValue := API.SpxResGetImageSize.Invoke(arg0)
