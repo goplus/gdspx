@@ -132,7 +132,7 @@ void cgo_callfn_GDExtensionSpxPlatformSetDebugMode(const GDExtensionSpxPlatformS
 void cgo_callfn_GDExtensionSpxPlatformIsDebugMode(const GDExtensionSpxPlatformIsDebugMode fn, GdBool* ret_val) {
 	fn(ret_val);
 }
-void cgo_callfn_GDExtensionSpxResGetBoundFromAlpha(const GDExtensionSpxResGetBoundFromAlpha fn, GdString path, Rect2* ret_val) {
+void cgo_callfn_GDExtensionSpxResGetBoundFromAlpha(const GDExtensionSpxResGetBoundFromAlpha fn, GdString path, GdRect2* ret_val) {
 	fn(path,ret_val);
 }
 void cgo_callfn_GDExtensionSpxResGetImageSize(const GDExtensionSpxResGetImageSize fn, GdString path, GdVec2* ret_val) {

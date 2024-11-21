@@ -78,7 +78,7 @@ type IPlatformMgr interface {
 }
 
 type IResMgr interface {
-	GetBoundFromAlpha(path string)
+	GetBoundFromAlpha(path string) Rect2
 	GetImageSize(path string) Vec2
 	ReadAllText(path string) string
 	HasFile(path string) bool

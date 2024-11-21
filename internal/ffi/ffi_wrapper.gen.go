@@ -589,13 +589,13 @@ func CallPlatformIsDebugMode() GdBool {
 }
 func CallResGetBoundFromAlpha(
 	path GdString,
-) Rect2 {
+) GdRect2 {
 	arg0 := (C.GDExtensionSpxResGetBoundFromAlpha)(api.SpxResGetBoundFromAlpha)
 	arg1GdString = (C.GdString)(path)
-	var ret_val C.Rect2
+	var ret_val C.GdRect2
 	C.cgo_callfn_GDExtensionSpxResGetBoundFromAlpha(arg0, arg1GdString, &ret_val)
 
-	return (Rect2)(ret_val)
+	return (GdRect2)(ret_val)
 }
 func CallResGetImageSize(
 	path GdString,
