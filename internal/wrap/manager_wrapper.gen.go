@@ -290,6 +290,13 @@ func (pself *platformMgr) IsDebugMode() bool {
 	retValue := CallPlatformIsDebugMode()
 	return ToBool(retValue)
 }
+func (pself *resMgr) GetBoundFromAlpha(path string) {
+	arg0Str := NewCString(path)
+	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
+	retValue := CallResGetBoundFromAlpha(arg0)
+	return To(retValue)
+}
 func (pself *resMgr) GetImageSize(path string) Vec2 {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
