@@ -274,23 +274,31 @@ func (pself *platformMgr) IsDebugMode() bool {
 	_retValue := API.SpxPlatformIsDebugMode.Invoke()
 	return JsToGdBool(_retValue)
 }
-func (pself *resMgr) GetBoundFromAlpha(path string) Rect2 {
-	arg0 := JsFromGdString(path)
+func (pself *resMgr) SetLoadMode(is_direct_mode bool) {
+	arg0 := JsFromGdBool(is_direct_mode)
+	API.SpxResSetLoadMode.Invoke(arg0)
+}
+func (pself *resMgr) GetLoadMode() bool {
+	_retValue := API.SpxResGetLoadMode.Invoke()
+	return JsToGdBool(_retValue)
+}
+func (pself *resMgr) GetBoundFromAlpha(p_path string) Rect2 {
+	arg0 := JsFromGdString(p_path)
 	_retValue := API.SpxResGetBoundFromAlpha.Invoke(arg0)
 	return JsToGdRect2(_retValue)
 }
-func (pself *resMgr) GetImageSize(path string) Vec2 {
-	arg0 := JsFromGdString(path)
+func (pself *resMgr) GetImageSize(p_path string) Vec2 {
+	arg0 := JsFromGdString(p_path)
 	_retValue := API.SpxResGetImageSize.Invoke(arg0)
 	return JsToGdVec2(_retValue)
 }
-func (pself *resMgr) ReadAllText(path string) string {
-	arg0 := JsFromGdString(path)
+func (pself *resMgr) ReadAllText(p_path string) string {
+	arg0 := JsFromGdString(p_path)
 	_retValue := API.SpxResReadAllText.Invoke(arg0)
 	return JsToGdString(_retValue)
 }
-func (pself *resMgr) HasFile(path string) bool {
-	arg0 := JsFromGdString(path)
+func (pself *resMgr) HasFile(p_path string) bool {
+	arg0 := JsFromGdString(p_path)
 	_retValue := API.SpxResHasFile.Invoke(arg0)
 	return JsToGdBool(_retValue)
 }

@@ -112,6 +112,8 @@ type GDExtensionSpxPlatformSetWindowFullscreen C.GDExtensionSpxPlatformSetWindow
 type GDExtensionSpxPlatformIsWindowFullscreen C.GDExtensionSpxPlatformIsWindowFullscreen
 type GDExtensionSpxPlatformSetDebugMode C.GDExtensionSpxPlatformSetDebugMode
 type GDExtensionSpxPlatformIsDebugMode C.GDExtensionSpxPlatformIsDebugMode
+type GDExtensionSpxResSetLoadMode C.GDExtensionSpxResSetLoadMode
+type GDExtensionSpxResGetLoadMode C.GDExtensionSpxResGetLoadMode
 type GDExtensionSpxResGetBoundFromAlpha C.GDExtensionSpxResGetBoundFromAlpha
 type GDExtensionSpxResGetImageSize C.GDExtensionSpxResGetImageSize
 type GDExtensionSpxResReadAllText C.GDExtensionSpxResReadAllText
@@ -587,41 +589,56 @@ func CallPlatformIsDebugMode() GdBool {
 	C.cgo_callfn_GDExtensionSpxPlatformIsDebugMode(arg0, &ret_val)
 	return (GdBool)(ret_val)
 }
+func CallResSetLoadMode(
+	is_direct_mode GdBool,
+) {
+	arg0 := (C.GDExtensionSpxResSetLoadMode)(api.SpxResSetLoadMode)
+	arg1GdBool = (C.GdBool)(is_direct_mode)
+
+	C.cgo_callfn_GDExtensionSpxResSetLoadMode(arg0, arg1GdBool)
+
+}
+func CallResGetLoadMode() GdBool {
+	arg0 := (C.GDExtensionSpxResGetLoadMode)(api.SpxResGetLoadMode)
+	var ret_val C.GdBool
+	C.cgo_callfn_GDExtensionSpxResGetLoadMode(arg0, &ret_val)
+	return (GdBool)(ret_val)
+}
 func CallResGetBoundFromAlpha(
-	path GdString,
+	p_path GdString,
 ) GdRect2 {
 	arg0 := (C.GDExtensionSpxResGetBoundFromAlpha)(api.SpxResGetBoundFromAlpha)
-	arg1GdString = (C.GdString)(path)
+	arg1GdString = (C.GdString)(p_path)
 	var ret_val C.GdRect2
 	C.cgo_callfn_GDExtensionSpxResGetBoundFromAlpha(arg0, arg1GdString, &ret_val)
 
 	return (GdRect2)(ret_val)
 }
 func CallResGetImageSize(
-	path GdString,
+	p_path GdString,
 ) GdVec2 {
 	arg0 := (C.GDExtensionSpxResGetImageSize)(api.SpxResGetImageSize)
-	arg1GdString = (C.GdString)(path)
+	arg1GdString = (C.GdString)(p_path)
 	var ret_val C.GdVec2
 	C.cgo_callfn_GDExtensionSpxResGetImageSize(arg0, arg1GdString, &ret_val)
 
 	return (GdVec2)(ret_val)
 }
 func CallResReadAllText(
-	path GdString,
+	p_path GdString,
 ) GdString {
 	arg0 := (C.GDExtensionSpxResReadAllText)(api.SpxResReadAllText)
-	arg1GdString = (C.GdString)(path)
+	arg1GdString = (C.GdString)(p_path)
 	var ret_val C.GdString
 	C.cgo_callfn_GDExtensionSpxResReadAllText(arg0, arg1GdString, &ret_val)
 
 	return (GdString)(ret_val)
 }
 func CallResHasFile(
-	path GdString,
+	p_path GdString,
 ) GdBool {
 	arg0 := (C.GDExtensionSpxResHasFile)(api.SpxResHasFile)
-	arg1GdString = (C.GdString)(path)
+	arg1GdString = (C.GdString)(p_path)
 	var ret_val C.GdBool
 	C.cgo_callfn_GDExtensionSpxResHasFile(arg0, arg1GdString, &ret_val)
 

@@ -1,10 +1,13 @@
 .DEFAULT_GOAL := pc
 
 CURRENT_PATH=$(shell pwd)
-.PHONY: engine init initweb fmt gen upload
+.PHONY: engine init initweb fmt gen upload updatemod
 
 fmt:
 	go fmt ./... 
+
+updatemod:
+	gdspx updatemod
 
 pc:
 	./tools/init.sh
