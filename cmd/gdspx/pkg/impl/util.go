@@ -431,7 +431,7 @@ func SetupEnv() (string, string, string, error) {
 		}
 	}
 
-	curDir := TargetDir
+	curDir, _ := filepath.Abs(TargetDir)
 	project := curDir
 	if GOOS == "android" {
 		project = "/sdcard/gdspx/" + filepath.Base(wd)
@@ -446,7 +446,7 @@ func SetupEnv() (string, string, string, error) {
 	default:
 		libraryName += ".so"
 	}
-	libPath := path.Join("lib", libraryName)
+	libPath := path.Join(project, "lib", libraryName)
 	if err := setup(gdspxPath, wd, project, libPath); err != nil {
 		return "", "", "", err
 	}
