@@ -144,7 +144,7 @@ func UpdateMod() {
 	}
 
 	dirList := []string{"", "cmd/spx", "cmd/ispx"}
-	fileList := []string{"cmd/spx/template/go.mod.txt"}
+	fileList := []string{"cmd/spx/template/project/go.mod.txt"}
 
 	replaceMod(tag, version, dirList, relDir, fileList)
 	tag = "github.com/realdream-ai/gdspx/cmd/gdspx "
