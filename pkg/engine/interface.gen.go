@@ -78,10 +78,12 @@ type IPlatformMgr interface {
 }
 
 type IResMgr interface {
-	GetBoundFromAlpha(path string) Rect2
-	GetImageSize(path string) Vec2
-	ReadAllText(path string) string
-	HasFile(path string) bool
+	SetLoadMode(is_direct_mode bool)
+	GetLoadMode() bool
+	GetBoundFromAlpha(p_path string) Rect2
+	GetImageSize(p_path string) Vec2
+	ReadAllText(p_path string) string
+	HasFile(p_path string) bool
 }
 
 type ISceneMgr interface {

@@ -132,17 +132,23 @@ void cgo_callfn_GDExtensionSpxPlatformSetDebugMode(const GDExtensionSpxPlatformS
 void cgo_callfn_GDExtensionSpxPlatformIsDebugMode(const GDExtensionSpxPlatformIsDebugMode fn, GdBool* ret_val) {
 	fn(ret_val);
 }
-void cgo_callfn_GDExtensionSpxResGetBoundFromAlpha(const GDExtensionSpxResGetBoundFromAlpha fn, GdString path, GdRect2* ret_val) {
-	fn(path,ret_val);
+void cgo_callfn_GDExtensionSpxResSetLoadMode(const GDExtensionSpxResSetLoadMode fn, GdBool is_direct_mode) {
+	fn(is_direct_mode);
 }
-void cgo_callfn_GDExtensionSpxResGetImageSize(const GDExtensionSpxResGetImageSize fn, GdString path, GdVec2* ret_val) {
-	fn(path,ret_val);
+void cgo_callfn_GDExtensionSpxResGetLoadMode(const GDExtensionSpxResGetLoadMode fn, GdBool* ret_val) {
+	fn(ret_val);
 }
-void cgo_callfn_GDExtensionSpxResReadAllText(const GDExtensionSpxResReadAllText fn, GdString path, GdString* ret_val) {
-	fn(path,ret_val);
+void cgo_callfn_GDExtensionSpxResGetBoundFromAlpha(const GDExtensionSpxResGetBoundFromAlpha fn, GdString p_path, GdRect2* ret_val) {
+	fn(p_path,ret_val);
 }
-void cgo_callfn_GDExtensionSpxResHasFile(const GDExtensionSpxResHasFile fn, GdString path, GdBool* ret_val) {
-	fn(path,ret_val);
+void cgo_callfn_GDExtensionSpxResGetImageSize(const GDExtensionSpxResGetImageSize fn, GdString p_path, GdVec2* ret_val) {
+	fn(p_path,ret_val);
+}
+void cgo_callfn_GDExtensionSpxResReadAllText(const GDExtensionSpxResReadAllText fn, GdString p_path, GdString* ret_val) {
+	fn(p_path,ret_val);
+}
+void cgo_callfn_GDExtensionSpxResHasFile(const GDExtensionSpxResHasFile fn, GdString p_path, GdBool* ret_val) {
+	fn(p_path,ret_val);
 }
 void cgo_callfn_GDExtensionSpxSceneChangeSceneToFile(const GDExtensionSpxSceneChangeSceneToFile fn, GdString path) {
 	fn(path);

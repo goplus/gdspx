@@ -58,6 +58,8 @@ type GDExtensionInterface struct {
 	SpxPlatformIsWindowFullscreen       GDExtensionSpxPlatformIsWindowFullscreen
 	SpxPlatformSetDebugMode             GDExtensionSpxPlatformSetDebugMode
 	SpxPlatformIsDebugMode              GDExtensionSpxPlatformIsDebugMode
+	SpxResSetLoadMode                   GDExtensionSpxResSetLoadMode
+	SpxResGetLoadMode                   GDExtensionSpxResGetLoadMode
 	SpxResGetBoundFromAlpha             GDExtensionSpxResGetBoundFromAlpha
 	SpxResGetImageSize                  GDExtensionSpxResGetImageSize
 	SpxResReadAllText                   GDExtensionSpxResReadAllText
@@ -240,6 +242,8 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPlatformIsWindowFullscreen = (GDExtensionSpxPlatformIsWindowFullscreen)(dlsymGD("spx_platform_is_window_fullscreen"))
 	x.SpxPlatformSetDebugMode = (GDExtensionSpxPlatformSetDebugMode)(dlsymGD("spx_platform_set_debug_mode"))
 	x.SpxPlatformIsDebugMode = (GDExtensionSpxPlatformIsDebugMode)(dlsymGD("spx_platform_is_debug_mode"))
+	x.SpxResSetLoadMode = (GDExtensionSpxResSetLoadMode)(dlsymGD("spx_res_set_load_mode"))
+	x.SpxResGetLoadMode = (GDExtensionSpxResGetLoadMode)(dlsymGD("spx_res_get_load_mode"))
 	x.SpxResGetBoundFromAlpha = (GDExtensionSpxResGetBoundFromAlpha)(dlsymGD("spx_res_get_bound_from_alpha"))
 	x.SpxResGetImageSize = (GDExtensionSpxResGetImageSize)(dlsymGD("spx_res_get_image_size"))
 	x.SpxResReadAllText = (GDExtensionSpxResReadAllText)(dlsymGD("spx_res_read_all_text"))
