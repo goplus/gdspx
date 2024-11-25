@@ -107,10 +107,6 @@ The commands are:
 	fmt.Println(strings.ReplaceAll(msg, "#CMDNAME", cmdName))
 }
 func CopyEmbed(embedDir embed.FS, srcDir, dstDir string) error {
-	if _, err := os.Stat(dstDir); !os.IsNotExist(err) {
-		return nil
-	}
-
 	fsys, err := fs.Sub(embedDir, srcDir)
 	if err != nil {
 		return err
@@ -123,7 +119,6 @@ func CopyEmbed(embedDir embed.FS, srcDir, dstDir string) error {
 		if err != nil {
 			return err
 		}
-
 		dstPath := filepath.Join(dstDir, path)
 		if d.IsDir() {
 			return os.MkdirAll(dstPath, 0755)
@@ -274,9 +269,11 @@ func RunWebServer(gdspxPath string, projPath string, libPath string, port int) e
 	}
 	StopWebServer()
 	scriptPath := filepath.Join(projPath, ".godot", "gdspx_web_server.py")
-	executeDir := filepath.Join(projPath, "../", ".builds/web")
+	scriptPath = strings.ReplaceAll(scriptPath, "\\", "/")
+	executeDir := filepath.Join(projPath, ".builds/web")
+	executeDir = strings.ReplaceAll(executeDir, "\\", "/")
 	SetupFile(false, scriptPath, gdspx_web_server_py)
-	println("web server running at http://localhost:" + fmt.Sprint(port))
+	println("web server running at http://127.0.0.1:" + fmt.Sprint(port))
 	cmd := exec.Command("python", scriptPath, "-r", executeDir, "-p", fmt.Sprint(port))
 	err := cmd.Start()
 	if err != nil {
