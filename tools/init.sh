@@ -6,7 +6,7 @@ go install .
 cd ../../
 
 GOPATH=$(go env GOPATH)
-VERSION=$(cat ./cmd/gdspx/pkg/impl/template/version)
+VERSION=$(cat ./cmd/gdspx/template/version)
 echo "version="$VERSION " GOPATH=" $GOPATH
 
 

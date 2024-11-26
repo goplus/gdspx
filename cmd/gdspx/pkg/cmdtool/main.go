@@ -4,6 +4,9 @@ import (
 	"embed"
 	"fmt"
 	"os"
+	"path"
+	"path/filepath"
+	"strconv"
 )
 
 func RunCmd(cmd ICmdTool, appName, version string, fs embed.FS, fsRelDir string, dstRelDir string, ext ...string) (err error) {
@@ -13,6 +16,19 @@ func RunCmd(cmd ICmdTool, appName, version string, fs embed.FS, fsRelDir string,
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		return
 	}
+
+	TargetDir = "."
+	if len(os.Args) > 2 {
+		TargetDir = os.Args[2]
+	}
+	TargetDir, _ = filepath.Abs(TargetDir)
+	ProjectDir, _ = filepath.Abs(path.Join(TargetDir, dstRelDir))
+
+	if len(os.Args) > 3 {
+		port := os.Args[3]
+		ServerPort, _ = strconv.Atoi(port)
+	}
+
 	err = cmd.CheckEnv()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
@@ -38,11 +54,7 @@ func RunCmd(cmd ICmdTool, appName, version string, fs embed.FS, fsRelDir string,
 		return
 	}
 
-	targetDirArg := "."
-	if len(os.Args) > 2 {
-		targetDirArg = os.Args[2]
-	}
-	err = cmd.SetupEnv(appName, version, fs, fsRelDir, targetDirArg, dstRelDir)
+	err = cmd.SetupEnv(appName, version, fs, fsRelDir, TargetDir, dstRelDir)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		return
