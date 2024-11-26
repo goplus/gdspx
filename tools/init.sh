@@ -1,8 +1,14 @@
 #!/bin/bash
 
-gopath=$(go env GOPATH)
+# install gdspx
+cd cmd/gdspx/
+go install .
+cd ../../
+
+GOPATH=$(go env GOPATH)
 VERSION=$(cat ./cmd/gdspx/pkg/impl/template/version)
-echo "version="$VERSION " gopath=" $gopath
+echo "version="$VERSION " GOPATH=" $GOPATH
+
 
 pip install scons==4.7.0
 if [ ! -d "godot" ]; then
@@ -29,7 +35,7 @@ fi
 cd ..
 
 echo "init engine done."
-dstBinPath="$gopath/bin/gdspx$VERSION"
+dstBinPath="$GOPATH/bin/gdspx$VERSION"
 echo "Destination binary path: $dstBinPath"
 if [ "$OS" = "Windows_NT" ]; then
     cp godot/bin/godot.windows.editor.dev.x86_64 $dstBinPath"_win.exe"

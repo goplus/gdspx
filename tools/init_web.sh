@@ -1,6 +1,10 @@
 #!/bin/bash
 # build godot web version
 
+# install gdspx
+cd cmd/gdspx/
+go install .
+cd ../../
 
 GOPATH=$(go env GOPATH)
 VERSION=$(cat ./cmd/gdspx/pkg/impl/template/version)
