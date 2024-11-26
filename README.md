@@ -2,7 +2,7 @@
 
 
 ## Quick start
-### Prerequisite Environment Setup
+### 1. Prerequisite Environment Setup
 - Install go (version >= 1.22.3)
 - Install python (version >= 3.8)
 - Install make
@@ -12,7 +12,7 @@
 ```
 
 
-### quick start 
+### 2. Quick start 
 ```
     git clone git@github.com:realdream-ai/gdspx.git
     cd gdspx
@@ -20,7 +20,7 @@
     gdspx run tutorial/01_aircraft
 ```
 
-### how to use
+### 3. How to use
 Usage:
 
     gdspx <command> [path]      
@@ -43,7 +43,7 @@ The commands are:
     gdspx init ./test/demo01        # create a project at path ./test/demo01 
 
 
-### how to develop (Need run on the root dir)
+### 4. How to develop (Need run on the root dir)
 
 Run the following commands in the **root** directory:
 
