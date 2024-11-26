@@ -42,11 +42,6 @@ func CopyFile(src, dst string) error {
 }
 
 func CopyDir(fsys fs.FS, srcDir, dstDir string, isOverride bool) error {
-	if _, err := os.Stat(dstDir); !os.IsNotExist(err) {
-		println("Error: Directory already exists: ", dstDir)
-		return nil
-	}
-
 	subfs, err := fs.Sub(fsys, srcDir)
 	if err != nil {
 		println("Error: create sub fs: ", dstDir)
@@ -67,6 +62,16 @@ func CopyDir(fsys fs.FS, srcDir, dstDir string, isOverride bool) error {
 			return os.MkdirAll(dstPath, 0755)
 		} else {
 			// Skip if file already exists and is not overriden
+
+			if strings.HasSuffix(dstPath, "go.mod.txt") {
+				i := strings.LastIndex(dstPath, "go.mod.txt")
+				dstPath = dstPath[:i] + "go.mod"
+			}
+			if strings.HasSuffix(dstPath, ".gitignore.txt") {
+				i := strings.LastIndex(dstPath, ".gitignore.txt")
+				dstPath = dstPath[:i] + ".gitignore"
+			}
+
 			if !isOverride {
 				if _, err := os.Stat(dstPath); !os.IsNotExist(err) {
 					return nil

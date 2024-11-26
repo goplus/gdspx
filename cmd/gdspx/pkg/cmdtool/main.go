@@ -6,9 +6,9 @@ import (
 	"os"
 )
 
-func RunCmd(cmd ICmdTool, appName, version string, fs embed.FS, fsRelDir string) (err error) {
+func RunCmd(cmd ICmdTool, appName, version string, fs embed.FS, fsRelDir string, dstRelDir string, ext ...string) (err error) {
 	cmd.Register()
-	err = cmd.CheckCmd()
+	err = cmd.CheckCmd(ext...)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		return
@@ -32,7 +32,7 @@ func RunCmd(cmd ICmdTool, appName, version string, fs embed.FS, fsRelDir string)
 		return
 	}
 
-	err = cmd.OnBeforeCheck()
+	err = cmd.OnBeforeCheck(os.Args[1])
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		return
@@ -42,7 +42,7 @@ func RunCmd(cmd ICmdTool, appName, version string, fs embed.FS, fsRelDir string)
 	if len(os.Args) > 2 {
 		targetDirArg = os.Args[2]
 	}
-	err = cmd.SetupEnv(appName, version, fs, fsRelDir, targetDirArg)
+	err = cmd.SetupEnv(appName, version, fs, fsRelDir, targetDirArg, dstRelDir)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		return
@@ -71,7 +71,7 @@ func RunCmd(cmd ICmdTool, appName, version string, fs embed.FS, fsRelDir string)
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		return err
 	}
-	err = cmd.OnAfterCheck()
+	err = cmd.OnAfterCheck(os.Args[1])
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		return err
