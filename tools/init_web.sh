@@ -1,9 +1,10 @@
 #!/bin/bash
 # build godot web version
 
-gopath=$(go env GOPATH)
+
+GOPATH=$(go env GOPATH)
 VERSION=$(cat ./cmd/gdspx/pkg/impl/template/version)
-echo "version="$VERSION " gopath=" $gopath
+echo "version="$VERSION " GOPATH=" $GOPATH
 
 # make sure emsdk's version is same as godot build system
 godot_version_str="4.2.2.stable"
@@ -33,15 +34,19 @@ cd godot
 
 # build web editor for interupter mode
 scons platform=web target=editor
+echo "Wait zip file to finished ..."
+sleep 2
 mv bin/godot.web.editor.wasm32.zip bin/web_editor.zip
-cp bin/web_editor.zip $gopath/bin/gdspx$VERSION"_web.zip"
+cp bin/web_editor.zip $GOPATH/bin/gdspx$VERSION"_web.zip"
 
 cd ..
 
+if [ "$1" != "-a" ]; then
+    exit
+fi
+
 cd godot
 # gdspx disable gdextension
-#scons platform=web target=template_debug threads=no dlink_enabled=yes 
-#mv bin/godot.web.template_debug.wasm32.dlink.zip bin/web_dlink_debug.zip
 # Get the path to the AppData\Roaming directory
 if [ "$OS" = "Windows_NT" ]; then
     appdata_path="c:$(echo $APPDATA | sed 's/\\/\//g' | sed 's/C://g')"
@@ -55,6 +60,8 @@ fi
 
 # build web export templates
 scons platform=web target=template_debug threads=no
+echo "Wait zip file to finished ..."
+sleep 2
 mv bin/godot.web.template_debug.wasm32.zip bin/web_dlink_debug.zip
 rm "$gd_template_path"/web_*.zip
 cp bin/web_dlink_debug.zip "$gd_template_path/web_dlink_debug.zip"
@@ -63,5 +70,5 @@ cp bin/web_dlink_debug.zip "$gd_template_path/web_debug.zip"
 cp bin/web_dlink_debug.zip "$gd_template_path/web_release.zip"
 
 # copy to tool dir
-cp bin/web_dlink_debug.zip $gopath/bin/gdspx$VERSION"_webpack.zip"
+cp bin/web_dlink_debug.zip $GOPATH/bin/gdspx$VERSION"_webpack.zip"
 cd ..

@@ -239,7 +239,6 @@ func RunGdspx(gdspxPath string, project string, args string) error {
 	SetupFile(false, filepath.Join(project, ".godot", "extension_list.cfg"), extension_list_cfg)
 	SetupFile(false, filepath.Join(project, "gdspx.gdextension"), library_gdextension)
 
-	println("run: ", gdspxPath, project, args)
 	gdspx := exec.Command(gdspxPath, args)
 	gdspx.Dir = project
 	gdspx.Stderr = os.Stderr
@@ -304,7 +303,6 @@ func IterupterRunWebServer(gdspxPath string, projPath string, libPath string, po
 func Export(gdspxPath string, project string) error {
 	platform := "Win"
 	args := "--headless --quit --export-debug " + platform
-	println("run: ", gdspxPath, project, args)
 	gdspx := exec.Command(gdspxPath, args)
 	gdspx.Dir = project
 	gdspx.Stderr = os.Stderr

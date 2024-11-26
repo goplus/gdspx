@@ -15,6 +15,9 @@ pc:
 web: 
 	./tools/init_web.sh 
 
+webpack: 
+	./tools/init_web.sh -a
+
 gen:
 	cd ./cmd/codegen && go run . && cd $(CURRENT_PATH) && \
 	$(MAKE) fmt && $(MAKE) fmt 
