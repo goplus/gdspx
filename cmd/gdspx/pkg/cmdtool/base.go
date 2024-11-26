@@ -78,7 +78,7 @@ func (pself *BaseCmdTool) CheckCmd(ext ...string) (err error) {
 		pself.ShowHelpInfo()
 		return
 	}
-	if !CheckCmd() {
+	if !CheckCmd(ext...) {
 		println("invalid cmd, please refer to help")
 		pself.ShowHelpInfo()
 	}
