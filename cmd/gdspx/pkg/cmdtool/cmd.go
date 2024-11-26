@@ -61,13 +61,13 @@ The commands are:
     #CMDNAME init                      # create a project in current path
     #CMDNAME init ./test/demo01        # create a project at path ./test/demo01 
 	`
-	fmt.Println((cmdName + " version = " + version + "\n") + strings.ReplaceAll(msg, "#CMDNAME", cmdName))
+	fmt.Println((cmdName + " Version = " + Version + "\n") + strings.ReplaceAll(msg, "#CMDNAME", cmdName))
 }
 
 func PrepareEnv(fsRelDir, dstDir string) {
 	util.CopyDir(proejctFS, fsRelDir, dstDir, false)
 	rawDir, _ := os.Getwd()
-	os.Chdir(goDir)
+	os.Chdir(GoDir)
 	util.RunGolang(nil, "mod", "tidy")
 	os.Chdir(rawDir)
 }
@@ -84,12 +84,12 @@ func SetupEnv() error {
 		return errors.New("gdx requires an amd64, or an arm64 system")
 	}
 	var err error
-	binPostfix, cmdPath, err = impl.CheckAndGetAppPath(appName, version)
+	binPostfix, CmdPath, err = impl.CheckAndGetAppPath(appName, Version)
 	if err != nil {
 		return fmt.Errorf(appName+"requires engine to be installed as a binary at $GOPATH/bin/: %w", err)
 	}
-	projectDir, _ = filepath.Abs(path.Join(targetDir, projectRelPath))
-	goDir, _ = filepath.Abs(projectDir + "/go")
+	ProjectDir, _ = filepath.Abs(path.Join(TargetDir, projectRelPath))
+	GoDir, _ = filepath.Abs(ProjectDir + "/go")
 
 	var libraryName = fmt.Sprintf(appName+"-%v-%v", GOOS, GOARCH)
 	switch GOOS {
@@ -100,15 +100,15 @@ func SetupEnv() error {
 	default:
 		libraryName += ".so"
 	}
-	libPath, _ = filepath.Abs(path.Join(projectDir, "lib", libraryName))
+	LibPath, _ = filepath.Abs(path.Join(ProjectDir, "lib", libraryName))
 	return nil
 }
 
 func ImportProj() error {
 	curCmd.BuildDll()
 	fmt.Println(" ================= Importing ... ================= ")
-	cmd := exec.Command(cmdPath, "--import", "--headless")
-	cmd.Dir = projectDir
+	cmd := exec.Command(CmdPath, "--import", "--headless")
+	cmd.Dir = ProjectDir
 	cmd.Start()
 	cmd.Wait()
 	return nil
@@ -116,8 +116,8 @@ func ImportProj() error {
 
 func ExportWebEditor() error {
 	gopath := build.Default.GOPATH
-	editorZipPath := path.Join(gopath, "bin", appName+version+"_web.zip")
-	dstPath := path.Join(projectDir, ".builds/web")
+	editorZipPath := path.Join(gopath, "bin", appName+Version+"_web.zip")
+	dstPath := path.Join(ProjectDir, ".builds/web")
 	os.MkdirAll(dstPath, os.ModePerm)
 	if util.IsFileExist(editorZipPath) {
 		util.Unzip(editorZipPath, dstPath)
@@ -128,31 +128,31 @@ func ExportWebEditor() error {
 	return nil
 }
 func CheckExportWeb() error {
-	if !util.IsFileExist(path.Join(projectDir, ".builds/web")) {
+	if !util.IsFileExist(path.Join(ProjectDir, ".builds/web")) {
 		return ExportWeb()
 	}
 	return nil
 }
 
 func Run(args string) error {
-	return util.RunCommandInDir(projectDir, cmdPath, args)
+	return util.RunCommandInDir(ProjectDir, CmdPath, args)
 }
 
 func ExportWeb() error {
 	curCmd.BuildDll()
 	// Delete gdextension
-	os.RemoveAll(filepath.Join(projectDir, "lib"))
-	os.Remove(filepath.Join(projectDir, ".godot", "extension_list.cfg"))
-	os.Remove(filepath.Join(projectDir, "gdx.gdextension"))
+	os.RemoveAll(filepath.Join(ProjectDir, "lib"))
+	os.Remove(filepath.Join(ProjectDir, ".godot", "extension_list.cfg"))
+	os.Remove(filepath.Join(ProjectDir, "gdx.gdextension"))
 	curCmd.BuildWasm()
 	err := ExportBuild("Web")
 	return err
 }
 
 func Clear() {
-	os.RemoveAll(filepath.Join(projectDir, "lib"))
-	os.RemoveAll(filepath.Join(projectDir, ".godot"))
-	os.RemoveAll(filepath.Join(projectDir, ".build"))
+	os.RemoveAll(filepath.Join(ProjectDir, "lib"))
+	os.RemoveAll(filepath.Join(ProjectDir, ".godot"))
+	os.RemoveAll(filepath.Join(ProjectDir, ".build"))
 }
 
 func StopWeb() {
@@ -169,11 +169,13 @@ func StopWeb() {
 	}
 }
 func RunWeb() error {
-	port := serverPort
+	port := ServerPort
 	curCmd.StopWeb()
-	scriptPath := filepath.Join(projectDir, ".godot", "gdx_web_server.py")
-	executeDir := filepath.Join(projectDir, "../", ".builds/web")
-	println("web server running at http://localhost:" + fmt.Sprint(port))
+	scriptPath := filepath.Join(ProjectDir, ".godot", "gdspx_web_server.py")
+	scriptPath = strings.ReplaceAll(scriptPath, "\\", "/")
+	executeDir := filepath.Join(ProjectDir, ".builds/web")
+	executeDir = strings.ReplaceAll(executeDir, "\\", "/")
+	println("web server running at http://127.0.0.1:" + fmt.Sprint(port))
 	cmd := exec.Command("python", scriptPath, "-r", executeDir, "-p", fmt.Sprint(port))
 	err := cmd.Start()
 	if err != nil {
@@ -185,32 +187,32 @@ func RunWeb() error {
 func Export() error {
 	platform := "Win"
 	args := "--headless --quit --export-debug " + platform
-	return util.RunCommandInDir(projectDir, cmdPath, args)
+	return util.RunCommandInDir(ProjectDir, CmdPath, args)
 }
 
 func BuildDll() {
 	rawdir, _ := os.Getwd()
-	os.Chdir(goDir)
+	os.Chdir(GoDir)
 	envVars := []string{"CGO_ENABLED=1"}
-	util.RunGolang(envVars, "build", "-o", libPath, "-buildmode=c-shared")
+	util.RunGolang(envVars, "build", "-o", LibPath, "-buildmode=c-shared")
 	os.Chdir(rawdir)
 }
 
 func BuildWasm() {
 	rawdir, _ := os.Getwd()
-	dir := path.Join(projectDir, ".builds/web/")
+	dir := path.Join(ProjectDir, ".builds/web/")
 	os.MkdirAll(dir, 0755)
 	filePath := path.Join(dir, "gdspx.wasm")
-	os.Chdir(goDir)
+	os.Chdir(GoDir)
 	envVars := []string{"GOOS=js", "GOARCH=wasm"}
 	util.RunGolang(envVars, "build", "-o", filePath)
 	os.Chdir(rawdir)
 }
 
 func ExportBuild(platform string) error {
-	println("start export: platform =", platform, " projectDir =", projectDir)
-	os.MkdirAll(filepath.Join(projectDir, ".builds", strings.ToLower(platform)), os.ModePerm)
-	cmd := exec.Command(cmdPath, "--headless", "--quit", "--path", projectDir, "--export-debug", platform)
+	println("start export: platform =", platform, " ProjectDir =", ProjectDir)
+	os.MkdirAll(filepath.Join(ProjectDir, ".builds", strings.ToLower(platform)), os.ModePerm)
+	cmd := exec.Command(CmdPath, "--headless", "--quit", "--path", ProjectDir, "--export-debug", platform)
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println("Error exporting to web:", err)

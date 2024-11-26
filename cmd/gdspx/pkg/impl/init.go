@@ -62,26 +62,26 @@ func CheckAndGetAppPath(tag, version string) (string, string, error) {
 	}
 
 	dstDir := gopath + "/bin"
-	cmdPath := path.Join(dstDir, dstFileName)
-	info, err := os.Stat(cmdPath)
+	CmdPath := path.Join(dstDir, dstFileName)
+	info, err := os.Stat(CmdPath)
 	if os.IsNotExist(err) {
 		println("Downloading pack...")
 		err := downloadPack(dstDir, tagName, binPostfix)
 		if err != nil {
 			print("downloadPack error:" + err.Error())
-			return binPostfix, cmdPath, err
+			return binPostfix, CmdPath, err
 		}
-		if err := os.Chmod(cmdPath, 0755); err != nil {
-			return binPostfix, cmdPath, err
+		if err := os.Chmod(CmdPath, 0755); err != nil {
+			return binPostfix, CmdPath, err
 		}
 	} else if err != nil {
 		return binPostfix, "", err
 	} else {
 		if info.Mode()&0111 == 0 {
-			if err := os.Chmod(cmdPath, 0755); err != nil {
-				return binPostfix, cmdPath, err
+			if err := os.Chmod(CmdPath, 0755); err != nil {
+				return binPostfix, CmdPath, err
 			}
 		}
 	}
-	return binPostfix, cmdPath, nil
+	return binPostfix, CmdPath, nil
 }

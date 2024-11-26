@@ -44,7 +44,7 @@ func CopyFile(src, dst string) error {
 func CopyDir(fsys fs.FS, srcDir, dstDir string, isOverride bool) error {
 	subfs, err := fs.Sub(fsys, srcDir)
 	if err != nil {
-		println("Error: create sub fs: ", dstDir)
+		println("Error: create sub fs: ", srcDir, dstDir)
 		return err
 	}
 	if err := os.MkdirAll(dstDir, 0755); err != nil {

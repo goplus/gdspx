@@ -13,17 +13,17 @@ import (
 
 var (
 	curCmd     ICmdTool
-	version    string
 	appName    string
-	serverPort int = 8005
+	Version    string
+	ServerPort int = 8005
 
 	proejctFS  embed.FS
-	targetDir  string
-	projectDir string
-	goDir      = ""
+	TargetDir  string
+	ProjectDir string
+	GoDir      = ""
 
-	cmdPath string
-	libPath string
+	CmdPath string
+	LibPath string
 
 	projectRelPath = "/project"
 	binPostfix     = ""
@@ -33,7 +33,7 @@ type ICmdTool interface {
 	Register()
 	CheckCmd(ext ...string) error
 	CheckEnv() error
-	SetupEnv(appName, version string, fs embed.FS, fsRelDir string, targetDir string, projectRelPath string) error
+	SetupEnv(appName, version string, fs embed.FS, fsRelDir string, TargetDir string, projectRelPath string) error
 
 	// import
 	ShouldReimport() bool
@@ -90,27 +90,27 @@ func (pself *BaseCmdTool) CheckEnv() (err error) {
 }
 
 func (pself *BaseCmdTool) SetupEnv(binName, pversion string, fs embed.FS, fsRelDir string, pTargetDir string, pProjectRelPath string) (err error) {
-	targetDir = pTargetDir
+	TargetDir = pTargetDir
 	appName = binName
 	proejctFS = fs
-	version = pversion
+	Version = pversion
 	projectRelPath = pProjectRelPath
 	err = SetupEnv()
-	PrepareEnv(fsRelDir, projectDir)
+	PrepareEnv(fsRelDir, ProjectDir)
 	if pself.ShouldReimport() {
 		pself.Reimport()
 	}
 	return
 }
 func (pself *BaseCmdTool) ShouldReimport() bool {
-	return !util.IsFileExist(path.Join(projectDir, ".godot/uid_cache.bin"))
+	return !util.IsFileExist(path.Join(ProjectDir, ".godot/uid_cache.bin"))
 }
 func (pself *BaseCmdTool) Reimport() {
 	ImportProj()
 }
 
 func (pself *BaseCmdTool) ShowHelpInfo() {
-	ShowHelpInfo(appName, version)
+	ShowHelpInfo(appName, Version)
 	return
 }
 
@@ -139,7 +139,7 @@ func (pself *BaseCmdTool) BuildWasm() (err error) {
 	return
 }
 func (pself *BaseCmdTool) RunWeb() (err error) {
-	if !util.IsFileExist(filepath.Join(projectDir, ".builds", "web")) {
+	if !util.IsFileExist(filepath.Join(ProjectDir, ".builds", "web")) {
 		ExportWeb()
 	}
 	RunWeb()
