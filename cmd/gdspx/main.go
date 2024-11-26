@@ -1,49 +1,35 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"embed"
+	_ "embed"
 
+	"github.com/realdream-ai/gdspx/cmd/gdspx/pkg/cmdtool"
 	"github.com/realdream-ai/gdspx/cmd/gdspx/pkg/impl"
 )
 
+var (
+	//go:embed template/project/*
+	proejct_fs embed.FS
+
+	//go:embed template/version
+	version string
+)
+
+type CmdTool struct {
+	cmdtool.BaseCmdTool
+}
+
+func (pself *CmdTool) OnBeforeCheck() error {
+	impl.UpdateMod(
+		"github.com/realdream-ai/gdspx ", "./spx",
+		"github.com/realdream-ai/gdspx/cmd/gdspx ",
+		[]string{"", "cmd/spx", "cmd/ispx"},
+		[]string{"cmd/spx/template/project/go.mod.txt"})
+	return nil
+}
+
 func main() {
-	impl.CheckPresetEnvironment()
-	impl.TargetDir = "."
-	if len(os.Args) > 2 {
-		impl.TargetDir = os.Args[2]
-	}
-	if len(os.Args) <= 1 {
-		showHelpInfo()
-		return
-	}
-
-	switch os.Args[1] {
-	case "help", "version":
-		showHelpInfo()
-		return
-	case "clear":
-		impl.ClearGdspx(impl.TargetDir)
-		return
-	case "stopweb":
-		impl.StopWebServer()
-		return
-	case "updatemod":
-		impl.UpdateMod()
-		return
-	case "init":
-		impl.PrepareGoEnv()
-	}
-	if err := execCmds(); err != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", err)
-		os.Exit(1)
-	}
-}
-
-func execCmds() error {
-	return impl.ExecCmds(impl.BuildDll)
-}
-
-func showHelpInfo() {
-	impl.ShowHelpInfo("gdspx")
+	cmd := &CmdTool{}
+	cmdtool.RunCmd(cmd, "gdspx", version, proejct_fs, "template/project")
 }

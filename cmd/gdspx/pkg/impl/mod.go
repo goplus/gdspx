@@ -9,6 +9,8 @@ import (
 	"path"
 	"strings"
 	"time"
+
+	"github.com/realdream-ai/gdspx/cmd/gdspx/pkg/util"
 )
 
 func getLatestCommitHash() (string, error) {
@@ -112,17 +114,18 @@ func replaceMod(tag string, version string, dirList []string, relDir string, fil
 		modifyFile(modPath, tag, modStr)
 	}
 }
-func directoryExists(path string) (bool, error) {
+func directoryExists(path string) bool {
 	info, err := os.Stat(path)
 	if os.IsNotExist(err) {
-		return false, nil
+		return false
 	}
 	if err != nil {
-		return false, err
+		return false
 	}
-	return info.IsDir(), nil
+	return info.IsDir()
 }
-func UpdateMod() {
+
+func UpdateMod(tag, relDir string, tag2 string, dirList []string, fileList []string) {
 	commitHash, err := getLatestCommitHash()
 	if err != nil {
 		fmt.Println(err)
@@ -135,27 +138,22 @@ func UpdateMod() {
 		return
 	}
 
-	tag := "github.com/realdream-ai/gdspx "
-	relDir := "./spx"
-
-	if exists, err := directoryExists(relDir); err != nil || !exists {
+	if exists := directoryExists(relDir); !exists {
 		fmt.Println("Error checking directory ", relDir)
 		return
 	}
 
-	dirList := []string{"", "cmd/spx", "cmd/ispx"}
-	fileList := []string{"cmd/spx/template/project/go.mod.txt"}
-
 	replaceMod(tag, version, dirList, relDir, fileList)
-	tag = "github.com/realdream-ai/gdspx/cmd/gdspx "
-	replaceMod(tag, version, dirList, relDir, fileList)
+	if tag2 != "" {
+		replaceMod(tag2, version, dirList, relDir, fileList)
+	}
 
 	// run go mod tidy
 	rawDir, _ := os.Getwd()
 	for _, dir := range dirList {
 		modPath := path.Join(relDir, dir)
 		os.Chdir(modPath)
-		if err := runGoModTidy(); err != nil {
+		if err := util.RunGoModTidy(); err != nil {
 			fmt.Println(err)
 		}
 		os.Chdir(rawDir)
