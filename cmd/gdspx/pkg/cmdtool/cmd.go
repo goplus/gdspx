@@ -88,24 +88,8 @@ func SetupEnv() error {
 	if err != nil {
 		return fmt.Errorf(appName+"requires engine to be installed as a binary at $GOPATH/bin/: %w", err)
 	}
-	projectDir, _ = filepath.Abs(targetDir + "/project")
+	projectDir, _ = filepath.Abs(path.Join(targetDir, projectRelPath))
 	goDir, _ = filepath.Abs(projectDir + "/go")
-
-	wd := goDir
-
-	for wd := wd; true; wd = filepath.Dir(wd) {
-		if wd == "/" {
-			return fmt.Errorf(appName + " requires your project to have a go.mod file")
-		}
-		_, err := os.Stat(wd + "/go.mod")
-		if err == nil {
-			break
-		} else if os.IsNotExist(err) {
-			continue
-		} else {
-			return err
-		}
-	}
 
 	var libraryName = fmt.Sprintf(appName+"-%v-%v", GOOS, GOARCH)
 	switch GOOS {
@@ -117,23 +101,16 @@ func SetupEnv() error {
 		libraryName += ".so"
 	}
 	libPath, _ = filepath.Abs(path.Join(projectDir, "lib", libraryName))
-
-	ImportProj()
 	return nil
 }
-func ImportProj() error {
-	_, err := os.Stat(projectDir + "/.godot")
-	hasInited := !os.IsNotExist(err)
-	os.MkdirAll(projectDir+"/.godot", 0755)
-	if !hasInited {
-		curCmd.BuildDll()
-	}
 
+func ImportProj() error {
+	curCmd.BuildDll()
+	fmt.Println(" ================= Importing ... ================= ")
 	cmd := exec.Command(cmdPath, "--import", "--headless")
 	cmd.Dir = projectDir
 	cmd.Start()
 	cmd.Wait()
-	fmt.Println("Import done")
 	return nil
 }
 

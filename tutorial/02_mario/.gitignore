@@ -15,4 +15,4 @@
 
 # user specify ignores
 # ...
-/assets/**/*.import
+*ignore.keep

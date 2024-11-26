@@ -3,6 +3,7 @@ package cmdtool
 import (
 	"embed"
 	"os"
+	"path"
 	"path/filepath"
 
 	_ "embed"
@@ -24,21 +25,25 @@ var (
 	cmdPath string
 	libPath string
 
-	binPostfix = ""
+	projectRelPath = "/project"
+	binPostfix     = ""
 )
 
 type ICmdTool interface {
 	Register()
 	CheckCmd(ext ...string) error
 	CheckEnv() error
-	SetupEnv(appName, version string, fs embed.FS, fsRelDir string, targetDir string) error
+	SetupEnv(appName, version string, fs embed.FS, fsRelDir string, targetDir string, projectRelPath string) error
 
+	// import
+	ShouldReimport() bool
+	Reimport()
 	// util
 	ShowHelpInfo()
 	Clear()
 
 	// check
-	OnBeforeCheck() error
+	OnBeforeCheck(cmd string) error
 
 	// pc
 	BuildDll() error
@@ -53,7 +58,7 @@ type ICmdTool interface {
 	CheckExportWeb() error
 
 	// check
-	OnAfterCheck() error
+	OnAfterCheck(cmd string) error
 }
 
 type BaseCmdTool struct {
@@ -62,10 +67,10 @@ type BaseCmdTool struct {
 func (pself *BaseCmdTool) Register() {
 	curCmd = pself
 }
-func (pself *BaseCmdTool) OnBeforeCheck() error {
+func (pself *BaseCmdTool) OnBeforeCheck(cmd string) error {
 	return nil
 }
-func (pself *BaseCmdTool) OnAfterCheck() error {
+func (pself *BaseCmdTool) OnAfterCheck(cmd string) error {
 	return nil
 }
 func (pself *BaseCmdTool) CheckCmd(ext ...string) (err error) {
@@ -84,14 +89,24 @@ func (pself *BaseCmdTool) CheckEnv() (err error) {
 	return
 }
 
-func (pself *BaseCmdTool) SetupEnv(binName, pversion string, fs embed.FS, fsRelDir string, pTargetDir string) (err error) {
+func (pself *BaseCmdTool) SetupEnv(binName, pversion string, fs embed.FS, fsRelDir string, pTargetDir string, pProjectRelPath string) (err error) {
 	targetDir = pTargetDir
 	appName = binName
 	proejctFS = fs
 	version = pversion
-	PrepareEnv(fsRelDir, targetDir)
+	projectRelPath = pProjectRelPath
 	err = SetupEnv()
+	PrepareEnv(fsRelDir, projectDir)
+	if pself.ShouldReimport() {
+		pself.Reimport()
+	}
 	return
+}
+func (pself *BaseCmdTool) ShouldReimport() bool {
+	return !util.IsFileExist(path.Join(projectDir, ".godot/uid_cache.bin"))
+}
+func (pself *BaseCmdTool) Reimport() {
+	ImportProj()
 }
 
 func (pself *BaseCmdTool) ShowHelpInfo() {
