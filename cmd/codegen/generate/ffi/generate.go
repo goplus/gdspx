@@ -475,21 +475,13 @@ func genSyncApiWrapFunction(function *clang.TypedefFunction) string {
 	}
 	sb.WriteString("{\n")
 	prefixStr := "\t"
+	sb.WriteString(prefixStr + "WaitMainThread()\n")
+	sb.WriteString(prefixStr)
 	// body
 	if function.ReturnType.Name != "void" {
-		typeName := GetFuncParamTypeString(function.ReturnType.Name)
-		sb.WriteString(prefixStr + "var __ret " + typeName + "")
+		sb.WriteString("return ")
 	}
 
-	sb.WriteString(`	
-	done := make(chan struct{})
-	job := func() {
-`)
-	if function.ReturnType.Name != "void" {
-		sb.WriteString(prefixStr + "\t__ret =")
-	} else {
-		sb.WriteString(prefixStr + "\t")
-	}
 	sb.WriteString(mgrName + "." + pureFuncName + "(")
 	for i, arg := range function.Arguments {
 		sb.WriteString(arg.Name)
@@ -497,18 +489,7 @@ func genSyncApiWrapFunction(function *clang.TypedefFunction) string {
 			sb.WriteString(", ")
 		}
 	}
-	sb.WriteString(")")
-
-	sb.WriteString(`
-		done <- struct{}{}
-	}
-	updateJobQueue <- job
-	<-done
-`)
-
-	if function.ReturnType.Name != "void" {
-		sb.WriteString(prefixStr + "return __ret \n")
-	}
+	sb.WriteString(")\n")
 	sb.WriteString("}")
 	return sb.String()
 }
