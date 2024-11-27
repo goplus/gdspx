@@ -290,6 +290,14 @@ func (pself *platformMgr) IsDebugMode() bool {
 	retValue := CallPlatformIsDebugMode()
 	return ToBool(retValue)
 }
+func (pself *platformMgr) GetTimeScale() float32 {
+	retValue := CallPlatformGetTimeScale()
+	return ToFloat32(retValue)
+}
+func (pself *platformMgr) SetTimeScale(time_scale float32) {
+	arg0 := ToGdFloat(time_scale)
+	CallPlatformSetTimeScale(arg0)
+}
 func (pself *resMgr) SetLoadMode(is_direct_mode bool) {
 	arg0 := ToGdBool(is_direct_mode)
 	CallResSetLoadMode(arg0)

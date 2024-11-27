@@ -58,6 +58,8 @@ type GDExtensionInterface struct {
 	SpxPlatformIsWindowFullscreen       GDExtensionSpxPlatformIsWindowFullscreen
 	SpxPlatformSetDebugMode             GDExtensionSpxPlatformSetDebugMode
 	SpxPlatformIsDebugMode              GDExtensionSpxPlatformIsDebugMode
+	SpxPlatformGetTimeScale             GDExtensionSpxPlatformGetTimeScale
+	SpxPlatformSetTimeScale             GDExtensionSpxPlatformSetTimeScale
 	SpxResSetLoadMode                   GDExtensionSpxResSetLoadMode
 	SpxResGetLoadMode                   GDExtensionSpxResGetLoadMode
 	SpxResGetBoundFromAlpha             GDExtensionSpxResGetBoundFromAlpha
@@ -242,6 +244,8 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPlatformIsWindowFullscreen = (GDExtensionSpxPlatformIsWindowFullscreen)(dlsymGD("spx_platform_is_window_fullscreen"))
 	x.SpxPlatformSetDebugMode = (GDExtensionSpxPlatformSetDebugMode)(dlsymGD("spx_platform_set_debug_mode"))
 	x.SpxPlatformIsDebugMode = (GDExtensionSpxPlatformIsDebugMode)(dlsymGD("spx_platform_is_debug_mode"))
+	x.SpxPlatformGetTimeScale = (GDExtensionSpxPlatformGetTimeScale)(dlsymGD("spx_platform_get_time_scale"))
+	x.SpxPlatformSetTimeScale = (GDExtensionSpxPlatformSetTimeScale)(dlsymGD("spx_platform_set_time_scale"))
 	x.SpxResSetLoadMode = (GDExtensionSpxResSetLoadMode)(dlsymGD("spx_res_set_load_mode"))
 	x.SpxResGetLoadMode = (GDExtensionSpxResGetLoadMode)(dlsymGD("spx_res_get_load_mode"))
 	x.SpxResGetBoundFromAlpha = (GDExtensionSpxResGetBoundFromAlpha)(dlsymGD("spx_res_get_bound_from_alpha"))

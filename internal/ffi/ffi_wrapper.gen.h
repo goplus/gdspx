@@ -132,6 +132,12 @@ void cgo_callfn_GDExtensionSpxPlatformSetDebugMode(const GDExtensionSpxPlatformS
 void cgo_callfn_GDExtensionSpxPlatformIsDebugMode(const GDExtensionSpxPlatformIsDebugMode fn, GdBool* ret_val) {
 	fn(ret_val);
 }
+void cgo_callfn_GDExtensionSpxPlatformGetTimeScale(const GDExtensionSpxPlatformGetTimeScale fn, GdFloat* ret_val) {
+	fn(ret_val);
+}
+void cgo_callfn_GDExtensionSpxPlatformSetTimeScale(const GDExtensionSpxPlatformSetTimeScale fn, GdFloat time_scale) {
+	fn(time_scale);
+}
 void cgo_callfn_GDExtensionSpxResSetLoadMode(const GDExtensionSpxResSetLoadMode fn, GdBool is_direct_mode) {
 	fn(is_direct_mode);
 }
