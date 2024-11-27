@@ -274,6 +274,14 @@ func (pself *platformMgr) IsDebugMode() bool {
 	_retValue := API.SpxPlatformIsDebugMode.Invoke()
 	return JsToGdBool(_retValue)
 }
+func (pself *platformMgr) GetTimeScale() float32 {
+	_retValue := API.SpxPlatformGetTimeScale.Invoke()
+	return JsToGdFloat(_retValue)
+}
+func (pself *platformMgr) SetTimeScale(time_scale float32) {
+	arg0 := JsFromGdFloat(time_scale)
+	API.SpxPlatformSetTimeScale.Invoke(arg0)
+}
 func (pself *resMgr) SetLoadMode(is_direct_mode bool) {
 	arg0 := JsFromGdBool(is_direct_mode)
 	API.SpxResSetLoadMode.Invoke(arg0)

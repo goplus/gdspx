@@ -75,6 +75,8 @@ type IPlatformMgr interface {
 	IsWindowFullscreen() bool
 	SetDebugMode(enable bool)
 	IsDebugMode() bool
+	GetTimeScale() float32
+	SetTimeScale(time_scale float32)
 }
 
 type IResMgr interface {

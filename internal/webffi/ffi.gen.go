@@ -62,6 +62,8 @@ type GDExtensionInterface struct {
 	SpxPlatformIsWindowFullscreen       js.Value
 	SpxPlatformSetDebugMode             js.Value
 	SpxPlatformIsDebugMode              js.Value
+	SpxPlatformGetTimeScale             js.Value
+	SpxPlatformSetTimeScale             js.Value
 	SpxResSetLoadMode                   js.Value
 	SpxResGetLoadMode                   js.Value
 	SpxResGetBoundFromAlpha             js.Value
@@ -246,6 +248,8 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPlatformIsWindowFullscreen = dlsymGD("gdspx_platform_is_window_fullscreen")
 	x.SpxPlatformSetDebugMode = dlsymGD("gdspx_platform_set_debug_mode")
 	x.SpxPlatformIsDebugMode = dlsymGD("gdspx_platform_is_debug_mode")
+	x.SpxPlatformGetTimeScale = dlsymGD("gdspx_platform_get_time_scale")
+	x.SpxPlatformSetTimeScale = dlsymGD("gdspx_platform_set_time_scale")
 	x.SpxResSetLoadMode = dlsymGD("gdspx_res_set_load_mode")
 	x.SpxResGetLoadMode = dlsymGD("gdspx_res_get_load_mode")
 	x.SpxResGetBoundFromAlpha = dlsymGD("gdspx_res_get_bound_from_alpha")
