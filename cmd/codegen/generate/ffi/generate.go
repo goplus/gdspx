@@ -471,17 +471,24 @@ func genSyncApiWrapFunction(function *clang.TypedefFunction) string {
 
 	if function.ReturnType.Name != "void" {
 		typeName := GetFuncParamTypeString(function.ReturnType.Name)
-		sb.WriteString(" " + typeName + " ")
+		sb.WriteString(" " + typeName)
 	}
-	sb.WriteString("{\n")
+	sb.WriteString(" {")
 	prefixStr := "\t"
-	sb.WriteString(prefixStr + "WaitMainThread()\n")
-	sb.WriteString(prefixStr)
 	// body
 	if function.ReturnType.Name != "void" {
-		sb.WriteString("return ")
+		typeName := GetFuncParamTypeString(function.ReturnType.Name)
+		sb.WriteString("\n" + prefixStr + "var _ret1 " + typeName + "")
 	}
 
+	sb.WriteString(`	
+	WaitMainThread(func() {
+`)
+	if function.ReturnType.Name != "void" {
+		sb.WriteString(prefixStr + "\t_ret1 = ")
+	} else {
+		sb.WriteString(prefixStr + "\t")
+	}
 	sb.WriteString(mgrName + "." + pureFuncName + "(")
 	for i, arg := range function.Arguments {
 		sb.WriteString(arg.Name)
@@ -489,7 +496,15 @@ func genSyncApiWrapFunction(function *clang.TypedefFunction) string {
 			sb.WriteString(", ")
 		}
 	}
-	sb.WriteString(")\n")
+	sb.WriteString(")")
+
+	sb.WriteString(`
+	})
+`)
+
+	if function.ReturnType.Name != "void" {
+		sb.WriteString(prefixStr + "return _ret1 \n")
+	}
 	sb.WriteString("}")
 	return sb.String()
 }
