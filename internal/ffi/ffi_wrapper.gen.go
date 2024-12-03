@@ -114,6 +114,7 @@ type GDExtensionSpxPlatformSetDebugMode C.GDExtensionSpxPlatformSetDebugMode
 type GDExtensionSpxPlatformIsDebugMode C.GDExtensionSpxPlatformIsDebugMode
 type GDExtensionSpxPlatformGetTimeScale C.GDExtensionSpxPlatformGetTimeScale
 type GDExtensionSpxPlatformSetTimeScale C.GDExtensionSpxPlatformSetTimeScale
+type GDExtensionSpxResCreateAnimation C.GDExtensionSpxResCreateAnimation
 type GDExtensionSpxResSetLoadMode C.GDExtensionSpxResSetLoadMode
 type GDExtensionSpxResGetLoadMode C.GDExtensionSpxResGetLoadMode
 type GDExtensionSpxResGetBoundFromAlpha C.GDExtensionSpxResGetBoundFromAlpha
@@ -126,6 +127,7 @@ type GDExtensionSpxSceneUnloadCurrentScene C.GDExtensionSpxSceneUnloadCurrentSce
 type GDExtensionSpxSpriteSetDontDestroyOnLoad C.GDExtensionSpxSpriteSetDontDestroyOnLoad
 type GDExtensionSpxSpriteSetProcess C.GDExtensionSpxSpriteSetProcess
 type GDExtensionSpxSpriteSetPhysicProcess C.GDExtensionSpxSpriteSetPhysicProcess
+type GDExtensionSpxSpriteSetTypeName C.GDExtensionSpxSpriteSetTypeName
 type GDExtensionSpxSpriteSetChildPosition C.GDExtensionSpxSpriteSetChildPosition
 type GDExtensionSpxSpriteGetChildPosition C.GDExtensionSpxSpriteGetChildPosition
 type GDExtensionSpxSpriteSetChildRotation C.GDExtensionSpxSpriteSetChildRotation
@@ -606,6 +608,24 @@ func CallPlatformSetTimeScale(
 	C.cgo_callfn_GDExtensionSpxPlatformSetTimeScale(arg0, arg1GdFloat)
 
 }
+func CallResCreateAnimation(
+	sprite_type_name GdString,
+	anim_name GdString,
+	context GdString,
+	fps GdInt,
+	is_altas GdBool,
+) GdInt {
+	arg0 := (C.GDExtensionSpxResCreateAnimation)(api.SpxResCreateAnimation)
+	arg1GdString = (C.GdString)(sprite_type_name)
+	arg2GdString = (C.GdString)(anim_name)
+	arg3GdString = (C.GdString)(context)
+	arg4GdInt = (C.GdInt)(fps)
+	arg5GdBool = (C.GdBool)(is_altas)
+	var ret_val C.GdInt
+	C.cgo_callfn_GDExtensionSpxResCreateAnimation(arg0, arg1GdString, arg2GdString, arg3GdString, arg4GdInt, arg5GdBool, &ret_val)
+
+	return (GdInt)(ret_val)
+}
 func CallResSetLoadMode(
 	is_direct_mode GdBool,
 ) {
@@ -710,6 +730,17 @@ func CallSpriteSetPhysicProcess(
 	arg2GdBool = (C.GdBool)(is_on)
 
 	C.cgo_callfn_GDExtensionSpxSpriteSetPhysicProcess(arg0, arg1GdObj, arg2GdBool)
+
+}
+func CallSpriteSetTypeName(
+	obj GdObj,
+	type_name GdString,
+) {
+	arg0 := (C.GDExtensionSpxSpriteSetTypeName)(api.SpxSpriteSetTypeName)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(type_name)
+
+	C.cgo_callfn_GDExtensionSpxSpriteSetTypeName(arg0, arg1GdObj, arg2GdString)
 
 }
 func CallSpriteSetChildPosition(
@@ -1041,14 +1072,14 @@ func CallSpriteSetZIndex(
 func CallSpritePlayAnim(
 	obj GdObj,
 	p_name GdString,
-	p_custom_scale GdFloat,
-	p_from_end GdBool,
+	p_speed GdFloat,
+	p_revert GdBool,
 ) {
 	arg0 := (C.GDExtensionSpxSpritePlayAnim)(api.SpxSpritePlayAnim)
 	arg1GdObj = (C.GdObj)(obj)
 	arg2GdString = (C.GdString)(p_name)
-	arg3GdFloat = (C.GdFloat)(p_custom_scale)
-	arg4GdBool = (C.GdBool)(p_from_end)
+	arg3GdFloat = (C.GdFloat)(p_speed)
+	arg4GdBool = (C.GdBool)(p_revert)
 
 	C.cgo_callfn_GDExtensionSpxSpritePlayAnim(arg0, arg1GdObj, arg2GdString, arg3GdFloat, arg4GdBool)
 

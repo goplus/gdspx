@@ -282,6 +282,15 @@ func (pself *platformMgr) SetTimeScale(time_scale float32) {
 	arg0 := JsFromGdFloat(time_scale)
 	API.SpxPlatformSetTimeScale.Invoke(arg0)
 }
+func (pself *resMgr) CreateAnimation(sprite_type_name string, anim_name string, context string, fps int64, is_altas bool) int64 {
+	arg0 := JsFromGdString(sprite_type_name)
+	arg1 := JsFromGdString(anim_name)
+	arg2 := JsFromGdString(context)
+	arg3 := JsFromGdInt(fps)
+	arg4 := JsFromGdBool(is_altas)
+	_retValue := API.SpxResCreateAnimation.Invoke(arg0, arg1, arg2, arg3, arg4)
+	return JsToGdInt(_retValue)
+}
 func (pself *resMgr) SetLoadMode(is_direct_mode bool) {
 	arg0 := JsFromGdBool(is_direct_mode)
 	API.SpxResSetLoadMode.Invoke(arg0)
@@ -334,6 +343,11 @@ func (pself *spriteMgr) SetPhysicProcess(obj Object, is_on bool) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdBool(is_on)
 	API.SpxSpriteSetPhysicProcess.Invoke(arg0, arg1)
+}
+func (pself *spriteMgr) SetTypeName(obj Object, type_name string) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdString(type_name)
+	API.SpxSpriteSetTypeName.Invoke(arg0, arg1)
 }
 func (pself *spriteMgr) SetChildPosition(obj Object, path string, pos Vec2) {
 	arg0 := JsFromGdObj(obj)
@@ -492,11 +506,11 @@ func (pself *spriteMgr) SetZIndex(obj Object, z int64) {
 	arg1 := JsFromGdInt(z)
 	API.SpxSpriteSetZIndex.Invoke(arg0, arg1)
 }
-func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_custom_scale float32, p_from_end bool) {
+func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_speed float32, p_revert bool) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdString(p_name)
-	arg2 := JsFromGdFloat(p_custom_scale)
-	arg3 := JsFromGdBool(p_from_end)
+	arg2 := JsFromGdFloat(p_speed)
+	arg3 := JsFromGdBool(p_revert)
 	API.SpxSpritePlayAnim.Invoke(arg0, arg1, arg2, arg3)
 }
 func (pself *spriteMgr) PlayBackwardsAnim(obj Object, p_name string) {

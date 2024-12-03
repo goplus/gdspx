@@ -60,6 +60,7 @@ type GDExtensionInterface struct {
 	SpxPlatformIsDebugMode              GDExtensionSpxPlatformIsDebugMode
 	SpxPlatformGetTimeScale             GDExtensionSpxPlatformGetTimeScale
 	SpxPlatformSetTimeScale             GDExtensionSpxPlatformSetTimeScale
+	SpxResCreateAnimation               GDExtensionSpxResCreateAnimation
 	SpxResSetLoadMode                   GDExtensionSpxResSetLoadMode
 	SpxResGetLoadMode                   GDExtensionSpxResGetLoadMode
 	SpxResGetBoundFromAlpha             GDExtensionSpxResGetBoundFromAlpha
@@ -72,6 +73,7 @@ type GDExtensionInterface struct {
 	SpxSpriteSetDontDestroyOnLoad       GDExtensionSpxSpriteSetDontDestroyOnLoad
 	SpxSpriteSetProcess                 GDExtensionSpxSpriteSetProcess
 	SpxSpriteSetPhysicProcess           GDExtensionSpxSpriteSetPhysicProcess
+	SpxSpriteSetTypeName                GDExtensionSpxSpriteSetTypeName
 	SpxSpriteSetChildPosition           GDExtensionSpxSpriteSetChildPosition
 	SpxSpriteGetChildPosition           GDExtensionSpxSpriteGetChildPosition
 	SpxSpriteSetChildRotation           GDExtensionSpxSpriteSetChildRotation
@@ -246,6 +248,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPlatformIsDebugMode = (GDExtensionSpxPlatformIsDebugMode)(dlsymGD("spx_platform_is_debug_mode"))
 	x.SpxPlatformGetTimeScale = (GDExtensionSpxPlatformGetTimeScale)(dlsymGD("spx_platform_get_time_scale"))
 	x.SpxPlatformSetTimeScale = (GDExtensionSpxPlatformSetTimeScale)(dlsymGD("spx_platform_set_time_scale"))
+	x.SpxResCreateAnimation = (GDExtensionSpxResCreateAnimation)(dlsymGD("spx_res_create_animation"))
 	x.SpxResSetLoadMode = (GDExtensionSpxResSetLoadMode)(dlsymGD("spx_res_set_load_mode"))
 	x.SpxResGetLoadMode = (GDExtensionSpxResGetLoadMode)(dlsymGD("spx_res_get_load_mode"))
 	x.SpxResGetBoundFromAlpha = (GDExtensionSpxResGetBoundFromAlpha)(dlsymGD("spx_res_get_bound_from_alpha"))
@@ -258,6 +261,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteSetDontDestroyOnLoad = (GDExtensionSpxSpriteSetDontDestroyOnLoad)(dlsymGD("spx_sprite_set_dont_destroy_on_load"))
 	x.SpxSpriteSetProcess = (GDExtensionSpxSpriteSetProcess)(dlsymGD("spx_sprite_set_process"))
 	x.SpxSpriteSetPhysicProcess = (GDExtensionSpxSpriteSetPhysicProcess)(dlsymGD("spx_sprite_set_physic_process"))
+	x.SpxSpriteSetTypeName = (GDExtensionSpxSpriteSetTypeName)(dlsymGD("spx_sprite_set_type_name"))
 	x.SpxSpriteSetChildPosition = (GDExtensionSpxSpriteSetChildPosition)(dlsymGD("spx_sprite_set_child_position"))
 	x.SpxSpriteGetChildPosition = (GDExtensionSpxSpriteGetChildPosition)(dlsymGD("spx_sprite_get_child_position"))
 	x.SpxSpriteSetChildRotation = (GDExtensionSpxSpriteSetChildRotation)(dlsymGD("spx_sprite_set_child_rotation"))

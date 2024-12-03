@@ -210,8 +210,8 @@ func (pself *Sprite) PauseAnim() {
 	SpriteMgr.PauseAnim(pself.Id)
 }
 
-func (pself *Sprite) PlayAnim(p_name string, p_custom_scale float32, p_from_end bool) {
-	SpriteMgr.PlayAnim(pself.Id, p_name, p_custom_scale, p_from_end)
+func (pself *Sprite) PlayAnim(p_name string, p_speed float32, p_revert bool) {
+	SpriteMgr.PlayAnim(pself.Id, p_name, p_speed, p_revert)
 }
 
 func (pself *Sprite) PlayBackwardsAnim(p_name string) {
@@ -352,6 +352,10 @@ func (pself *Sprite) SetTriggerMask(mask int64) {
 
 func (pself *Sprite) SetTriggerRect(center Vec2, size Vec2) {
 	SpriteMgr.SetTriggerRect(pself.Id, center, size)
+}
+
+func (pself *Sprite) SetTypeName(type_name string) {
+	SpriteMgr.SetTypeName(pself.Id, type_name)
 }
 
 func (pself *Sprite) SetVelocity(velocity Vec2) {
