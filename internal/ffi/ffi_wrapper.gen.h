@@ -138,6 +138,9 @@ void cgo_callfn_GDExtensionSpxPlatformGetTimeScale(const GDExtensionSpxPlatformG
 void cgo_callfn_GDExtensionSpxPlatformSetTimeScale(const GDExtensionSpxPlatformSetTimeScale fn, GdFloat time_scale) {
 	fn(time_scale);
 }
+void cgo_callfn_GDExtensionSpxResCreateAnimation(const GDExtensionSpxResCreateAnimation fn, GdString sprite_type_name, GdString anim_name, GdString context, GdInt fps, GdBool is_altas, GdInt* ret_val) {
+	fn(sprite_type_name, anim_name, context, fps, is_altas,ret_val);
+}
 void cgo_callfn_GDExtensionSpxResSetLoadMode(const GDExtensionSpxResSetLoadMode fn, GdBool is_direct_mode) {
 	fn(is_direct_mode);
 }
@@ -173,6 +176,9 @@ void cgo_callfn_GDExtensionSpxSpriteSetProcess(const GDExtensionSpxSpriteSetProc
 }
 void cgo_callfn_GDExtensionSpxSpriteSetPhysicProcess(const GDExtensionSpxSpriteSetPhysicProcess fn, GdObj obj, GdBool is_on) {
 	fn(obj, is_on);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetTypeName(const GDExtensionSpxSpriteSetTypeName fn, GdObj obj, GdString type_name) {
+	fn(obj, type_name);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetChildPosition(const GDExtensionSpxSpriteSetChildPosition fn, GdObj obj, GdString path, GdVec2 pos) {
 	fn(obj, path, pos);
@@ -261,8 +267,8 @@ void cgo_callfn_GDExtensionSpxSpriteGetZIndex(const GDExtensionSpxSpriteGetZInde
 void cgo_callfn_GDExtensionSpxSpriteSetZIndex(const GDExtensionSpxSpriteSetZIndex fn, GdObj obj, GdInt z) {
 	fn(obj, z);
 }
-void cgo_callfn_GDExtensionSpxSpritePlayAnim(const GDExtensionSpxSpritePlayAnim fn, GdObj obj, GdString p_name, GdFloat p_custom_scale, GdBool p_from_end) {
-	fn(obj, p_name, p_custom_scale, p_from_end);
+void cgo_callfn_GDExtensionSpxSpritePlayAnim(const GDExtensionSpxSpritePlayAnim fn, GdObj obj, GdString p_name, GdFloat p_speed, GdBool p_revert) {
+	fn(obj, p_name, p_speed, p_revert);
 }
 void cgo_callfn_GDExtensionSpxSpritePlayBackwardsAnim(const GDExtensionSpxSpritePlayBackwardsAnim fn, GdObj obj, GdString p_name) {
 	fn(obj, p_name);

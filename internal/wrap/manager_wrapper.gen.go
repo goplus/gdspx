@@ -298,6 +298,21 @@ func (pself *platformMgr) SetTimeScale(time_scale float32) {
 	arg0 := ToGdFloat(time_scale)
 	CallPlatformSetTimeScale(arg0)
 }
+func (pself *resMgr) CreateAnimation(sprite_type_name string, anim_name string, context string, fps int64, is_altas bool) int64 {
+	arg0Str := NewCString(sprite_type_name)
+	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
+	arg1Str := NewCString(anim_name)
+	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
+	arg2Str := NewCString(context)
+	arg2 := arg2Str.ToGdString()
+	defer arg2Str.Destroy()
+	arg3 := ToGdInt(fps)
+	arg4 := ToGdBool(is_altas)
+	retValue := CallResCreateAnimation(arg0, arg1, arg2, arg3, arg4)
+	return ToInt64(retValue)
+}
 func (pself *resMgr) SetLoadMode(is_direct_mode bool) {
 	arg0 := ToGdBool(is_direct_mode)
 	CallResSetLoadMode(arg0)
@@ -360,6 +375,13 @@ func (pself *spriteMgr) SetPhysicProcess(obj Object, is_on bool) {
 	arg0 := ToGdObj(obj)
 	arg1 := ToGdBool(is_on)
 	CallSpriteSetPhysicProcess(arg0, arg1)
+}
+func (pself *spriteMgr) SetTypeName(obj Object, type_name string) {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(type_name)
+	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
+	CallSpriteSetTypeName(arg0, arg1)
 }
 func (pself *spriteMgr) SetChildPosition(obj Object, path string, pos Vec2) {
 	arg0 := ToGdObj(obj)
@@ -536,13 +558,13 @@ func (pself *spriteMgr) SetZIndex(obj Object, z int64) {
 	arg1 := ToGdInt(z)
 	CallSpriteSetZIndex(arg0, arg1)
 }
-func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_custom_scale float32, p_from_end bool) {
+func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_speed float32, p_revert bool) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(p_name)
 	arg1 := arg1Str.ToGdString()
 	defer arg1Str.Destroy()
-	arg2 := ToGdFloat(p_custom_scale)
-	arg3 := ToGdBool(p_from_end)
+	arg2 := ToGdFloat(p_speed)
+	arg3 := ToGdBool(p_revert)
 	CallSpritePlayAnim(arg0, arg1, arg2, arg3)
 }
 func (pself *spriteMgr) PlayBackwardsAnim(obj Object, p_name string) {

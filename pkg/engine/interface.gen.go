@@ -80,6 +80,7 @@ type IPlatformMgr interface {
 }
 
 type IResMgr interface {
+	CreateAnimation(sprite_type_name string, anim_name string, context string, fps int64, is_altas bool) int64
 	SetLoadMode(is_direct_mode bool)
 	GetLoadMode() bool
 	GetBoundFromAlpha(p_path string) Rect2
@@ -98,6 +99,7 @@ type ISpriteMgr interface {
 	SetDontDestroyOnLoad(obj Object)
 	SetProcess(obj Object, is_on bool)
 	SetPhysicProcess(obj Object, is_on bool)
+	SetTypeName(obj Object, type_name string)
 	SetChildPosition(obj Object, path string, pos Vec2)
 	GetChildPosition(obj Object, path string) Vec2
 	SetChildRotation(obj Object, path string, rot float32)
@@ -127,7 +129,7 @@ type ISpriteMgr interface {
 	GetVisible(obj Object) bool
 	GetZIndex(obj Object) int64
 	SetZIndex(obj Object, z int64)
-	PlayAnim(obj Object, p_name string, p_custom_scale float32, p_from_end bool)
+	PlayAnim(obj Object, p_name string, p_speed float32, p_revert bool)
 	PlayBackwardsAnim(obj Object, p_name string)
 	PauseAnim(obj Object)
 	StopAnim(obj Object)

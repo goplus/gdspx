@@ -64,6 +64,7 @@ type GDExtensionInterface struct {
 	SpxPlatformIsDebugMode              js.Value
 	SpxPlatformGetTimeScale             js.Value
 	SpxPlatformSetTimeScale             js.Value
+	SpxResCreateAnimation               js.Value
 	SpxResSetLoadMode                   js.Value
 	SpxResGetLoadMode                   js.Value
 	SpxResGetBoundFromAlpha             js.Value
@@ -76,6 +77,7 @@ type GDExtensionInterface struct {
 	SpxSpriteSetDontDestroyOnLoad       js.Value
 	SpxSpriteSetProcess                 js.Value
 	SpxSpriteSetPhysicProcess           js.Value
+	SpxSpriteSetTypeName                js.Value
 	SpxSpriteSetChildPosition           js.Value
 	SpxSpriteGetChildPosition           js.Value
 	SpxSpriteSetChildRotation           js.Value
@@ -250,6 +252,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPlatformIsDebugMode = dlsymGD("gdspx_platform_is_debug_mode")
 	x.SpxPlatformGetTimeScale = dlsymGD("gdspx_platform_get_time_scale")
 	x.SpxPlatformSetTimeScale = dlsymGD("gdspx_platform_set_time_scale")
+	x.SpxResCreateAnimation = dlsymGD("gdspx_res_create_animation")
 	x.SpxResSetLoadMode = dlsymGD("gdspx_res_set_load_mode")
 	x.SpxResGetLoadMode = dlsymGD("gdspx_res_get_load_mode")
 	x.SpxResGetBoundFromAlpha = dlsymGD("gdspx_res_get_bound_from_alpha")
@@ -262,6 +265,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteSetDontDestroyOnLoad = dlsymGD("gdspx_sprite_set_dont_destroy_on_load")
 	x.SpxSpriteSetProcess = dlsymGD("gdspx_sprite_set_process")
 	x.SpxSpriteSetPhysicProcess = dlsymGD("gdspx_sprite_set_physic_process")
+	x.SpxSpriteSetTypeName = dlsymGD("gdspx_sprite_set_type_name")
 	x.SpxSpriteSetChildPosition = dlsymGD("gdspx_sprite_set_child_position")
 	x.SpxSpriteGetChildPosition = dlsymGD("gdspx_sprite_get_child_position")
 	x.SpxSpriteSetChildRotation = dlsymGD("gdspx_sprite_set_child_rotation")
