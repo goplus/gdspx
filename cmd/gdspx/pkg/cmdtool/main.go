@@ -50,7 +50,9 @@ func RunCmd(cmd ICmdTool, appName, version string, fs embed.FS, fsRelDir string,
 
 	err = cmd.OnBeforeCheck(os.Args[1])
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", err)
+		if err.Error() != "" {
+			fmt.Fprintf(os.Stderr, "%v\n", err)
+		}
 		return
 	}
 
