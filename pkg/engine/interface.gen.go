@@ -129,7 +129,7 @@ type ISpriteMgr interface {
 	GetVisible(obj Object) bool
 	GetZIndex(obj Object) int64
 	SetZIndex(obj Object, z int64)
-	PlayAnim(obj Object, p_name string, p_speed float32, p_revert bool)
+	PlayAnim(obj Object, p_name string, p_speed float32, isLoop bool, p_revert bool)
 	PlayBackwardsAnim(obj Object, p_name string)
 	PauseAnim(obj Object)
 	StopAnim(obj Object)

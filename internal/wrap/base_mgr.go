@@ -10,6 +10,11 @@ type baseMgr struct {
 	Node Node
 }
 
+func (pself *baseMgr) Initsss(node Node) {
+
+	pself.Node = node
+	//println("init manager", node.GetName())
+}
 func (pself *baseMgr) Init(node Node) {
 	pself.Node = node
 	//println("init manager", node.GetName())

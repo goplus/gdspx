@@ -558,14 +558,15 @@ func (pself *spriteMgr) SetZIndex(obj Object, z int64) {
 	arg1 := ToGdInt(z)
 	CallSpriteSetZIndex(arg0, arg1)
 }
-func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_speed float32, p_revert bool) {
+func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_speed float32, isLoop bool, p_revert bool) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(p_name)
 	arg1 := arg1Str.ToGdString()
 	defer arg1Str.Destroy()
 	arg2 := ToGdFloat(p_speed)
-	arg3 := ToGdBool(p_revert)
-	CallSpritePlayAnim(arg0, arg1, arg2, arg3)
+	arg3 := ToGdBool(isLoop)
+	arg4 := ToGdBool(p_revert)
+	CallSpritePlayAnim(arg0, arg1, arg2, arg3, arg4)
 }
 func (pself *spriteMgr) PlayBackwardsAnim(obj Object, p_name string) {
 	arg0 := ToGdObj(obj)

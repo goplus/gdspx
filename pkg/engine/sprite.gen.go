@@ -210,8 +210,8 @@ func (pself *Sprite) PauseAnim() {
 	SpriteMgr.PauseAnim(pself.Id)
 }
 
-func (pself *Sprite) PlayAnim(p_name string, p_speed float32, p_revert bool) {
-	SpriteMgr.PlayAnim(pself.Id, p_name, p_speed, p_revert)
+func (pself *Sprite) PlayAnim(p_name string, p_speed float32, isLoop bool, p_revert bool) {
+	SpriteMgr.PlayAnim(pself.Id, p_name, p_speed, isLoop, p_revert)
 }
 
 func (pself *Sprite) PlayBackwardsAnim(p_name string) {

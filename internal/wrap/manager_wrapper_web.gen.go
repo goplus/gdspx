@@ -506,12 +506,13 @@ func (pself *spriteMgr) SetZIndex(obj Object, z int64) {
 	arg1 := JsFromGdInt(z)
 	API.SpxSpriteSetZIndex.Invoke(arg0, arg1)
 }
-func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_speed float32, p_revert bool) {
+func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_speed float32, isLoop bool, p_revert bool) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdString(p_name)
 	arg2 := JsFromGdFloat(p_speed)
-	arg3 := JsFromGdBool(p_revert)
-	API.SpxSpritePlayAnim.Invoke(arg0, arg1, arg2, arg3)
+	arg3 := JsFromGdBool(isLoop)
+	arg4 := JsFromGdBool(p_revert)
+	API.SpxSpritePlayAnim.Invoke(arg0, arg1, arg2, arg3, arg4)
 }
 func (pself *spriteMgr) PlayBackwardsAnim(obj Object, p_name string) {
 	arg0 := JsFromGdObj(obj)
