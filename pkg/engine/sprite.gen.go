@@ -10,6 +10,10 @@
 */
 package engine
 
+import (
+	. "github.com/realdream-ai/mathf"
+)
+
 func (pself *Sprite) AddForce(force Vec2) {
 	SpriteMgr.AddForce(pself.Id, force)
 }
@@ -50,11 +54,11 @@ func (pself *Sprite) GetAnimOffset() Vec2 {
 	return SpriteMgr.GetAnimOffset(pself.Id)
 }
 
-func (pself *Sprite) GetAnimPlayingSpeed() float32 {
+func (pself *Sprite) GetAnimPlayingSpeed() float64 {
 	return SpriteMgr.GetAnimPlayingSpeed(pself.Id)
 }
 
-func (pself *Sprite) GetAnimSpeedScale() float32 {
+func (pself *Sprite) GetAnimSpeedScale() float64 {
 	return SpriteMgr.GetAnimSpeedScale(pself.Id)
 }
 
@@ -62,7 +66,7 @@ func (pself *Sprite) GetChildPosition(path string) Vec2 {
 	return SpriteMgr.GetChildPosition(pself.Id, path)
 }
 
-func (pself *Sprite) GetChildRotation(path string) float32 {
+func (pself *Sprite) GetChildRotation(path string) float64 {
 	return SpriteMgr.GetChildRotation(pself.Id, path)
 }
 
@@ -86,7 +90,7 @@ func (pself *Sprite) GetFloorNormal() Vec2 {
 	return SpriteMgr.GetFloorNormal(pself.Id)
 }
 
-func (pself *Sprite) GetGravity() float32 {
+func (pself *Sprite) GetGravity() float64 {
 	return SpriteMgr.GetGravity(pself.Id)
 }
 
@@ -94,7 +98,7 @@ func (pself *Sprite) GetLastMotion() Vec2 {
 	return SpriteMgr.GetLastMotion(pself.Id)
 }
 
-func (pself *Sprite) GetMass() float32 {
+func (pself *Sprite) GetMass() float64 {
 	return SpriteMgr.GetMass(pself.Id)
 }
 
@@ -114,7 +118,7 @@ func (pself *Sprite) GetRenderScale() Vec2 {
 	return SpriteMgr.GetRenderScale(pself.Id)
 }
 
-func (pself *Sprite) GetRotation() float32 {
+func (pself *Sprite) GetRotation() float64 {
 	return SpriteMgr.GetRotation(pself.Id)
 }
 
@@ -210,8 +214,8 @@ func (pself *Sprite) PauseAnim() {
 	SpriteMgr.PauseAnim(pself.Id)
 }
 
-func (pself *Sprite) PlayAnim(p_name string, p_speed float32, p_revert bool) {
-	SpriteMgr.PlayAnim(pself.Id, p_name, p_speed, p_revert)
+func (pself *Sprite) PlayAnim(p_name string, p_speed float64, isLoop bool, p_revert bool) {
+	SpriteMgr.PlayAnim(pself.Id, p_name, p_speed, isLoop, p_revert)
 }
 
 func (pself *Sprite) PlayBackwardsAnim(p_name string) {
@@ -242,7 +246,7 @@ func (pself *Sprite) SetAnimOffset(p_offset Vec2) {
 	SpriteMgr.SetAnimOffset(pself.Id, p_offset)
 }
 
-func (pself *Sprite) SetAnimSpeedScale(p_speed_scale float32) {
+func (pself *Sprite) SetAnimSpeedScale(p_speed_scale float64) {
 	SpriteMgr.SetAnimSpeedScale(pself.Id, p_speed_scale)
 }
 
@@ -250,7 +254,7 @@ func (pself *Sprite) SetChildPosition(path string, pos Vec2) {
 	SpriteMgr.SetChildPosition(pself.Id, path, pos)
 }
 
-func (pself *Sprite) SetChildRotation(path string, rot float32) {
+func (pself *Sprite) SetChildRotation(path string, rot float64) {
 	SpriteMgr.SetChildRotation(pself.Id, path, rot)
 }
 
@@ -262,7 +266,7 @@ func (pself *Sprite) SetColliderCapsule(center Vec2, size Vec2) {
 	SpriteMgr.SetColliderCapsule(pself.Id, center, size)
 }
 
-func (pself *Sprite) SetColliderCircle(center Vec2, radius float32) {
+func (pself *Sprite) SetColliderCircle(center Vec2, radius float64) {
 	SpriteMgr.SetColliderCircle(pself.Id, center, radius)
 }
 
@@ -290,11 +294,11 @@ func (pself *Sprite) SetDontDestroyOnLoad() {
 	SpriteMgr.SetDontDestroyOnLoad(pself.Id)
 }
 
-func (pself *Sprite) SetGravity(gravity float32) {
+func (pself *Sprite) SetGravity(gravity float64) {
 	SpriteMgr.SetGravity(pself.Id, gravity)
 }
 
-func (pself *Sprite) SetMass(mass float32) {
+func (pself *Sprite) SetMass(mass float64) {
 	SpriteMgr.SetMass(pself.Id, mass)
 }
 
@@ -314,7 +318,7 @@ func (pself *Sprite) SetRenderScale(scale Vec2) {
 	SpriteMgr.SetRenderScale(pself.Id, scale)
 }
 
-func (pself *Sprite) SetRotation(rot float32) {
+func (pself *Sprite) SetRotation(rot float64) {
 	SpriteMgr.SetRotation(pself.Id, rot)
 }
 
@@ -334,7 +338,7 @@ func (pself *Sprite) SetTriggerCapsule(center Vec2, size Vec2) {
 	SpriteMgr.SetTriggerCapsule(pself.Id, center, size)
 }
 
-func (pself *Sprite) SetTriggerCircle(center Vec2, radius float32) {
+func (pself *Sprite) SetTriggerCircle(center Vec2, radius float64) {
 	SpriteMgr.SetTriggerCircle(pself.Id, center, radius)
 }
 

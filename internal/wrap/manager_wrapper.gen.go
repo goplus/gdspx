@@ -16,6 +16,7 @@ import (
 	"fmt"
 	. "github.com/realdream-ai/gdspx/internal/ffi"
 	. "github.com/realdream-ai/gdspx/pkg/engine"
+	. "github.com/realdream-ai/mathf"
 	"reflect"
 )
 
@@ -119,11 +120,11 @@ func (pself *audioMgr) PauseMusic() {
 func (pself *audioMgr) ResumeMusic() {
 	CallAudioResumeMusic()
 }
-func (pself *audioMgr) GetMusicTimer() float32 {
+func (pself *audioMgr) GetMusicTimer() float64 {
 	retValue := CallAudioGetMusicTimer()
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
-func (pself *audioMgr) SetMusicTimer(time float32) {
+func (pself *audioMgr) SetMusicTimer(time float64) {
 	arg0 := ToGdFloat(time)
 	CallAudioSetMusicTimer(arg0)
 }
@@ -131,29 +132,29 @@ func (pself *audioMgr) IsMusicPlaying() bool {
 	retValue := CallAudioIsMusicPlaying()
 	return ToBool(retValue)
 }
-func (pself *audioMgr) SetSfxVolume(volume float32) {
+func (pself *audioMgr) SetSfxVolume(volume float64) {
 	arg0 := ToGdFloat(volume)
 	CallAudioSetSfxVolume(arg0)
 }
-func (pself *audioMgr) GetSfxVolume() float32 {
+func (pself *audioMgr) GetSfxVolume() float64 {
 	retValue := CallAudioGetSfxVolume()
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
-func (pself *audioMgr) SetMusicVolume(volume float32) {
+func (pself *audioMgr) SetMusicVolume(volume float64) {
 	arg0 := ToGdFloat(volume)
 	CallAudioSetMusicVolume(arg0)
 }
-func (pself *audioMgr) GetMusicVolume() float32 {
+func (pself *audioMgr) GetMusicVolume() float64 {
 	retValue := CallAudioGetMusicVolume()
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
-func (pself *audioMgr) SetMasterVolume(volume float32) {
+func (pself *audioMgr) SetMasterVolume(volume float64) {
 	arg0 := ToGdFloat(volume)
 	CallAudioSetMasterVolume(arg0)
 }
-func (pself *audioMgr) GetMasterVolume() float32 {
+func (pself *audioMgr) GetMasterVolume() float64 {
 	retValue := CallAudioGetMasterVolume()
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
 func (pself *cameraMgr) GetCameraPosition() Vec2 {
 	retValue := CallCameraGetCameraPosition()
@@ -194,7 +195,7 @@ func (pself *inputMgr) GetKeyState(key int64) int64 {
 	retValue := CallInputGetKeyState(arg0)
 	return ToInt64(retValue)
 }
-func (pself *inputMgr) GetAxis(neg_action string, pos_action string) float32 {
+func (pself *inputMgr) GetAxis(neg_action string, pos_action string) float64 {
 	arg0Str := NewCString(neg_action)
 	arg0 := arg0Str.ToGdString()
 	defer arg0Str.Destroy()
@@ -202,7 +203,7 @@ func (pself *inputMgr) GetAxis(neg_action string, pos_action string) float32 {
 	arg1 := arg1Str.ToGdString()
 	defer arg1Str.Destroy()
 	retValue := CallInputGetAxis(arg0, arg1)
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
 func (pself *inputMgr) IsActionPressed(action string) bool {
 	arg0Str := NewCString(action)
@@ -290,11 +291,11 @@ func (pself *platformMgr) IsDebugMode() bool {
 	retValue := CallPlatformIsDebugMode()
 	return ToBool(retValue)
 }
-func (pself *platformMgr) GetTimeScale() float32 {
+func (pself *platformMgr) GetTimeScale() float64 {
 	retValue := CallPlatformGetTimeScale()
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
-func (pself *platformMgr) SetTimeScale(time_scale float32) {
+func (pself *platformMgr) SetTimeScale(time_scale float64) {
 	arg0 := ToGdFloat(time_scale)
 	CallPlatformSetTimeScale(arg0)
 }
@@ -399,7 +400,7 @@ func (pself *spriteMgr) GetChildPosition(obj Object, path string) Vec2 {
 	retValue := CallSpriteGetChildPosition(arg0, arg1)
 	return ToVec2(retValue)
 }
-func (pself *spriteMgr) SetChildRotation(obj Object, path string, rot float32) {
+func (pself *spriteMgr) SetChildRotation(obj Object, path string, rot float64) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)
 	arg1 := arg1Str.ToGdString()
@@ -407,13 +408,13 @@ func (pself *spriteMgr) SetChildRotation(obj Object, path string, rot float32) {
 	arg2 := ToGdFloat(rot)
 	CallSpriteSetChildRotation(arg0, arg1, arg2)
 }
-func (pself *spriteMgr) GetChildRotation(obj Object, path string) float32 {
+func (pself *spriteMgr) GetChildRotation(obj Object, path string) float64 {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)
 	arg1 := arg1Str.ToGdString()
 	defer arg1Str.Destroy()
 	retValue := CallSpriteGetChildRotation(arg0, arg1)
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
 func (pself *spriteMgr) SetChildScale(obj Object, path string, scale Vec2) {
 	arg0 := ToGdObj(obj)
@@ -478,15 +479,15 @@ func (pself *spriteMgr) GetPosition(obj Object) Vec2 {
 	retValue := CallSpriteGetPosition(arg0)
 	return ToVec2(retValue)
 }
-func (pself *spriteMgr) SetRotation(obj Object, rot float32) {
+func (pself *spriteMgr) SetRotation(obj Object, rot float64) {
 	arg0 := ToGdObj(obj)
 	arg1 := ToGdFloat(rot)
 	CallSpriteSetRotation(arg0, arg1)
 }
-func (pself *spriteMgr) GetRotation(obj Object) float32 {
+func (pself *spriteMgr) GetRotation(obj Object) float64 {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteGetRotation(arg0)
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
 func (pself *spriteMgr) SetScale(obj Object, scale Vec2) {
 	arg0 := ToGdObj(obj)
@@ -558,14 +559,15 @@ func (pself *spriteMgr) SetZIndex(obj Object, z int64) {
 	arg1 := ToGdInt(z)
 	CallSpriteSetZIndex(arg0, arg1)
 }
-func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_speed float32, p_revert bool) {
+func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_speed float64, isLoop bool, p_revert bool) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(p_name)
 	arg1 := arg1Str.ToGdString()
 	defer arg1Str.Destroy()
 	arg2 := ToGdFloat(p_speed)
-	arg3 := ToGdBool(p_revert)
-	CallSpritePlayAnim(arg0, arg1, arg2, arg3)
+	arg3 := ToGdBool(isLoop)
+	arg4 := ToGdBool(p_revert)
+	CallSpritePlayAnim(arg0, arg1, arg2, arg3, arg4)
 }
 func (pself *spriteMgr) PlayBackwardsAnim(obj Object, p_name string) {
 	arg0 := ToGdObj(obj)
@@ -609,20 +611,20 @@ func (pself *spriteMgr) GetAnimFrame(obj Object) int64 {
 	retValue := CallSpriteGetAnimFrame(arg0)
 	return ToInt64(retValue)
 }
-func (pself *spriteMgr) SetAnimSpeedScale(obj Object, p_speed_scale float32) {
+func (pself *spriteMgr) SetAnimSpeedScale(obj Object, p_speed_scale float64) {
 	arg0 := ToGdObj(obj)
 	arg1 := ToGdFloat(p_speed_scale)
 	CallSpriteSetAnimSpeedScale(arg0, arg1)
 }
-func (pself *spriteMgr) GetAnimSpeedScale(obj Object) float32 {
+func (pself *spriteMgr) GetAnimSpeedScale(obj Object) float64 {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteGetAnimSpeedScale(arg0)
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
-func (pself *spriteMgr) GetAnimPlayingSpeed(obj Object) float32 {
+func (pself *spriteMgr) GetAnimPlayingSpeed(obj Object) float64 {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteGetAnimPlayingSpeed(arg0)
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
 func (pself *spriteMgr) SetAnimCentered(obj Object, p_center bool) {
 	arg0 := ToGdObj(obj)
@@ -733,25 +735,25 @@ func (pself *spriteMgr) MoveAndSlide(obj Object) {
 	arg0 := ToGdObj(obj)
 	CallSpriteMoveAndSlide(arg0)
 }
-func (pself *spriteMgr) SetGravity(obj Object, gravity float32) {
+func (pself *spriteMgr) SetGravity(obj Object, gravity float64) {
 	arg0 := ToGdObj(obj)
 	arg1 := ToGdFloat(gravity)
 	CallSpriteSetGravity(arg0, arg1)
 }
-func (pself *spriteMgr) GetGravity(obj Object) float32 {
+func (pself *spriteMgr) GetGravity(obj Object) float64 {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteGetGravity(arg0)
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
-func (pself *spriteMgr) SetMass(obj Object, mass float32) {
+func (pself *spriteMgr) SetMass(obj Object, mass float64) {
 	arg0 := ToGdObj(obj)
 	arg1 := ToGdFloat(mass)
 	CallSpriteSetMass(arg0, arg1)
 }
-func (pself *spriteMgr) GetMass(obj Object) float32 {
+func (pself *spriteMgr) GetMass(obj Object) float64 {
 	arg0 := ToGdObj(obj)
 	retValue := CallSpriteGetMass(arg0)
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
 func (pself *spriteMgr) AddForce(obj Object, force Vec2) {
 	arg0 := ToGdObj(obj)
@@ -809,7 +811,7 @@ func (pself *spriteMgr) SetColliderRect(obj Object, center Vec2, size Vec2) {
 	arg2 := ToGdVec2(size)
 	CallSpriteSetColliderRect(arg0, arg1, arg2)
 }
-func (pself *spriteMgr) SetColliderCircle(obj Object, center Vec2, radius float32) {
+func (pself *spriteMgr) SetColliderCircle(obj Object, center Vec2, radius float64) {
 	arg0 := ToGdObj(obj)
 	arg1 := ToGdVec2(center)
 	arg2 := ToGdFloat(radius)
@@ -837,7 +839,7 @@ func (pself *spriteMgr) SetTriggerRect(obj Object, center Vec2, size Vec2) {
 	arg2 := ToGdVec2(size)
 	CallSpriteSetTriggerRect(arg0, arg1, arg2)
 }
-func (pself *spriteMgr) SetTriggerCircle(obj Object, center Vec2, radius float32) {
+func (pself *spriteMgr) SetTriggerCircle(obj Object, center Vec2, radius float64) {
 	arg0 := ToGdObj(obj)
 	arg1 := ToGdVec2(center)
 	arg2 := ToGdFloat(radius)
@@ -909,7 +911,7 @@ func (pself *uiMgr) CreateToggle(path string, value bool) Object {
 	retValue := CallUiCreateToggle(arg0, arg1)
 	return ToObject(retValue)
 }
-func (pself *uiMgr) CreateSlider(path string, value float32) Object {
+func (pself *uiMgr) CreateSlider(path string, value float64) Object {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
 	defer arg0Str.Destroy()
@@ -1081,12 +1083,12 @@ func (pself *uiMgr) SetGlobalPosition(obj Object, value Vec2) {
 	arg1 := ToGdVec2(value)
 	CallUiSetGlobalPosition(arg0, arg1)
 }
-func (pself *uiMgr) GetRotation(obj Object) float32 {
+func (pself *uiMgr) GetRotation(obj Object) float64 {
 	arg0 := ToGdObj(obj)
 	retValue := CallUiGetRotation(arg0)
-	return ToFloat32(retValue)
+	return ToFloat64(retValue)
 }
-func (pself *uiMgr) SetRotation(obj Object, value float32) {
+func (pself *uiMgr) SetRotation(obj Object, value float64) {
 	arg0 := ToGdObj(obj)
 	arg1 := ToGdFloat(value)
 	CallUiSetRotation(arg0, arg1)

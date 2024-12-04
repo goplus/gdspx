@@ -7,7 +7,7 @@ import (
 var (
 	Id2Sprites         = make(map[Object]ISpriter)
 	Id2UiNodes         = make(map[Object]IUiNode)
-	TimeSinceGameStart = float32(0)
+	TimeSinceGameStart = float64(0)
 	name2SpriteType    = make(map[string]reflect.Type)
 )
 
@@ -38,7 +38,7 @@ func InternalInitEngine() {
 	initKeyCode()
 }
 
-func InternalUpdateEngine(delta float32) {
+func InternalUpdateEngine(delta float64) {
 	updateTimers(delta)
 	updateTweens(delta)
 }

@@ -8,7 +8,7 @@ func (pself *Enemy) OnStart() {
 	println("Enemy.OnStart", pself.GetPosX(), pself.GetPosY())
 }
 
-func (pself *Enemy) OnUpdate(delta float32) {
+func (pself *Enemy) OnUpdate(delta float64) {
 	pself.AddPosX(100 * delta)
 }
 

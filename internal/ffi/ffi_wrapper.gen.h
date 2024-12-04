@@ -267,8 +267,8 @@ void cgo_callfn_GDExtensionSpxSpriteGetZIndex(const GDExtensionSpxSpriteGetZInde
 void cgo_callfn_GDExtensionSpxSpriteSetZIndex(const GDExtensionSpxSpriteSetZIndex fn, GdObj obj, GdInt z) {
 	fn(obj, z);
 }
-void cgo_callfn_GDExtensionSpxSpritePlayAnim(const GDExtensionSpxSpritePlayAnim fn, GdObj obj, GdString p_name, GdFloat p_speed, GdBool p_revert) {
-	fn(obj, p_name, p_speed, p_revert);
+void cgo_callfn_GDExtensionSpxSpritePlayAnim(const GDExtensionSpxSpritePlayAnim fn, GdObj obj, GdString p_name, GdFloat p_speed, GdBool isLoop, GdBool p_revert) {
+	fn(obj, p_name, p_speed, isLoop, p_revert);
 }
 void cgo_callfn_GDExtensionSpxSpritePlayBackwardsAnim(const GDExtensionSpxSpritePlayBackwardsAnim fn, GdObj obj, GdString p_name) {
 	fn(obj, p_name);

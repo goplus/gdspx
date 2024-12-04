@@ -2,24 +2,16 @@ package wrap
 
 import (
 	"fmt"
-
-	. "github.com/realdream-ai/gdspx/pkg/engine"
 )
 
 type baseMgr struct {
-	Node Node
-}
-
-func (pself *baseMgr) Init(node Node) {
-	pself.Node = node
-	//println("init manager", node.GetName())
 }
 
 func (pself *baseMgr) OnStart() {
 }
-func (pself *baseMgr) OnUpdate(delta float32) {
+func (pself *baseMgr) OnUpdate(delta float64) {
 }
-func (pself *baseMgr) OnFixedUpdate(delta float32) {
+func (pself *baseMgr) OnFixedUpdate(delta float64) {
 }
 func (pself *baseMgr) OnDestroy() {
 }

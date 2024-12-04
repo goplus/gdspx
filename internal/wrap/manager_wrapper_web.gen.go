@@ -115,11 +115,11 @@ func (pself *audioMgr) PauseMusic() {
 func (pself *audioMgr) ResumeMusic() {
 	API.SpxAudioResumeMusic.Invoke()
 }
-func (pself *audioMgr) GetMusicTimer() float32 {
+func (pself *audioMgr) GetMusicTimer() float64 {
 	_retValue := API.SpxAudioGetMusicTimer.Invoke()
 	return JsToGdFloat(_retValue)
 }
-func (pself *audioMgr) SetMusicTimer(time float32) {
+func (pself *audioMgr) SetMusicTimer(time float64) {
 	arg0 := JsFromGdFloat(time)
 	API.SpxAudioSetMusicTimer.Invoke(arg0)
 }
@@ -127,27 +127,27 @@ func (pself *audioMgr) IsMusicPlaying() bool {
 	_retValue := API.SpxAudioIsMusicPlaying.Invoke()
 	return JsToGdBool(_retValue)
 }
-func (pself *audioMgr) SetSfxVolume(volume float32) {
+func (pself *audioMgr) SetSfxVolume(volume float64) {
 	arg0 := JsFromGdFloat(volume)
 	API.SpxAudioSetSfxVolume.Invoke(arg0)
 }
-func (pself *audioMgr) GetSfxVolume() float32 {
+func (pself *audioMgr) GetSfxVolume() float64 {
 	_retValue := API.SpxAudioGetSfxVolume.Invoke()
 	return JsToGdFloat(_retValue)
 }
-func (pself *audioMgr) SetMusicVolume(volume float32) {
+func (pself *audioMgr) SetMusicVolume(volume float64) {
 	arg0 := JsFromGdFloat(volume)
 	API.SpxAudioSetMusicVolume.Invoke(arg0)
 }
-func (pself *audioMgr) GetMusicVolume() float32 {
+func (pself *audioMgr) GetMusicVolume() float64 {
 	_retValue := API.SpxAudioGetMusicVolume.Invoke()
 	return JsToGdFloat(_retValue)
 }
-func (pself *audioMgr) SetMasterVolume(volume float32) {
+func (pself *audioMgr) SetMasterVolume(volume float64) {
 	arg0 := JsFromGdFloat(volume)
 	API.SpxAudioSetMasterVolume.Invoke(arg0)
 }
-func (pself *audioMgr) GetMasterVolume() float32 {
+func (pself *audioMgr) GetMasterVolume() float64 {
 	_retValue := API.SpxAudioGetMasterVolume.Invoke()
 	return JsToGdFloat(_retValue)
 }
@@ -190,7 +190,7 @@ func (pself *inputMgr) GetKeyState(key int64) int64 {
 	_retValue := API.SpxInputGetKeyState.Invoke(arg0)
 	return JsToGdInt(_retValue)
 }
-func (pself *inputMgr) GetAxis(neg_action string, pos_action string) float32 {
+func (pself *inputMgr) GetAxis(neg_action string, pos_action string) float64 {
 	arg0 := JsFromGdString(neg_action)
 	arg1 := JsFromGdString(pos_action)
 	_retValue := API.SpxInputGetAxis.Invoke(arg0, arg1)
@@ -274,11 +274,11 @@ func (pself *platformMgr) IsDebugMode() bool {
 	_retValue := API.SpxPlatformIsDebugMode.Invoke()
 	return JsToGdBool(_retValue)
 }
-func (pself *platformMgr) GetTimeScale() float32 {
+func (pself *platformMgr) GetTimeScale() float64 {
 	_retValue := API.SpxPlatformGetTimeScale.Invoke()
 	return JsToGdFloat(_retValue)
 }
-func (pself *platformMgr) SetTimeScale(time_scale float32) {
+func (pself *platformMgr) SetTimeScale(time_scale float64) {
 	arg0 := JsFromGdFloat(time_scale)
 	API.SpxPlatformSetTimeScale.Invoke(arg0)
 }
@@ -361,13 +361,13 @@ func (pself *spriteMgr) GetChildPosition(obj Object, path string) Vec2 {
 	_retValue := API.SpxSpriteGetChildPosition.Invoke(arg0, arg1)
 	return JsToGdVec2(_retValue)
 }
-func (pself *spriteMgr) SetChildRotation(obj Object, path string, rot float32) {
+func (pself *spriteMgr) SetChildRotation(obj Object, path string, rot float64) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdString(path)
 	arg2 := JsFromGdFloat(rot)
 	API.SpxSpriteSetChildRotation.Invoke(arg0, arg1, arg2)
 }
-func (pself *spriteMgr) GetChildRotation(obj Object, path string) float32 {
+func (pself *spriteMgr) GetChildRotation(obj Object, path string) float64 {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdString(path)
 	_retValue := API.SpxSpriteGetChildRotation.Invoke(arg0, arg1)
@@ -430,12 +430,12 @@ func (pself *spriteMgr) GetPosition(obj Object) Vec2 {
 	_retValue := API.SpxSpriteGetPosition.Invoke(arg0)
 	return JsToGdVec2(_retValue)
 }
-func (pself *spriteMgr) SetRotation(obj Object, rot float32) {
+func (pself *spriteMgr) SetRotation(obj Object, rot float64) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdFloat(rot)
 	API.SpxSpriteSetRotation.Invoke(arg0, arg1)
 }
-func (pself *spriteMgr) GetRotation(obj Object) float32 {
+func (pself *spriteMgr) GetRotation(obj Object) float64 {
 	arg0 := JsFromGdObj(obj)
 	_retValue := API.SpxSpriteGetRotation.Invoke(arg0)
 	return JsToGdFloat(_retValue)
@@ -506,12 +506,13 @@ func (pself *spriteMgr) SetZIndex(obj Object, z int64) {
 	arg1 := JsFromGdInt(z)
 	API.SpxSpriteSetZIndex.Invoke(arg0, arg1)
 }
-func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_speed float32, p_revert bool) {
+func (pself *spriteMgr) PlayAnim(obj Object, p_name string, p_speed float64, isLoop bool, p_revert bool) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdString(p_name)
 	arg2 := JsFromGdFloat(p_speed)
-	arg3 := JsFromGdBool(p_revert)
-	API.SpxSpritePlayAnim.Invoke(arg0, arg1, arg2, arg3)
+	arg3 := JsFromGdBool(isLoop)
+	arg4 := JsFromGdBool(p_revert)
+	API.SpxSpritePlayAnim.Invoke(arg0, arg1, arg2, arg3, arg4)
 }
 func (pself *spriteMgr) PlayBackwardsAnim(obj Object, p_name string) {
 	arg0 := JsFromGdObj(obj)
@@ -551,17 +552,17 @@ func (pself *spriteMgr) GetAnimFrame(obj Object) int64 {
 	_retValue := API.SpxSpriteGetAnimFrame.Invoke(arg0)
 	return JsToGdInt(_retValue)
 }
-func (pself *spriteMgr) SetAnimSpeedScale(obj Object, p_speed_scale float32) {
+func (pself *spriteMgr) SetAnimSpeedScale(obj Object, p_speed_scale float64) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdFloat(p_speed_scale)
 	API.SpxSpriteSetAnimSpeedScale.Invoke(arg0, arg1)
 }
-func (pself *spriteMgr) GetAnimSpeedScale(obj Object) float32 {
+func (pself *spriteMgr) GetAnimSpeedScale(obj Object) float64 {
 	arg0 := JsFromGdObj(obj)
 	_retValue := API.SpxSpriteGetAnimSpeedScale.Invoke(arg0)
 	return JsToGdFloat(_retValue)
 }
-func (pself *spriteMgr) GetAnimPlayingSpeed(obj Object) float32 {
+func (pself *spriteMgr) GetAnimPlayingSpeed(obj Object) float64 {
 	arg0 := JsFromGdObj(obj)
 	_retValue := API.SpxSpriteGetAnimPlayingSpeed.Invoke(arg0)
 	return JsToGdFloat(_retValue)
@@ -675,22 +676,22 @@ func (pself *spriteMgr) MoveAndSlide(obj Object) {
 	arg0 := JsFromGdObj(obj)
 	API.SpxSpriteMoveAndSlide.Invoke(arg0)
 }
-func (pself *spriteMgr) SetGravity(obj Object, gravity float32) {
+func (pself *spriteMgr) SetGravity(obj Object, gravity float64) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdFloat(gravity)
 	API.SpxSpriteSetGravity.Invoke(arg0, arg1)
 }
-func (pself *spriteMgr) GetGravity(obj Object) float32 {
+func (pself *spriteMgr) GetGravity(obj Object) float64 {
 	arg0 := JsFromGdObj(obj)
 	_retValue := API.SpxSpriteGetGravity.Invoke(arg0)
 	return JsToGdFloat(_retValue)
 }
-func (pself *spriteMgr) SetMass(obj Object, mass float32) {
+func (pself *spriteMgr) SetMass(obj Object, mass float64) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdFloat(mass)
 	API.SpxSpriteSetMass.Invoke(arg0, arg1)
 }
-func (pself *spriteMgr) GetMass(obj Object) float32 {
+func (pself *spriteMgr) GetMass(obj Object) float64 {
 	arg0 := JsFromGdObj(obj)
 	_retValue := API.SpxSpriteGetMass.Invoke(arg0)
 	return JsToGdFloat(_retValue)
@@ -751,7 +752,7 @@ func (pself *spriteMgr) SetColliderRect(obj Object, center Vec2, size Vec2) {
 	arg2 := JsFromGdVec2(size)
 	API.SpxSpriteSetColliderRect.Invoke(arg0, arg1, arg2)
 }
-func (pself *spriteMgr) SetColliderCircle(obj Object, center Vec2, radius float32) {
+func (pself *spriteMgr) SetColliderCircle(obj Object, center Vec2, radius float64) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdVec2(center)
 	arg2 := JsFromGdFloat(radius)
@@ -779,7 +780,7 @@ func (pself *spriteMgr) SetTriggerRect(obj Object, center Vec2, size Vec2) {
 	arg2 := JsFromGdVec2(size)
 	API.SpxSpriteSetTriggerRect.Invoke(arg0, arg1, arg2)
 }
-func (pself *spriteMgr) SetTriggerCircle(obj Object, center Vec2, radius float32) {
+func (pself *spriteMgr) SetTriggerCircle(obj Object, center Vec2, radius float64) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdVec2(center)
 	arg2 := JsFromGdFloat(radius)
@@ -835,7 +836,7 @@ func (pself *uiMgr) CreateToggle(path string, value bool) Object {
 	_retValue := API.SpxUiCreateToggle.Invoke(arg0, arg1)
 	return JsToGdObject(_retValue)
 }
-func (pself *uiMgr) CreateSlider(path string, value float32) Object {
+func (pself *uiMgr) CreateSlider(path string, value float64) Object {
 	arg0 := JsFromGdString(path)
 	arg1 := JsFromGdFloat(value)
 	_retValue := API.SpxUiCreateSlider.Invoke(arg0, arg1)
@@ -997,12 +998,12 @@ func (pself *uiMgr) SetGlobalPosition(obj Object, value Vec2) {
 	arg1 := JsFromGdVec2(value)
 	API.SpxUiSetGlobalPosition.Invoke(arg0, arg1)
 }
-func (pself *uiMgr) GetRotation(obj Object) float32 {
+func (pself *uiMgr) GetRotation(obj Object) float64 {
 	arg0 := JsFromGdObj(obj)
 	_retValue := API.SpxUiGetRotation.Invoke(arg0)
 	return JsToGdFloat(_retValue)
 }
-func (pself *uiMgr) SetRotation(obj Object, value float32) {
+func (pself *uiMgr) SetRotation(obj Object, value float64) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdFloat(value)
 	API.SpxUiSetRotation.Invoke(arg0, arg1)

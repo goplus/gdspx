@@ -21,7 +21,7 @@ func onStart() {
 	println("hello world!")
 }
 
-func onUpdate(delta float32) {
+func onUpdate(delta float64) {
 	//println("onEngineUpdate")
 }
 

@@ -1073,15 +1073,17 @@ func CallSpritePlayAnim(
 	obj GdObj,
 	p_name GdString,
 	p_speed GdFloat,
+	isLoop GdBool,
 	p_revert GdBool,
 ) {
 	arg0 := (C.GDExtensionSpxSpritePlayAnim)(api.SpxSpritePlayAnim)
 	arg1GdObj = (C.GdObj)(obj)
 	arg2GdString = (C.GdString)(p_name)
 	arg3GdFloat = (C.GdFloat)(p_speed)
-	arg4GdBool = (C.GdBool)(p_revert)
+	arg4GdBool = (C.GdBool)(isLoop)
+	arg5GdBool = (C.GdBool)(p_revert)
 
-	C.cgo_callfn_GDExtensionSpxSpritePlayAnim(arg0, arg1GdObj, arg2GdString, arg3GdFloat, arg4GdBool)
+	C.cgo_callfn_GDExtensionSpxSpritePlayAnim(arg0, arg1GdObj, arg2GdString, arg3GdFloat, arg4GdBool, arg5GdBool)
 
 }
 func CallSpritePlayBackwardsAnim(

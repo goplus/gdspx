@@ -66,10 +66,10 @@ func onSpriteReady(id int64) {
 		sprite.OnStart()
 	}
 }
-func onSpriteUpdated(delta float32) {
+func onSpriteUpdated(delta float64) {
 	println("onSpriteUpdated ", delta)
 }
-func onSpriteFixedUpdated(delta float32) {
+func onSpriteFixedUpdated(delta float64) {
 	println("onSpriteFixedUpdated ", delta)
 }
 func onSpriteDestroyed(id int64) {
@@ -102,7 +102,7 @@ func onActionJustPressed(name string) {
 func onActionJustReleased(name string) {
 	println("onActionJustReleased ", name)
 }
-func onAxisChanged(name string, value float32) {
+func onAxisChanged(name string, value float64) {
 	println("onAxisChanged ", name, value)
 }
 

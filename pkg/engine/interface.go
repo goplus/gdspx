@@ -1,14 +1,17 @@
 package engine
 
+import (
+	. "github.com/realdream-ai/mathf"
+)
+
 type ILifeCycle interface {
 	OnStart()
-	OnFixedUpdate(delta float32)
-	OnUpdate(delta float32)
+	OnFixedUpdate(delta float64)
+	OnUpdate(delta float64)
 	OnDestroy()
 }
 type IManager interface {
 	ILifeCycle
-	Init(root Node)
 }
 
 type ISpriter interface {
@@ -76,8 +79,8 @@ type IUiNode interface {
 }
 type EngineCallbackInfo struct {
 	OnEngineStart       func()
-	OnEngineUpdate      func(float32)
-	OnEngineFixedUpdate func(float32)
+	OnEngineUpdate      func(float64)
+	OnEngineFixedUpdate func(float64)
 	OnEngineDestroy     func()
 
 	OnKeyPressed  func(int64)
@@ -90,8 +93,8 @@ type CallbackInfo struct {
 	OnSceneSpriteInstantiated func(int64, string)
 	// life cycle
 	OnSpriteReady        func(int64)
-	OnSpriteUpdated      func(float32)
-	OnSpriteFixedUpdated func(float32)
+	OnSpriteUpdated      func(float64)
+	OnSpriteFixedUpdated func(float64)
 	OnSpriteDestroyed    func(int64)
 
 	// input
@@ -100,7 +103,7 @@ type CallbackInfo struct {
 	OnActionPressed      func(string)
 	OnActionJustPressed  func(string)
 	OnActionJustReleased func(string)
-	OnAxisChanged        func(string, float32)
+	OnAxisChanged        func(string, float64)
 
 	// physic
 	OnCollisionEnter func(int64, int64)

@@ -9,6 +9,10 @@
 {{ $view := . -}}
 
 package engine
+
+import (
+	. "github.com/realdream-ai/mathf"
+)
 var (
 {{- range $i, $name := $view.Mangers }}
     {{camelCase $name}}Mgr I{{camelCase $name}}Mgr

@@ -4,10 +4,11 @@ import (
 	. "gdspx-demo02/pkg/sprite"
 
 	. "github.com/realdream-ai/gdspx/pkg/engine"
+	. "github.com/realdream-ai/mathf"
 )
 
 var (
-	timer = float32(0)
+	timer = float64(0)
 )
 
 func RegisterTypes() {
@@ -25,7 +26,7 @@ func OnStart() {
 
 }
 
-func OnUpdate(delta float32) {
+func OnUpdate(delta float64) {
 }
 
 func OnDestroy() {

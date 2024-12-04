@@ -9,6 +9,7 @@ import (
 	"unsafe"
 
 	"github.com/realdream-ai/gdspx/pkg/engine"
+	"github.com/realdream-ai/mathf"
 )
 
 type Uint64T C.uint64_t
@@ -44,19 +45,19 @@ func ToGdBool(val bool) GdBool {
 func ToBool(val GdBool) bool {
 	return val != 0
 }
-func ToGdVec2(val engine.Vec2) GdVec2 {
+func ToGdVec2(val mathf.Vec2) GdVec2 {
 	return GdVec2{C.GdFloat(val.X), C.GdFloat(val.Y)}
 }
-func ToVec2(val GdVec2) engine.Vec2 {
-	return engine.Vec2{float32(val.X), float32(val.Y)}
+func ToVec2(val GdVec2) mathf.Vec2 {
+	return mathf.NewVec2(float64(val.X), float64(val.Y))
 }
-func ToGdColor(val engine.Color) GdColor {
+func ToGdColor(val mathf.Color) GdColor {
 	return GdColor{C.float(val.R), C.float(val.G), C.float(val.B), C.float(val.A)}
 }
-func ToColor(val GdColor) engine.Color {
-	return engine.Color{float32(val.R), float32(val.G), float32(val.B), float32(val.A)}
+func ToColor(val GdColor) mathf.Color {
+	return mathf.NewColor(float64(val.R), float64(val.G), float64(val.B), float64(val.A))
 }
-func ToGdRect2(val engine.Rect2) GdRect2 {
+func ToGdRect2(val mathf.Rect2) GdRect2 {
 	position := ToGdVec2(val.Position)
 	size := ToGdVec2(val.Size)
 	ret := GdRect2{}
@@ -64,8 +65,8 @@ func ToGdRect2(val engine.Rect2) GdRect2 {
 	ret.Size = C.GdVec2(size)
 	return ret
 }
-func ToRect2(val GdRect2) engine.Rect2 {
-	ret := engine.Rect2{}
+func ToRect2(val GdRect2) mathf.Rect2 {
+	ret := mathf.Rect2{}
 	ret.Position = ToVec2(GdVec2(val.Position))
 	ret.Size = ToVec2(GdVec2(val.Size))
 	return ret
@@ -85,14 +86,17 @@ func ToInt(val GdInt) int64 {
 func ToInt64(val GdInt) int64 {
 	return int64(val)
 }
-func ToGdFloat(val float32) GdFloat {
+func ToGdFloat(val float64) GdFloat {
 	return GdFloat(val)
 }
-func ToFloat32(val GdFloat) float32 {
-	return float32(val)
+func ToFloat64(val GdFloat) float64 {
+	return float64(val)
 }
-func ToFloat(val GdFloat) float32 {
-	return float32(val)
+func ToFloat32(val GdFloat) float64 {
+	return float64(val)
+}
+func ToFloat(val GdFloat) float64 {
+	return float64(val)
 }
 func ToString(val GdString) string {
 	cstrPtr := (*CString)(unsafe.Pointer(val))
@@ -321,14 +325,14 @@ func func_on_engine_start() {
 //export func_on_engine_update
 func func_on_engine_update(delta C.GDReal) {
 	if callbacks.OnEngineUpdate != nil {
-		callbacks.OnEngineUpdate(float32(delta))
+		callbacks.OnEngineUpdate(float64(delta))
 	}
 }
 
 //export func_on_engine_fixed_update
 func func_on_engine_fixed_update(delta C.GDReal) {
 	if callbacks.OnEngineFixedUpdate != nil {
-		callbacks.OnEngineFixedUpdate(float32(delta))
+		callbacks.OnEngineFixedUpdate(float64(delta))
 	}
 }
 
@@ -358,14 +362,14 @@ func func_on_sprite_ready(id C.GDExtensionInt) {
 //export func_on_sprite_updated
 func func_on_sprite_updated(delta C.GDReal) {
 	if callbacks.OnSpriteUpdated != nil {
-		callbacks.OnSpriteUpdated(float32(delta))
+		callbacks.OnSpriteUpdated(float64(delta))
 	}
 }
 
 //export func_on_sprite_fixed_updated
 func func_on_sprite_fixed_updated(delta C.GDReal) {
 	if callbacks.OnSpriteFixedUpdated != nil {
-		callbacks.OnSpriteFixedUpdated(float32(delta))
+		callbacks.OnSpriteFixedUpdated(float64(delta))
 	}
 }
 
@@ -432,7 +436,7 @@ func func_on_action_just_released(actionName C.GdString) {
 func func_on_axis_changed(actionName C.GdString, value C.GDReal) {
 	name := ToString(GdString(actionName))
 	if callbacks.OnAxisChanged != nil {
-		callbacks.OnAxisChanged(name, float32(value))
+		callbacks.OnAxisChanged(name, float64(value))
 	}
 }
 

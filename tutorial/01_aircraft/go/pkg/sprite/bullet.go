@@ -13,7 +13,7 @@ type Bullet struct {
 func (pself *Bullet) OnStart() {
 }
 
-func (pself *Bullet) OnUpdate(delta float32) {
+func (pself *Bullet) OnUpdate(delta float64) {
 	pself.AddPos(0, 2000*delta)
 	if pself.GetPosY() > WinHeight {
 		pself.Destroy()

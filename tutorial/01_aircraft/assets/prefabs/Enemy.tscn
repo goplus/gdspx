@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://1krmoywoo5vy"]
 
-[ext_resource type="Texture2D" uid="uid://pipvhhk37gj3" path="res://assets/sprites/enemy/32.png" id="1_ck0ke"]
-[ext_resource type="Texture2D" uid="uid://cjgox6ugs0yik" path="res://assets/sprites/enemy/33.png" id="2_1ymkk"]
-[ext_resource type="Texture2D" uid="uid://btjxurluh5i1p" path="res://assets/sprites/enemy/34.png" id="3_3enno"]
-[ext_resource type="Texture2D" uid="uid://digxwabsh7em4" path="res://assets/sprites/enemy/35.png" id="4_1n164"]
-[ext_resource type="Texture2D" uid="uid://o1holf11isfw" path="res://assets/sprites/enemy/36.png" id="5_t87qc"]
+[ext_resource type="Texture2D" uid="uid://pipvhhk37gj3" path="res://assets/sprites/Enemy/32.png" id="1_ck0ke"]
+[ext_resource type="Texture2D" uid="uid://cjgox6ugs0yik" path="res://assets/sprites/Enemy/33.png" id="2_1ymkk"]
+[ext_resource type="Texture2D" uid="uid://btjxurluh5i1p" path="res://assets/sprites/Enemy/34.png" id="3_3enno"]
+[ext_resource type="Texture2D" uid="uid://digxwabsh7em4" path="res://assets/sprites/Enemy/35.png" id="4_1n164"]
+[ext_resource type="Texture2D" uid="uid://o1holf11isfw" path="res://assets/sprites/Enemy/36.png" id="5_t87qc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_it73p"]
 animations = [{
@@ -43,10 +43,10 @@ size = Vector2(89, 65)
 [node name="Enemy" type="SpxSprite"]
 up_direction = Vector2(0, 1)
 gid = 3252362789104
+use_default_frames = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_it73p")
-animation = &"die"
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -1,12 +1,16 @@
 package engine
 
+import (
+	. "github.com/realdream-ai/mathf"
+)
+
 type posTweenInfo struct {
 	value     Vec2
-	duration  float32
-	startTime float32
+	duration  float64
+	startTime float64
 }
 
-func (pself *posTweenInfo) getEndTime() float32 {
+func (pself *posTweenInfo) getEndTime() float64 {
 	return pself.startTime + pself.duration
 }
 
@@ -15,7 +19,7 @@ type tweenCallInfo struct {
 	startValue Vec2
 	callback   func()
 	curIndex   int64
-	timer      float32
+	timer      float64
 	infos      []posTweenInfo
 }
 
@@ -46,7 +50,7 @@ func (pself *tweenCallInfo) update() {
 	id := pself.id
 	if isNodeExist(id) {
 		sprite := GetSprite(id)
-		pos := LerpVec2(pself.startValue, curInfo.value, percent)
+		pos := pself.startValue.Lerpf(curInfo.value, percent)
 		sprite.SetPosition(pos)
 	}
 }
@@ -56,7 +60,7 @@ var (
 	tempTweenInfos = make([]*tweenCallInfo, 0)
 )
 
-func updateTweens(delta float32) {
+func updateTweens(delta float64) {
 	tempTweenInfos = tempTweenInfos[:0]
 	count := len(tweenInfos)
 	for i := 0; i < count; i++ {
@@ -89,7 +93,7 @@ func updateTweens(delta float32) {
 	tempTweenInfos = tempTweenInfos[:0]
 }
 
-func TweenPos(node ISpriter, pos Vec2, duration float32, callback func()) {
+func TweenPos(node ISpriter, pos Vec2, duration float64, callback func()) {
 	info := &tweenCallInfo{}
 	info.id = node.GetId()
 	info.callback = callback
@@ -100,7 +104,7 @@ func TweenPos(node ISpriter, pos Vec2, duration float32, callback func()) {
 	tweenInfos = append(tweenInfos, info)
 }
 
-func TweenPos2(node ISpriter, pos Vec2, duration float32, pos2 Vec2, duration2 float32, callback func()) {
+func TweenPos2(node ISpriter, pos Vec2, duration float64, pos2 Vec2, duration2 float64, callback func()) {
 	info := &tweenCallInfo{}
 	info.id = node.GetId()
 	info.callback = callback

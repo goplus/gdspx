@@ -8,6 +8,9 @@
 //----------------------------------------------------------------------------*/
 {{ $param := . -}}
 package engine
+import (
+	. "github.com/realdream-ai/mathf"
+)
 
 {{range $i, $f := $param.Methods -}}
 	{{ getManagerImpl $f $param.ClsName }}
