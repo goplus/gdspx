@@ -1,7 +1,7 @@
 package engine
 
 type delaySpriteCallInfo struct {
-	timer    float32
+	timer    float64
 	objectId Object
 	callback func()
 }
@@ -11,7 +11,7 @@ var (
 	tempDelaySpriteCalls = make([]*delaySpriteCallInfo, 0)
 )
 
-func updateTimers(delta float32) {
+func updateTimers(delta float64) {
 	tempDelaySpriteCalls = tempDelaySpriteCalls[:0]
 	count := len(delaySpriteCalls)
 	for i := 0; i < count; i++ {
@@ -38,10 +38,10 @@ func updateTimers(delta float32) {
 	tempDelaySpriteCalls = tempDelaySpriteCalls[:0]
 }
 
-func DelayCall(delay float32, callback func()) {
+func DelayCall(delay float64, callback func()) {
 	delaySpriteCalls = append(delaySpriteCalls, &delaySpriteCallInfo{delay, 0, callback})
 }
 
-func DealySpriteCall(delay float32, sprite ISpriter, callback func()) {
+func DealySpriteCall(delay float64, sprite ISpriter, callback func()) {
 	delaySpriteCalls = append(delaySpriteCalls, &delaySpriteCallInfo{delay, sprite.GetId(), callback})
 }

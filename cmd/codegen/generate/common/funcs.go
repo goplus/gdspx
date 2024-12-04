@@ -429,7 +429,7 @@ func GetManagers(ast clang.CHeaderFileAST) []string {
 	sort.Strings(managers)
 	cppType2Go = map[string]string{
 		"GdInt":    "int64",
-		"GdFloat":  "float32",
+		"GdFloat":  "float64",
 		"GdObj":    "Object",
 		"GdVec2":   "Vec2",
 		"GdVec3":   "Vec3",

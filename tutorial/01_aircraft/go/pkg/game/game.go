@@ -7,10 +7,11 @@ import (
 	"math/rand"
 
 	. "github.com/realdream-ai/gdspx/pkg/engine"
+	. "github.com/realdream-ai/mathf"
 )
 
 var (
-	timer        = float32(0)
+	timer        = float64(0)
 	scoreText    *UiScore
 	restartPanel *UiNode
 )
@@ -38,7 +39,7 @@ func resetGame() {
 	})
 }
 
-func OnUpdate(delta float32) {
+func OnUpdate(delta float64) {
 	if restartPanel.GetVisible() {
 		return
 	}
@@ -46,7 +47,7 @@ func OnUpdate(delta float32) {
 	if timer > 1 {
 		timer = 0
 		obj := CreateSprite[Enemy]()
-		value := (rand.Float32()*2 - 1) * WinWidth / 2.0
+		value := (rand.Float64()*2 - 1) * WinWidth / 2.0
 		obj.SetPosition(Vec2{value, WinHeight / 2.0})
 	}
 	scoreText.SetValue(Score)

@@ -1,5 +1,9 @@
 package engine
 
+import (
+	. "github.com/realdream-ai/mathf"
+)
+
 func (pself *UiNode) GetType() int64 {
 	return UiMgr.GetType(pself.Id)
 }

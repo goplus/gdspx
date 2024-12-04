@@ -4,12 +4,13 @@ import (
 	. "gdspx-demo02/pkg/define"
 
 	. "github.com/realdream-ai/gdspx/pkg/engine"
+	. "github.com/realdream-ai/mathf"
 )
 
 type Goomba struct {
 	Enemy
-	horizontalSpeed float32
-	verticalSpeed   float32
+	horizontalSpeed float64
+	verticalSpeed   float64
 	is_visible      bool
 }
 
@@ -19,7 +20,7 @@ func (pself *Goomba) OnStart() {
 	pself.is_visible = false
 }
 
-func (pself *Goomba) OnUpdate(delta float32) {
+func (pself *Goomba) OnUpdate(delta float64) {
 	if !pself.is_visible {
 		return
 	}
@@ -27,7 +28,9 @@ func (pself *Goomba) OnUpdate(delta float32) {
 	if !pself.IsOnFloor() {
 		pself.AddVelY(-pself.verticalSpeed * delta)
 	}
-	if PhysicMgr.CheckCollision(pself.GetPosition(), pself.GetPosition().AddX(Signf(pself.horizontalSpeed)*6), CollisionLayer_Pipe, true, true) {
+	dstPos := pself.GetPosition()
+	dstPos.X += Signf(pself.horizontalSpeed) * 6
+	if PhysicMgr.CheckCollision(pself.GetPosition(), dstPos, CollisionLayer_Pipe, true, true) {
 		println("Collision")
 		pself.horizontalSpeed = -pself.horizontalSpeed
 	}

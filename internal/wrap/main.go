@@ -17,8 +17,6 @@ var (
 )
 
 func addManager[T IManager](mgr T) T {
-	//typeName := reflect.TypeOf(mgr).Elem().Name()
-	mgr.Init(0)
 	mgrs = append(mgrs, mgr)
 	return mgr
 }

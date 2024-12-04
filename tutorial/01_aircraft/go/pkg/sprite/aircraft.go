@@ -2,12 +2,13 @@ package sprite
 
 import (
 	. "github.com/realdream-ai/gdspx/pkg/engine"
+	. "github.com/realdream-ai/mathf"
 )
 
 type Aircraft struct {
 	Sprite
-	timer      float32
-	moveSpeed  float32
+	timer      float64
+	moveSpeed  float64
 	OnDieEvent *Event0
 }
 
@@ -15,7 +16,7 @@ func (pself *Aircraft) OnStart() {
 	pself.moveSpeed = 600
 	pself.OnDieEvent = NewEvent0()
 }
-func (pself *Aircraft) OnUpdate(delta float32) {
+func (pself *Aircraft) OnUpdate(delta float64) {
 	pself.timer += delta
 	if pself.timer > 0.3 {
 		pself.timer = 0

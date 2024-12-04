@@ -9,10 +9,10 @@ import (
 type Enemy struct {
 	Sprite
 	IsDied     bool
-	dyingTimer float32
+	dyingTimer float64
 }
 
-func (pself *Enemy) OnUpdate(delta float32) {
+func (pself *Enemy) OnUpdate(delta float64) {
 	if pself.IsDied {
 		pself.dyingTimer -= delta
 		if pself.dyingTimer < 0 {

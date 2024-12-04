@@ -9,7 +9,7 @@ var (
 	mgrs                []IManager
 	callback            EngineCallbackInfo
 	sprites             = make([]ISpriter, 0)
-	timer               = float32(0)
+	timer               = float64(0)
 	isWebIntepreterMode bool
 )
 
@@ -37,7 +37,7 @@ func onEngineStart() {
 	}
 }
 
-func onEngineUpdate(delta float32) {
+func onEngineUpdate(delta float64) {
 	for _, mgr := range mgrs {
 		mgr.OnUpdate(delta)
 	}
@@ -55,7 +55,7 @@ func onEngineUpdate(delta float32) {
 	InternalUpdateEngine(delta)
 }
 
-func onEngineFixedUpdate(delta float32) {
+func onEngineFixedUpdate(delta float64) {
 	for _, mgr := range mgrs {
 		mgr.OnFixedUpdate(delta)
 	}

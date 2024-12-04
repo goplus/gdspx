@@ -2,13 +2,14 @@ package sprite
 
 import (
 	. "github.com/realdream-ai/gdspx/pkg/engine"
+	. "github.com/realdream-ai/mathf"
 )
 
 type Player struct {
 	Actor
 	OnDieEvent *Event0
 
-	runSpeedDamping float32
+	runSpeedDamping float64
 	PlayerMode      EPlayerMode
 	isControlled    bool
 }
@@ -28,13 +29,13 @@ var PlayModeAnimName = [...]string{
 }
 
 var (
-	SPEED         = float32(600)
-	JUMP_VELOCITY = float32(400.0)
+	SPEED         = float64(600)
+	JUMP_VELOCITY = float64(400.0)
 	PLAYER_MODE   = int64(1)
-	GRAVITY       = float32(-980)
+	GRAVITY       = float64(-980)
 
-	minStompDegree = float32(25)
-	maxStompDegree = float32(155)
+	minStompDegree = float64(25)
+	maxStompDegree = float64(155)
 
 	ShouldSyncCamera = true
 )
@@ -45,13 +46,13 @@ func (pself *Player) OnStart() {
 	pself.PlayerMode = SMALL
 	pself.isControlled = false
 }
-func (pself *Player) OnUpdate(delta float32) {
+func (pself *Player) OnUpdate(delta float64) {
 	if pself.GetPosX() > CameraMgr.GetCameraPosition().X && ShouldSyncCamera {
 		CameraMgr.SetCameraPosition(Vec2{pself.GetPosX(), CameraMgr.GetCameraPosition().Y})
 	}
 }
 
-func (pself *Player) OnFixedUpdate(delta float32) {
+func (pself *Player) OnFixedUpdate(delta float64) {
 	if pself.isControlled {
 		return
 	}
@@ -94,7 +95,7 @@ func (pself *Player) setAnimSign(isRight bool) {
 	if !isRight {
 		dir = -1
 	}
-	pself.SetChildScale("AnimatedSprite2D", Vec2{float32(dir), 1})
+	pself.SetChildScale("AnimatedSprite2D", Vec2{float64(dir), 1})
 }
 
 func (pself *Player) getAnimDir() int64 {
@@ -104,7 +105,7 @@ func (pself *Player) getAnimDir() int64 {
 	}
 	return 1
 }
-func (pself *Player) TriggeraAnimation(velocity Vec2, direction float32, playerMode EPlayerMode) {
+func (pself *Player) TriggeraAnimation(velocity Vec2, direction float64, playerMode EPlayerMode) {
 	animation_prefix := PlayModeAnimName[int64(playerMode)]
 	if !pself.IsOnFloor() {
 		pself.PlayAnimation(animation_prefix + "_jump")
@@ -137,7 +138,8 @@ func (pself *Player) OnTriggerEnter(target ISpriter) {
 		return
 	}
 	if enemy, ok := target.(*Goomba); ok {
-		angleOfCollision := RadToDeg(pself.GetPosition().AngleToPoint(enemy.GetPosition()))
+		pos := pself.GetPosition()
+		angleOfCollision := RadToDeg(AngleToPoint(pos, enemy.GetPosition()))
 		println("angleOfCollision", int(angleOfCollision))
 		if angleOfCollision > minStompDegree && maxStompDegree > angleOfCollision {
 			enemy.Die()
