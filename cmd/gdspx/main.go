@@ -20,6 +20,11 @@ type CmdTool struct {
 	cmdtool.BaseCmdTool
 }
 
+type returnDirect struct{}
+
+func (p *returnDirect) Error() string {
+	return ""
+}
 func (pself *CmdTool) OnBeforeCheck(cmd string) error {
 	switch cmd {
 	case "updatemod":
@@ -28,6 +33,7 @@ func (pself *CmdTool) OnBeforeCheck(cmd string) error {
 			"github.com/realdream-ai/gdspx/cmd/gdspx ",
 			[]string{"", "cmd/spx", "cmd/ispx"},
 			[]string{"cmd/spx/template/project/go.mod.txt"})
+		return &returnDirect{}
 	}
 	return nil
 }
