@@ -36,5 +36,5 @@ func (pself *Enemy) OnHit() {
 	pself.dyingTimer = 0.2
 	pself.IsDied = true
 	Score += 100
-	pself.PlayAnim("die", 3, false)
+	pself.PlayAnim("die", 3, false, false)
 }

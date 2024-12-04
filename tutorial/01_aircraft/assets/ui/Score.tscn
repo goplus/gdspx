@@ -54,10 +54,12 @@ offset_right = 101.0
 offset_bottom = 157.0
 
 [node name="Label" type="Label" parent="V"]
+visible = false
 layout_mode = 2
 text = "asdf"
 
 [node name="C" type="PanelContainer" parent="V"]
+visible = false
 layout_mode = 2
 
 [node name="V" type="VBoxContainer" parent="V/C"]
