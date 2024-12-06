@@ -6,6 +6,7 @@ import (
 	"syscall/js"
 
 	. "github.com/realdream-ai/gdspx/pkg/engine"
+	. "github.com/realdream-ai/mathf"
 )
 
 func jsValue2Go(value js.Value) interface{} {
@@ -74,34 +75,34 @@ func JsFromGdString(object string) js.Value {
 
 func JsFromGdVec2(vec Vec2) js.Value {
 	vec2Js := js.Global().Get("Object").New()
-	vec2Js.Set("x", vec.X)
-	vec2Js.Set("y", vec.Y)
+	vec2Js.Set("x", float32(vec.X))
+	vec2Js.Set("y", float32(vec.Y))
 	return vec2Js
 }
 
 func JsFromGdVec3(vec Vec3) js.Value {
 	vec3Js := js.Global().Get("Object").New()
-	vec3Js.Set("x", vec.X)
-	vec3Js.Set("y", vec.Y)
-	vec3Js.Set("z", vec.Z)
+	vec3Js.Set("x", float32(vec.X))
+	vec3Js.Set("y", float32(vec.Y))
+	vec3Js.Set("z", float32(vec.Z))
 	return vec3Js
 }
 
 func JsFromGdVec4(vec Vec4) js.Value {
 	vec4Js := js.Global().Get("Object").New()
-	vec4Js.Set("x", vec.X)
-	vec4Js.Set("y", vec.Y)
-	vec4Js.Set("z", vec.Z)
-	vec4Js.Set("w", vec.W)
+	vec4Js.Set("x", float32(vec.X))
+	vec4Js.Set("y", float32(vec.Y))
+	vec4Js.Set("z", float32(vec.Z))
+	vec4Js.Set("w", float32(vec.W))
 	return vec4Js
 }
 
 func JsFromGdColor(color Color) js.Value {
 	colorJs := js.Global().Get("Object").New()
-	colorJs.Set("r", color.R)
-	colorJs.Set("g", color.G)
-	colorJs.Set("b", color.B)
-	colorJs.Set("a", color.A)
+	colorJs.Set("r", float32(color.R))
+	colorJs.Set("g", float32(color.G))
+	colorJs.Set("b", float32(color.B))
+	colorJs.Set("a", float32(color.A))
 	return colorJs
 }
 
@@ -116,7 +117,7 @@ func JsFromGdBool(val bool) js.Value {
 	return js.ValueOf(val)
 }
 
-func JsFromGdFloat(val float32) js.Value {
+func JsFromGdFloat(val float64) js.Value {
 	return js.ValueOf(val)
 }
 
@@ -126,34 +127,34 @@ func JsToGdString(object js.Value) string {
 
 func JsToGdVec2(vec js.Value) Vec2 {
 	return Vec2{
-		X: float32(vec.Get("x").Float()),
-		Y: float32(vec.Get("y").Float()),
+		X: float64(vec.Get("x").Float()),
+		Y: float64(vec.Get("y").Float()),
 	}
 }
 
 func JsToGdVec3(vec js.Value) Vec3 {
 	return Vec3{
-		X: float32(vec.Get("x").Float()),
-		Y: float32(vec.Get("y").Float()),
-		Z: float32(vec.Get("z").Float()),
+		X: float64(vec.Get("x").Float()),
+		Y: float64(vec.Get("y").Float()),
+		Z: float64(vec.Get("z").Float()),
 	}
 }
 
 func JsToGdVec4(vec js.Value) Vec4 {
 	return Vec4{
-		X: float32(vec.Get("x").Float()),
-		Y: float32(vec.Get("y").Float()),
-		Z: float32(vec.Get("z").Float()),
-		W: float32(vec.Get("w").Float()),
+		X: float64(vec.Get("x").Float()),
+		Y: float64(vec.Get("y").Float()),
+		Z: float64(vec.Get("z").Float()),
+		W: float64(vec.Get("w").Float()),
 	}
 }
 
 func JsToGdColor(color js.Value) Color {
 	return Color{
-		R: float32(color.Get("r").Float()),
-		G: float32(color.Get("g").Float()),
-		B: float32(color.Get("b").Float()),
-		A: float32(color.Get("a").Float()),
+		R: float64(color.Get("r").Float()),
+		G: float64(color.Get("g").Float()),
+		B: float64(color.Get("b").Float()),
+		A: float64(color.Get("a").Float()),
 	}
 }
 
@@ -168,8 +169,8 @@ func JsToGdBool(val js.Value) bool {
 	return val.Bool()
 }
 
-func JsToGdFloat(val js.Value) float32 {
-	return float32(val.Float())
+func JsToGdFloat(val js.Value) float64 {
+	return float64(val.Float())
 }
 
 func JsToGdFloat32(val js.Value) float32 {
