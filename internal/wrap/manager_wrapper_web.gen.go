@@ -14,9 +14,11 @@ package wrap
 
 import (
 	"fmt"
+	"reflect"
+
 	. "github.com/realdream-ai/gdspx/internal/webffi"
 	. "github.com/realdream-ai/gdspx/pkg/engine"
-	"reflect"
+	. "github.com/realdream-ai/mathf"
 )
 
 func BindMgr(mgrs []IManager) {
