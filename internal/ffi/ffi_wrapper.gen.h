@@ -138,8 +138,8 @@ void cgo_callfn_GDExtensionSpxPlatformGetTimeScale(const GDExtensionSpxPlatformG
 void cgo_callfn_GDExtensionSpxPlatformSetTimeScale(const GDExtensionSpxPlatformSetTimeScale fn, GdFloat time_scale) {
 	fn(time_scale);
 }
-void cgo_callfn_GDExtensionSpxResCreateAnimation(const GDExtensionSpxResCreateAnimation fn, GdString sprite_type_name, GdString anim_name, GdString context, GdInt fps, GdBool is_altas, GdInt* ret_val) {
-	fn(sprite_type_name, anim_name, context, fps, is_altas,ret_val);
+void cgo_callfn_GDExtensionSpxResCreateAnimation(const GDExtensionSpxResCreateAnimation fn, GdString sprite_type_name, GdString anim_name, GdString context, GdInt fps, GdBool is_altas) {
+	fn(sprite_type_name, anim_name, context, fps, is_altas);
 }
 void cgo_callfn_GDExtensionSpxResSetLoadMode(const GDExtensionSpxResSetLoadMode fn, GdBool is_direct_mode) {
 	fn(is_direct_mode);

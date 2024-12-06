@@ -84,7 +84,7 @@ type IPlatformMgr interface {
 }
 
 type IResMgr interface {
-	CreateAnimation(sprite_type_name string, anim_name string, context string, fps int64, is_altas bool) int64
+	CreateAnimation(sprite_type_name string, anim_name string, context string, fps int64, is_altas bool)
 	SetLoadMode(is_direct_mode bool)
 	GetLoadMode() bool
 	GetBoundFromAlpha(p_path string) Rect2
