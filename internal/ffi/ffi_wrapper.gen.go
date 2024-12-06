@@ -614,17 +614,16 @@ func CallResCreateAnimation(
 	context GdString,
 	fps GdInt,
 	is_altas GdBool,
-) GdInt {
+) {
 	arg0 := (C.GDExtensionSpxResCreateAnimation)(api.SpxResCreateAnimation)
 	arg1GdString = (C.GdString)(sprite_type_name)
 	arg2GdString = (C.GdString)(anim_name)
 	arg3GdString = (C.GdString)(context)
 	arg4GdInt = (C.GdInt)(fps)
 	arg5GdBool = (C.GdBool)(is_altas)
-	var ret_val C.GdInt
-	C.cgo_callfn_GDExtensionSpxResCreateAnimation(arg0, arg1GdString, arg2GdString, arg3GdString, arg4GdInt, arg5GdBool, &ret_val)
 
-	return (GdInt)(ret_val)
+	C.cgo_callfn_GDExtensionSpxResCreateAnimation(arg0, arg1GdString, arg2GdString, arg3GdString, arg4GdInt, arg5GdBool)
+
 }
 func CallResSetLoadMode(
 	is_direct_mode GdBool,

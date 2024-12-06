@@ -14,11 +14,10 @@ package wrap
 
 import (
 	"fmt"
-	"reflect"
-
 	. "github.com/realdream-ai/gdspx/internal/webffi"
 	. "github.com/realdream-ai/gdspx/pkg/engine"
 	. "github.com/realdream-ai/mathf"
+	"reflect"
 )
 
 func BindMgr(mgrs []IManager) {
@@ -284,14 +283,13 @@ func (pself *platformMgr) SetTimeScale(time_scale float64) {
 	arg0 := JsFromGdFloat(time_scale)
 	API.SpxPlatformSetTimeScale.Invoke(arg0)
 }
-func (pself *resMgr) CreateAnimation(sprite_type_name string, anim_name string, context string, fps int64, is_altas bool) int64 {
+func (pself *resMgr) CreateAnimation(sprite_type_name string, anim_name string, context string, fps int64, is_altas bool) {
 	arg0 := JsFromGdString(sprite_type_name)
 	arg1 := JsFromGdString(anim_name)
 	arg2 := JsFromGdString(context)
 	arg3 := JsFromGdInt(fps)
 	arg4 := JsFromGdBool(is_altas)
-	_retValue := API.SpxResCreateAnimation.Invoke(arg0, arg1, arg2, arg3, arg4)
-	return JsToGdInt(_retValue)
+	API.SpxResCreateAnimation.Invoke(arg0, arg1, arg2, arg3, arg4)
 }
 func (pself *resMgr) SetLoadMode(is_direct_mode bool) {
 	arg0 := JsFromGdBool(is_direct_mode)

@@ -299,7 +299,7 @@ func (pself *platformMgr) SetTimeScale(time_scale float64) {
 	arg0 := ToGdFloat(time_scale)
 	CallPlatformSetTimeScale(arg0)
 }
-func (pself *resMgr) CreateAnimation(sprite_type_name string, anim_name string, context string, fps int64, is_altas bool) int64 {
+func (pself *resMgr) CreateAnimation(sprite_type_name string, anim_name string, context string, fps int64, is_altas bool) {
 	arg0Str := NewCString(sprite_type_name)
 	arg0 := arg0Str.ToGdString()
 	defer arg0Str.Destroy()
@@ -311,8 +311,7 @@ func (pself *resMgr) CreateAnimation(sprite_type_name string, anim_name string, 
 	defer arg2Str.Destroy()
 	arg3 := ToGdInt(fps)
 	arg4 := ToGdBool(is_altas)
-	retValue := CallResCreateAnimation(arg0, arg1, arg2, arg3, arg4)
-	return ToInt64(retValue)
+	CallResCreateAnimation(arg0, arg1, arg2, arg3, arg4)
 }
 func (pself *resMgr) SetLoadMode(is_direct_mode bool) {
 	arg0 := ToGdBool(is_direct_mode)
