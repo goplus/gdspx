@@ -48,6 +48,10 @@ func ClearAllSprites() {
 		sprite.Destroy()
 	}
 	Id2Sprites = make(map[Object]ISpriter)
+	for _, node := range Id2UiNodes {
+		node.Destroy()
+	}
+	Id2UiNodes = make(map[Object]IUiNode)
 }
 
 func RegisterSpriteType[T any]() {
