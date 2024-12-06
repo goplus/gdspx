@@ -118,7 +118,7 @@ func JsFromGdBool(val bool) js.Value {
 }
 
 func JsFromGdFloat(val float64) js.Value {
-	return js.ValueOf(val)
+	return js.ValueOf(float32(val))
 }
 
 func JsToGdString(object js.Value) string {
