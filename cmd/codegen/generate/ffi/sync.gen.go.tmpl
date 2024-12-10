@@ -5,15 +5,38 @@
 //   the code is regenerated.
 //----------------------------------------------------------------------------*/
 
-package engine
+package enginewrap
 
 import (
-	. "github.com/realdream-ai/gdspx/pkg/engine"
+	gdx "github.com/realdream-ai/gdspx/pkg/engine"
 	. "github.com/realdream-ai/mathf"
 )
 
-
 {{ $view := . -}}
+
+/* // copy these code to dst file
+var(
+{{ range $i, $name := $view.Mangers -}}
+{{lowerCamelCase $name}}Mgr enginewrap.{{camelCase $name}}MgrImpl
+{{ end }}
+)
+*/
+
+var(
+{{ range $i, $name := $view.Mangers -}}
+{{lowerCamelCase $name}}Mgr {{camelCase $name}}MgrImpl
+{{ end }}
+)
+
+
+{{ range $i, $name := $view.Mangers -}}
+type {{lowerCamelCase $name}}MgrImpl struct {
+}
+type {{camelCase $name}}MgrImpl struct {
+	{{lowerCamelCase $name}}MgrImpl
+}
+{{ end }}
+
 
 {{ range $i, $name := $view.Mangers -}}
 // I{{camelCase $name}}Mgr
@@ -22,3 +45,5 @@ import (
 {{- end }} 
 
 {{ end }}
+
+
