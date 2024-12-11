@@ -286,7 +286,8 @@ func GenerateSyncApiGoFile(projectPath string, ast clang.CHeaderFileAST) error {
 	}
 
 	headerFileName := filepath.Join(projectPath, RelDir, "../../spx/internal/enginewrap/sync.gen.go")
-	println("===========", headerFileName)
+	dir := filepath.Dir(headerFileName)
+	os.MkdirAll(dir, os.ModePerm)
 	f, err := os.Create(headerFileName)
 	f.Write(b.Bytes())
 	f.Close()

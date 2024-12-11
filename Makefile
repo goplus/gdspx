@@ -20,7 +20,8 @@ webpack:
 
 gen:
 	cd ./cmd/codegen && go run . && cd $(CURRENT_PATH) && \
-	$(MAKE) fmt && $(MAKE) fmt 
+	$(MAKE) fmt && $(MAKE) fmt && \
+	cd ./spx && go fmt ./... && cd $(CURRENT_PATH)
 	
 upload:
 	./webserver/upload.sh 
