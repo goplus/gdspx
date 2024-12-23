@@ -22,7 +22,6 @@ func Linked() {
 		gdspxOnEngineStart(js.Value{}, nil)
 	}
 
-	println("OnLinked block forever")
 	// wasm need Block forever
 	c := make(chan struct{})
 	<-c
