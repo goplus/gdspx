@@ -39,7 +39,7 @@ dstBinPath="$GOPATH/bin/gdspx$VERSION"
 echo "Destination binary path: $dstBinPath"
 if [ "$OS" = "Windows_NT" ]; then
     cp godot/bin/godot.windows.editor.dev.x86_64 $dstBinPath"_win.exe"
-elif [ "$OS" = "Linux" ]; then
+elif [[ "$(uname)" == "Linux" ]]; then
     cp godot/bin/godot.linuxbsd.editor.dev.x86_64 $dstBinPath"_linux"
 else
     cp godot/bin/godot.macos.editor.dev.x86_64 $dstBinPath"_darwin"
