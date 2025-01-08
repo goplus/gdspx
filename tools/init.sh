@@ -44,3 +44,28 @@ elif [[ "$(uname)" == "Linux" ]]; then
 else
     cp godot/bin/godot.macos.editor.dev.x86_64 $dstBinPath"_darwin"
 fi
+
+
+if [ "$1" != "-a" ]; then
+    exit
+fi
+
+# build release version
+cd godot
+if [ "$OS" = "Windows_NT" ]; then
+    scons target=editor arch=x86_64 vsproj=yes optimize=size
+else
+    scons target=editor arch=x86_64 optimize=size
+fi
+cd ..
+
+dstBinPath="$GOPATH/bin/gdspx$VERSION"
+echo "Destination binary path: $dstBinPath"
+if [ "$OS" = "Windows_NT" ]; then
+    cp godot/bin/godot.windows.editor.x86_64 $dstBinPath"_prod.exe"
+elif [[ "$(uname)" == "Linux" ]]; then
+    cp godot/bin/godot.linuxbsd.editor.x86_64 $dstBinPath"_prod"
+else
+    cp godot/bin/godot.macos.editor.x86_64 $dstBinPath"_prod"
+fi
+

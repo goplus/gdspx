@@ -12,6 +12,9 @@ updatemod:
 pc:
 	./tools/init.sh
 
+pcpack: 
+	./tools/init.sh -a
+
 web: 
 	./tools/init_web.sh 
 
