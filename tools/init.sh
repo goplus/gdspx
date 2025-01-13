@@ -21,7 +21,7 @@ if [ ! -d "godot" ]; then
     mkdir godot
     cd godot
     git init 
-    git remote add origin https://github.com/realdream-ai/godot.git
+    git remote add origin git@github.com:realdream-ai/godot.git
     git fetch --depth 1 origin spx4.2.2
     git checkout spx4.2.2
     echo "Godot repository setup complete."

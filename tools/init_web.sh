@@ -16,7 +16,7 @@ godot_version_str="4.2.2.stable"
 # Check if the 'emsdk' directory exists
 if [ ! -d "emsdk" ]; then
     echo "emsdk not found, install emsdk first"
-    git clone https://github.com/emscripten-core/emsdk.git
+    git clone git@github.com:emscripten-core/emsdk.git
     cd emsdk
     ./emsdk install 3.1.39
     ./emsdk activate 3.1.39
