@@ -9,6 +9,10 @@ GOPATH=$(go env GOPATH)
 VERSION=$(cat ./cmd/gdspx/template/version)
 echo "version="$VERSION " GOPATH=" $GOPATH
 
+ARCH=x86_64
+if [[ "$(uname -m)" == "aarch64" ]]; then
+    ARCH=arm64
+fi 
 
 pip install scons==4.7.0
 if [ ! -d "godot" ]; then
@@ -27,10 +31,9 @@ fi
 #  dev_build=yes
 
 if [ "$OS" = "Windows_NT" ]; then
-    scons target=editor arch=x86_64 vsproj=yes dev_build=yes
-    echo '"godot.windows.editor.dev.x86_64.exe" %*' > bin/godot.bat
+    scons target=editor arch=$ARCH vsproj=yes dev_build=yes
 else
-    scons target=editor arch=x86_64 dev_build=yes
+    scons target=editor arch=$ARCH dev_build=yes
 fi
 cd ..
 
@@ -38,11 +41,11 @@ echo "init engine done."
 dstBinPath="$GOPATH/bin/gdspx$VERSION"
 echo "Destination binary path: $dstBinPath"
 if [ "$OS" = "Windows_NT" ]; then
-    cp godot/bin/godot.windows.editor.dev.x86_64 $dstBinPath"_win.exe"
+    cp godot/bin/godot.windows.editor.dev.$ARCH $dstBinPath"_win.exe"
 elif [[ "$(uname)" == "Linux" ]]; then
-    cp godot/bin/godot.linuxbsd.editor.dev.x86_64 $dstBinPath"_linux"
+    cp godot/bin/godot.linuxbsd.editor.dev.$ARCH $dstBinPath"_linux"
 else
-    cp godot/bin/godot.macos.editor.dev.x86_64 $dstBinPath"_darwin"
+    cp godot/bin/godot.macos.editor.dev.$ARCH $dstBinPath"_darwin"
 fi
 
 
@@ -53,18 +56,18 @@ fi
 # build release version
 cd godot
 if [ "$OS" = "Windows_NT" ]; then
-    scons target=editor arch=x86_64 vsproj=yes optimize=size
+    scons target=editor arch=$ARCH vsproj=yes optimize=size
 else
-    scons target=editor arch=x86_64 optimize=size
+    scons target=editor arch=$ARCH optimize=size
 fi
 cd ..
 
 dstBinPath="$GOPATH/bin/gdspx$VERSION"
 echo "Destination binary path: $dstBinPath"
 if [ "$OS" = "Windows_NT" ]; then
-    cp godot/bin/godot.windows.editor.x86_64 $dstBinPath"_win_prod.exe"
+    cp godot/bin/godot.windows.editor.$ARCH $dstBinPath"_win_prod.exe"
 elif [[ "$(uname)" == "Linux" ]]; then
-    cp godot/bin/godot.linuxbsd.editor.x86_64 $dstBinPath"_linux_prod"
+    cp godot/bin/godot.linuxbsd.editor.$ARCH $dstBinPath"_linux_prod"
 else
-    cp godot/bin/godot.macos.editor.x86_64 $dstBinPath"_darwin_prod"
+    cp godot/bin/godot.macos.editor.$ARCH $dstBinPath"_darwin_prod"
 fi
