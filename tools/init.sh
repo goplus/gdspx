@@ -10,9 +10,10 @@ VERSION=$(cat ./cmd/gdspx/template/version)
 echo "version="$VERSION " GOPATH=" $GOPATH
 
 ARCH=x86_64
-if [[ "$(uname -m)" == "aarch64" ]]; then
+if [[ "$(uname -m)" == "aarch64" || "$(uname -m)" == "arm64" ]]; then
     ARCH=arm64
-fi 
+fi
+
 
 pip install scons==4.7.0
 if [ ! -d "godot" ]; then
