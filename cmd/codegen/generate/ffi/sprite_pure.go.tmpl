@@ -6,8 +6,8 @@
 //   "sprite.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
-//go:build !pure_engine
-// +build !pure_engine
+//go:build pure_engine
+// +build pure_engine
 
 {{ $param := . -}}
 package engine
@@ -16,5 +16,5 @@ import (
 )
 
 {{range $i, $f := $param.Methods -}}
-	{{ getManagerImpl $f $param.ClsName }}
+	{{ getManagerImplPure $f $param.ClsName }}
 {{ end }}

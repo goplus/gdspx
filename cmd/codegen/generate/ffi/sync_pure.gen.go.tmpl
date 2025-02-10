@@ -4,8 +4,8 @@
 //   Changes to this file may cause incorrect behavior and will be lost if
 //   the code is regenerated.
 //----------------------------------------------------------------------------*/
-//go:build !pure_engine
-// +build !pure_engine
+//go:build pure_engine
+// +build pure_engine
 
 package enginewrap
 
@@ -43,7 +43,7 @@ type {{camelCase $name}}MgrImpl struct {
 {{ range $i, $name := $view.Mangers -}}
 // I{{camelCase $name}}Mgr
 {{- range $i, $f := $view.Ast.CollectGDExtensionManagerFunctions $name }}
-{{ genSyncApiWrapFunction $f }}
+{{ genSyncPureApiWrapFunction $f }}
 {{- end }} 
 
 {{ end }}
