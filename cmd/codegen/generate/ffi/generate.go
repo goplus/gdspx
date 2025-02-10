@@ -37,9 +37,14 @@ var (
 	interfaceGoFileText string
 	//go:embed sprite.go.tmpl
 	implGoFileText string
+	//go:embed sprite_pure.go.tmpl
+	implPureGoFileText string
 
 	//go:embed sync.gen.go.tmpl
 	syncApiText string
+
+	//go:embed sync_pure.gen.go.tmpl
+	syncPureApiText string
 )
 
 func Generate(projectPath string, ast clang.CHeaderFileAST) {
@@ -68,9 +73,18 @@ func Generate(projectPath string, ast clang.CHeaderFileAST) {
 		panic(err)
 	}
 
+	err = GenerateSyncPureGoFile(projectPath, ast)
+	if err != nil {
+		panic(err)
+	}
+	/**/
 	clsNames := []string{"Sprite"} // add other classes if needed, Audio, Camera, Input, etc
 	for _, clsName := range clsNames {
 		err = GenerateManagerImplGoFile(projectPath, ast, clsName)
+		if err != nil {
+			panic(err)
+		}
+		err = GenerateManagerImplPureGoFile(projectPath, ast, clsName)
 		if err != nil {
 			panic(err)
 		}
@@ -254,6 +268,7 @@ func GenerateManagerInterfaceGoFile(projectPath string, ast clang.CHeaderFileAST
 	f.Close()
 	return err
 }
+
 func GenerateSyncApiGoFile(projectPath string, ast clang.CHeaderFileAST) error {
 	funcs := template.FuncMap{
 		"gdiVariableName":            GdiVariableName,
@@ -285,7 +300,47 @@ func GenerateSyncApiGoFile(projectPath string, ast clang.CHeaderFileAST) error {
 		return err
 	}
 
-	headerFileName := filepath.Join(projectPath, RelDir, "../../spx/internal/enginewrap/sync.gen.go")
+	headerFileName := filepath.Join(projectPath, RelDir, "../../../internal/enginewrap/sync.gen.go")
+	dir := filepath.Dir(headerFileName)
+	os.MkdirAll(dir, os.ModePerm)
+	f, err := os.Create(headerFileName)
+	f.Write(b.Bytes())
+	f.Close()
+	return err
+}
+
+func GenerateSyncPureGoFile(projectPath string, ast clang.CHeaderFileAST) error {
+	funcs := template.FuncMap{
+		"gdiVariableName":            GdiVariableName,
+		"snakeCase":                  strcase.ToSnake,
+		"lowerCamelCase":             strcase.ToLowerCamel,
+		"camelCase":                  strcase.ToCamel,
+		"goReturnType":               GoReturnType,
+		"goArgumentType":             GoArgumentType,
+		"goEnumValue":                GoEnumValue,
+		"add":                        Add,
+		"cgoCastArgument":            CgoCastArgument,
+		"cgoCastReturnType":          CgoCastReturnType,
+		"cgoCleanUpArgument":         CgoCleanUpArgument,
+		"trimPrefix":                 TrimPrefix,
+		"isManagerMethod":            IsManagerMethod,
+		"genSyncPureApiWrapFunction": genSyncPureApiWrapFunction,
+		"genSyncManagerWrapFunction": genSyncManagerWrapFunction,
+	}
+
+	tmpl, err := template.New("sync.gen.go").
+		Funcs(funcs).
+		Parse(syncPureApiText)
+	if err != nil {
+		return err
+	}
+	var b bytes.Buffer
+	err = tmpl.Execute(&b, ManagerData{Ast: ast, Mangers: GetManagers(ast)})
+	if err != nil {
+		return err
+	}
+
+	headerFileName := filepath.Join(projectPath, RelDir, "../../../internal/enginewrap/sync_pure.gen.go")
 	dir := filepath.Dir(headerFileName)
 	os.MkdirAll(dir, os.ModePerm)
 	f, err := os.Create(headerFileName)
@@ -309,6 +364,32 @@ func GenerateManagerImplGoFile(projectPath string, ast clang.CHeaderFileAST, cls
 	tmpl, err := template.New(genFile).
 		Funcs(funcs).
 		Parse(implGoFileText)
+	if err != nil {
+		return err
+	}
+	var b bytes.Buffer
+
+	methods := ast.CollectFunctionsOfClass(clsName)
+	sort.Sort(ByName(methods))
+	err = tmpl.Execute(&b, ImplData{Ast: ast, Methods: methods, ClsName: clsName})
+	if err != nil {
+		return err
+	}
+	implFileName := filepath.Join(projectPath, RelDir, "../../pkg/engine/"+genFile)
+	f, err := os.Create(implFileName)
+	f.Write(b.Bytes())
+	f.Close()
+	return err
+}
+func GenerateManagerImplPureGoFile(projectPath string, ast clang.CHeaderFileAST, clsName string) error {
+	funcs := template.FuncMap{
+		"getManagerImplPure": getManagerImplPure,
+	}
+
+	genFile := strings.ToLower(clsName) + "_pure.gen.go"
+	tmpl, err := template.New(genFile).
+		Funcs(funcs).
+		Parse(implPureGoFileText)
 	if err != nil {
 		return err
 	}
@@ -443,6 +524,57 @@ func GetGdxFuncParamTypeString(typeName string) string {
 	}
 	return name
 }
+func genSyncPureApiWrapFunction(function *clang.TypedefFunction) string {
+	/*
+		func syncUiGetFlip(obj Object, horizontal bool) bool {
+			var _ret1 bool
+			WaitMainThread(func() {
+				_ret1 = UiMgr.GetFlip(obj, horizontal)
+			})
+			return _ret1
+		}
+	*/
+
+	prefix := "GDExtensionSpx"
+	sb := strings.Builder{}
+	mgrName := strcase.ToCamel(GetManagerName(function.Name))
+	pureFuncName := function.Name[len(prefix)+len(mgrName):]
+	//funcName := function.Name[len(prefix):]
+	mgrTypeName := strcase.ToLowerCamel(GetManagerName(function.Name)) + "Mgr"
+
+	sb.WriteString(fmt.Sprintf("func (pself *%s) ", mgrTypeName+"Impl"))
+	sb.WriteString(pureFuncName)
+	sb.WriteString("(")
+	count := len(function.Arguments)
+	for i, arg := range function.Arguments {
+		sb.WriteString(arg.Name)
+		sb.WriteString(" ")
+		typeName := GetGdxFuncParamTypeString(arg.Type.Primative.Name)
+		sb.WriteString(typeName)
+		if i != count-1 {
+			sb.WriteString(", ")
+		}
+	}
+	sb.WriteString(")")
+
+	if function.ReturnType.Name != "void" {
+		typeName := GetGdxFuncParamTypeString(function.ReturnType.Name)
+		sb.WriteString(" " + typeName)
+	}
+	sb.WriteString(" {")
+	prefixStr := "\t"
+	// body
+	if function.ReturnType.Name != "void" {
+		typeName := GetGdxFuncParamTypeString(function.ReturnType.Name)
+		sb.WriteString("\n" + prefixStr + "var _ret1 " + typeName + "\n")
+	}
+
+	if function.ReturnType.Name != "void" {
+		sb.WriteString(prefixStr + "return _ret1 \n")
+	}
+	sb.WriteString("}")
+	return sb.String()
+}
 func genSyncApiWrapFunction(function *clang.TypedefFunction) string {
 	/*
 		func syncUiGetFlip(obj Object, horizontal bool) bool {
@@ -528,7 +660,41 @@ func (arr ByName) Swap(i, j int) { arr[i], arr[j] = arr[j], arr[i] }
 func (arr ByName) Less(i, j int) bool {
 	return arr[i].Name < arr[j].Name
 }
-
+func getManagerImplPure(function *clang.TypedefFunction, clsName string) string {
+	prefix := "GDExtensionSpx"
+	sb := strings.Builder{}
+	lowcaseMgr := GetManagerName(function.Name)
+	mgrName := string(unicode.ToUpper(rune(lowcaseMgr[0]))) + lowcaseMgr[1:]
+	funcName := function.Name[len(prefix)+len(mgrName):]
+	sb.WriteString("func (pself *" + clsName + ") " + funcName + "(")
+	count := len(function.Arguments)
+	for i, arg := range function.Arguments {
+		if i == 0 && arg.Name == "obj" {
+			continue
+		}
+		sb.WriteString(arg.Name)
+		sb.WriteString(" ")
+		typeName := GetFuncParamTypeString(arg.Type.Primative.Name)
+		sb.WriteString(typeName)
+		if i != count-1 {
+			sb.WriteString(", ")
+		}
+	}
+	sb.WriteString(") ")
+	anyRet := function.ReturnType.Name != "void"
+	if anyRet {
+		typeName := GetFuncParamTypeString(function.ReturnType.Name)
+		sb.WriteString(typeName + " ")
+	}
+	sb.WriteString("{\n")
+	if anyRet {
+		typeName := GetFuncParamTypeString(function.ReturnType.Name)
+		sb.WriteString("\tvar _val " + typeName + " \n")
+		sb.WriteString("\treturn _val;\n")
+	}
+	sb.WriteString("}\n")
+	return sb.String()
+}
 func getManagerImpl(function *clang.TypedefFunction, clsName string) string {
 	prefix := "GDExtensionSpx"
 	sb := strings.Builder{}
