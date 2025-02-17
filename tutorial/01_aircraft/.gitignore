@@ -16,3 +16,4 @@
 # user specify ignores
 # ...
 /assets/**/*.import
+/builds
