@@ -51,9 +51,14 @@ else
     exit 1
 fi
 
-echo "Destination binary path: $DST_DIR"
+ARCH=x86_64
+if [[ "$(uname -m)" == "aarch64" || "$(uname -m)" == "arm64" ]]; then
+    ARCH=arm64
+fi
 
+echo "Destination binary path: $DST_DIR"
 if [ "$PLATFORM" = "linux" ]; then
+
     scons target=template_debug dev_build=yes
     scons target=template_release dev_build=yes
     echo "Destination binary path: $DST_DIR"
