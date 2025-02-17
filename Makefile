@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := pc
 
 CURRENT_PATH=$(shell pwd)
-.PHONY: engine init initweb fmt gen upload updatemod
+.PHONY: engine init initweb fmt gen upload updatemod template
 
 fmt:
 	go fmt ./... 
@@ -9,6 +9,8 @@ fmt:
 updatemod:
 	gdspx updatemod
 
+template:
+	./tools/init_template.sh -p "$(PLATFORM)"
 pc:
 	./tools/init.sh
 
