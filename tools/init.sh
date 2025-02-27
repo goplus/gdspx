@@ -16,6 +16,7 @@ fi
 
 
 pip install scons==4.7.0
+pip3 install scons==4.7.0
 if [ ! -d "godot" ]; then
     echo "Godot directory not found. Creating and initializing..."
     mkdir godot
