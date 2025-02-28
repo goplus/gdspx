@@ -1,5 +1,6 @@
 package main
 
+import "C"
 import (
 	"gdspx-demo01/pkg/game"
 
@@ -8,6 +9,7 @@ import (
 )
 
 func main() {
+	doinit()
 	game.RegisterTypes()
 	gdspx.LinkEngine(EngineCallbackInfo{
 		OnEngineStart:   game.OnStart,
