@@ -121,6 +121,7 @@ type GDExtensionSpxResGetBoundFromAlpha C.GDExtensionSpxResGetBoundFromAlpha
 type GDExtensionSpxResGetImageSize C.GDExtensionSpxResGetImageSize
 type GDExtensionSpxResReadAllText C.GDExtensionSpxResReadAllText
 type GDExtensionSpxResHasFile C.GDExtensionSpxResHasFile
+type GDExtensionSpxResReloadTexture C.GDExtensionSpxResReloadTexture
 type GDExtensionSpxSceneChangeSceneToFile C.GDExtensionSpxSceneChangeSceneToFile
 type GDExtensionSpxSceneReloadCurrentScene C.GDExtensionSpxSceneReloadCurrentScene
 type GDExtensionSpxSceneUnloadCurrentScene C.GDExtensionSpxSceneUnloadCurrentScene
@@ -152,6 +153,8 @@ type GDExtensionSpxSpriteSetColor C.GDExtensionSpxSpriteSetColor
 type GDExtensionSpxSpriteGetColor C.GDExtensionSpxSpriteGetColor
 type GDExtensionSpxSpriteSetTextureAltas C.GDExtensionSpxSpriteSetTextureAltas
 type GDExtensionSpxSpriteSetTexture C.GDExtensionSpxSpriteSetTexture
+type GDExtensionSpxSpriteSetTextureAltasDirect C.GDExtensionSpxSpriteSetTextureAltasDirect
+type GDExtensionSpxSpriteSetTextureDirect C.GDExtensionSpxSpriteSetTextureDirect
 type GDExtensionSpxSpriteGetTexture C.GDExtensionSpxSpriteGetTexture
 type GDExtensionSpxSpriteSetVisible C.GDExtensionSpxSpriteSetVisible
 type GDExtensionSpxSpriteGetVisible C.GDExtensionSpxSpriteGetVisible
@@ -680,6 +683,15 @@ func CallResHasFile(
 
 	return (GdBool)(ret_val)
 }
+func CallResReloadTexture(
+	path GdString,
+) {
+	arg0 := (C.GDExtensionSpxResReloadTexture)(api.SpxResReloadTexture)
+	arg1GdString = (C.GdString)(path)
+
+	C.cgo_callfn_GDExtensionSpxResReloadTexture(arg0, arg1GdString)
+
+}
 func CallSceneChangeSceneToFile(
 	path GdString,
 ) {
@@ -1014,6 +1026,30 @@ func CallSpriteSetTexture(
 	arg2GdString = (C.GdString)(path)
 
 	C.cgo_callfn_GDExtensionSpxSpriteSetTexture(arg0, arg1GdObj, arg2GdString)
+
+}
+func CallSpriteSetTextureAltasDirect(
+	obj GdObj,
+	path GdString,
+	rect2 GdRect2,
+) {
+	arg0 := (C.GDExtensionSpxSpriteSetTextureAltasDirect)(api.SpxSpriteSetTextureAltasDirect)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(path)
+	arg3GdRect2 = (C.GdRect2)(rect2)
+
+	C.cgo_callfn_GDExtensionSpxSpriteSetTextureAltasDirect(arg0, arg1GdObj, arg2GdString, arg3GdRect2)
+
+}
+func CallSpriteSetTextureDirect(
+	obj GdObj,
+	path GdString,
+) {
+	arg0 := (C.GDExtensionSpxSpriteSetTextureDirect)(api.SpxSpriteSetTextureDirect)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(path)
+
+	C.cgo_callfn_GDExtensionSpxSpriteSetTextureDirect(arg0, arg1GdObj, arg2GdString)
 
 }
 func CallSpriteGetTexture(

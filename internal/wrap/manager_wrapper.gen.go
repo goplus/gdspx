@@ -349,6 +349,12 @@ func (pself *resMgr) HasFile(p_path string) bool {
 	retValue := CallResHasFile(arg0)
 	return ToBool(retValue)
 }
+func (pself *resMgr) ReloadTexture(path string) {
+	arg0Str := NewCString(path)
+	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
+	CallResReloadTexture(arg0)
+}
 func (pself *sceneMgr) ChangeSceneToFile(path string) {
 	arg0Str := NewCString(path)
 	arg0 := arg0Str.ToGdString()
@@ -532,6 +538,21 @@ func (pself *spriteMgr) SetTexture(obj Object, path string) {
 	arg1 := arg1Str.ToGdString()
 	defer arg1Str.Destroy()
 	CallSpriteSetTexture(arg0, arg1)
+}
+func (pself *spriteMgr) SetTextureAltasDirect(obj Object, path string, rect2 Rect2) {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(path)
+	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
+	arg2 := ToGdRect2(rect2)
+	CallSpriteSetTextureAltasDirect(arg0, arg1, arg2)
+}
+func (pself *spriteMgr) SetTextureDirect(obj Object, path string) {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(path)
+	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
+	CallSpriteSetTextureDirect(arg0, arg1)
 }
 func (pself *spriteMgr) GetTexture(obj Object) string {
 	arg0 := ToGdObj(obj)

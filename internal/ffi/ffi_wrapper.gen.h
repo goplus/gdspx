@@ -159,6 +159,9 @@ void cgo_callfn_GDExtensionSpxResReadAllText(const GDExtensionSpxResReadAllText 
 void cgo_callfn_GDExtensionSpxResHasFile(const GDExtensionSpxResHasFile fn, GdString p_path, GdBool* ret_val) {
 	fn(p_path,ret_val);
 }
+void cgo_callfn_GDExtensionSpxResReloadTexture(const GDExtensionSpxResReloadTexture fn, GdString path) {
+	fn(path);
+}
 void cgo_callfn_GDExtensionSpxSceneChangeSceneToFile(const GDExtensionSpxSceneChangeSceneToFile fn, GdString path) {
 	fn(path);
 }
@@ -250,6 +253,12 @@ void cgo_callfn_GDExtensionSpxSpriteSetTextureAltas(const GDExtensionSpxSpriteSe
 	fn(obj, path, rect2);
 }
 void cgo_callfn_GDExtensionSpxSpriteSetTexture(const GDExtensionSpxSpriteSetTexture fn, GdObj obj, GdString path) {
+	fn(obj, path);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetTextureAltasDirect(const GDExtensionSpxSpriteSetTextureAltasDirect fn, GdObj obj, GdString path, GdRect2 rect2) {
+	fn(obj, path, rect2);
+}
+void cgo_callfn_GDExtensionSpxSpriteSetTextureDirect(const GDExtensionSpxSpriteSetTextureDirect fn, GdObj obj, GdString path) {
 	fn(obj, path);
 }
 void cgo_callfn_GDExtensionSpxSpriteGetTexture(const GDExtensionSpxSpriteGetTexture fn, GdObj obj, GdString* ret_val) {
