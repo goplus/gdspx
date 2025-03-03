@@ -9,8 +9,16 @@ fmt:
 updatemod:
 	gdspx updatemod
 
+ios:
+	./tools/init_template.sh -p "ios"
+
 template:
-	./tools/init_template.sh -p "$(PLATFORM)"
+	@if [ "$(word 2,$(MAKECMDGOALS))" != "" ]; then \
+		./tools/init_template.sh -p "$(word 2,$(MAKECMDGOALS))"; \
+	else \
+		./tools/init_template.sh; \
+	fi
+
 pc:
 	./tools/init.sh
 
@@ -30,3 +38,6 @@ gen:
 	
 upload:
 	./webserver/upload.sh 
+
+%:
+	@:
