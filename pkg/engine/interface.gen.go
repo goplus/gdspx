@@ -91,6 +91,7 @@ type IResMgr interface {
 	GetImageSize(p_path string) Vec2
 	ReadAllText(p_path string) string
 	HasFile(p_path string) bool
+	ReloadTexture(path string)
 }
 
 type ISceneMgr interface {
@@ -128,6 +129,8 @@ type ISpriteMgr interface {
 	GetColor(obj Object) Color
 	SetTextureAltas(obj Object, path string, rect2 Rect2)
 	SetTexture(obj Object, path string)
+	SetTextureAltasDirect(obj Object, path string, rect2 Rect2)
+	SetTextureDirect(obj Object, path string)
 	GetTexture(obj Object) string
 	SetVisible(obj Object, visible bool)
 	GetVisible(obj Object) bool

@@ -67,6 +67,7 @@ type GDExtensionInterface struct {
 	SpxResGetImageSize                  GDExtensionSpxResGetImageSize
 	SpxResReadAllText                   GDExtensionSpxResReadAllText
 	SpxResHasFile                       GDExtensionSpxResHasFile
+	SpxResReloadTexture                 GDExtensionSpxResReloadTexture
 	SpxSceneChangeSceneToFile           GDExtensionSpxSceneChangeSceneToFile
 	SpxSceneReloadCurrentScene          GDExtensionSpxSceneReloadCurrentScene
 	SpxSceneUnloadCurrentScene          GDExtensionSpxSceneUnloadCurrentScene
@@ -98,6 +99,8 @@ type GDExtensionInterface struct {
 	SpxSpriteGetColor                   GDExtensionSpxSpriteGetColor
 	SpxSpriteSetTextureAltas            GDExtensionSpxSpriteSetTextureAltas
 	SpxSpriteSetTexture                 GDExtensionSpxSpriteSetTexture
+	SpxSpriteSetTextureAltasDirect      GDExtensionSpxSpriteSetTextureAltasDirect
+	SpxSpriteSetTextureDirect           GDExtensionSpxSpriteSetTextureDirect
 	SpxSpriteGetTexture                 GDExtensionSpxSpriteGetTexture
 	SpxSpriteSetVisible                 GDExtensionSpxSpriteSetVisible
 	SpxSpriteGetVisible                 GDExtensionSpxSpriteGetVisible
@@ -255,6 +258,7 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxResGetImageSize = (GDExtensionSpxResGetImageSize)(dlsymGD("spx_res_get_image_size"))
 	x.SpxResReadAllText = (GDExtensionSpxResReadAllText)(dlsymGD("spx_res_read_all_text"))
 	x.SpxResHasFile = (GDExtensionSpxResHasFile)(dlsymGD("spx_res_has_file"))
+	x.SpxResReloadTexture = (GDExtensionSpxResReloadTexture)(dlsymGD("spx_res_reload_texture"))
 	x.SpxSceneChangeSceneToFile = (GDExtensionSpxSceneChangeSceneToFile)(dlsymGD("spx_scene_change_scene_to_file"))
 	x.SpxSceneReloadCurrentScene = (GDExtensionSpxSceneReloadCurrentScene)(dlsymGD("spx_scene_reload_current_scene"))
 	x.SpxSceneUnloadCurrentScene = (GDExtensionSpxSceneUnloadCurrentScene)(dlsymGD("spx_scene_unload_current_scene"))
@@ -286,6 +290,8 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteGetColor = (GDExtensionSpxSpriteGetColor)(dlsymGD("spx_sprite_get_color"))
 	x.SpxSpriteSetTextureAltas = (GDExtensionSpxSpriteSetTextureAltas)(dlsymGD("spx_sprite_set_texture_altas"))
 	x.SpxSpriteSetTexture = (GDExtensionSpxSpriteSetTexture)(dlsymGD("spx_sprite_set_texture"))
+	x.SpxSpriteSetTextureAltasDirect = (GDExtensionSpxSpriteSetTextureAltasDirect)(dlsymGD("spx_sprite_set_texture_altas_direct"))
+	x.SpxSpriteSetTextureDirect = (GDExtensionSpxSpriteSetTextureDirect)(dlsymGD("spx_sprite_set_texture_direct"))
 	x.SpxSpriteGetTexture = (GDExtensionSpxSpriteGetTexture)(dlsymGD("spx_sprite_get_texture"))
 	x.SpxSpriteSetVisible = (GDExtensionSpxSpriteSetVisible)(dlsymGD("spx_sprite_set_visible"))
 	x.SpxSpriteGetVisible = (GDExtensionSpxSpriteGetVisible)(dlsymGD("spx_sprite_get_visible"))

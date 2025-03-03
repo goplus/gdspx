@@ -348,6 +348,12 @@ func (pself *Sprite) SetTexture(path string) {
 func (pself *Sprite) SetTextureAltas(path string, rect2 Rect2) {
 }
 
+func (pself *Sprite) SetTextureAltasDirect(path string, rect2 Rect2) {
+}
+
+func (pself *Sprite) SetTextureDirect(path string) {
+}
+
 func (pself *Sprite) SetTriggerCapsule(center Vec2, size Vec2) {
 }
 
