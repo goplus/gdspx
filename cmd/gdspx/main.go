@@ -29,10 +29,10 @@ func (pself *CmdTool) OnBeforeCheck(cmd string) error {
 	switch cmd {
 	case "updatemod":
 		impl.UpdateMod(
-			"github.com/realdream-ai/gdspx ", "./spx",
+			"github.com/realdream-ai/gdspx ", "../",
 			"github.com/realdream-ai/gdspx/cmd/gdspx ",
-			[]string{"", "cmd/spx", "cmd/ispx"},
-			[]string{"cmd/spx/template/project/go.mod.txt"})
+			[]string{"", "cmd/gox", "cmd/igox"},
+			[]string{"cmd/gox/template/project/go.mod.txt"})
 		return &returnDirect{}
 	}
 	return nil
