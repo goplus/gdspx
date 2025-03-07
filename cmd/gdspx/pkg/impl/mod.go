@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -151,8 +152,9 @@ func UpdateMod(tag, relDir string, tag2 string, dirList []string, fileList []str
 	// run go mod tidy
 	rawDir, _ := os.Getwd()
 	for _, dir := range dirList {
-		modPath := path.Join(relDir, dir)
+		modPath, _ := filepath.Abs(path.Join(relDir, dir))
 		os.Chdir(modPath)
+		println("Tidying module in ", modPath, len(dirList))
 		if err := util.RunGoModTidy(); err != nil {
 			fmt.Println(err)
 		}

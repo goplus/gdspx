@@ -114,6 +114,9 @@ type GDExtensionSpxPlatformSetDebugMode C.GDExtensionSpxPlatformSetDebugMode
 type GDExtensionSpxPlatformIsDebugMode C.GDExtensionSpxPlatformIsDebugMode
 type GDExtensionSpxPlatformGetTimeScale C.GDExtensionSpxPlatformGetTimeScale
 type GDExtensionSpxPlatformSetTimeScale C.GDExtensionSpxPlatformSetTimeScale
+type GDExtensionSpxPlatformGetPersistantDataDir C.GDExtensionSpxPlatformGetPersistantDataDir
+type GDExtensionSpxPlatformSetPersistantDataDir C.GDExtensionSpxPlatformSetPersistantDataDir
+type GDExtensionSpxPlatformIsInPersistantDataDir C.GDExtensionSpxPlatformIsInPersistantDataDir
 type GDExtensionSpxResCreateAnimation C.GDExtensionSpxResCreateAnimation
 type GDExtensionSpxResSetLoadMode C.GDExtensionSpxResSetLoadMode
 type GDExtensionSpxResGetLoadMode C.GDExtensionSpxResGetLoadMode
@@ -610,6 +613,31 @@ func CallPlatformSetTimeScale(
 
 	C.cgo_callfn_GDExtensionSpxPlatformSetTimeScale(arg0, arg1GdFloat)
 
+}
+func CallPlatformGetPersistantDataDir() GdString {
+	arg0 := (C.GDExtensionSpxPlatformGetPersistantDataDir)(api.SpxPlatformGetPersistantDataDir)
+	var ret_val C.GdString
+	C.cgo_callfn_GDExtensionSpxPlatformGetPersistantDataDir(arg0, &ret_val)
+	return (GdString)(ret_val)
+}
+func CallPlatformSetPersistantDataDir(
+	path GdString,
+) {
+	arg0 := (C.GDExtensionSpxPlatformSetPersistantDataDir)(api.SpxPlatformSetPersistantDataDir)
+	arg1GdString = (C.GdString)(path)
+
+	C.cgo_callfn_GDExtensionSpxPlatformSetPersistantDataDir(arg0, arg1GdString)
+
+}
+func CallPlatformIsInPersistantDataDir(
+	path GdString,
+) GdBool {
+	arg0 := (C.GDExtensionSpxPlatformIsInPersistantDataDir)(api.SpxPlatformIsInPersistantDataDir)
+	arg1GdString = (C.GdString)(path)
+	var ret_val C.GdBool
+	C.cgo_callfn_GDExtensionSpxPlatformIsInPersistantDataDir(arg0, arg1GdString, &ret_val)
+
+	return (GdBool)(ret_val)
 }
 func CallResCreateAnimation(
 	sprite_type_name GdString,

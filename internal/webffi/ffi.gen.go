@@ -64,6 +64,9 @@ type GDExtensionInterface struct {
 	SpxPlatformIsDebugMode              js.Value
 	SpxPlatformGetTimeScale             js.Value
 	SpxPlatformSetTimeScale             js.Value
+	SpxPlatformGetPersistantDataDir     js.Value
+	SpxPlatformSetPersistantDataDir     js.Value
+	SpxPlatformIsInPersistantDataDir    js.Value
 	SpxResCreateAnimation               js.Value
 	SpxResSetLoadMode                   js.Value
 	SpxResGetLoadMode                   js.Value
@@ -255,6 +258,9 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxPlatformIsDebugMode = dlsymGD("gdspx_platform_is_debug_mode")
 	x.SpxPlatformGetTimeScale = dlsymGD("gdspx_platform_get_time_scale")
 	x.SpxPlatformSetTimeScale = dlsymGD("gdspx_platform_set_time_scale")
+	x.SpxPlatformGetPersistantDataDir = dlsymGD("gdspx_platform_get_persistant_data_dir")
+	x.SpxPlatformSetPersistantDataDir = dlsymGD("gdspx_platform_set_persistant_data_dir")
+	x.SpxPlatformIsInPersistantDataDir = dlsymGD("gdspx_platform_is_in_persistant_data_dir")
 	x.SpxResCreateAnimation = dlsymGD("gdspx_res_create_animation")
 	x.SpxResSetLoadMode = dlsymGD("gdspx_res_set_load_mode")
 	x.SpxResGetLoadMode = dlsymGD("gdspx_res_get_load_mode")

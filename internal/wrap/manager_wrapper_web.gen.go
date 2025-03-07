@@ -283,6 +283,19 @@ func (pself *platformMgr) SetTimeScale(time_scale float64) {
 	arg0 := JsFromGdFloat(time_scale)
 	API.SpxPlatformSetTimeScale.Invoke(arg0)
 }
+func (pself *platformMgr) GetPersistantDataDir() string {
+	_retValue := API.SpxPlatformGetPersistantDataDir.Invoke()
+	return JsToGdString(_retValue)
+}
+func (pself *platformMgr) SetPersistantDataDir(path string) {
+	arg0 := JsFromGdString(path)
+	API.SpxPlatformSetPersistantDataDir.Invoke(arg0)
+}
+func (pself *platformMgr) IsInPersistantDataDir(path string) bool {
+	arg0 := JsFromGdString(path)
+	_retValue := API.SpxPlatformIsInPersistantDataDir.Invoke(arg0)
+	return JsToGdBool(_retValue)
+}
 func (pself *resMgr) CreateAnimation(sprite_type_name string, anim_name string, context string, fps int64, is_altas bool) {
 	arg0 := JsFromGdString(sprite_type_name)
 	arg1 := JsFromGdString(anim_name)
