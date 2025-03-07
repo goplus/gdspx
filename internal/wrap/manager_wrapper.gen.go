@@ -299,6 +299,23 @@ func (pself *platformMgr) SetTimeScale(time_scale float64) {
 	arg0 := ToGdFloat(time_scale)
 	CallPlatformSetTimeScale(arg0)
 }
+func (pself *platformMgr) GetPersistantDataDir() string {
+	retValue := CallPlatformGetPersistantDataDir()
+	return ToString(retValue)
+}
+func (pself *platformMgr) SetPersistantDataDir(path string) {
+	arg0Str := NewCString(path)
+	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
+	CallPlatformSetPersistantDataDir(arg0)
+}
+func (pself *platformMgr) IsInPersistantDataDir(path string) bool {
+	arg0Str := NewCString(path)
+	arg0 := arg0Str.ToGdString()
+	defer arg0Str.Destroy()
+	retValue := CallPlatformIsInPersistantDataDir(arg0)
+	return ToBool(retValue)
+}
 func (pself *resMgr) CreateAnimation(sprite_type_name string, anim_name string, context string, fps int64, is_altas bool) {
 	arg0Str := NewCString(sprite_type_name)
 	arg0 := arg0Str.ToGdString()

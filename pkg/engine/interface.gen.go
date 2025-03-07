@@ -81,6 +81,9 @@ type IPlatformMgr interface {
 	IsDebugMode() bool
 	GetTimeScale() float64
 	SetTimeScale(time_scale float64)
+	GetPersistantDataDir() string
+	SetPersistantDataDir(path string)
+	IsInPersistantDataDir(path string) bool
 }
 
 type IResMgr interface {
