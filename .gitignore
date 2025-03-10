@@ -19,3 +19,4 @@ internal/ffi/_temp_output*.h
 /ispx
 /sb2spx
 *.DS_Store
+/logs

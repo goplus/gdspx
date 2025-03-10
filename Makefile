@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := pc
 
 CURRENT_PATH=$(shell pwd)
-.PHONY: engine init initweb fmt gen upload updatemod template
+.PHONY: engine init initweb fmt gen upload updatemod templates
 
 fmt:
 	go fmt ./... 
@@ -9,15 +9,8 @@ fmt:
 updatemod:
 	gdspx updatemod
 
-ios:
-	./tools/init_template.sh -p "ios"
-
-template:
-	@if [ "$(word 2,$(MAKECMDGOALS))" != "" ]; then \
-		./tools/init_template.sh -p "$(word 2,$(MAKECMDGOALS))"; \
-	else \
-		./tools/init_template.sh; \
-	fi
+templates:
+	./tools/build_templates.sh
 
 pc:
 	./tools/init.sh
@@ -38,6 +31,7 @@ gen:
 	
 upload:
 	./webserver/upload.sh 
+
 
 %:
 	@:
