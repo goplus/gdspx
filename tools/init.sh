@@ -14,8 +14,10 @@ if [[ "$(uname -m)" == "aarch64" || "$(uname -m)" == "arm64" ]]; then
     ARCH=arm64
 fi
 
+python3 -c "import sys; print(sys.version)"
+python3 -m pip install scons==4.7.0 --break-system-packages
+scons --version
 
-pip3 install scons==4.7.0
 if [ ! -d "godot" ]; then
     echo "Godot directory not found. Creating and initializing..."
     mkdir godot
@@ -30,6 +32,11 @@ else
     echo "Godot directory already exists."
 fi
 #  dev_build=yes
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    echo "install vulkan sdk macos"
+    ./misc/scripts/install_vulkan_sdk_macos.sh
+fi 
 
 if [ "$OS" = "Windows_NT" ]; then
     scons target=editor arch=$ARCH vsproj=yes dev_build=yes
