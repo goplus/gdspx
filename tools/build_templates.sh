@@ -50,6 +50,7 @@ build_platform() {
     echo "Scons arguments: ${scons_args}"
     echo "----------------------------------------"
     
+
     "$podman" run -it --rm \
         -v "${godot_path}":/root/godot:z \
         godot-${platform}:${img_version} \
@@ -70,28 +71,41 @@ echo "Starting multi-platform Godot builds..."
 echo "Godot source path: ${GODOT_PATH}"
 echo "----------------------------------------"
 
-# web
-./tools/init_web.sh
+# ios
+IOSP1="IOS_SDK_PATH='/root/ioscross/arm64/SDK/iPhoneOS17.0.sdk'"
+IOSP2="IOS_TOOLCHAIN_PATH='/root/ioscross/arm64'"
+IOSP3="ios_triple='arm-apple-darwin11-'"
+build_platform ios target=template_debug ios_simulator=no $IOSP1 $IOSP2 $IOSP3
+build_platform ios target=template_release ios_simulator=no generate_bundle=yes $IOSP1 $IOSP2 $IOSP3
+build_platform ios target=template_debug ios_simulator=yes arch=arm64 generate_bundle=yes $IOSP1 $IOSP2 $IOSP3
+
 # android
 cd $GODOT_PATH || exit
 scons platform=android target=template_debug arch=arm32
 scons platform=android target=template_debug arch=arm64
-cd $GODOT_PATH/platform/android/java || exit
+cd platform/android/java || exit
 # On Linux and macOS
 ./gradlew generateGodotTemplates
+# osx
+build_platform osx osxcross_sdk=darwin23 arch=arm64 vulkan=false target=template_release
+
+# web
+./tools/init_web.sh
+# android
+cd $GODOT_PATH || exit
+build_platform android target=template_release arch=arm32
+build_platform android target=template_release arch=arm64 && cd $GODOT_PATH/platform/android/java && ./gradlew generateGodotTemplates
+
 # linux 
 cd $GODOT_PATH || exit
 scons platform=linux target=template_release
 
 # Build templates
-# osx
-build_platform osx osxcross_sdk=darwin23 arch=arm64 vulkan=false target=template_release
 # windows
-build_platform windows bits=64 vulkan=false target=template_release
-# ios
-#build_platform ios target=template_release arch=arm64
-
-
+build_platform windows target=template_debug arch=x86_32
+build_platform windows target=template_release arch=x86_32
+build_platform windows target=template_debug arch=x86_64
+build_platform windows target=template_release arch=x86_64
 
 echo "All builds completed successfully!"
 echo "Build logs can be found in the logs directory"

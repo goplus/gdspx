@@ -80,7 +80,7 @@ elif [ "$PLATFORM" = "android" ]; then
     echo "save to $DST_DIR"
     cp bin/android* "$DST_DIR/"
 elif [ "$PLATFORM" = "ios" ]; then
-    scons platform=ios target=template_debug ios_simulator=no generate_bundle=yes
+    scons platform=ios target=template_debug ios_simulator=no
     scons platform=ios target=template_release ios_simulator=no generate_bundle=yes
     scons platform=ios target=template_debug ios_simulator=yes arch=arm64
     scons platform=ios target=template_debug ios_simulator=yes arch=x86_64 generate_bundle=yes
