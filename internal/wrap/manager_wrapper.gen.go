@@ -541,6 +541,11 @@ func (pself *spriteMgr) GetColor(obj Object) Color {
 	retValue := CallSpriteGetColor(arg0)
 	return ToColor(retValue)
 }
+func (pself *spriteMgr) ChangeColor(obj Object, color Color) {
+	arg0 := ToGdObj(obj)
+	arg1 := ToGdColor(color)
+	CallSpriteChangeColor(arg0, arg1)
+}
 func (pself *spriteMgr) SetTextureAltas(obj Object, path string, rect2 Rect2) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)

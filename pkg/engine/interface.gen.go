@@ -130,6 +130,7 @@ type ISpriteMgr interface {
 	GetRenderScale(obj Object) Vec2
 	SetColor(obj Object, color Color)
 	GetColor(obj Object) Color
+	ChangeColor(obj Object, color Color)
 	SetTextureAltas(obj Object, path string, rect2 Rect2)
 	SetTexture(obj Object, path string)
 	SetTextureAltasDirect(obj Object, path string, rect2 Rect2)

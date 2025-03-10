@@ -154,6 +154,7 @@ type GDExtensionSpxSpriteSetRenderScale C.GDExtensionSpxSpriteSetRenderScale
 type GDExtensionSpxSpriteGetRenderScale C.GDExtensionSpxSpriteGetRenderScale
 type GDExtensionSpxSpriteSetColor C.GDExtensionSpxSpriteSetColor
 type GDExtensionSpxSpriteGetColor C.GDExtensionSpxSpriteGetColor
+type GDExtensionSpxSpriteChangeColor C.GDExtensionSpxSpriteChangeColor
 type GDExtensionSpxSpriteSetTextureAltas C.GDExtensionSpxSpriteSetTextureAltas
 type GDExtensionSpxSpriteSetTexture C.GDExtensionSpxSpriteSetTexture
 type GDExtensionSpxSpriteSetTextureAltasDirect C.GDExtensionSpxSpriteSetTextureAltasDirect
@@ -1031,6 +1032,17 @@ func CallSpriteGetColor(
 	C.cgo_callfn_GDExtensionSpxSpriteGetColor(arg0, arg1GdObj, &ret_val)
 
 	return (GdColor)(ret_val)
+}
+func CallSpriteChangeColor(
+	obj GdObj,
+	color GdColor,
+) {
+	arg0 := (C.GDExtensionSpxSpriteChangeColor)(api.SpxSpriteChangeColor)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdColor = (C.GdColor)(color)
+
+	C.cgo_callfn_GDExtensionSpxSpriteChangeColor(arg0, arg1GdObj, arg2GdColor)
+
 }
 func CallSpriteSetTextureAltas(
 	obj GdObj,

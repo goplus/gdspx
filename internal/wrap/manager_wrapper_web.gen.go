@@ -487,6 +487,11 @@ func (pself *spriteMgr) GetColor(obj Object) Color {
 	_retValue := API.SpxSpriteGetColor.Invoke(arg0)
 	return JsToGdColor(_retValue)
 }
+func (pself *spriteMgr) ChangeColor(obj Object, color Color) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdColor(color)
+	API.SpxSpriteChangeColor.Invoke(arg0, arg1)
+}
 func (pself *spriteMgr) SetTextureAltas(obj Object, path string, rect2 Rect2) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdString(path)
