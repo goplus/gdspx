@@ -1,8 +1,8 @@
 package main
 
 import (
-	. "godot-ext/gdspx/pkg/engine"
-	"godot-ext/gdspx/pkg/gdspx"
+	. "github.com/realdream-ai/gdspx/pkg/engine"
+	"github.com/realdream-ai/gdspx/pkg/gdspx"
 )
 
 func main() {
@@ -21,7 +21,7 @@ func onStart() {
 	println("hello world!")
 }
 
-func onUpdate(delta float32) {
+func onUpdate(delta float64) {
 	//println("onEngineUpdate")
 }
 
