@@ -2,8 +2,6 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-set -e
-
 # Configuration variables
 GO_SRC_DIR="./go"
 LIB_DIR="./lib"
@@ -93,3 +91,52 @@ rm -rf "$BUILD_DIR"
 
 echo "✅ Successfully built libgdspx.ios.xcframework!"
 echo "📍 Location: $XCFRAMEWORK_PATH"
+
+# Paths
+ENGINE_BINARY="/Users/tjp/go/bin/gdspx2.0.1_darwin"
+PROJECT_PATH="$SCRIPT_DIR/project.godot"
+IPA_PATH="$SCRIPT_DIR/builds/Game.ipa"
+BUILD_DIR=$(dirname "$IPA_PATH")
+
+# 开始导出 IPA 文件
+echo "🚀 Starting Godot IPA export process..."
+
+# Check if ENGINE_BINARY environment variable is set
+if [ -z "$ENGINE_BINARY" ]; then
+    echo "Error: ENGINE_BINARY environment variable is not set"
+    echo "Please set it to your Godot binary path, e.g.:"
+    echo "export ENGINE_BINARY=/path/to/godot"
+    exit 1
+fi
+
+
+# Create builds directory if it doesn't exist
+mkdir -p "$BUILD_DIR"
+
+# Check if Godot binary exists
+if [ ! -f "$ENGINE_BINARY" ]; then
+    echo "Error: Godot binary not found at $ENGINE_BINARY"
+    exit 1
+fi
+
+# Check if project file exists
+if [ ! -f "$PROJECT_PATH" ]; then
+    echo "Error: Godot project file not found at $PROJECT_PATH"
+    exit 1
+fi
+
+# Import project to ensure resources are up to date
+echo "Importing project resources..."
+"$ENGINE_BINARY" --headless --path "$(dirname "$PROJECT_PATH")" --editor --quit
+
+# Export the project to IPA
+echo "Exporting Godot project to IPA..."
+"$ENGINE_BINARY" --headless --path "$(dirname "$PROJECT_PATH")" --export-debug "iOS" "$IPA_PATH"
+
+if [ ! -f "$IPA_PATH" ]; then
+    echo "Error: IPA export failed"
+    exit 1
+fi
+
+echo "✅ IPA export completed successfully!"
+echo "📍 IPA Location: $IPA_PATH"
