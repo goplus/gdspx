@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 basedir=$(cd $(dirname "$0"); pwd)
+basedir=$basedir/docker
+cd $basedir
 podman=`command -v podman`
 
 if [ -z "$podman" ]; then
@@ -8,7 +10,7 @@ if [ -z "$podman" ]; then
   exit 1
 fi
 
-if [ -z "$1"]; then
+if [ -z "$1" ]; then
   echo "Usage: $0 <proxy_url>"
   echo
   echo "Example: $0 http://192.168.31.147:7890"
@@ -63,7 +65,8 @@ podman_build() {
     2>&1 | tee logs/"$1".log
 }
 
-# podman_build linux
+podman_build linux
+exit 0
 podman_build windows
 podman_build web
 podman_build android
