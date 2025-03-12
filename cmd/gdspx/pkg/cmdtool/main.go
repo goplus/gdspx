@@ -80,6 +80,10 @@ func RunCmd(cmd ICmdTool, appName, version string, fs embed.FS, fsRelDir string,
 		err = cmd.RunWeb()
 	case "exportweb":
 		err = cmd.ExportWeb()
+	case "exportapk":
+		err = cmd.ExportApk()
+	case "exportios":
+		err = cmd.ExportIos()
 	}
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
