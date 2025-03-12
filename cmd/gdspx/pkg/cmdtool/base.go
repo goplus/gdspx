@@ -57,6 +57,10 @@ type ICmdTool interface {
 	StopWeb() error
 	CheckExportWeb() error
 
+	// mobile
+	ExportIos() error
+	ExportApk() error
+
 	// check
 	OnAfterCheck(cmd string) error
 }
@@ -156,5 +160,15 @@ func (pself *BaseCmdTool) StopWeb() (err error) {
 }
 func (pself *BaseCmdTool) CheckExportWeb() (err error) {
 	CheckExportWeb()
+	return
+}
+
+func (pself *BaseCmdTool) ExportApk() (err error) {
+	ExportApk()
+	return
+}
+
+func (pself *BaseCmdTool) ExportIos() (err error) {
+	ExportIos()
 	return
 }
