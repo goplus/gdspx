@@ -36,6 +36,8 @@ The commands are:
     - buildweb        # Build for WebAssembly (WASM)
     - runweb          # Run the current project in browser
     - exportweb       # Export the web package
+    - exportapk       # Export the Android package
+    - exportios       # Export the iOS package
 
  eg:
 
@@ -61,3 +63,27 @@ The commands are:
 
     make gen       # Update engine warp codes
     make pc        # Rebuild the engine
+
+
+
+### 5. Setup build environment for android
+- refer to [build engine](https://docs.godotengine.org/en/4.2/contributing/development/compiling/compiling_for_android.html) , [Deploying](https://docs.godotengine.org/en/4.2/tutorials/export/exporting_for_android.html)
+
+1. Installing OpenJDK 17
+2. install android sdk (AndoridStudio or command-line tools)
+3. install ndk: 23.2.8568313
+4. export ANDROID_NDK_ROOT, ANDROID_HOME
+    eg:
+    ```
+    export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+    export ANDROID_NDK_ROOT=$HOME/Library/Android/sdk/ndk/23.2.8568313
+    export PATH="${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_NDK_ROOT}:${PATH}"
+    ```
+5. Creating a debug.keystore
+6. Configuring the location of the Android SDK and debug.keystore in Godot
+
+
+### 6. Setup build environment for ios
+- refer to [build engine](https://docs.godotengine.org/en/4.2/contributing/development/compiling/compiling_for_ios.html), [Deploying](https://docs.godotengine.org/en/4.2/tutorials/export/exporting_for_ios.html#doc-exporting-for-ios)
+
+
