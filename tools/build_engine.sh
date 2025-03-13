@@ -60,10 +60,12 @@ build_target() {
         echo "done"
 
     elif [ "$platform" = "ios" ]; then
-        scons platform=ios vulkan=True target=template_debug ios_simulator=no generate_bundle=yes 
-        scons platform=ios vulkan=True target=template_release ios_simulator=no generate_bundle=yes 
         scons platform=ios vulkan=True target=template_debug ios_simulator=yes arch=arm64 
-        scons platform=ios vulkan=True target=template_debug ios_simulator=yes arch=x86_64 generate_bundle=yes
+        scons platform=ios vulkan=True target=template_debug ios_simulator=yes arch=x86_64
+        scons platform=ios vulkan=True target=template_release ios_simulator=yes arch=arm64 
+        scons platform=ios vulkan=True target=template_release ios_simulator=yes arch=x86_64 generate_bundle=yes
+        scons platform=ios vulkan=True target=template_debug ios_simulator=no
+        scons platform=ios vulkan=True target=template_release ios_simulator=no generate_bundle=yes 
 
         cp -f bin/godot_ios.zip "$template_dir/ios.zip"
 

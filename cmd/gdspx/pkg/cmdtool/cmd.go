@@ -190,6 +190,18 @@ func ExportIos() error {
 	}
 
 	log.Println("IPA export completed successfully!", ipaPath)
+
+	log.Println("Try to install ipa to devices...")
+	// install ipa to device
+	cmd = exec.Command("ios-deploy", "--bundle", ipaPath)
+
+	// Capture standard output and error
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+
+	if err := cmd.Run(); err != nil {
+		return fmt.Errorf("IPA install failed: %w", err)
+	}
 	return nil
 }
 
