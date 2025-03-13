@@ -145,6 +145,7 @@ func ExportIos() error {
 		return fmt.Errorf("failed to build iOS libraries: %w", err)
 	}
 
+	// 将 proejctFS 目录中的 go/ios* 目录复制到 ProjectDir
 	// Set up paths
 	ipaPath := filepath.Join(ProjectDir, ".builds", "ios", "Game.ipa")
 	buildDir := filepath.Dir(ipaPath)
@@ -207,6 +208,27 @@ func ExportIos() error {
 
 func buildIosLibraries() error {
 	BuildDll()
+	// include ios files to build
+	files, _ := filepath.Glob(filepath.Join(ProjectDir, "go", "ios*"))
+	for _, file := range files {
+		if strings.HasSuffix(file, ".txt") {
+			newName := strings.TrimSuffix(file, ".txt")
+			os.Rename(file, newName)
+		}
+	}
+	// Copy iOS files from embedded filesystem to ProjectDir
+	entries, _ := proejctFS.ReadDir("project/go")
+	for _, entry := range entries {
+		if !entry.IsDir() && strings.HasPrefix(entry.Name(), "ios") {
+			srcPath := filepath.Join("project/go", entry.Name())
+			dstPath := filepath.Join(ProjectDir, "go", entry.Name())
+			if !util.IsFileExist(dstPath) {
+				data, _ := proejctFS.ReadFile(srcPath)
+				os.WriteFile(dstPath, data, 0644)
+			}
+		}
+	}
+
 	// Configuration variables
 	frameworkName := "gdspx"
 	libDir := filepath.Join(ProjectDir, "lib")
@@ -567,6 +589,15 @@ func Export() error {
 }
 
 func BuildDll() {
+	files, _ := filepath.Glob(filepath.Join(ProjectDir, "go", "ios*"))
+	// Restore original files
+	for _, file := range files {
+		if !strings.HasSuffix(file, ".txt") {
+			newName := file + ".txt"
+			os.Rename(file, newName)
+		}
+	}
+
 	rawdir, _ := os.Getwd()
 	os.Chdir(GoDir)
 	envVars := []string{"CGO_ENABLED=1"}
