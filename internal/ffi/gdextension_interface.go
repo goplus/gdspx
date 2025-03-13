@@ -8,6 +8,7 @@ import "C"
 import (
 	"unsafe"
 
+	"github.com/realdream-ai/gdspx/internal/platform"
 	"github.com/realdream-ai/gdspx/pkg/engine"
 	"github.com/realdream-ai/mathf"
 )
@@ -304,6 +305,7 @@ func GDExtensionInterfaceObjectMethodBindPtrcall(
 
 //export initialize
 func initialize(_ unsafe.Pointer, level initializationLevel) {
+	platform.Init()
 	if level == 2 {
 		main()
 	}

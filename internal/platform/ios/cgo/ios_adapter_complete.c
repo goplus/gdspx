@@ -8,18 +8,16 @@
 #include "ios_adapter_complete.h"
 
 /*
- * iOS适配器C文件 - 用于Go在iOS上的启动和初始化
+ * iOS Adapter C File - For Go startup and initialization on iOS
  *
- * 此文件包含在iOS上运行Go代码所需的所有C级适配代码的实现
- * 包括构造函数确保在Go运行时启动前执行初始化
+ * This file contains the implementation of all C-level adaptation code required to run Go on iOS
+ * Including constructor functions to ensure initialization before Go runtime starts
  *
- * 作者: Codeium
- * 日期: 2025-02-27
  */
 
-// 应用程序初始化 - 在加载库时运行
+// Application initialization - runs when loading the library
 __attribute__((constructor)) void initialize_ios_bridge(void) {
-    // 在Go运行时启动前配置iOS环境
+    // Configure iOS environment before Go runtime starts
     initializeIOSEnvironment();
 }
 
