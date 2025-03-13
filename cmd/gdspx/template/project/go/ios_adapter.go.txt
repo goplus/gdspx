@@ -16,12 +16,12 @@ Usage:
 
 */
 
-package ios
+package main
 
 /*
 #cgo CFLAGS: -x objective-c
 #cgo LDFLAGS: -framework Foundation -framework UIKit
-#include "cgo/ios_adapter_complete.h"
+#include "ios_adapter_complete.h"
 */
 import "C"
 
@@ -36,10 +36,6 @@ import (
 // init function, automatically executed when Go runtime starts
 func init() {
 	// Initialize iOS adapter here
-}
-
-// doinit function called by main to configure iOS environment in the main goroutine
-func Init() {
 	configureGoRuntime()
 	disableGoSignals()
 	redirectStderrToNull()
