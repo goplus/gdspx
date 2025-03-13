@@ -206,6 +206,7 @@ func ExportIos() error {
 }
 
 func buildIosLibraries() error {
+	BuildDll()
 	// Configuration variables
 	frameworkName := "gdspx"
 	libDir := filepath.Join(ProjectDir, "lib")
@@ -238,20 +239,32 @@ void GDExtensionInit(void *p_interface, const void *p_library, void *r_initializ
 
 #endif // LIBGDSPX_H
 `
+	iosHeaderContent := `
+#ifndef IOS_ADAPTER_COMPLETE_H
+#define IOS_ADAPTER_COMPLETE_H
+
+// iOS environmental setup function
+void initializeIOSEnvironment(void);
+
+// Disable signal handling at iOS level
+void disableIOSSignals(void);
+
+// Configure thread priority and QoS
+void configureIOSThreadPriority(void);
+
+// Redirect stderr to iOS system logger
+void redirectStderrToIOSSystemLogger(void);
+
+#endif // IOS_ADAPTER_COMPLETE_H
+`
+
 	if err := os.WriteFile(filepath.Join(headersDir, "libgdspx.h"), []byte(headerContent), 0644); err != nil {
 		return fmt.Errorf("failed to create header file: %w", err)
 	}
 
 	// Copy C headers to the headers directory
-	headerFiles, err := filepath.Glob(filepath.Join(goSrcDir, "*.h"))
-	if err != nil {
-		return fmt.Errorf("failed to find header files: %w", err)
-	}
-	for _, headerFile := range headerFiles {
-		destFile := filepath.Join(headersDir, filepath.Base(headerFile))
-		if err := util.CopyFile(headerFile, destFile); err != nil {
-			return fmt.Errorf("failed to copy header file %s: %w", headerFile, err)
-		}
+	if err := os.WriteFile(filepath.Join(headersDir, "ios_adapter_complete.h"), []byte(iosHeaderContent), 0644); err != nil {
+		return fmt.Errorf("failed to create header file: %w", err)
 	}
 
 	// Get SDK paths
@@ -426,6 +439,7 @@ func ExportApk() error {
 }
 
 func buildAndroidLibraries() error {
+	BuildDll()
 	libDir := filepath.Join(ProjectDir, "lib")
 	goDir := filepath.Join(ProjectDir, "go")
 

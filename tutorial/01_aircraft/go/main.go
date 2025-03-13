@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-	doinit()
 	game.RegisterTypes()
 	gdspx.LinkEngine(EngineCallbackInfo{
 		OnEngineStart:   game.OnStart,
