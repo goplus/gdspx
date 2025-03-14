@@ -8,6 +8,8 @@ setup_global_variables() {
     # Define Godot version
     ENGINE_VERSION=4.2.2.stable
     GOPATH=$(go env GOPATH)
+    PROJ_DIR=$SCRIPT_DIR/..
+    ENGINE_DIR=$PROJ_DIR/godot
 
     cd $PROJ_DIR
     VERSION=$(cat ./cmd/gdspx/template/version)
@@ -57,8 +59,6 @@ setup_global_variables() {
     echo "Destination directory: $TEMPLATE_DIR"
 
 
-    PROJ_DIR=$SCRIPT_DIR/..
-    ENGINE_DIR=$PROJ_DIR/godot
 
     return 0
 }
