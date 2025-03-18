@@ -136,24 +136,9 @@ func GenerateGDExtensionWrapperGoFile(projectPath string, ast clang.CHeaderFileA
 		"trimPrefix":         TrimPrefix,
 	}
 
-	tmpl, err := template.New("ffi_wrapper.gen.go").
-		Funcs(funcs).
-		Parse(ffiWrapperGoFileText)
-	if err != nil {
-		return err
-	}
+	return GenerateFile(funcs, "ffi_wrapper.gen.go", ffiWrapperGoFileText, ast,
+		filepath.Join(projectPath, RelDir, "ffi_wrapper.gen.go"))
 
-	var b bytes.Buffer
-	err = tmpl.Execute(&b, ast)
-	if err != nil {
-		return err
-	}
-
-	headerFileName := filepath.Join(projectPath, RelDir, "ffi_wrapper.gen.go")
-	f, err := os.Create(headerFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return err
 }
 
 func GenerateGDExtensionInterfaceGoFile(projectPath string, ast clang.CHeaderFileAST) error {
@@ -172,24 +157,8 @@ func GenerateGDExtensionInterfaceGoFile(projectPath string, ast clang.CHeaderFil
 		"loadProcAddressName": LoadProcAddressName,
 	}
 
-	tmpl, err := template.New("ffi.gen.go").
-		Funcs(funcs).
-		Parse(ffiFileText)
-	if err != nil {
-		return err
-	}
-
-	var b bytes.Buffer
-	err = tmpl.Execute(&b, ast)
-	if err != nil {
-		return err
-	}
-
-	headerFileName := filepath.Join(projectPath, RelDir, "ffi.gen.go")
-	f, err := os.Create(headerFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return err
+	return GenerateFile(funcs, "ffi.gen.go", ffiFileText, ast,
+		filepath.Join(projectPath, RelDir, "ffi.gen.go"))
 }
 
 func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) error {
@@ -211,24 +180,9 @@ func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) 
 		"getManagerInterface": getManagerInterface,
 	}
 
-	tmpl, err := template.New("manager_wrapper.gen.go").
-		Funcs(funcs).
-		Parse(wrapManagerGoFileText)
-	if err != nil {
-		return err
-	}
+	return GenerateFile(funcs, "manager_wrapper.gen.go", wrapManagerGoFileText, ManagerData{Ast: ast, Mangers: GetManagers(ast)},
+		filepath.Join(projectPath, RelDir, "../wrap/manager_wrapper.gen.go"))
 
-	var b bytes.Buffer
-	err = tmpl.Execute(&b, ManagerData{Ast: ast, Mangers: GetManagers(ast)})
-	if err != nil {
-		return err
-	}
-
-	headerFileName := filepath.Join(projectPath, RelDir, "../wrap/manager_wrapper.gen.go")
-	f, err := os.Create(headerFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return err
 }
 
 func GenerateManagerInterfaceGoFile(projectPath string, ast clang.CHeaderFileAST) error {
@@ -250,23 +204,8 @@ func GenerateManagerInterfaceGoFile(projectPath string, ast clang.CHeaderFileAST
 		"getManagerInterface": getManagerInterface,
 	}
 
-	tmpl, err := template.New("interface.gen.go").
-		Funcs(funcs).
-		Parse(interfaceGoFileText)
-	if err != nil {
-		return err
-	}
-	var b bytes.Buffer
-	err = tmpl.Execute(&b, ManagerData{Ast: ast, Mangers: GetManagers(ast)})
-	if err != nil {
-		return err
-	}
-
-	headerFileName := filepath.Join(projectPath, RelDir, "../../pkg/engine/interface.gen.go")
-	f, err := os.Create(headerFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return err
+	return GenerateFile(funcs, "interface.gen.go", interfaceGoFileText, ManagerData{Ast: ast, Mangers: GetManagers(ast)},
+		filepath.Join(projectPath, RelDir, "../../pkg/engine/interface.gen.go"))
 }
 
 func GenerateSyncApiGoFile(projectPath string, ast clang.CHeaderFileAST) error {
@@ -288,25 +227,8 @@ func GenerateSyncApiGoFile(projectPath string, ast clang.CHeaderFileAST) error {
 		"genSyncManagerWrapFunction": genSyncManagerWrapFunction,
 	}
 
-	tmpl, err := template.New("sync.gen.go").
-		Funcs(funcs).
-		Parse(syncApiText)
-	if err != nil {
-		return err
-	}
-	var b bytes.Buffer
-	err = tmpl.Execute(&b, ManagerData{Ast: ast, Mangers: GetManagers(ast)})
-	if err != nil {
-		return err
-	}
-
-	headerFileName := filepath.Join(projectPath, RelDir, "../../../internal/enginewrap/sync.gen.go")
-	dir := filepath.Dir(headerFileName)
-	os.MkdirAll(dir, os.ModePerm)
-	f, err := os.Create(headerFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return err
+	return GenerateFile(funcs, "sync.gen.go", syncApiText, ManagerData{Ast: ast, Mangers: GetManagers(ast)},
+		filepath.Join(projectPath, RelDir, "../../../internal/enginewrap/sync.gen.go"))
 }
 
 func GenerateSyncPureGoFile(projectPath string, ast clang.CHeaderFileAST) error {
@@ -328,25 +250,8 @@ func GenerateSyncPureGoFile(projectPath string, ast clang.CHeaderFileAST) error 
 		"genSyncManagerWrapFunction": genSyncManagerWrapFunction,
 	}
 
-	tmpl, err := template.New("sync.gen.go").
-		Funcs(funcs).
-		Parse(syncPureApiText)
-	if err != nil {
-		return err
-	}
-	var b bytes.Buffer
-	err = tmpl.Execute(&b, ManagerData{Ast: ast, Mangers: GetManagers(ast)})
-	if err != nil {
-		return err
-	}
-
-	headerFileName := filepath.Join(projectPath, RelDir, "../../../internal/enginewrap/sync_pure.gen.go")
-	dir := filepath.Dir(headerFileName)
-	os.MkdirAll(dir, os.ModePerm)
-	f, err := os.Create(headerFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return err
+	return GenerateFile(funcs, "sync_pure.gen.go", syncPureApiText, ManagerData{Ast: ast, Mangers: GetManagers(ast)},
+		filepath.Join(projectPath, RelDir, "../../../internal/enginewrap/sync_pure.gen.go"))
 }
 
 type ImplData struct {
@@ -361,51 +266,24 @@ func GenerateManagerImplGoFile(projectPath string, ast clang.CHeaderFileAST, cls
 	}
 
 	genFile := strings.ToLower(clsName) + ".gen.go"
-	tmpl, err := template.New(genFile).
-		Funcs(funcs).
-		Parse(implGoFileText)
-	if err != nil {
-		return err
-	}
-	var b bytes.Buffer
-
 	methods := ast.CollectFunctionsOfClass(clsName)
 	sort.Sort(ByName(methods))
-	err = tmpl.Execute(&b, ImplData{Ast: ast, Methods: methods, ClsName: clsName})
-	if err != nil {
-		return err
-	}
-	implFileName := filepath.Join(projectPath, RelDir, "../../pkg/engine/"+genFile)
-	f, err := os.Create(implFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return err
+	data := ImplData{Ast: ast, Methods: methods, ClsName: clsName}
+
+	return GenerateFile(funcs, genFile, implGoFileText, data,
+		filepath.Join(projectPath, RelDir, "../../pkg/engine/"+genFile))
 }
 func GenerateManagerImplPureGoFile(projectPath string, ast clang.CHeaderFileAST, clsName string) error {
 	funcs := template.FuncMap{
 		"getManagerImplPure": getManagerImplPure,
 	}
-
-	genFile := strings.ToLower(clsName) + "_pure.gen.go"
-	tmpl, err := template.New(genFile).
-		Funcs(funcs).
-		Parse(implPureGoFileText)
-	if err != nil {
-		return err
-	}
-	var b bytes.Buffer
-
 	methods := ast.CollectFunctionsOfClass(clsName)
 	sort.Sort(ByName(methods))
-	err = tmpl.Execute(&b, ImplData{Ast: ast, Methods: methods, ClsName: clsName})
-	if err != nil {
-		return err
-	}
-	implFileName := filepath.Join(projectPath, RelDir, "../../pkg/engine/"+genFile)
-	f, err := os.Create(implFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return err
+	data := ImplData{Ast: ast, Methods: methods, ClsName: clsName}
+
+	genFile := strings.ToLower(clsName) + "_pure.gen.go"
+	return GenerateFile(funcs, genFile, implPureGoFileText, data,
+		filepath.Join(projectPath, RelDir, "../../pkg/engine/"+genFile))
 }
 
 func getManagerFuncName(function *clang.TypedefFunction) string {

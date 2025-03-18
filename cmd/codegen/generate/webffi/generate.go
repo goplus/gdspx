@@ -71,24 +71,8 @@ func GenerateCallbackGoFile(projectPath string, ast clang.CHeaderFileAST) error 
 		"trimPrefix":         TrimPrefix,
 	}
 
-	tmpl, err := template.New("callbacks.gen.go").
-		Funcs(funcs).
-		Parse(callbacksFileText)
-	if err != nil {
-		return err
-	}
-
-	var b bytes.Buffer
-	err = tmpl.Execute(&b, ast)
-	if err != nil {
-		return err
-	}
-
-	headerFileName := filepath.Join(projectPath, WebRelDir, "callbacks.gen.go")
-	f, err := os.Create(headerFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return err
+	return GenerateFile(funcs, "callbacks.gen.go", callbacksFileText, ast,
+		filepath.Join(projectPath, WebRelDir, "callbacks.gen.go"))
 }
 
 func GenerateGDExtensionInterfaceGoFile(projectPath string, ast clang.CHeaderFileAST) error {
@@ -107,24 +91,8 @@ func GenerateGDExtensionInterfaceGoFile(projectPath string, ast clang.CHeaderFil
 		"loadProcAddressName": LoadProcAddressName,
 	}
 
-	tmpl, err := template.New("ffi.gen.go").
-		Funcs(funcs).
-		Parse(ffiFileText)
-	if err != nil {
-		return err
-	}
-
-	var b bytes.Buffer
-	err = tmpl.Execute(&b, ast)
-	if err != nil {
-		return err
-	}
-
-	headerFileName := filepath.Join(projectPath, WebRelDir, "ffi.gen.go")
-	f, err := os.Create(headerFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return err
+	return GenerateFile(funcs, "ffi.gen.go", ffiFileText, ast,
+		filepath.Join(projectPath, WebRelDir, "ffi.gen.go"))
 }
 
 func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) error {
@@ -146,24 +114,8 @@ func GenerateManagerWrapperGoFile(projectPath string, ast clang.CHeaderFileAST) 
 		"getManagerInterface": getManagerInterface,
 	}
 
-	tmpl, err := template.New("manager_wrapper.gen.go").
-		Funcs(funcs).
-		Parse(wrapManagerGoFileText)
-	if err != nil {
-		return err
-	}
-
-	var b bytes.Buffer
-	err = tmpl.Execute(&b, ManagerData{Ast: ast, Mangers: GetManagers(ast)})
-	if err != nil {
-		return err
-	}
-
-	headerFileName := filepath.Join(projectPath, WebRelDir, "../wrap/manager_wrapper_web.gen.go")
-	f, err := os.Create(headerFileName)
-	f.Write(b.Bytes())
-	f.Close()
-	return err
+	return GenerateFile(funcs, "manager_wrapper.gen.go", wrapManagerGoFileText, ManagerData{Ast: ast, Mangers: GetManagers(ast)},
+		filepath.Join(projectPath, WebRelDir, "../wrap/manager_wrapper_web.gen.go"))
 }
 
 func GenerateJsEngineJsFile(projectPath string, ast clang.CHeaderFileAST) error {

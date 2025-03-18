@@ -1,7 +1,12 @@
 package common
 
 import (
+	"bytes"
 	"fmt"
+	"html/template"
+	"os"
+	"os/exec"
+	"path/filepath"
 	"sort"
 	"strconv"
 	"strings"
@@ -440,4 +445,31 @@ func GetManagers(ast clang.CHeaderFileAST) []string {
 		"GdColor":  "Color",
 	}
 	return managers
+}
+func GenerateFile(funcs template.FuncMap, name string, text string, data any, dstPath string) error {
+	tmpl, err := template.New(name).
+		Funcs(funcs).
+		Parse(text)
+	if err != nil {
+		return err
+	}
+
+	var b bytes.Buffer
+	err = tmpl.Execute(&b, data)
+	if err != nil {
+		return err
+	}
+
+	dir := filepath.Dir(dstPath)
+	os.MkdirAll(dir, os.ModePerm)
+	f, err := os.Create(dstPath)
+	if err != nil {
+		return err
+	}
+	f.Write(b.Bytes())
+	f.Close()
+	exec.Command("go", "fmt", dstPath).Run()
+	exec.Command("goimports", "-w", dstPath).Run()
+	println("generate file: " + dstPath)
+	return nil
 }

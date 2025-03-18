@@ -35,9 +35,7 @@ ios:
 	./tools/build_engine.sh -p ios 
 # Generate code
 gen:
-	cd ./cmd/codegen && go run . && cd $(CURRENT_PATH) && \
-	$(MAKE) fmt && $(MAKE) fmt && \
-	cd ./spx && go fmt ./... && cd $(CURRENT_PATH)
+	cd ./cmd/codegen && go run . && cd $(CURRENT_PATH) 
 
 # Install gdspx command
 cmd:
