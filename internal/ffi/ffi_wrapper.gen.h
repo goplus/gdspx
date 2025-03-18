@@ -258,6 +258,12 @@ void cgo_callfn_GDExtensionSpxSpriteSetColor(const GDExtensionSpxSpriteSetColor 
 void cgo_callfn_GDExtensionSpxSpriteGetColor(const GDExtensionSpxSpriteGetColor fn, GdObj obj, GdColor* ret_val) {
 	fn(obj,ret_val);
 }
+void cgo_callfn_GDExtensionSpxSpriteSetMaterialParams(const GDExtensionSpxSpriteSetMaterialParams fn, GdObj obj, GdString effect, GdFloat amount) {
+	fn(obj, effect, amount);
+}
+void cgo_callfn_GDExtensionSpxSpriteGetMaterialParams(const GDExtensionSpxSpriteGetMaterialParams fn, GdObj obj, GdString effect, GdFloat* ret_val) {
+	fn(obj, effect,ret_val);
+}
 void cgo_callfn_GDExtensionSpxSpriteSetTextureAltas(const GDExtensionSpxSpriteSetTextureAltas fn, GdObj obj, GdString path, GdRect2 rect2) {
 	fn(obj, path, rect2);
 }

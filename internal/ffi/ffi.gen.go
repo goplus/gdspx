@@ -100,6 +100,8 @@ type GDExtensionInterface struct {
 	SpxSpriteGetRenderScale             GDExtensionSpxSpriteGetRenderScale
 	SpxSpriteSetColor                   GDExtensionSpxSpriteSetColor
 	SpxSpriteGetColor                   GDExtensionSpxSpriteGetColor
+	SpxSpriteSetMaterialParams          GDExtensionSpxSpriteSetMaterialParams
+	SpxSpriteGetMaterialParams          GDExtensionSpxSpriteGetMaterialParams
 	SpxSpriteSetTextureAltas            GDExtensionSpxSpriteSetTextureAltas
 	SpxSpriteSetTexture                 GDExtensionSpxSpriteSetTexture
 	SpxSpriteSetTextureAltasDirect      GDExtensionSpxSpriteSetTextureAltasDirect
@@ -294,6 +296,8 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteGetRenderScale = (GDExtensionSpxSpriteGetRenderScale)(dlsymGD("spx_sprite_get_render_scale"))
 	x.SpxSpriteSetColor = (GDExtensionSpxSpriteSetColor)(dlsymGD("spx_sprite_set_color"))
 	x.SpxSpriteGetColor = (GDExtensionSpxSpriteGetColor)(dlsymGD("spx_sprite_get_color"))
+	x.SpxSpriteSetMaterialParams = (GDExtensionSpxSpriteSetMaterialParams)(dlsymGD("spx_sprite_set_material_params"))
+	x.SpxSpriteGetMaterialParams = (GDExtensionSpxSpriteGetMaterialParams)(dlsymGD("spx_sprite_get_material_params"))
 	x.SpxSpriteSetTextureAltas = (GDExtensionSpxSpriteSetTextureAltas)(dlsymGD("spx_sprite_set_texture_altas"))
 	x.SpxSpriteSetTexture = (GDExtensionSpxSpriteSetTexture)(dlsymGD("spx_sprite_set_texture"))
 	x.SpxSpriteSetTextureAltasDirect = (GDExtensionSpxSpriteSetTextureAltasDirect)(dlsymGD("spx_sprite_set_texture_altas_direct"))
