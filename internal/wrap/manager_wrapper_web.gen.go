@@ -487,6 +487,18 @@ func (pself *spriteMgr) GetColor(obj Object) Color {
 	_retValue := API.SpxSpriteGetColor.Invoke(arg0)
 	return JsToGdColor(_retValue)
 }
+func (pself *spriteMgr) SetMaterialParams(obj Object, effect string, amount float64) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdString(effect)
+	arg2 := JsFromGdFloat(amount)
+	API.SpxSpriteSetMaterialParams.Invoke(arg0, arg1, arg2)
+}
+func (pself *spriteMgr) GetMaterialParams(obj Object, effect string) float64 {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdString(effect)
+	_retValue := API.SpxSpriteGetMaterialParams.Invoke(arg0, arg1)
+	return JsToGdFloat(_retValue)
+}
 func (pself *spriteMgr) SetTextureAltas(obj Object, path string, rect2 Rect2) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdString(path)

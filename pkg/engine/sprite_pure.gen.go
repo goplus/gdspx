@@ -122,6 +122,11 @@ func (pself *Sprite) GetMass() float64 {
 	return _val
 }
 
+func (pself *Sprite) GetMaterialParams(effect string) float64 {
+	var _val float64
+	return _val
+}
+
 func (pself *Sprite) GetPosition() Vec2 {
 	var _val Vec2
 	return _val
@@ -322,6 +327,9 @@ func (pself *Sprite) SetGravity(gravity float64) {
 }
 
 func (pself *Sprite) SetMass(mass float64) {
+}
+
+func (pself *Sprite) SetMaterialParams(effect string, amount float64) {
 }
 
 func (pself *Sprite) SetPhysicProcess(is_on bool) {

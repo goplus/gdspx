@@ -104,6 +104,10 @@ func (pself *Sprite) GetMass() float64 {
 	return SpriteMgr.GetMass(pself.Id)
 }
 
+func (pself *Sprite) GetMaterialParams(effect string) float64 {
+	return SpriteMgr.GetMaterialParams(pself.Id, effect)
+}
+
 func (pself *Sprite) GetPosition() Vec2 {
 	return SpriteMgr.GetPosition(pself.Id)
 }
@@ -302,6 +306,10 @@ func (pself *Sprite) SetGravity(gravity float64) {
 
 func (pself *Sprite) SetMass(mass float64) {
 	SpriteMgr.SetMass(pself.Id, mass)
+}
+
+func (pself *Sprite) SetMaterialParams(effect string, amount float64) {
+	SpriteMgr.SetMaterialParams(pself.Id, effect, amount)
 }
 
 func (pself *Sprite) SetPhysicProcess(is_on bool) {

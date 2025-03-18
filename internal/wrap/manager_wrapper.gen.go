@@ -541,6 +541,22 @@ func (pself *spriteMgr) GetColor(obj Object) Color {
 	retValue := CallSpriteGetColor(arg0)
 	return ToColor(retValue)
 }
+func (pself *spriteMgr) SetMaterialParams(obj Object, effect string, amount float64) {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(effect)
+	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
+	arg2 := ToGdFloat(amount)
+	CallSpriteSetMaterialParams(arg0, arg1, arg2)
+}
+func (pself *spriteMgr) GetMaterialParams(obj Object, effect string) float64 {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(effect)
+	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
+	retValue := CallSpriteGetMaterialParams(arg0, arg1)
+	return ToFloat64(retValue)
+}
 func (pself *spriteMgr) SetTextureAltas(obj Object, path string, rect2 Rect2) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(path)
