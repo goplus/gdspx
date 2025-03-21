@@ -488,6 +488,16 @@ func (pself *spriteMgr) GetColor(obj Object) Color {
 	_retValue := API.SpxSpriteGetColor.Invoke(arg0)
 	return JsToGdColor(_retValue)
 }
+func (pself *spriteMgr) SetMaterialShader(obj Object, path string) {
+	arg0 := JsFromGdObj(obj)
+	arg1 := JsFromGdString(path)
+	API.SpxSpriteSetMaterialShader.Invoke(arg0, arg1)
+}
+func (pself *spriteMgr) GetMaterialShader(obj Object) string {
+	arg0 := JsFromGdObj(obj)
+	_retValue := API.SpxSpriteGetMaterialShader.Invoke(arg0)
+	return JsToGdString(_retValue)
+}
 func (pself *spriteMgr) SetMaterialParams(obj Object, effect string, amount float64) {
 	arg0 := JsFromGdObj(obj)
 	arg1 := JsFromGdString(effect)

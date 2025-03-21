@@ -104,6 +104,8 @@ type GDExtensionInterface struct {
 	SpxSpriteGetRenderScale             js.Value
 	SpxSpriteSetColor                   js.Value
 	SpxSpriteGetColor                   js.Value
+	SpxSpriteSetMaterialShader          js.Value
+	SpxSpriteGetMaterialShader          js.Value
 	SpxSpriteSetMaterialParams          js.Value
 	SpxSpriteGetMaterialParams          js.Value
 	SpxSpriteSetTextureAltas            js.Value
@@ -300,6 +302,8 @@ func (x *GDExtensionInterface) loadProcAddresses() {
 	x.SpxSpriteGetRenderScale = dlsymGD("gdspx_sprite_get_render_scale")
 	x.SpxSpriteSetColor = dlsymGD("gdspx_sprite_set_color")
 	x.SpxSpriteGetColor = dlsymGD("gdspx_sprite_get_color")
+	x.SpxSpriteSetMaterialShader = dlsymGD("gdspx_sprite_set_material_shader")
+	x.SpxSpriteGetMaterialShader = dlsymGD("gdspx_sprite_get_material_shader")
 	x.SpxSpriteSetMaterialParams = dlsymGD("gdspx_sprite_set_material_params")
 	x.SpxSpriteGetMaterialParams = dlsymGD("gdspx_sprite_get_material_params")
 	x.SpxSpriteSetTextureAltas = dlsymGD("gdspx_sprite_set_texture_altas")
