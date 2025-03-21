@@ -154,6 +154,8 @@ type GDExtensionSpxSpriteSetRenderScale C.GDExtensionSpxSpriteSetRenderScale
 type GDExtensionSpxSpriteGetRenderScale C.GDExtensionSpxSpriteGetRenderScale
 type GDExtensionSpxSpriteSetColor C.GDExtensionSpxSpriteSetColor
 type GDExtensionSpxSpriteGetColor C.GDExtensionSpxSpriteGetColor
+type GDExtensionSpxSpriteSetMaterialShader C.GDExtensionSpxSpriteSetMaterialShader
+type GDExtensionSpxSpriteGetMaterialShader C.GDExtensionSpxSpriteGetMaterialShader
 type GDExtensionSpxSpriteSetMaterialParams C.GDExtensionSpxSpriteSetMaterialParams
 type GDExtensionSpxSpriteGetMaterialParams C.GDExtensionSpxSpriteGetMaterialParams
 type GDExtensionSpxSpriteSetTextureAltas C.GDExtensionSpxSpriteSetTextureAltas
@@ -1033,6 +1035,27 @@ func CallSpriteGetColor(
 	C.cgo_callfn_GDExtensionSpxSpriteGetColor(arg0, arg1GdObj, &ret_val)
 
 	return (GdColor)(ret_val)
+}
+func CallSpriteSetMaterialShader(
+	obj GdObj,
+	path GdString,
+) {
+	arg0 := (C.GDExtensionSpxSpriteSetMaterialShader)(api.SpxSpriteSetMaterialShader)
+	arg1GdObj = (C.GdObj)(obj)
+	arg2GdString = (C.GdString)(path)
+
+	C.cgo_callfn_GDExtensionSpxSpriteSetMaterialShader(arg0, arg1GdObj, arg2GdString)
+
+}
+func CallSpriteGetMaterialShader(
+	obj GdObj,
+) GdString {
+	arg0 := (C.GDExtensionSpxSpriteGetMaterialShader)(api.SpxSpriteGetMaterialShader)
+	arg1GdObj = (C.GdObj)(obj)
+	var ret_val C.GdString
+	C.cgo_callfn_GDExtensionSpxSpriteGetMaterialShader(arg0, arg1GdObj, &ret_val)
+
+	return (GdString)(ret_val)
 }
 func CallSpriteSetMaterialParams(
 	obj GdObj,

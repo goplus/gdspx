@@ -541,6 +541,18 @@ func (pself *spriteMgr) GetColor(obj Object) Color {
 	retValue := CallSpriteGetColor(arg0)
 	return ToColor(retValue)
 }
+func (pself *spriteMgr) SetMaterialShader(obj Object, path string) {
+	arg0 := ToGdObj(obj)
+	arg1Str := NewCString(path)
+	arg1 := arg1Str.ToGdString()
+	defer arg1Str.Destroy()
+	CallSpriteSetMaterialShader(arg0, arg1)
+}
+func (pself *spriteMgr) GetMaterialShader(obj Object) string {
+	arg0 := ToGdObj(obj)
+	retValue := CallSpriteGetMaterialShader(arg0)
+	return ToString(retValue)
+}
 func (pself *spriteMgr) SetMaterialParams(obj Object, effect string, amount float64) {
 	arg0 := ToGdObj(obj)
 	arg1Str := NewCString(effect)

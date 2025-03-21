@@ -127,6 +127,11 @@ func (pself *Sprite) GetMaterialParams(effect string) float64 {
 	return _val
 }
 
+func (pself *Sprite) GetMaterialShader() string {
+	var _val string
+	return _val
+}
+
 func (pself *Sprite) GetPosition() Vec2 {
 	var _val Vec2
 	return _val
@@ -330,6 +335,9 @@ func (pself *Sprite) SetMass(mass float64) {
 }
 
 func (pself *Sprite) SetMaterialParams(effect string, amount float64) {
+}
+
+func (pself *Sprite) SetMaterialShader(path string) {
 }
 
 func (pself *Sprite) SetPhysicProcess(is_on bool) {
